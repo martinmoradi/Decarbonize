@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '../components/Theme';
 
 const EngagementsScreen = () => {
   return (
@@ -11,7 +12,7 @@ const EngagementsScreen = () => {
         alignItems: 'center',
       }}
     >
-      <Text>Engagements et trophées</Text>
+      <Text variant="title2">Engagements et trophées</Text>
     </View>
   );
 };

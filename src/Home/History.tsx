@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '../components/Theme';
 
 const HistoryScreen = () => {
   return (
@@ -11,7 +12,7 @@ const HistoryScreen = () => {
         alignItems: 'center',
       }}
     >
-      <Text>Historique des consommations</Text>
+      <Text variant="title2">Historique des consommations</Text>
     </View>
   );
 };

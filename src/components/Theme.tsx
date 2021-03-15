@@ -45,35 +45,42 @@ const theme = {
     hero: {
       fontSize: 80,
       lineHeight: 80,
+      fontFamily: 'Avenir-Bold',
       color: 'background',
       textAlign: 'center',
     },
     title1: {
       fontSize: 28,
+      fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
     title2: {
       fontSize: 24,
       lineHeight: 30,
+      fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
     title3: {
       fontSize: 16,
+      fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
     body: {
       fontSize: 16,
       lineHeight: 24,
+      fontFamily: 'Avenir-Regular',
       color: 'text',
     },
     button: {
       fontSize: 15,
+      fontFamily: 'Avenir-Regular',
       color: 'text',
       textAlign: 'center',
     },
     header: {
       fontSize: 12,
       lineHeight: 24,
+      fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
   },
