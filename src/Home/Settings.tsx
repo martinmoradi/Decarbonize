@@ -1,12 +1,19 @@
 import React from 'react';
-import {View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-
-const SettingsScreen = ( ) => {
-    return (<View style={{flex:1, backgroundColor:"#A9EFD2", justifyContent: "center", alignItems: "center" }}>
-    <Text>Settings</Text>
+const SettingsScreen = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#A9EFD2',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text>Settings</Text>
     </View>
-    )
-}
+  );
+};
 
-export default SettingsScreen
+export default SettingsScreen;

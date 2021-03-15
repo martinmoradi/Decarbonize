@@ -1,11 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
-import { AppRoutesParamsList } from "./src/components/Navigation";
-import {AuthenticationNavigator} from './src/Authentication'
-import {HomeNavigator} from './src/Home';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import 'react-native-gesture-handler';
+import { AuthenticationNavigator } from './src/Authentication';
 import LoadAssets from './src/components/LoadAssets';
+import { AppRoutesParamsList } from './src/components/Navigation';
+import { HomeNavigator } from './src/Home';
 
 const AppStack = createStackNavigator<AppRoutesParamsList>();
 
@@ -15,19 +14,15 @@ const fonts = {
   'Avenir-Regular': require('./assets/fonts/AvenirNextLTPro-Medium.otf'),
 };
 
-
 const App = () => {
   return (
-      <LoadAssets {...{ fonts }}>
-    <NavigationContainer>
+    <LoadAssets {...{ fonts }}>
       <AppStack.Navigator headerMode="none">
-        <AppStack.Screen  name="Authentication" component={AuthenticationNavigator}/>
-        <AppStack.Screen  name="Home" component={HomeNavigator}/>
+        <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
+        <AppStack.Screen name="Home" component={HomeNavigator} />
       </AppStack.Navigator>
-    </NavigationContainer>
     </LoadAssets>
   );
 };
-
 
 export default App;
