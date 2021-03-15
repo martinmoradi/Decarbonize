@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '../components/Theme';
 
 const SettingsScreen = () => {
   return (
@@ -11,7 +12,7 @@ const SettingsScreen = () => {
         alignItems: 'center',
       }}
     >
-      <Text>Settings</Text>
+      <Text variant="title2">Settings</Text>
     </View>
   );
 };
