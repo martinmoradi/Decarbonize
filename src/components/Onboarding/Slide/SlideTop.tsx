@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { Text, useTheme } from '../../Theme';
+import { useTheme } from '../../Theme';
 
 const SlideTop = () => {
   const { height, width } = Dimensions.get('window');
@@ -16,19 +16,8 @@ const SlideTop = () => {
       top: 0,
       borderBottomLeftRadius: 75,
     },
-    titleContainer: {
-      height: 100,
-      justifyContent: 'center',
-      transform: [
-        { rotate: '90deg' },
-        { translateY: (height / 3 - 450) / 2 },
-        { translateX: width / 3.5 },
-      ],
-    },
   });
-  return (
-    <View style={style.container}/>
-  );
+  return <View style={style.container} />;
 };
 
 export default SlideTop;

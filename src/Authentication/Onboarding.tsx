@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
+import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
 import SlideTop from '../components/Onboarding/Slide/SlideTop';
 import { Text } from '../components/Theme';
@@ -31,17 +32,13 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
         </View>
 
         <View style={{ flex: 1, width: Dimensions.get('screen').width }}>
-          <Text variant="title2">Slide 2</Text>
+          <SlideEnergy />
         </View>
 
         <View style={{ flex: 1, width: Dimensions.get('screen').width }}>
-          <View style={{ backgroundColor: 'red' }}>
-            <Text variant="title2">Slide 3</Text>
-          </View>
+          <Text variant="title2">Slide 3</Text>
         </View>
       </ScrollView>
-
-      <Text variant="title2">Slide test</Text>
       {/* <Button title="go to Auth" onPress={() => navigation.navigate('Auth')} /> */}
     </View>
   );
