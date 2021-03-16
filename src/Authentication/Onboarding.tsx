@@ -6,16 +6,22 @@ import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
 import SlideTop from '../components/Onboarding/Slide/SlideTop';
 import { Text } from '../components/Theme';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#e2e2e2',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
+  // underlay: {
+  //   height: 0.61 * height,
+  //   borderBottomRightRadius: 75,
+  // },
+});
+
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#A9EFD2',
-      // justifyContent: 'center',
-      // alignItems: 'center',
-    },
-  });
+
   return (
     <View style={styles.container}>
       <SlideTop />
