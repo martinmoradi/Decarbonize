@@ -19,6 +19,7 @@ export const palette = {
 
 const theme = {
   colors: {
+    white: palette.white,
     primary: palette.green,
     primaryLight: '#A9EFD2',
     secondary: '#0C0D34',
@@ -64,6 +65,12 @@ const theme = {
       fontSize: 16,
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',
+    },
+    titleTopSlide: {
+      fontSize: 24,
+      color: 'white',
+      fontFamily: 'Avenir-Bold',
+      letterSpacing: 2,
     },
     body: {
       fontSize: 16,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import SlideTop from '../components/Onboarding/Slide/SlideTop';
 import { Text } from '../components/Theme';
 
 const DashboardScreen = () => {
@@ -7,11 +8,11 @@ const DashboardScreen = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: '#A9EFD2',
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
+      <SlideTop />
       <Text variant="title2">Dashboard</Text>
     </View>
   );
