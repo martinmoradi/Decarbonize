@@ -7,7 +7,7 @@ import {
 import React, { ReactNode } from 'react';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export const aspectRatio = width / 375;
 
@@ -19,6 +19,7 @@ export const palette = {
 
 const theme = {
   colors: {
+    white: palette.white,
     primary: palette.green,
     primaryLight: '#A9EFD2',
     secondary: '#0C0D34',
@@ -65,6 +66,12 @@ const theme = {
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
+    titleTopSlide: {
+      fontSize: 24,
+      color: 'white',
+      fontFamily: 'Avenir-Bold',
+      letterSpacing: 2,
+    },
     body: {
       fontSize: 16,
       lineHeight: 24,
@@ -87,6 +94,24 @@ const theme = {
   breakpoints: {
     phone: 0,
     tablet: 768,
+  },
+  slide: {
+    container: {
+      padding: 44,
+    },
+    viewContainer: {
+      height: Dimensions.get('window').height,
+      justifyContent: 'center',
+    },
+    titleSlide: {
+      height: 100,
+      justifyContent: 'center',
+      transform: [
+        { rotate: '90deg' },
+        { translateY: (height / 3 - 450) / 2 },
+        { translateX: width / 3.5 },
+      ],
+    },
   },
 };
 
