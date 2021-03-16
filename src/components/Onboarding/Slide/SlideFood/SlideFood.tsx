@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
-import { Text, useTheme } from '../../../Theme';
-
-type PropsSlideTop = {
-  text: string;
-};
+import { Box, Text, useTheme } from '../../../Theme';
 
 const SlideFood = () => {
   const [value, setValue] = useState('');
@@ -29,11 +25,11 @@ const SlideFood = () => {
     },
   });
   return (
-    <View style={style.container}>
+    <View style={theme.slide.container}>
       <Text style={style.titleContainer} variant="titleTopSlide">
         FOOD
       </Text>
-      <View>
+      <Box style={theme.slide.viewContainer}>
         <Text variant="body">How often do you have a breakfast per week?</Text>
         <Slider
           value={value}
@@ -58,7 +54,7 @@ const SlideFood = () => {
         />
         <Text variant="body">How would you describe your diet?</Text>
         <Text variant="body"></Text>
-      </View>
+      </Box>
     </View>
   );
 };
