@@ -6,7 +6,7 @@ import SlideTop from '../components/Onboarding/Slide/SlideTop';
 import { Text } from '../components/Theme';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
-  const { width, height } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   const styles = StyleSheet.create({
     container: {
       flex: 1,
