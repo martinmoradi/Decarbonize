@@ -10,4 +10,5 @@ class User < ApplicationRecord
             uniqueness: true,
             format: { with: URI::MailTo::EMAIL_REGEXP, message: "L'adresse email n'est pas correcte." }
 
+  has_many :emissions, dependent: :destroy
 end
