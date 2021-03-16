@@ -1,11 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2021-03-08
-  classroom: one
-  course: one
+  round_trip: false
+  distance: 
 
 two:
-  date: 2021-03-08
-  classroom: two
-  course: two
+  round_trip: false
+  distance: 
