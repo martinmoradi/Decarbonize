@@ -67,7 +67,7 @@ const theme = {
       color: 'secondary',
     },
     titleTopSlide: {
-      fontSize: 24,
+      fontSize: 38,
       color: 'white',
       fontFamily: 'Avenir-Bold',
       letterSpacing: 2,
@@ -90,6 +90,18 @@ const theme = {
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
+    titleSlide: {
+      height: 100,
+      justifyContent: 'center',
+      translateY: (height / 3 - 450) / 2,
+      rotate: '90deg',
+      translateX: width / 3.5,
+      // transform: [
+      //   { rotate: '90deg' },
+      //   { translateY: (height / 3 - 450) / 2 },
+      //   { translateX: width / 3.5 },
+      // ],
+    },
   },
   breakpoints: {
     phone: 0,
@@ -102,15 +114,6 @@ const theme = {
     viewContainer: {
       height: Dimensions.get('window').height,
       justifyContent: 'center',
-    },
-    titleSlide: {
-      height: 100,
-      justifyContent: 'center',
-      transform: [
-        { rotate: '90deg' },
-        { translateY: (height / 3 - 450) / 2 },
-        { translateX: width / 3.5 },
-      ],
     },
   },
 };
