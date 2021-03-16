@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { CommonActions } from '@react-navigation/native';
 import { useFormik } from 'formik';
 import React, { useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
@@ -29,12 +28,13 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '', remember: true },
     onSubmit: () =>
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: 'Home' }],
-        })
-      ),
+      // navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 0,
+      //     routes: [{ name: 'Home' }],
+      //   })
+      // ),
+      console.log(values),
   });
   const password = useRef<RNTextInput>(null);
   const footer = (
@@ -44,8 +44,9 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
       onPress={() => navigation.navigate('SignUp')}
     />
   );
+
   return (
-    <Container pattern={2} {...{ footer }}>
+    <Container pattern={0} {...{ footer }}>
       <Text variant="title1" textAlign="center" marginBottom="l">
         Welcome back !
       </Text>
