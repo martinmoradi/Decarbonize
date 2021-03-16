@@ -12,8 +12,10 @@ const SlideTop = ({ text }: PropsSlideTop) => {
 
   const style = StyleSheet.create({
     container: {
-      height: height / 3,
+      // height: height / 3,
+      flex: 1,
       width,
+      padding:44,
       backgroundColor: theme.colors.primary,
       position: 'absolute',
       top: 0,
@@ -25,7 +27,7 @@ const SlideTop = ({ text }: PropsSlideTop) => {
       transform: [
         { rotate: '90deg' },
         { translateY: (height / 3 - 450) / 2 },
-        { translateX: width / 1.8 },
+        { translateX: width / 3.5 },
       ],
     },
   });
