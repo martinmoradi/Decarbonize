@@ -36,7 +36,7 @@ const theme = {
     l: 24,
     xl: 40,
   },
-  borderRad: {
+  borderRadii: {
     s: 4,
     m: 10,
     l: 25,
