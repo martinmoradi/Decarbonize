@@ -2,20 +2,15 @@ import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Text, useTheme } from '../../Theme';
 
-type PropsSlideTop = {
-  text: string;
-};
-
-const SlideTop = ({ text }: PropsSlideTop) => {
+const SlideTop = () => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
 
   const style = StyleSheet.create({
     container: {
-      // height: height / 3,
+      height: height / 3,
       flex: 1,
       width,
-      padding:44,
       backgroundColor: theme.colors.primary,
       position: 'absolute',
       top: 0,
@@ -32,11 +27,7 @@ const SlideTop = ({ text }: PropsSlideTop) => {
     },
   });
   return (
-    <View style={style.container}>
-      <Text style={style.titleContainer} variant="titleTopSlide">
-        {text}
-      </Text>
-    </View>
+    <View style={style.container}/>
   );
 };
 
