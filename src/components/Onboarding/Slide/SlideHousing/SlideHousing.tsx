@@ -5,7 +5,11 @@ import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-const SlideHousing = () => {
+type PropsFood = {
+  onPress: ({ onPress }: PropsFood) => {};
+};
+
+const SlideHousing = ({ onPress }: PropsFood) => {
   const [clothes, setClothes] = useState('');
   const [furniture, setFurniture] = useState('');
   const [hobbies, setHobbies] = useState('');
@@ -141,7 +145,7 @@ const SlideHousing = () => {
             justifyContent: 'flex-end',
           }}
         >
-          <Button variant="default" onPress={() => scrollTo({ left: 3 })} />
+          <Button variant="default" onPress={onPress} label="Next" />
         </View>
       </View>
     </View>

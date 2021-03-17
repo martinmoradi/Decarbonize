@@ -5,7 +5,11 @@ import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-const SlideEnergy = () => {
+type PropsFood = {
+  onPress: () => {};
+};
+
+const SlideEnergy = ({ onPress }: PropsFood) => {
   const [people, setPeople] = useState('');
   const [surface, setSurface] = useState('');
   const [heat, setHeat] = useState('');
@@ -116,7 +120,7 @@ const SlideEnergy = () => {
             justifyContent: 'flex-end',
           }}
         >
-          <Button variant="default" onPress={handleSubmit} label="Next" />
+          <Button variant="default" onPress={onPress} label="Next" />
         </View>
       </View>
     </View>
