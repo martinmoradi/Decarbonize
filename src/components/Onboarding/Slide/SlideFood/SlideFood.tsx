@@ -70,8 +70,7 @@ const SlideFood = () => {
             thumbProps={{
               children: (
                 <Icon
-                  name="hamburger"
-                  type="font-awesome-5"
+                  name="circle"
                   size={10}
                   reverse
                   containerStyle={{ bottom: 10, right: 10 }}
@@ -83,7 +82,7 @@ const SlideFood = () => {
           <Text variant="body">How would you describe your diet?</Text>
           <Text variant="body"></Text>
         </View>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
           <Button variant="default" onPress={handleSubmit} label="Next" />
         </View>
       </View>
