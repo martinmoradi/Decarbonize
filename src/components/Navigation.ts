@@ -26,6 +26,7 @@ export type AuthRoutesParamsList = {
   Auth: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
+  Welcome: undefined;
   PasswordChanged: undefined;
 };
 
