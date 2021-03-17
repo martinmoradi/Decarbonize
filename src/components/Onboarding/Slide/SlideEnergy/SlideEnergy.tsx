@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../../../context/OnboardingContext';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
@@ -16,6 +17,8 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
 
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
+  const { energy } = useContext(OnboardingContext);
+  console.log('energy:', energy);
   const styles = StyleSheet.create({
     container: {
       flex: 1,

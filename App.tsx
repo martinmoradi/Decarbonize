@@ -1,16 +1,12 @@
-if (__DEV__) {
-  // @ts-ignore
-  import('./ReactotronConfig').then(() => console.log('Reactotron Configured'));
-}
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
-import React, { createContext, useReducer } from 'react';
+import * as React from 'react';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthenticationNavigator } from './src/Authentication';
 import LoadAssets from './src/components/LoadAssets';
 import { AppRoutesParamsList } from './src/components/Navigation';
 import { ThemeProvider } from './src/components/Theme';
+import GlobalProvider from './src/context/GlobalProvider';
 import { HomeNavigator } from './src/Home';
 
 const AppStack = createStackNavigator<AppRoutesParamsList>();
@@ -76,23 +72,18 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
-      <ThemeProvider>
+    <ThemeProvider>
+      <GlobalProvider>
         <LoadAssets {...{ fonts }}>
           <SafeAreaProvider>
-            {!(state.isAuthenticated && AsyncStorage.getItem('token')) ? (
-              <AppStack.Navigator headerMode="none">
-                <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
-              </AppStack.Navigator>
-            ) : (
-              <AppStack.Navigator headerMode="none">
-                <AppStack.Screen name="Home" component={HomeNavigator} />
-              </AppStack.Navigator>
-            )}
+            <AppStack.Navigator headerMode="none">
+              <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
+              <AppStack.Screen name="Home" component={HomeNavigator} />
+            </AppStack.Navigator>
           </SafeAreaProvider>
         </LoadAssets>
-      </ThemeProvider>
-    </AuthContext.Provider>
+      </GlobalProvider>
+    </ThemeProvider>
   );
 };
 
