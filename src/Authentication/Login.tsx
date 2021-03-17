@@ -4,21 +4,22 @@ import React, { useContext, useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
-import { AuthContext } from '../../App';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
 import { config } from './api';
+import { AuthContext } from './authContext/authContext';
 import Footer from './components/Footer';
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
+
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
   const { dispatch } = useContext(AuthContext);
-
+  
   const apiLogin = async (body: any) => {
     dispatch({
       type: 'LOGIN_ATTEMPT',
