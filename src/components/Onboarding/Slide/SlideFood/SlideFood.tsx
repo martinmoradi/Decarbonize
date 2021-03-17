@@ -24,8 +24,8 @@ const SlideFood = () => {
       justifyContent: 'center',
       transform: [
         { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 550) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 3 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 600) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
     content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
