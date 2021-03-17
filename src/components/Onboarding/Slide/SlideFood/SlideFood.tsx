@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
+import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -61,6 +61,7 @@ const SlideFood = () => {
   const component3 = <Text>Vegetarian</Text>;
   const component4 = <Text>Vegan</Text>;
   const buttonDiet = [component1, component2, component3, component4];
+
   return (
     <View style={styles.container}>
       <View
@@ -89,12 +90,23 @@ const SlideFood = () => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How often do you have a breakfast per week?</Text>
-          <ButtonGroup
-            containerStyle={styles.btnContainer}
-            buttons={buttonBreakfast}
-            selectedIndex={selectedIndex}
-            onPress={setSelectedIndex}
-            selectedButtonStyle={styles.buttonStyle}
+          <Text variant="body">Value : {breakfast}</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={7}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setBreakfast}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 60 }}
+            thumbStyle={{ height: 20, width: 10 }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={breakfast}
           />
           <Text variant="body">How would you describe your diet?</Text>
           <ButtonGroup
