@@ -1,26 +1,13 @@
 import React from 'react';
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
-import { Text, useTheme } from '../components/Theme';
-const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
-  const theme = useTheme();
+import { Text } from '../components/Theme';
 
-  const { height, width } = Dimensions.get('window');
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopLeftRadius: 100,
-      backgroundColor: 'white',
-    },
-  });
+const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
+  const { width } = Dimensions.get('window');
+
   return (
     <ScrollView
       snapToInterval={width}

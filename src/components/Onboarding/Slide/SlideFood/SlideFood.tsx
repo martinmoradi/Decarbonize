@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
+import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 const SlideFood = () => {
   const [value, setValue] = useState('');
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
-  // const theme = useTheme();
 
   const styles = StyleSheet.create({
     container: {
@@ -30,6 +30,10 @@ const SlideFood = () => {
     },
     content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
   });
+
+  const handleSubmit = () => {
+    console.log('next');
+  };
   return (
     <View style={styles.container}>
       <View
@@ -78,6 +82,9 @@ const SlideFood = () => {
           />
           <Text variant="body">How would you describe your diet?</Text>
           <Text variant="body"></Text>
+        </View>
+        <View style={{ alignItems: 'center' }}>
+          <Button variant="default" onPress={handleSubmit} label="Next" />
         </View>
       </View>
     </View>
