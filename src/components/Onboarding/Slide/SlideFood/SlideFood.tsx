@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Icon, Slider } from 'react-native-elements';
+import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 const SlideFood = () => {
@@ -54,6 +55,9 @@ const SlideFood = () => {
           <Text style={styles.title} variant="titleTopSlide">
             FOOD
           </Text>
+          <View style={{ alignItems: 'center' }}>
+            <IconSvg name="food" />
+          </View>
         </View>
       </View>
       <View style={styles.footer}>

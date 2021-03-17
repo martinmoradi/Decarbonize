@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, TextInput, View } from 'react-native';
+import IconSvg from '../../../../../assets/icons/IconSvg';
+import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
 const SlideEnergy = () => {
@@ -31,6 +33,10 @@ const SlideEnergy = () => {
     },
     content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
   });
+
+  const handleSubmit = () => {
+    console.log('next');
+  };
   return (
     <View style={styles.container}>
       <View
@@ -51,6 +57,9 @@ const SlideEnergy = () => {
           <Text style={styles.title} variant="titleTopSlide">
             ENERGY
           </Text>
+          <View style={{ alignItems: 'center' }}>
+            <IconSvg name="energy" />
+          </View>
         </View>
       </View>
       <View style={styles.footer}>
@@ -61,6 +70,9 @@ const SlideEnergy = () => {
           <TextInput onChangeText={e => setSurface(e)} value={surface} />
           <Text variant="body">How do you heat your housing?</Text>
           <TextInput onChangeText={e => setHeat(e)} value={heat} />
+        </View>
+        <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Button variant="default" onPress={handleSubmit} label="Next" />
         </View>
       </View>
     </View>
