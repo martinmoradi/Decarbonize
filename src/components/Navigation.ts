@@ -2,6 +2,8 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
+
+
 export interface AuthNavigationProps<RouteName extends keyof AuthRoutesParamsList> {
   navigation: CompositeNavigationProp<
     StackNavigationProp<AuthRoutesParamsList, RouteName>,
@@ -21,12 +23,12 @@ export type AppRoutesParamsList = {
 };
 
 export type AuthRoutesParamsList = {
+  Welcome: undefined;
   Onboarding: undefined;
   Login: undefined;
   Auth: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
-  Welcome: undefined;
   PasswordChanged: undefined;
 };
 
