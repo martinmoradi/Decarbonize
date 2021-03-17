@@ -3,6 +3,7 @@ import { Button, Text, View } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
 
 const AuthScreen = ({ navigation }: AuthNavigationProps<'Auth'>) => {
+
   return (
     <View
       style={{
