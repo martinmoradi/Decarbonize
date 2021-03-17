@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
+import { Button } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
@@ -24,6 +25,10 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       </View>
       <View style={{ width }}>
         <Text variant="title2">Slide 3</Text>
+      </View>
+      <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
+        <Button onPress={() => navigation.navigate('Login')} label="Login" variant="primary" />
+        <Button onPress={() => navigation.navigate('SignUp')} label="Signup" variant="primary" />
       </View>
     </ScrollView>
   );
