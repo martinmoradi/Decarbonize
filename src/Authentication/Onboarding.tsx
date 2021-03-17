@@ -1,20 +1,31 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
+import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
+import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
+import { Text } from '../components/Theme';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
+  const { width } = Dimensions.get('window');
+
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#A9EFD2',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+    <ScrollView
+      snapToInterval={width}
+      decelerationRate="fast"
+      bounces={false}
+      horizontal
+      showsHorizontalScrollIndicator={false}
     >
-      <Text>Questionnaire emissions fixes</Text>
-      <Button title="go to Auth" onPress={() => navigation.navigate('Auth')} />
-    </View>
+      <View style={{ width }}>
+        <SlideFood />
+      </View>
+      <View style={{ width }}>
+        <SlideEnergy />
+      </View>
+      <View style={{ width }}>
+        <Text variant="title2">Slide 3</Text>
+      </View>
+    </ScrollView>
   );
 };
 
