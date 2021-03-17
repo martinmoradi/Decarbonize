@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Dimensions, Platform, StyleSheet, TextInput, View } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -83,7 +83,24 @@ const SlideEnergy = () => {
             onPress={setSelectedIndex}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
-          <TextInput onChangeText={e => setSurface(e)} value={surface} />
+          <Text variant="body">Value : {surface}</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={300}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={9}
+            onValueChange={setSurface}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 60 }}
+            thumbStyle={{ height: 20, width: 10 }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={surface}
+          />
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup
             buttons={buttonsHeat}
