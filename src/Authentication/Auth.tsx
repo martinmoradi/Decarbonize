@@ -1,21 +1,49 @@
 // @ts-nocheck
 import { useFormik } from 'formik';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
+import { AuthContext } from '../../App';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
+import { config } from './api';
 import Footer from './components/Footer';
-
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
+  const { dispatch } = useContext(AuthContext);
+
+  const apiLogin = async (body: any) => {
+    dispatch({
+      type: 'LOGIN_ATTEMPT',
+    });
+    try {
+      const response = await fetch(`http://127.0.0.1:3000/login`, config('POST', body));
+      const user = await response.json();
+      const { data } = user;
+      const token: string | null = response.headers.get('Authorization');
+      const payload = {
+        data,
+        token,
+      };
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload,
+      });
+    } catch (err) {
+      dispatch({
+        type: 'LOGIN_ERROR',
+        payload: err.message,
+      });
+    }
+  };
+
   const {
     handleChange,
     handleBlur,
@@ -27,15 +55,17 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '', remember: true },
-    onSubmit: () =>
+    onSubmit: () => {
       // navigation.dispatch(
       //   CommonActions.reset({
       //     index: 0,
       //     routes: [{ name: 'Home' }],
       //   })
       // ),
-      console.log(values),
+      apiLogin(values);
+    },
   });
+
   const password = useRef<RNTextInput>(null);
   const footer = (
     <Footer
