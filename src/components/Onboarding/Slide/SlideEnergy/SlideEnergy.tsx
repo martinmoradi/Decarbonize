@@ -19,6 +19,18 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
+  const { people, surface, heat, onChangePeople, onChangeSurface, onChangeHeat } = energy;
+
+  const handleChangePeople = (e: string) => {
+    onChangePeople(e);
+  };
+  const handleChangeSurface = (e: string) => {
+    onChangeSurface(e);
+  };
+  const handleChangeHeat = (e: string) => {
+    onChangeHeat(e);
+  };
+
   console.log('energy:', energy);
   const styles = StyleSheet.create({
     container: {
