@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { Input } from 'react-native-elements';
+import { ButtonGroup } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -9,8 +9,9 @@ const SlideHousing = () => {
   const [people, setPeople] = useState('');
   const [surface, setSurface] = useState('');
   const [heat, setHeat] = useState('');
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [selectedIndex2, setSelectedIndex2] = useState();
+  const [selectedIndexClothes, setSelectedClothes] = useState();
+  const [selectedIndexFurniture, setSelectedFurniture] = useState();
+  const [selectedIndexHobbies, setSelectedHobbies] = useState();
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -45,9 +46,10 @@ const SlideHousing = () => {
     console.log('next');
   };
 
-  const buttonsPeople = ['1', '2', '3', '4+'];
+  const buttonClothes = ['0-50 €', '50-150 €', '>150€'];
+  const buttonFurniture = ['0-50 €', '50-150 €', '>150€'];
+  const buttonHobbies = ['0-50 €', '50-150 €', '>150€'];
 
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solor panel'];
   return (
     <View style={styles.container}>
       <View
@@ -66,7 +68,7 @@ const SlideHousing = () => {
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            ENERGY
+            HABITS
           </Text>
           <View style={{ alignItems: 'center' }}>
             <IconSvg name="habit" />
@@ -76,19 +78,25 @@ const SlideHousing = () => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend monthly for clothes ?</Text>
-          <Input
-            placeholder="Type here"
-            leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
+          <ButtonGroup
+            selectedButtonStyle={styles.buttonStyle}
+            buttons={buttonClothes}
+            selectedIndex={selectedIndexClothes}
+            onPress={setSelectedClothes}
           />
-          <Text variant="body">How much do you spend monthly for furnitures ?</Text>
-          <Input
-            placeholder="Type here"
-            leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
+          <Text variant="body">How much do you spend monthly for furniture ?</Text>
+          <ButtonGroup
+            selectedButtonStyle={styles.buttonStyle}
+            buttons={buttonFurniture}
+            selectedIndex={selectedIndexFurniture}
+            onPress={setSelectedFurniture}
           />
           <Text variant="body">How much do you spend monthly for hobbies ?</Text>
-          <Input
-            placeholder="Type here"
-            leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
+          <ButtonGroup
+            selectedButtonStyle={styles.buttonStyle}
+            buttons={buttonHobbies}
+            selectedIndex={selectedIndexHobbies}
+            onPress={setSelectedHobbies}
           />
         </View>
         <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
