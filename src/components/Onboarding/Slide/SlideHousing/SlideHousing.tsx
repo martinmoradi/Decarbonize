@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Dimensions, Platform, StyleSheet, TextInput, View } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Input } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -69,27 +69,26 @@ const SlideHousing = () => {
             ENERGY
           </Text>
           <View style={{ alignItems: 'center' }}>
-            <IconSvg name="energy" />
+            <IconSvg name="habit" />
           </View>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How many people live with you?</Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonsPeople}
-            selectedIndex={selectedIndex}
-            onPress={setSelectedIndex}
+          <Text variant="body">How much do you spend monthly for clothes ?</Text>
+          <Input
+            placeholder="Type here"
+            leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
           />
-          <Text variant="body">What is the surface are of your housing?</Text>
-          <TextInput onChangeText={e => setSurface(e)} value={surface} />
-          <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup
-            buttons={buttonsHeat}
-            onPress={setSelectedIndex2}
-            selectedIndex={selectedIndex2}
-            selectedButtonStyle={styles.buttonStyle}
+          <Text variant="body">How much do you spend monthly for furnitures ?</Text>
+          <Input
+            placeholder="Type here"
+            leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
+          />
+          <Text variant="body">How much do you spend monthly for hobbies ?</Text>
+          <Input
+            placeholder="Type here"
+            leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
           />
         </View>
         <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
