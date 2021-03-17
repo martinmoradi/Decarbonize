@@ -4,7 +4,7 @@ import { Button } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
-import { Text } from '../components/Theme';
+import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
@@ -24,7 +24,7 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
         <SlideEnergy />
       </View>
       <View style={{ width }}>
-        <Text variant="title2">Slide 3</Text>
+        <SlideHousing />
       </View>
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
         <Button
