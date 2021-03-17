@@ -44,18 +44,17 @@ const SlideFood = () => {
       justifyContent: 'center',
       transform: [
         { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 600) / 2 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
-    content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 20, alignItems: 'center', marginTop: 60 },
   });
 
   const handleSubmit = () => {
     console.log('next');
   };
 
-  const buttonBreakfast = ['1', '2', '3', '4', '5', '6', '7'];
   const component1 = <Text>Meat lover</Text>;
   const component2 = <Text>Meat in some meals</Text>;
   const component3 = <Text>Vegetarian</Text>;
@@ -102,7 +101,7 @@ const SlideFood = () => {
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 60 }}
-            thumbStyle={{ height: 20, width: 10 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}

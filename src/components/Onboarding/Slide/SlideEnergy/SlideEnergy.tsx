@@ -34,8 +34,8 @@ const SlideEnergy = () => {
       justifyContent: 'center',
       transform: [
         { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 550) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 52 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 40 },
       ],
     },
     content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
@@ -90,12 +90,12 @@ const SlideEnergy = () => {
             maximumTrackTintColor="lightgray"
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
-            minimumValue={9}
+            minimumValue={20}
             onValueChange={setSurface}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 60 }}
-            thumbStyle={{ height: 20, width: 10 }}
+            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
