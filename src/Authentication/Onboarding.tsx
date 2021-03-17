@@ -3,50 +3,42 @@ import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
-import SlideTop from '../components/Onboarding/Slide/SlideTop';
-import { Text } from '../components/Theme';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#e2e2e2',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  // underlay: {
-  //   height: 0.61 * height,
-  //   borderBottomRightRadius: 75,
-  // },
-});
-
+import { Text, useTheme } from '../components/Theme';
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
-  const { width } = Dimensions.get('window');
+  const theme = useTheme();
 
+  const { height, width } = Dimensions.get('window');
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    slider: {
+      height: height / 3,
+    },
+    footer: {
+      flex: 1,
+      borderTopLeftRadius: 100,
+      backgroundColor: 'white',
+    },
+  });
   return (
-    <View style={styles.container}>
-      <SlideTop />
-      <ScrollView
-        horizontal
-        snapToInterval={width}
-        decelerationRate="fast"
-        showsHorizontalScrollIndicator={false}
-        bounces={false}
-        style={{ flex: 1, width: Dimensions.get('screen').width }}
-      >
-        <View style={{ flex: 1, width: Dimensions.get('screen').width }}>
-          <SlideFood />
-        </View>
-
-        <View style={{ flex: 1, width: Dimensions.get('screen').width }}>
-          <SlideEnergy />
-        </View>
-
-        <View style={{ flex: 1, width: Dimensions.get('screen').width }}>
-          <Text variant="title2">Slide 3</Text>
-        </View>
-      </ScrollView>
-      {/* <Button title="go to Auth" onPress={() => navigation.navigate('Auth')} /> */}
-    </View>
+    <ScrollView
+      snapToInterval={width}
+      decelerationRate="fast"
+      bounces={false}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    >
+      <View style={{ width }}>
+        <SlideFood />
+      </View>
+      <View style={{ width }}>
+        <SlideEnergy />
+      </View>
+      <View style={{ width }}>
+        <Text variant="title2">Slide 3</Text>
+      </View>
+    </ScrollView>
   );
 };
 

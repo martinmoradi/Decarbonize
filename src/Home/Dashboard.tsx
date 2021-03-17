@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import SlideTop from '../components/Onboarding/Slide/SlideTop';
 import { Text } from '../components/Theme';
 
 const DashboardScreen = () => {
@@ -12,7 +11,6 @@ const DashboardScreen = () => {
         alignItems: 'center',
       }}
     >
-      <SlideTop />
       <Text variant="title2">Dashboard</Text>
     </View>
   );
