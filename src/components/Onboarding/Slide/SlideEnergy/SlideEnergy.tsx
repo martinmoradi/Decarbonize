@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { ButtonGroup } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -37,6 +38,10 @@ const SlideEnergy = () => {
   const handleSubmit = () => {
     console.log('next');
   };
+
+  const buttonsPeople = ['1', '2', '3', '4+'];
+
+  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solor panel'];
   return (
     <View style={styles.container}>
       <View
@@ -65,11 +70,11 @@ const SlideEnergy = () => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
-          <TextInput onChangeText={e => setPeople(e)} value={people} />
+          <ButtonGroup buttons={buttonsPeople} onPress={e => console.log(e)} />
           <Text variant="body">What is the surface are of your housing?</Text>
           <TextInput onChangeText={e => setSurface(e)} value={surface} />
           <Text variant="body">How do you heat your housing?</Text>
-          <TextInput onChangeText={e => setHeat(e)} value={heat} />
+          <ButtonGroup buttons={buttonsHeat} onPress={e => console.log(e)} />
         </View>
         <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
           <Button variant="default" onPress={handleSubmit} label="Next" />

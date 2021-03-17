@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { Icon, Slider } from 'react-native-elements';
+import { ButtonGroup } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 const SlideFood = () => {
+  const [breakfast, setBreakfast] = useState('');
+  const [diet, setDiet] = useState('');
   const [value, setValue] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState();
+  const [selectedIndex2, setSelectedIndex2] = useState();
+
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
 
@@ -21,6 +26,20 @@ const SlideFood = () => {
       borderTopLeftRadius: 100,
       backgroundColor: 'white',
     },
+    buttonStyle: {
+      backgroundColor: theme.colors.primary,
+      borderRadius: 20,
+    },
+    btnContainer: {
+      borderWidth: 0,
+    },
+    btnStyle: {
+      elevation: 8,
+      backgroundColor: '#009688',
+      borderRadius: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 12,
+    },
     title: {
       justifyContent: 'center',
       transform: [
@@ -35,6 +54,13 @@ const SlideFood = () => {
   const handleSubmit = () => {
     console.log('next');
   };
+
+  const buttonBreakfast = ['1', '2', '3', '4', '5', '6', '7'];
+  const component1 = <Text>Meat lover</Text>;
+  const component2 = <Text>Meat in some meals</Text>;
+  const component3 = <Text>Vegetarian</Text>;
+  const component4 = <Text>Vegan</Text>;
+  const buttonDiet = [component1, component2, component3, component4];
   return (
     <View style={styles.container}>
       <View
@@ -63,27 +89,20 @@ const SlideFood = () => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How often do you have a breakfast per week?</Text>
-          <Slider
-            value={value}
-            onValueChange={setValue}
-            maximumValue={50}
-            minimumValue={20}
-            step={1}
-            trackStyle={{ height: 10, backgroundColor: 'transparent' }}
-            thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
-            thumbProps={{
-              children: (
-                <Icon
-                  name="circle"
-                  size={10}
-                  reverse
-                  containerStyle={{ bottom: 10, right: 10 }}
-                  color="gray"
-                />
-              ),
-            }}
+          <ButtonGroup
+            containerStyle={styles.btnContainer}
+            buttons={buttonBreakfast}
+            selectedIndex={selectedIndex}
+            onPress={setSelectedIndex}
+            selectedButtonStyle={styles.buttonStyle}
           />
           <Text variant="body">How would you describe your diet?</Text>
+          <ButtonGroup
+            buttons={buttonDiet}
+            onPress={setSelectedIndex2}
+            selectedIndex={selectedIndex2}
+            selectedButtonStyle={styles.buttonStyle}
+          />
           <Text variant="body"></Text>
         </View>
         <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
