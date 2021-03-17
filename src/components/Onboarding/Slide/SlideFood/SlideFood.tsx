@@ -33,13 +33,6 @@ const SlideFood = () => {
     btnContainer: {
       borderWidth: 0,
     },
-    btnStyle: {
-      elevation: 8,
-      backgroundColor: '#009688',
-      borderRadius: 10,
-      paddingVertical: 10,
-      paddingHorizontal: 12,
-    },
     title: {
       justifyContent: 'center',
       transform: [
