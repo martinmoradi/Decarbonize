@@ -2,28 +2,28 @@ import { createContext } from 'react';
 
 const OnboardingContext = createContext({
   food: {
-    breakfast: 0,
-    onChangeBreakfast: () => {},
+    breakfast: '',
+    onChangeBreakfast: (e: string) => {},
     diet: '',
-    onChangeDiet: () => {},
+    onChangeDiet: (e: string) => {},
   },
 
   energy: {
-    people: 0,
-    onChangePeople: () => {},
-    surface: 0,
-    onChangeSurface: () => {},
+    people: '',
+    onChangePeople: (e: string) => {},
+    surface: '',
+    onChangeSurface: (e: string) => {},
     heat: '',
-    onChangeHeat: () => {},
+    onChangeHeat: (e: string) => {},
   },
 
   habit: {
     clothes: '',
-    onChangeClothes: () => {},
+    onChangeClothes: (e: string) => {},
     furniture: '',
-    onChangeFurniture: () => {},
+    onChangeFurniture: (e: string) => {},
     hobbies: '',
-    onChangeHobbies: () => {},
+    onChangeHobbies: (e: string) => {},
   },
 });
 

@@ -6,7 +6,7 @@ import { AuthenticationNavigator } from './src/Authentication';
 import LoadAssets from './src/components/LoadAssets';
 import { AppRoutesParamsList } from './src/components/Navigation';
 import { ThemeProvider } from './src/components/Theme';
-import GlobalProvider from './src/context/GlobalProvider';
+import GlobalOnboardingProvider from './src/context/GlobalOnboardingProvider';
 import { HomeNavigator } from './src/Home';
 
 const AppStack = createStackNavigator<AppRoutesParamsList>();
@@ -73,7 +73,7 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <GlobalProvider>
+      <GlobalOnboardingProvider>
         <LoadAssets {...{ fonts }}>
           <SafeAreaProvider>
             <AppStack.Navigator headerMode="none">
@@ -82,7 +82,7 @@ const App = () => {
             </AppStack.Navigator>
           </SafeAreaProvider>
         </LoadAssets>
-      </GlobalProvider>
+      </GlobalOnboardingProvider>
     </ThemeProvider>
   );
 };
