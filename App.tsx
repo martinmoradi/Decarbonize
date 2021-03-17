@@ -1,12 +1,13 @@
- import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthenticationNavigator } from './src/Authentication';
 import LoadAssets from './src/components/LoadAssets';
 import { AppRoutesParamsList } from './src/components/Navigation';
+import { ThemeProvider } from './src/components/Theme';
+import GlobalProvider from './src/context/GlobalProvider';
 import { HomeNavigator } from './src/Home';
-import { Text, ThemeProvider } from './src/components/Theme';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const AppStack = createStackNavigator<AppRoutesParamsList>();
 
@@ -18,15 +19,17 @@ const fonts = {
 
 const App = () => {
   return (
-<ThemeProvider>
-    <LoadAssets {...{ fonts }}>
-    <SafeAreaProvider>
-      <AppStack.Navigator headerMode="none">
-        <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
-        <AppStack.Screen name="Home" component={HomeNavigator} />
-      </AppStack.Navigator>
-      </SafeAreaProvider>
-    </LoadAssets>
+    <ThemeProvider>
+      <GlobalProvider>
+        <LoadAssets {...{ fonts }}>
+          <SafeAreaProvider>
+            <AppStack.Navigator headerMode="none">
+              <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
+              <AppStack.Screen name="Home" component={HomeNavigator} />
+            </AppStack.Navigator>
+          </SafeAreaProvider>
+        </LoadAssets>
+      </GlobalProvider>
     </ThemeProvider>
   );
 };
