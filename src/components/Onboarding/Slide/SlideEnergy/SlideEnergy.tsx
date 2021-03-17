@@ -9,6 +9,8 @@ const SlideEnergy = () => {
   const [people, setPeople] = useState('');
   const [surface, setSurface] = useState('');
   const [heat, setHeat] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState();
+  const [selectedIndex2, setSelectedIndex2] = useState();
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -22,6 +24,10 @@ const SlideEnergy = () => {
       flex: 1,
       borderTopRightRadius: 100,
       backgroundColor: 'white',
+    },
+    buttonStyle: {
+      backgroundColor: theme.colors.primary,
+      borderRadius: 20,
     },
     title: {
       height: 100,
@@ -70,11 +76,21 @@ const SlideEnergy = () => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
-          <ButtonGroup buttons={buttonsPeople} onPress={e => console.log(e)} />
+          <ButtonGroup
+            selectedButtonStyle={styles.buttonStyle}
+            buttons={buttonsPeople}
+            selectedIndex={selectedIndex}
+            onPress={setSelectedIndex}
+          />
           <Text variant="body">What is the surface are of your housing?</Text>
           <TextInput onChangeText={e => setSurface(e)} value={surface} />
           <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup buttons={buttonsHeat} onPress={e => console.log(e)} />
+          <ButtonGroup
+            buttons={buttonsHeat}
+            onPress={setSelectedIndex2}
+            selectedIndex={selectedIndex2}
+            selectedButtonStyle={styles.buttonStyle}
+          />
         </View>
         <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
           <Button variant="default" onPress={handleSubmit} label="Next" />
