@@ -45,6 +45,8 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     />
   );
 
+const AuthScreen = ({ navigation }: AuthNavigationProps<'Auth'>) => {
+
   return (
     <Container pattern={0} {...{ footer }}>
       <Text variant="title1" textAlign="center" marginBottom="l">
