@@ -1,10 +1,9 @@
-// @ts-nocheck
 import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { AuthContext } from '../../App';
+import { AuthContext } from '../Authentication/authContext/authContext';
 import { Button, Text } from '../components/';
 
-const SettingsScreen = ({ navigation }) => {
+const SettingsScreen = () => {
   const { dispatch } = useContext(AuthContext);
   const logout = () => {
     dispatch({
