@@ -16,7 +16,6 @@ const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
-
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
   const { dispatch } = useContext(AuthContext);
   
@@ -25,20 +24,25 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
       type: 'LOGIN_ATTEMPT',
     });
     try {
-      const response = await fetch(`https://decarbonize-perruches.herokuapp.com/login`, config('POST', body));
+      const response = await fetch(
+        `https://decarbonize-perruches.herokuapp.com/login`,
+        config('POST', body)
+      );
       const user = await response.json();
-      
+      console.log('response', user);
       const { data } = user;
       const token: string | null = response.headers.get('Authorization');
       const payload = {
         data,
         token,
       };
+      console.log('payload envoyé', payload);
       dispatch({
         type: 'LOGIN_SUCCESS',
         payload,
       });
     } catch (err) {
+      console.log('error', err);
       dispatch({
         type: 'LOGIN_ERROR',
         payload: err.message,
