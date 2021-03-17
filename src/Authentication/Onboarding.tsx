@@ -27,8 +27,11 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
         <Text variant="title2">Slide 3</Text>
       </View>
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
-        <Button onPress={() => navigation.navigate('Login')} label="Login" variant="primary" />
-        <Button onPress={() => navigation.navigate('SignUp')} label="Signup" variant="primary" />
+        <Button
+          onPress={() => navigation.navigate('Welcome')}
+          label="Go to Welcome"
+          variant="primary"
+        />
       </View>
     </ScrollView>
   );
