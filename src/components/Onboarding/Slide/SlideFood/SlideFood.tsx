@@ -4,7 +4,11 @@ import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
-const SlideFood = () => {
+
+type PropsFood = {
+  onPress: () => {};
+};
+const SlideFood = ({ onPress }: PropsFood) => {
   const [breakfast, setBreakfast] = useState('');
   const [diet, setDiet] = useState('');
   const [value, setValue] = useState('');
@@ -23,7 +27,7 @@ const SlideFood = () => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -41,7 +45,7 @@ const SlideFood = () => {
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
-    content: { maxWidth: width - 20, alignItems: 'center', marginTop: 60 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 60 },
   });
 
   const handleSubmit = () => {
@@ -67,14 +71,14 @@ const SlideFood = () => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
             FOOD
           </Text>
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', translateY: -40 }}>
             <IconSvg name="food" />
           </View>
         </View>
@@ -109,8 +113,14 @@ const SlideFood = () => {
           />
           <Text variant="body"></Text>
         </View>
-        <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
-          <Button variant="default" onPress={handleSubmit} label="Next" />
+        <View
+          style={{
+            flex: 0.9,
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Button variant="default" onPress={onPress} label="Next" />
         </View>
       </View>
     </View>

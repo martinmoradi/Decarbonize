@@ -22,7 +22,7 @@ const SlideEnergy = () => {
     },
     footer: {
       flex: 1,
-      borderTopRightRadius: 100,
+      borderTopLeftRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -35,10 +35,10 @@ const SlideEnergy = () => {
       transform: [
         { rotate: '-90deg' },
         { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 40 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
-    content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   const handleSubmit = () => {
@@ -61,14 +61,14 @@ const SlideEnergy = () => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
+            borderBottomRightRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
             ENERGY
           </Text>
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', translateY: -98 }}>
             <IconSvg name="energy" />
           </View>
         </View>
@@ -109,7 +109,13 @@ const SlideEnergy = () => {
             selectedButtonStyle={styles.buttonStyle}
           />
         </View>
-        <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
+        <View
+          style={{
+            flex: 0.9,
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+          }}
+        >
           <Button variant="default" onPress={handleSubmit} label="Next" />
         </View>
       </View>

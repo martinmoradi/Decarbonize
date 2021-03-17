@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
+import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
 const SlideHousing = () => {
-  const [people, setPeople] = useState('');
-  const [surface, setSurface] = useState('');
-  const [heat, setHeat] = useState('');
+  const [clothes, setClothes] = useState('');
+  const [furniture, setFurniture] = useState('');
+  const [hobbies, setHobbies] = useState('');
   const [selectedIndexClothes, setSelectedClothes] = useState();
   const [selectedIndexFurniture, setSelectedFurniture] = useState();
   const [selectedIndexHobbies, setSelectedHobbies] = useState();
@@ -23,7 +23,7 @@ const SlideHousing = () => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -38,7 +38,7 @@ const SlideHousing = () => {
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 15 },
       ],
     },
-    content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   const handleSubmit = () => {
@@ -62,14 +62,14 @@ const SlideHousing = () => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
             HABITS
           </Text>
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', translateY: -40 }}>
             <IconSvg name="habit" />
           </View>
         </View>
@@ -77,29 +77,71 @@ const SlideHousing = () => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend monthly for clothes ?</Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonClothes}
-            selectedIndex={selectedIndexClothes}
-            onPress={setSelectedClothes}
+          <Text variant="body">Value : {clothes}</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={1000}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setClothes}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 40 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={clothes}
           />
           <Text variant="body">How much do you spend monthly for furniture ?</Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonFurniture}
-            selectedIndex={selectedIndexFurniture}
-            onPress={setSelectedFurniture}
+          <Text variant="body">Value : {furniture}</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={1000}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setFurniture}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 40 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={furniture}
           />
           <Text variant="body">How much do you spend monthly for hobbies ?</Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonHobbies}
-            selectedIndex={selectedIndexHobbies}
-            onPress={setSelectedHobbies}
+          <Text variant="body">Value : {hobbies}</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={1000}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setHobbies}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 40 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={hobbies}
           />
         </View>
-        <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
-          <Button variant="default" onPress={handleSubmit} label="Next" />
+        <View
+          style={{
+            flex: 0.9,
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Button variant="default" onPress={() => scrollTo({ left: 3 })} />
         </View>
       </View>
     </View>

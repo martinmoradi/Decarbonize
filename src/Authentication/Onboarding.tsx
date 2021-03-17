@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Button } from '../components';
@@ -18,7 +19,7 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       showsHorizontalScrollIndicator={false}
     >
       <View style={{ width }}>
-        <SlideFood />
+        <SlideFood onPress={() => scrollTo({ x: 1, animated: true })} />
       </View>
       <View style={{ width }}>
         <SlideEnergy />
