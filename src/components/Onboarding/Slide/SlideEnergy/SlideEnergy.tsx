@@ -106,10 +106,10 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             maximumTrackTintColor="lightgray"
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+            minimumValue={0}
             onValueChange={setSurface}
             orientation="horizontal"
-            step={1}
+            step={5}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}

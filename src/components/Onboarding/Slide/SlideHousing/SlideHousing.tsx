@@ -69,7 +69,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            HABITS
+            SPENDING
           </Text>
           <View style={{ alignItems: 'center', translateY: -40 }}>
             <IconSvg name="habit" />
@@ -89,7 +89,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             minimumValue={0}
             onValueChange={setClothes}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
@@ -108,7 +108,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             minimumValue={0}
             onValueChange={setFurniture}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
@@ -127,7 +127,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             minimumValue={0}
             onValueChange={setHobbies}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}

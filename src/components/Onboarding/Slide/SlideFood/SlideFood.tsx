@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup, Slider } from 'react-native-elements';
+import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -80,7 +80,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you have a breakfast?
+            How often do you have a breakfast ?
           </Text>
           <View style={{ padding: 6 }}></View>
           <Text variant="body">{breakfast} : per week</Text>
@@ -101,30 +101,27 @@ const SlideFood = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={breakfast}
           />
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you eat seasonal groceries?
-          </Text>
-          <ButtonGroup
-            buttons={buttonDiet}
-            onPress={setGrocery}
-            selectedIndex={grocery}
-            selectedButtonStyle={styles.buttonStyle}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
           <View style={{ padding: 6 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you consume dairy products?
+            How often do you have eat red meal ?
           </Text>
-          <ButtonGroup
-            buttons={buttonDiet}
-            onPress={setDairy}
-            selectedIndex={dairy}
-            selectedButtonStyle={styles.buttonStyle}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
+          <Text variant="body">{breakfast} : per week</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={7}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setBreakfast}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 50 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={breakfast}
           />
         </View>
         <View
