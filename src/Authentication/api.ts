@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { userPropsType } from '../Authentication/authContext/authTypes';
 
 export const config = (method: string, body: userPropsType) => {
@@ -15,4 +16,19 @@ export const config = (method: string, body: userPropsType) => {
     }),
   };
 };
+
+
+export const configDelete = (method: string, token: string | null) => ( {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      }
+    } 
+)
+  
+
+
+
+
 // Accept: 'application/json',
