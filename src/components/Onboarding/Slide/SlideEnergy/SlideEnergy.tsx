@@ -11,11 +11,8 @@ type PropsFood = {
 };
 
 const SlideEnergy = ({ onPress }: PropsFood) => {
-  const [people, setPeople] = useState();
-  const [surface, setSurface] = useState();
-  const [heat, setHeat] = useState();
-  const [consumption, setConsumption] = useState();
-
+  const [selectedIndex, setSelectedIndex] = useState();
+  const [selectedIndex2, setSelectedIndex2] = useState();
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);

@@ -3,6 +3,7 @@ import * as React from 'react';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthenticationNavigator } from './src/Authentication';
+import { OnboardingProvider } from './src/Authentication/onboardingContext/OnboardingProvider';
 import LoadAssets from './src/components/LoadAssets';
 import { AppRoutesParamsList } from './src/components/Navigation';
 import { ThemeProvider } from './src/components/Theme';
