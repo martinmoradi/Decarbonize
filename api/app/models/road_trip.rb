@@ -6,7 +6,21 @@ class RoadTrip < ApplicationRecord
     distance * 2
   end
 
-  # def create_emission
-  #   Emission.create!(amount: emitted_carbon, emissionable: self, user_id: current_user.id)
-  # end
+  def calc_emission
+    case vehicle_type
+      when "electric car"
+        return round_trip ? (19.8 * distance * 2) : (19.8 * distance)
+      when "diesel car"
+        return round_trip ? ( 156.56 * distance * 2) : ( 156.56 * distance)
+      when "petrol car"
+        return round_trip ? ( 164.86 * distance * 2) : ( 164.86 * distance)
+      when "bus"
+           return round_trip ? (104 * distance * 2) : (104 * distance)
+      when "tramway"
+        return round_trip ? ( 2.2 * distance * 2) : ( 2.2 * distance)
+      when "metro"
+        return round_trip ? ( 2.5 * distance * 2) : ( 2.5 * distance)
+    end
+
+  end
 end
