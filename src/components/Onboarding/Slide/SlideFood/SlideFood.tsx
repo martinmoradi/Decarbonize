@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
@@ -10,9 +11,16 @@ type PropsFood = {
 };
 
 const SlideFood = ({ onPress }: PropsFood) => {
-  const [breakfast, setBreakfast] = useState();
-  const [redMeat, setRedMeat] = useState();
-  const [whiteMeat, setWhiteMeat] = useState();
+  const { food } = useContext(OnboardingContext);
+  console.log('food:', food);
+  const {
+    breakfast,
+    redMeat,
+    whiteMeat,
+    onChangeBreakfast,
+    onChangeRedMeat,
+    onChangeWhiteMeat,
+  } = food;
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -89,7 +97,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             maximumValue={7}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={handleChangeBreakfast}
+            onValueChange={onChangeBreakfast}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}
@@ -111,7 +119,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setRedMeat}
+            onValueChange={onChangeRedMeat}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}
@@ -133,7 +141,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setWhiteMeat}
+            onValueChange={onChangeWhiteMeat}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}
