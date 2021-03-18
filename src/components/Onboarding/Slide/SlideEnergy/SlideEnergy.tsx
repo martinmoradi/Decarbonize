@@ -50,11 +50,8 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
       justifyContent: 'center',
       transform: [
         { rotate: '-90deg' },
-        {
-          translateY:
-            Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - height / 1.45) / 2,
-        },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 52 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
