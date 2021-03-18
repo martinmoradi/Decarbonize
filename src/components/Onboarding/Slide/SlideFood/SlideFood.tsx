@@ -10,8 +10,8 @@ type PropsFood = {
 };
 const SlideFood = ({ onPress }: PropsFood) => {
   const [breakfast, setBreakfast] = useState();
-  const [redMeat, setRedMeat] = useState();
-  const [whiteMeat, setWhiteMeat] = useState();
+  const [grocery, setGrocery] = useState();
+  const [dairy, setDairy] = useState();
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -50,10 +50,10 @@ const SlideFood = ({ onPress }: PropsFood) => {
     console.log('next');
   };
 
-  const component1 = <Text>More than 14</Text>;
-  const component2 = <Text>Between 7 and 14</Text>;
-  const component3 = <Text>Less than 7</Text>;
-  const component4 = <Text>I'm vegetarian</Text>;
+  const component1 = <Text> Infrequently </Text>;
+  const component2 = <Text> Occasionally</Text>;
+  const component3 = <Text>Often</Text>;
+  const component4 = <Text> Always</Text>;
   const buttonDiet = [component1, component2, component3, component4];
 
   return (
@@ -102,22 +102,22 @@ const SlideFood = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={breakfast}
           />
-          <Text variant="body">How many times do you red eat meat weekly?</Text>
+          <Text variant="body">How often do you eat seasonal groceries?</Text>
           <ButtonGroup
             buttons={buttonDiet}
-            onPress={setRedMeat}
-            selectedIndex={redMeat}
+            onPress={setGrocery}
+            selectedIndex={grocery}
             selectedButtonStyle={styles.buttonStyle}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body"></Text>
-          <Text variant="body">How many times do you eat white meat weekly?</Text>
+          <Text variant="body">How often do you consume dairy products?</Text>
           <ButtonGroup
             buttons={buttonDiet}
-            onPress={setWhiteMeat}
-            selectedIndex={whiteMeat}
+            onPress={setDairy}
+            selectedIndex={dairy}
             selectedButtonStyle={styles.buttonStyle}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
