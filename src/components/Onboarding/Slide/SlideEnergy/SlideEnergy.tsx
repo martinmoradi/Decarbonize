@@ -10,11 +10,10 @@ type PropsFood = {
 };
 
 const SlideEnergy = ({ onPress }: PropsFood) => {
-  const [people, setPeople] = useState('');
-  const [surface, setSurface] = useState('');
-  const [heat, setHeat] = useState('');
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [selectedIndex2, setSelectedIndex2] = useState();
+  const [people, setPeople] = useState();
+  const [surface, setSurface] = useState();
+  const [heat, setHeat] = useState();
+
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -83,8 +82,8 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
           <ButtonGroup
             selectedButtonStyle={styles.buttonStyle}
             buttons={buttonsPeople}
-            selectedIndex={selectedIndex}
-            onPress={setSelectedIndex}
+            selectedIndex={people}
+            onPress={setPeople}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">Value : {surface}</Text>
@@ -108,8 +107,8 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup
             buttons={buttonsHeat}
-            onPress={setSelectedIndex2}
-            selectedIndex={selectedIndex2}
+            onPress={setHeat}
+            selectedIndex={heat}
             selectedButtonStyle={styles.buttonStyle}
           />
         </View>

@@ -10,10 +10,7 @@ type PropsFood = {
 };
 const SlideFood = ({ onPress }: PropsFood) => {
   const [breakfast, setBreakfast] = useState('');
-  const [diet, setDiet] = useState('');
-  const [value, setValue] = useState('');
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [selectedIndex2, setSelectedIndex2] = useState();
+  const [diet, setDiet] = useState();
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -107,8 +104,8 @@ const SlideFood = ({ onPress }: PropsFood) => {
           <Text variant="body">How would you describe your diet?</Text>
           <ButtonGroup
             buttons={buttonDiet}
-            onPress={setSelectedIndex2}
-            selectedIndex={selectedIndex2}
+            onPress={setDiet}
+            selectedIndex={diet}
             selectedButtonStyle={styles.buttonStyle}
           />
           <Text variant="body"></Text>
