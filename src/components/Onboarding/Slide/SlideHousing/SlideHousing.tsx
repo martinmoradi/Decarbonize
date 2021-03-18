@@ -43,14 +43,6 @@ const SlideHousing = ({ onPress }: PropsFood) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
-  const handleSubmit = () => {
-    console.log('next');
-  };
-
-  const buttonClothes = ['0-50 €', '50-150 €', '>150€'];
-  const buttonFurniture = ['0-50 €', '50-150 €', '>150€'];
-  const buttonHobbies = ['0-50 €', '50-150 €', '>150€'];
-
   return (
     <View style={styles.container}>
       <View

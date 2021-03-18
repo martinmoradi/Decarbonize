@@ -98,7 +98,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             innerBorderStyle={{ width: 0 }}
           />
           <View style={{ padding: 6 }}></View>
-          <Text variant="body">What is the surface are of your housing?</Text>
+          <Text variant="body">What is the surface of your housing?</Text>
           <Text variant="body">{surface} m²</Text>
           <Slider
             animateTransitions
