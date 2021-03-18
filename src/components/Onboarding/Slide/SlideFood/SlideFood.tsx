@@ -12,7 +12,6 @@ type PropsFood = {
 
 const SlideFood = ({ onPress }: PropsFood) => {
   const { food } = useContext(OnboardingContext);
-  console.log('food:', food);
   const {
     breakfast,
     redMeat,

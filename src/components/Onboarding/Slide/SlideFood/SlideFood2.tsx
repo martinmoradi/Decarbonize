@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
@@ -9,8 +10,8 @@ type PropsFood = {
   onPress: () => {};
 };
 const SlideFood2 = ({ onPress }: PropsFood) => {
-  const [vegetarian, setVegetarian] = useState();
-  const [vegan, setVegan] = useState();
+  const { food } = useContext(OnboardingContext);
+  const { vegetarian, vegan, onChangeVegetarian, onChangeVegan } = food;
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -84,7 +85,7 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setVegetarian}
+            onValueChange={onChangeVegetarian}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
@@ -106,7 +107,7 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setVegan}
+            onValueChange={onChangeVegan}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
