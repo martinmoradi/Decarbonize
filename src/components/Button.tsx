@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { RectButton, RectButtonProperties } from 'react-native-gesture-handler';
-import { Text, useTheme } from './Theme';
+import { RectButton,RectButtonProperties } from 'react-native-gesture-handler';
+import { Text,useTheme } from './Theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
 interface ButtonProps {
   variant: 'default' | 'primary';
-  label?: string;
+  label?: string | JSX.Element;
   onPress: () => void;
   style?: RectButtonProperties['style'];
 }

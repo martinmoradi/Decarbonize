@@ -1,11 +1,14 @@
-// @ts-nocheck
 import { useFormik } from 'formik';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
+import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
+import { config } from './api';
+import { AuthContext } from './authContext';
+import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
 
 const SignUpSchema = Yup.object().shape({
@@ -15,9 +18,52 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
-
+// @ts-ignore
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
-  const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
+  const { state, dispatch } = useContext(AuthContext);
+  const apiSignup = async (body: userPropsType) => {
+    console.log('ARGS_VALUES = ', body);
+    console.log('START_STATE = ', state);
+    dispatch({
+      type: authActionType.SIGNUP_ATTEMPT,
+    });
+    const test = config('POST', body);
+    console.log(test);
+    const response = await fetch(
+      `https://decarbonize-perruches.herokuapp.com/signup`,
+      config('POST', body)
+    );
+    const { data, error } = await response.json();
+    console.log(data, error);
+    if (response.ok) {
+      const token: string | null = response.headers.get('Authorization');
+      const user = { ...data };
+      const payload = {
+        user,
+        token,
+        remember: body.remember,
+      };
+      dispatch({
+        type: authActionType.SIGNUP_SUCCESS,
+        payload,
+      });
+    } else {
+      dispatch({
+        type: authActionType.SIGNUP_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+
+  const {
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    errors,
+    touched,
+    values,
+    setFieldValue,
+  } = useFormik({
     validationSchema: SignUpSchema,
     initialValues: {
       email: '',
@@ -25,7 +71,9 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
       passwordConfirmation: '',
       remember: true,
     },
-    onSubmit: values => console.log(values),
+    onSubmit: () => {
+      apiSignup(values);
+    },
   });
   const password = useRef<RNTextInput>(null);
   const passwordConfirmation = useRef<RNTextInput>(null);
@@ -36,14 +84,25 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
       onPress={() => navigation.navigate('Login')}
     />
   );
+
   return (
     <Container pattern={0} {...{ footer }}>
       <Text variant="title1" textAlign="center" marginBottom="l">
         Create account
       </Text>
       <Text variant="body" textAlign="center" marginBottom="l">
-        Let’s us know what your name, email, and your password
+        Let’s us know what your email and your password
       </Text>
+      {state.errorMessage && (
+        <Text
+          variant="body"
+          style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+          textAlign="center"
+          marginBottom="l"
+        >
+          {state.errorMessage}
+        </Text>
+      )}
       <Box>
         <Box marginBottom="m">
           <TextInput
@@ -94,6 +153,18 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
             returnKeyLabel="go"
             onSubmitEditing={() => handleSubmit()}
             secureTextEntry
+          />
+        </Box>
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          marginVertical="s"
+        >
+          <Checkbox
+            label="Remember me"
+            checked={values.remember}
+            onChange={() => setFieldValue('remember', !values.remember)}
           />
         </Box>
         <Box alignItems="center" marginTop="m">
