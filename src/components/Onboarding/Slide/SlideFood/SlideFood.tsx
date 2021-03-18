@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { Icon, Slider } from 'react-native-elements';
+import { ButtonGroup, Slider } from 'react-native-elements';
+import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
-const SlideFood = () => {
+
+type PropsFood = {
+  onPress: () => {};
+};
+const SlideFood = ({ onPress }: PropsFood) => {
+  const [breakfast, setBreakfast] = useState('');
+  const [diet, setDiet] = useState('');
   const [value, setValue] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState();
+  const [selectedIndex2, setSelectedIndex2] = useState();
+
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
 
@@ -17,23 +27,37 @@ const SlideFood = () => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
+    },
+    buttonStyle: {
+      backgroundColor: theme.colors.primary,
+      borderRadius: 20,
+    },
+    btnContainer: {
+      borderWidth: 0,
     },
     title: {
       justifyContent: 'center',
       transform: [
         { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - height/1.3) / 2 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
-    content: { maxWidth: width - 20, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 60 },
   });
 
   const handleSubmit = () => {
     console.log('next');
   };
+
+  const component1 = <Text>Meat lover</Text>;
+  const component2 = <Text>Meat in some meals</Text>;
+  const component3 = <Text>Vegetarian</Text>;
+  const component4 = <Text>Vegan</Text>;
+  const buttonDiet = [component1, component2, component3, component4];
+
   return (
     <View style={styles.container}>
       <View
@@ -47,43 +71,56 @@ const SlideFood = () => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
             FOOD
           </Text>
+          <View style={{ alignItems: 'center', translateY: -40 }}>
+            <IconSvg name="food" />
+          </View>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How often do you have a breakfast per week?</Text>
+          <Text variant="body">Value : {breakfast}</Text>
           <Slider
-            value={value}
-            onValueChange={setValue}
-            maximumValue={50}
-            minimumValue={20}
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={7}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setBreakfast}
+            orientation="horizontal"
             step={1}
-            trackStyle={{ height: 10, backgroundColor: 'transparent' }}
-            thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
-            thumbProps={{
-              children: (
-                <Icon
-                  name="circle"
-                  size={10}
-                  reverse
-                  containerStyle={{ bottom: 10, right: 10 }}
-                  color="gray"
-                />
-              ),
-            }}
+            style={{ width: '80%', height: 60 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={breakfast}
           />
           <Text variant="body">How would you describe your diet?</Text>
+          <ButtonGroup
+            buttons={buttonDiet}
+            onPress={setSelectedIndex2}
+            selectedIndex={selectedIndex2}
+            selectedButtonStyle={styles.buttonStyle}
+          />
           <Text variant="body"></Text>
         </View>
-        <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
-          <Button variant="default" onPress={handleSubmit} label="Next" />
+        <View
+          style={{
+            flex: 0.9,
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Button variant="default" onPress={onPress} label="Next" />
         </View>
       </View>
     </View>
