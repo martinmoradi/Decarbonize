@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Feather as Icon } from '@expo/vector-icons';
 import React from 'react';
 import { Box, Text, Theme } from './Theme';
