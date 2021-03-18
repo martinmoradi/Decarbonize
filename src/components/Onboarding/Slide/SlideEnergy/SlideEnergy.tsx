@@ -42,7 +42,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 40 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
 
   const handleSubmit = () => {
@@ -130,7 +130,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onValueChange={setConsumption}
             orientation="horizontal"
             step={1}
-            style={{ width: '80%', height: 40 }}
+            style={{ width: '80%', height: 20 }}
             thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}

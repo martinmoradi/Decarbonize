@@ -43,7 +43,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 40 },
   });
 
   const handleSubmit = () => {
