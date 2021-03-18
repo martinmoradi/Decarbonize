@@ -1,7 +1,7 @@
 //@ts-nocheck
 import React, { useRef } from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
-import { Button } from '../components';
+import { Button, Text } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';

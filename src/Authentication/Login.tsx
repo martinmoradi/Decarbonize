@@ -29,13 +29,6 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     dispatch({
       type: authActionType.LOGIN_ATTEMPT,
     });
-<<<<<<< HEAD:src/Authentication/Auth.tsx
-    try {
-      const response = await fetch(`https://decarbonize-perruches.herokuapp.com/login`, config('POST', body));
-      const user = await response.json();
-      
-      const { data } = user;
-=======
     console.log(config('POST', body));
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/login`,
@@ -43,7 +36,6 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     );
     const { data, error } = await response.json();
     if (response.ok) {
->>>>>>> develop:src/Authentication/Login.tsx
       const token: string | null = response.headers.get('Authorization');
       const user = { ...data };
       const payload = {
@@ -55,12 +47,7 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
         type: authActionType.LOGIN_SUCCESS,
         payload,
       });
-<<<<<<< HEAD:src/Authentication/Auth.tsx
-    } catch (err) {
-      console.log(err)
-=======
     } else {
->>>>>>> develop:src/Authentication/Login.tsx
       dispatch({
         type: authActionType.LOGIN_ERROR,
         payload: error,
