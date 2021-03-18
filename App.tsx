@@ -41,7 +41,7 @@ const reducer = (state = initialState, action: any) => {
         isLoading: true,
       };
     case 'LOGIN_SUCCESS':
-      AsyncStorage.setItem('user', JSON.stringify(action.payload.user));
+      AsyncStorage.setItem('user', JSON.stringify(action.payload.data));
       AsyncStorage.setItem('token', JSON.stringify(action.payload.token));
       return {
         ...state,
@@ -80,7 +80,7 @@ const App = () => {
       <ThemeProvider>
         <LoadAssets {...{ fonts }}>
           <SafeAreaProvider>
-            {!state.isAuthenticated ? (
+            {!(state.isAuthenticated && AsyncStorage.getItem('token')) ? (
               <AppStack.Navigator headerMode="none">
                 <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
               </AppStack.Navigator>
