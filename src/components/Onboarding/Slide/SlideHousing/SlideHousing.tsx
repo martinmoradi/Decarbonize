@@ -81,7 +81,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend monthly for clothes ?</Text>
-          <Text variant="body">Value : {clothes}</Text>
+          <Text variant="body">{clothes} €</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -100,7 +100,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             value={clothes}
           />
           <Text variant="body">How much do you spend monthly for furniture ?</Text>
-          <Text variant="body">Value : {furniture}</Text>
+          <Text variant="body">{furniture} €</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -119,7 +119,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             value={furniture}
           />
           <Text variant="body">How much do you spend monthly for hobbies ?</Text>
-          <Text variant="body">Value : {hobbies}</Text>
+          <Text variant="body">{hobbies} €</Text>
           <Slider
             animateTransitions
             animationType="timing"
