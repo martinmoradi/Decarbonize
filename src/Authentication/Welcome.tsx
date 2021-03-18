@@ -20,8 +20,13 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
         borderBottomRightRadius="xl"
         backgroundColor="background2"
         alignItems="center"
-        justifyContent="flex-end"
+        justifyContent="center" //previously flex-end
       >
+        <Text variant="title1" style={{ marginBottom: 20 }}>
+          Welcome to Decarbonize
+        </Text>
+        <Text variant="title3">Make the world a better place </Text>
+
         {/* <Image
           source={picture.src}
           style={{
@@ -39,6 +44,7 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
           right={0}
           bottom={0}
         />
+
         <Box
           backgroundColor="background"
           borderTopLeftRadius="xl"
@@ -49,14 +55,17 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
         >
           <Text variant="title2">Let’s get started</Text>
           <Text variant="body" textAlign="center">
-            Login to your account below or signup for an amazing experience
+            Answer a few questions about your carbon emissions to
+            create your account (it's all free)
           </Text>
           <Button
             variant="primary"
-            label="Have an account? Login"
-            onPress={() => navigation.navigate('Login')}
+            label="Create my account"
+            onPress={() => navigation.navigate('Onboarding')}
           />
-          <Button label="Join us, it’s Free" onPress={() => navigation.navigate('SignUp')} />
+          <Text>Or</Text>
+          <Button label="Login to your account" onPress={() => navigation.navigate('Login')} />
+
           <BorderlessButton onPress={() => navigation.navigate('ForgotPassword')}>
             <Text variant="button" color="secondary">
               Forgot password?

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { Text } from '../components/Theme';
+import { AuthContext } from '../Authentication/authContext';
+import { authActionType } from '../Authentication/authContext/authTypes';
+import { Button, Text } from '../components/';
 
 const SettingsScreen = () => {
+  const { dispatch } = useContext(AuthContext);
+  const logout = () => {
+    dispatch({
+      type: authActionType.LOGOUT,
+    });
+  };
   return (
     <View
       style={{
@@ -13,6 +21,7 @@ const SettingsScreen = () => {
       }}
     >
       <Text variant="title2">Settings</Text>
+      <Button label="logout" variant="primary" onPress={logout} />
     </View>
   );
 };
