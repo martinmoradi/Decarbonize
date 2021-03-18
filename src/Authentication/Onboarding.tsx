@@ -5,6 +5,7 @@ import { Button } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideEnergySecond from '../components/Onboarding/Slide/SlideEnergy/SlideEnergySecond';
+import SlideEnergyThird from '../components/Onboarding/Slide/SlideEnergy/SlideEnergyThird';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
 import SlideFood2 from '../components/Onboarding/Slide/SlideFood/SlideFood2';
 import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
@@ -33,6 +34,11 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       </View>
       <View style={{ width }}>
         <SlideEnergySecond
+          onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })}
+        />
+      </View>
+      <View style={{ width }}>
+        <SlideEnergyThird
           onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })}
         />
       </View>

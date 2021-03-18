@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup, Slider } from 'react-native-elements';
+import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
@@ -9,10 +9,11 @@ type PropsFood = {
   onPress: () => {};
 };
 
-const SlideEnergySecond = ({ onPress }: PropsFood) => {
-  const [heat, setHeat] = useState([]);
-  const [consumption, setConsumption] = useState();
-  const [wood, setWood] = useState();
+const SlideEnergyThird = ({ onPress }: PropsFood) => {
+  const [fuel, setFuel] = useState();
+  const [gas, setGas] = useState();
+  const [woodLodge, setWoodLodge] = useState();
+  const [woodPellet, setWoodPellet] = useState();
 
   const getHeatList = (e: number) => {
     const heatList: number[] = [];
@@ -31,7 +32,7 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -42,9 +43,9 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
       height: 100,
       justifyContent: 'center',
       transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
+        { rotate: '90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
@@ -53,22 +54,6 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
   const buttonsHeat = ['Fioul', 'Gas', 'Wood'];
   const buttonsWood = ['Wood logs', 'Wood pellets'];
 
-  const WoodEnergy = () => (
-    <>
-      <View style={{ padding: 6 }}></View>
-      <Text variant="body">Which type of wood ?</Text>
-      <ButtonGroup
-        buttons={buttonsWood}
-        onPress={getHeatList}
-        selectedIndex={wood}
-        selectedButtonStyle={styles.buttonStyle}
-        textStyle={{ textAlign: 'center' }}
-        containerStyle={{ borderWidth: 0 }}
-        innerBorderStyle={{ width: 0 }}
-      />
-      <View style={{ padding: 6 }}></View>
-    </>
-  );
   return (
     <View style={styles.container}>
       <View
@@ -82,12 +67,12 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            ENERGY 2
+            ENERGY 3
           </Text>
           <View style={{ alignItems: 'center', translateY: -80 }}>
             <IconSvg name="energyBis" />
@@ -96,21 +81,8 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup
-            buttons={buttonsHeat}
-            selectMultiple={true}
-            onPress={setHeat}
-            selectedIndexes={heat}
-            selectedButtonStyle={styles.buttonStyle}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
-          <View style={{ padding: 6 }}></View>
-          {heat.includes(2) && <WoodEnergy />}
-          <Text variant="body">What is your monthly energy consumption ? </Text>
-          <Text variant="body">{consumption} € </Text>
+          <Text variant="body">Fuel</Text>
+          <Text variant="body">{fuel} € </Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -118,7 +90,7 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={setConsumption}
+            onValueChange={setFuel}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -126,7 +98,46 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={consumption}
+            value={fuel}
+          />
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body">Gas </Text>
+          <Text variant="body">{gas} € </Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={300}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={20}
+            onValueChange={setGas}
+            orientation="horizontal"
+            step={10}
+            style={{ width: '80%', height: 40 }}
+            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={gas}
+          />
+          <Text variant="body">What is your monthly energy consumption ? </Text>
+          <Text variant="body">{woodLodge} € </Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={300}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={20}
+            onValueChange={setWoodLodge}
+            orientation="horizontal"
+            step={10}
+            style={{ width: '80%', height: 40 }}
+            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={woodLodge}
           />
         </View>
         <View
@@ -143,4 +154,4 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
   );
 };
 
-export default SlideEnergySecond;
+export default SlideEnergyThird;
