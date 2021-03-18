@@ -10,8 +10,7 @@ type PropsFood = {
 };
 const SlideFood = ({ onPress }: PropsFood) => {
   const [breakfast, setBreakfast] = useState();
-  const [grocery, setGrocery] = useState();
-  const [dairy, setDairy] = useState();
+  const [redMeal, setRedMeal] = useState();
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -45,12 +44,6 @@ const SlideFood = ({ onPress }: PropsFood) => {
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
-
-  const component1 = <Text> Infrequently </Text>;
-  const component2 = <Text> Occasionally</Text>;
-  const component3 = <Text>Often</Text>;
-  const component4 = <Text> Always</Text>;
-  const buttonDiet = [component1, component2, component3, component4];
 
   return (
     <View style={styles.container}>
@@ -88,7 +81,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={7}
+            maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
             onValueChange={setBreakfast}
@@ -105,15 +98,15 @@ const SlideFood = ({ onPress }: PropsFood) => {
           <Text variant="body" style={{ lineHeight: 32 }}>
             How often do you have eat red meal ?
           </Text>
-          <Text variant="body">{breakfast} : per week</Text>
+          <Text variant="body">{redMeal} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={7}
+            maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setBreakfast}
+            onValueChange={setRedMeal}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
@@ -121,7 +114,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={breakfast}
+            value={redMeal}
           />
         </View>
         <View

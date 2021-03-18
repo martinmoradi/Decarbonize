@@ -9,9 +9,8 @@ type PropsFood = {
   onPress: () => {};
 };
 const SlideFood2 = ({ onPress }: PropsFood) => {
-  const [breakfast, setBreakfast] = useState();
-  const [grocery, setGrocery] = useState();
-  const [dairy, setDairy] = useState();
+  const [whiteMeat, setWhiteMeat] = useState();
+  const [vegetarian, setVegetarian] = useState();
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -46,12 +45,6 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
 
-  const component1 = <Text> Infrequently </Text>;
-  const component2 = <Text> Occasionally</Text>;
-  const component3 = <Text>Often</Text>;
-  const component4 = <Text> Always</Text>;
-  const buttonDiet = [component1, component2, component3, component4];
-
   return (
     <View style={styles.container}>
       <View
@@ -80,18 +73,18 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you eat white meal ?
+            How much do you eat white meal ?
           </Text>
           <View style={{ padding: 6 }}></View>
-          <Text variant="body">{breakfast} : per week</Text>
+          <Text variant="body">{whiteMeat} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={7}
+            maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setBreakfast}
+            onValueChange={setWhiteMeat}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
@@ -99,21 +92,21 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={breakfast}
+            value={whiteMeat}
           />
           <View style={{ padding: 6 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegetarian meal ? ?
           </Text>
-          <Text variant="body">{breakfast} : per week</Text>
+          <Text variant="body">{vegetarian} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={7}
+            maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setBreakfast}
+            onValueChange={setVegetarian}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
@@ -121,7 +114,7 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={breakfast}
+            value={vegetarian}
           />
         </View>
         <View
