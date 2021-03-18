@@ -10,7 +10,6 @@ type PropsFood = {
 };
 
 const SlideEnergySecond = ({ onPress }: PropsFood) => {
-  const [people, setPeople] = useState();
   const [surface, setSurface] = useState();
   const [heat, setHeat] = useState([]);
   const [consumption, setConsumption] = useState();
@@ -46,7 +45,7 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
 
-  const buttonsPeople = ['1', '2', '3', '4+'];
+  const buttonsPeople = ['in euro ?', 'in kwH ?'];
 
   const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solar panel'];
   return (
@@ -76,18 +75,8 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How many people live with you?</Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonsPeople}
-            selectedIndex={people}
-            onPress={setPeople}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
-          <Text variant="body">What is the surface are of your housing?</Text>
-          <Text variant="body">{surface} m²</Text>
+          <Text variant="body">What is your monthly energy consumption ? </Text>
+          <Text variant="body">{surface} € </Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -104,17 +93,6 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={surface}
-          />
-          <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup
-            buttons={buttonsHeat}
-            selectMultiple={true}
-            onPress={setHeat}
-            selectedIndexes={heat}
-            selectedButtonStyle={styles.buttonStyle}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is your monthly energy consumption ? </Text>
           <Text variant="body">{consumption} kwH</Text>
@@ -134,6 +112,17 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={consumption}
+          />
+          <Text variant="body">How do you heat your housing?</Text>
+          <ButtonGroup
+            buttons={buttonsHeat}
+            selectMultiple={true}
+            onPress={setHeat}
+            selectedIndexes={heat}
+            selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
         </View>
         <View

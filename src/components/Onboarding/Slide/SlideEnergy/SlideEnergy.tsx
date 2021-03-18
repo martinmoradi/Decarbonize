@@ -13,7 +13,6 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const [people, setPeople] = useState();
   const [surface, setSurface] = useState();
   const [child, setChild] = useState();
-  const [consumption, setConsumption] = useState();
 
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
@@ -45,14 +44,9 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
 
-  const handleSubmit = () => {
-    console.log('next');
-  };
-
   const buttonsPeople = ['1', '2', '3', '4+'];
   const buttonsChild = ['0', '1', '2', '3', '4'];
 
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solar panel'];
   return (
     <View style={styles.container}>
       <View
@@ -90,6 +84,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
+          <View style={{ padding: 6 }}></View>
           <Text variant="body" style={{ textAlign: 'center' }}>
             If there are children, how many are in joint custody?
           </Text>
@@ -102,6 +97,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
+          <View style={{ padding: 6 }}></View>
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">{surface} m²</Text>
           <Slider
