@@ -2,8 +2,10 @@ export interface onboardingStateType {
   food: {
     breakfast: number,
     onChangeBreakfast: (value: React.SetStateAction<number>) => void | null,
-    diet: string,
-    onChangeDiet: (value: React.SetStateAction<string>) => void | null,
+    grocery: string,
+    onChangeGrocery: (value: React.SetStateAction<string>) => void | null,
+    dairy: string,
+    onChangeDairy: (value: React.SetStateAction<string>) => void | null,
   },
 
   energy: {

@@ -8,7 +8,8 @@ type PropsOnboardingProviders = {
 
 export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
   const [breakfast, setBreakfast] = useState(0);
-  const [diet, setDiet] = useState('');
+  const [grocery, setGrocery] = useState('');
+  const [dairy, setDairy] = useState('');
   const [people, setPeople] = useState(0);
   const [surface, setSurface] = useState(0);
   const [heat, setHeat] = useState('');
@@ -21,8 +22,10 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
     food: {
       breakfast: breakfast,
       onChangeBreakfast: setBreakfast,
-      diet: diet,
-      onChangeDiet: setDiet,
+      grocery: grocery,
+      onChangeGrocery: setGrocery,
+      dairy: dairy,
+      onChangeDairy: setDairy,
     },
 
     energy: {

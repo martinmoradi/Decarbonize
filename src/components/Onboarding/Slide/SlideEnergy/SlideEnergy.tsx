@@ -14,7 +14,6 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
-  console.log('context new2:', energy);
   const {
     people,
     surface,

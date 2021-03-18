@@ -89,7 +89,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             maximumValue={7}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setBreakfast}
+            onValueChange={handleChangeBreakfast}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}

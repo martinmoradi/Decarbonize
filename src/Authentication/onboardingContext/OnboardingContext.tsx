@@ -4,8 +4,10 @@ const OnboardingContext = createContext({
   food: {
     breakfast: 0,
     onChangeBreakfast: () => {},
-    diet: '',
-    onChangeDiet: () => {},
+    grocery: '',
+    onChangeGrocery: () => {},
+    dairy: '',
+    onChangeDairy: () => {},
   },
 
   energy: {
