@@ -1,18 +1,18 @@
-import { userPropsType } from '../Authentication/authContext/authTypes'
+import { userPropsType } from '../Authentication/authContext/authTypes';
 
 export const config = (method: string, body: userPropsType) => {
   return {
     method,
     headers: {
-      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       user: {
         email: body.email,
         password: body.password,
-        passwordConfirmation: body.passwordConfirmation,
+        password_confirmation: body.passwordConfirmation,
       },
     }),
   };
 };
+// Accept: 'application/json',

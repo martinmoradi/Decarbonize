@@ -1,3 +1,4 @@
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -15,13 +16,15 @@ const fonts = {
 const App = () => {
   return (
     <AuthProvider>
-      <ThemeProvider>
-        <LoadAssets {...{ fonts }}>
-          <SafeAreaProvider>
-            <AuthRouter />
-          </SafeAreaProvider>
-        </LoadAssets>
-      </ThemeProvider>
+      <LoadAssets {...{ fonts }}>
+        <ThemeProvider>
+          <SnackbarProvider maxSnack={3}>
+            <SafeAreaProvider>
+              <AuthRouter />
+            </SafeAreaProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </LoadAssets>
     </AuthProvider>
   );
 };

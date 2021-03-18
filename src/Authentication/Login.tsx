@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
@@ -11,7 +11,6 @@ import { config } from './api';
 import { AuthContext } from './authContext';
 import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
-
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
@@ -20,17 +19,21 @@ const LoginSchema = Yup.object().shape({
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
   const { state, dispatch } = useContext(AuthContext);
 
+  useEffect(() => {
+    if (state.errorMessage) {
+      console.log(state);
+    }
+  }, [state]);
+
   const apiLogin = async (body: userPropsType) => {
-    console.log('ARGS_VALUES = ', body);
-    console.log('START_STATE = ', state);
     dispatch({
       type: authActionType.LOGIN_ATTEMPT,
     });
+    console.log(config('POST', body));
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/login`,
       config('POST', body)
     );
-    console.log('API RESPONSE = ', response);
     const { data, error } = await response.json();
     if (response.ok) {
       const token: string | null = response.headers.get('Authorization');
@@ -47,10 +50,9 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     } else {
       dispatch({
         type: authActionType.LOGIN_ERROR,
-        payload: error.message,
+        payload: error,
       });
     }
-    console.log('FINAL_STATE = ', state);
   };
 
   const {
@@ -83,9 +85,21 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
       <Text variant="title1" textAlign="center" marginBottom="l">
         Welcome back !
       </Text>
+
       <Text variant="body" textAlign="center" marginBottom="l">
         Use your credentials below and login to your account
       </Text>
+
+      {state.errorMessage && (
+        <Text
+          variant="body"
+          style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+          textAlign="center"
+          marginBottom="l"
+        >
+          {state.errorMessage}
+        </Text>
+      )}
       <Box>
         <Box marginBottom="m">
           <TextInput

@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { AuthContext } from '../Authentication/authContext';
+import { authActionType } from '../Authentication/authContext/authTypes';
 import { Button, Text } from '../components/';
 
 const SettingsScreen = () => {
   const { dispatch } = useContext(AuthContext);
   const logout = () => {
     dispatch({
-      type: 'logout',
+      type: authActionType.LOGOUT,
     });
   };
   return (
