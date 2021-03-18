@@ -43,7 +43,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 40 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
 
   const handleSubmit = () => {
@@ -76,14 +76,17 @@ const SlideFood = ({ onPress }: PropsFood) => {
           <Text style={styles.title} variant="titleTopSlide">
             FOOD
           </Text>
-          <View style={{ alignItems: 'center', translateY: -40 }}>
+          <View style={{ alignItems: 'center', translateY: -50 }}>
             <IconSvg name="food" />
           </View>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How often do you have a breakfast?</Text>
+          <Text variant="body" style={{ lineHeight: 32 }}>
+            How often do you have a breakfast?
+          </Text>
+          <View style={{ padding: 6 }}></View>
           <Text variant="body">{breakfast} : per week</Text>
           <Slider
             animateTransitions
@@ -102,7 +105,9 @@ const SlideFood = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={breakfast}
           />
-          <Text variant="body">How often do you eat seasonal groceries?</Text>
+          <Text variant="body" style={{ lineHeight: 32 }}>
+            How often do you eat seasonal groceries?
+          </Text>
           <ButtonGroup
             buttons={buttonDiet}
             onPress={setGrocery}
@@ -112,8 +117,10 @@ const SlideFood = ({ onPress }: PropsFood) => {
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
-          <Text variant="body"></Text>
-          <Text variant="body">How often do you consume dairy products?</Text>
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body" style={{ lineHeight: 32 }}>
+            How often do you consume dairy products?
+          </Text>
           <ButtonGroup
             buttons={buttonDiet}
             onPress={setDairy}
@@ -123,7 +130,6 @@ const SlideFood = ({ onPress }: PropsFood) => {
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
-          <Text variant="body"></Text>
         </View>
         <View
           style={{
