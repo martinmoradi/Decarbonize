@@ -10,7 +10,8 @@ type PropsFood = {
 };
 const SlideFood = ({ onPress }: PropsFood) => {
   const [breakfast, setBreakfast] = useState('');
-  const [diet, setDiet] = useState();
+  const [redMeat, setRedMeat] = useState();
+  const [whiteMeat, setWhiteMeat] = useState();
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -49,10 +50,10 @@ const SlideFood = ({ onPress }: PropsFood) => {
     console.log('next');
   };
 
-  const component1 = <Text>Meat lover</Text>;
-  const component2 = <Text>Meat in some meals</Text>;
-  const component3 = <Text>Vegetarian</Text>;
-  const component4 = <Text>Vegan</Text>;
+  const component1 = <Text>More than 14</Text>;
+  const component2 = <Text>Between 7 and 14</Text>;
+  const component3 = <Text>Less than 7</Text>;
+  const component4 = <Text>I'm vegetarian</Text>;
   const buttonDiet = [component1, component2, component3, component4];
 
   return (
@@ -101,11 +102,19 @@ const SlideFood = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={breakfast}
           />
-          <Text variant="body">How would you describe your diet?</Text>
+          <Text variant="body">How many times do you red eat meat weekly?</Text>
           <ButtonGroup
             buttons={buttonDiet}
-            onPress={setDiet}
-            selectedIndex={diet}
+            onPress={setRedMeat}
+            selectedIndex={redMeat}
+            selectedButtonStyle={styles.buttonStyle}
+          />
+          <Text variant="body"></Text>
+          <Text variant="body">How many times do you eat white meat weekly?</Text>
+          <ButtonGroup
+            buttons={buttonDiet}
+            onPress={setWhiteMeat}
+            selectedIndex={whiteMeat}
             selectedButtonStyle={styles.buttonStyle}
           />
           <Text variant="body"></Text>
