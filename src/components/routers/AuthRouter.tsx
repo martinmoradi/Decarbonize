@@ -9,7 +9,6 @@ const AppStack = createStackNavigator<AppRoutesParamsList>();
 
 const AuthRouter = () => {
   const { state } = useContext(AuthContext);
-  console.log('IN AUTHROUTER =', state);
   return (
     <>
       {!state.user ? (

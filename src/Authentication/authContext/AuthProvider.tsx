@@ -12,8 +12,6 @@ interface Props {
 }
 
 const AuthProvider = ({ children }: Props): JSX.Element => {
-  // TODO REMOVE THIS
-  // @ts-ignore
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   return <AuthContext.Provider value={{ state, dispatch }}>{children}</AuthContext.Provider>;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useFormik } from 'formik';
 import React, { useContext, useRef } from 'react';
 import { TextInput as RNTextInput } from 'react-native';
@@ -19,16 +18,17 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
-
+// @ts-ignore
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const { state, dispatch } = useContext(AuthContext);
-
   const apiSignup = async (body: userPropsType) => {
     console.log('ARGS_VALUES = ', body);
     console.log('START_STATE = ', state);
     dispatch({
       type: authActionType.SIGNUP_ATTEMPT,
     });
+    const test = config('POST', body);
+    console.log(test);
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/signup`,
       config('POST', body)
@@ -53,7 +53,6 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
         payload: error.message,
       });
     }
-    console.log('FINAL_STATE = ', state);
   };
 
   const {
@@ -85,6 +84,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
       onPress={() => navigation.navigate('Login')}
     />
   );
+
   return (
     <Container pattern={0} {...{ footer }}>
       <Text variant="title1" textAlign="center" marginBottom="l">
@@ -93,6 +93,16 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
       <Text variant="body" textAlign="center" marginBottom="l">
         Let’s us know what your email and your password
       </Text>
+      {state.errorMessage && (
+        <Text
+          variant="body"
+          style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+          textAlign="center"
+          marginBottom="l"
+        >
+          {state.errorMessage}
+        </Text>
+      )}
       <Box>
         <Box marginBottom="m">
           <TextInput
