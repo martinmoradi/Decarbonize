@@ -85,6 +85,9 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             buttons={buttonsPeople}
             selectedIndex={people}
             onPress={setPeople}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">{surface} m²</Text>
@@ -111,6 +114,9 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onPress={setHeat}
             selectedIndex={heat}
             selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is your monthly energy consumption ? </Text>
           <Text variant="body">{consumption} kwH</Text>

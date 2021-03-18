@@ -108,6 +108,9 @@ const SlideFood = ({ onPress }: PropsFood) => {
             onPress={setRedMeat}
             selectedIndex={redMeat}
             selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body"></Text>
           <Text variant="body">How many times do you eat white meat weekly?</Text>
@@ -116,6 +119,9 @@ const SlideFood = ({ onPress }: PropsFood) => {
             onPress={setWhiteMeat}
             selectedIndex={whiteMeat}
             selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body"></Text>
         </View>
