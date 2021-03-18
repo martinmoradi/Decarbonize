@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fd22a4c-3752-4bba-b250-35791919690b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Authentication/Auth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Authentication/Auth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/Dashboard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +37,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="153" width="1200" height="800" key="AVDManager" timestamp="1616014077746">
+    <state x="47" y="148" width="1200" height="800" key="AVDManager" timestamp="1616059249342">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state x="0" y="153" width="1200" height="800" key="AVDManager/0.34.1920.1046@0.34.1920.1046" timestamp="1616014077746" />
+    <state x="47" y="148" width="1200" height="800" key="AVDManager/0.34.1920.1046@0.34.1920.1046" timestamp="1616059249342" />
     <state x="461" y="344" width="1037" height="736" key="SettingsEditor" timestamp="1616007134095">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
