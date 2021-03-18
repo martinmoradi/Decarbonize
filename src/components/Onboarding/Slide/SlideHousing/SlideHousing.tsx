@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
@@ -10,9 +11,15 @@ type PropsFood = {
 };
 
 const SlideHousing = ({ onPress }: PropsFood) => {
-  const [clothes, setClothes] = useState('');
-  const [furniture, setFurniture] = useState('');
-  const [hobbies, setHobbies] = useState('');
+  const { spending } = useContext(OnboardingContext);
+  const {
+    clothes,
+    furniture,
+    hobbies,
+    onChangeClothes,
+    onChangeFurniture,
+    onChangeHobbies,
+  } = spending;
 
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
@@ -79,7 +86,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setClothes}
+            onValueChange={onChangeClothes}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -98,7 +105,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setFurniture}
+            onValueChange={onChangeFurniture}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -117,7 +124,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setHobbies}
+            onValueChange={onChangeHobbies}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}

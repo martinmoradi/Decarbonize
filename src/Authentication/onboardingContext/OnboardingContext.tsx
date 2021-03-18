@@ -28,11 +28,17 @@ const OnboardingContext = createContext<onboardingStateType>({
     onChangeWoodType: () => {},
     wood: 0,
     onChangeWood: () => {},
-    ful: 0,
-    onChangeFul: () => {},
+    fuel: 0,
+    onChangeFuel: () => {},
+    gasHeating: false,
+    onChangeGasHeating: () => {},
+    woodHeating: false,
+    onChangeWoodHeating: () => {},
+    fuelHeating: false,
+    onChangeFuelHeating: () => {},
   },
 
-  splending: {
+  spending: {
     clothes: 0,
     onChangeClothes: () => {},
     furniture: 0,

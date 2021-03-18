@@ -12,7 +12,6 @@ type PropsFood = {
 
 const SlideEnergySecond = ({ onPress }: PropsFood) => {
   const { energy } = useContext(OnboardingContext);
-  console.log('energy2:', energy);
   const [woodTypeIndex, setwoodTypeIndex] = useState<number | undefined>();
   const { electricity, onChangeElectricity, onChangeWoodType } = energy;
   const buttonsHeat = ['Fioul', 'Gas', 'Wood'];

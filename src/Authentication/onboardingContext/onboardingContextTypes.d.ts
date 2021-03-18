@@ -25,11 +25,17 @@ export interface onboardingStateType {
     onChangeWoodType: (value: React.SetStateAction<string>) => void | null,
     wood: number,
     onChangeWood: (value: React.SetStateAction<number>) => void | null,
-    ful: number,
-    onChangeFul: (value: React.SetStateAction<number>) => void | null,
+    fuel: number,
+    onChangeFuel: (value: React.SetStateAction<number>) => void | null,
+    gasHeating: boolean,
+    onChangeGasHeating: (value: React.SetStateAction<boolean>) => void | null,
+    woodHeating: boolean,
+    onChangeWoodHeating: (value: React.SetStateAction<boolean>) => void | null,
+    fuelHeating: boolean,
+    onChangeFuelHeating: (value: React.SetStateAction<boolean>) => void | null,
   },
 
-  splending: {
+  spending: {
     clothes: number,
     onChangeClothes: (value: React.SetStateAction<number>) => void | null,
     furniture: number,

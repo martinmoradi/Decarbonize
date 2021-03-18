@@ -18,10 +18,13 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
   const [gas, setGas] = useState(0);
   const [woodType, setWoodType] = useState('');
   const [wood, setWood] = useState(0);
-  const [ful, setFul] = useState(0);
+  const [fuel, setFuel] = useState(0);
   const [clothes, setClothes] = useState(0);
   const [furniture, setFurniture] = useState(0);
   const [hobbies, setHobbies] = useState(0);
+  const [fuelHeating, setFuelHeating] = useState(false);
+  const [gasHeating, setGasHeating] = useState(false);
+  const [woodHeating, setWoodHeating] = useState(false);
 
   const initialState: onboardingStateType = {
     food: {
@@ -50,11 +53,17 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
       onChangeWoodType: setWoodType,
       wood: wood,
       onChangeWood: setWood,
-      ful: ful,
-      onChangeFul: setFul,
+      fuel: fuel,
+      onChangeFuel: setFuel,
+      gasHeating: gasHeating,
+      onChangeGasHeating: setGasHeating,
+      woodHeating: woodHeating,
+      onChangeWoodHeating: setWoodHeating,
+      fuelHeating: fuelHeating,
+      onChangeFuelHeating: setFuelHeating,
     },
 
-    splending: {
+    spending: {
       clothes: clothes,
       onChangeClothes: setClothes,
       furniture: furniture,
