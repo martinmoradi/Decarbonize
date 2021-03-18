@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import React, { useContext, useRef } from 'react';
-import { TextInput as RNTextInput } from 'react-native';
+import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
@@ -18,23 +18,19 @@ const SignUpSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
-// @ts-ignore
+
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const { state, dispatch } = useContext(AuthContext);
   const apiSignup = async (body: userPropsType) => {
-    console.log('ARGS_VALUES = ', body);
-    console.log('START_STATE = ', state);
     dispatch({
       type: authActionType.SIGNUP_ATTEMPT,
     });
     const test = config('POST', body);
-    console.log(test);
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/signup`,
       config('POST', body)
     );
     const { data, error } = await response.json();
-    console.log(data, error);
     if (response.ok) {
       const token: string | null = response.headers.get('Authorization');
       const user = { ...data };
@@ -168,7 +164,11 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
           />
         </Box>
         <Box alignItems="center" marginTop="m">
-          <Button variant="primary" onPress={handleSubmit} label="Create your account" />
+          {state.isLoading ? (
+            <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
+          ) : (
+            <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+          )}
         </Box>
       </Box>
     </Container>

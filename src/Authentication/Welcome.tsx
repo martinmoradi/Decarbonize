@@ -55,8 +55,8 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
         >
           <Text variant="title2">Let’s get started</Text>
           <Text variant="body" textAlign="center">
-            Answer a few questions about your carbon emissions to
-            create your account (it's all free)
+            Answer a few questions about your carbon emissions to create your account (it's all
+            free)
           </Text>
           <Button
             variant="primary"
