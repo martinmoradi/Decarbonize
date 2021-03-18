@@ -47,7 +47,7 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 40 },
   });
 
   const buttonsHeat = ['Fioul', 'Gas', 'Wood'];

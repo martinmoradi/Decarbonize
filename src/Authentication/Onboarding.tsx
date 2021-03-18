@@ -39,11 +39,11 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       </View>
       <View style={{ width }}>
         <SlideEnergyThird
-          onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })}
+          onPress={() => scroll.current.scrollTo({ x: width * 5, animated: true })}
         />
       </View>
       <View style={{ width }}>
-        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 5, animated: true })} />
+        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })} />
       </View>
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
         <Button
