@@ -14,33 +14,18 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
+  console.log('energy:', energy);
   const {
     people,
     surface,
-    heat,
-    consumption,
+    electricity,
     onChangePeople,
     onChangeSurface,
-    onChangeHeat,
-    onChangeConsumption,
+    onChangeElectricity,
   } = energy;
 
-  const handleChangePeople = (e: string) => {
-    console.log('e people:', e);
-    onChangePeople();
-  };
-  const handleChangeSurface = (e: number) => {
-    console.log('e surface:', e);
-    onChangeSurface(e);
-    console.log(surface);
-  };
-  const handleChangeHeat = (e: string) => {
-    console.log('e heat:', e);
-    onChangeHeat();
-  };
-  const handleChangeConsumption = (e: number) => {
-    console.log('e consumption:', e);
-    onChangeConsumption(e);
+  const handleChangePeople = (e: number) => {
+    onChangePeople(e + 1);
   };
 
   const styles = StyleSheet.create({
@@ -72,9 +57,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   });
 
   const buttonsPeople = ['1', '2', '3', '4+'];
-  const buttonsChild = ['0', '1', '2', '3', '4'];
 
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solar panel'];
   return (
     <View style={styles.container}>
       <View
@@ -106,7 +89,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
           <ButtonGroup
             selectedButtonStyle={styles.buttonStyle}
             buttons={buttonsPeople}
-            selectedIndex={people}
+            selectedIndex={people - 1}
             onPress={handleChangePeople}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
@@ -121,7 +104,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={handleChangeSurface}
+            onValueChange={onChangeSurface}
             orientation="horizontal"
             step={5}
             style={{ width: '80%', height: 40 }}
@@ -131,18 +114,9 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={surface}
           />
-          <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup
-            buttons={buttonsHeat}
-            onPress={handleChangeHeat}
-            selectedIndex={2}
-            selectedButtonStyle={styles.buttonStyle}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
-          <Text variant="body">What is your monthly energy consumption ? </Text>
-          <Text variant="body">{consumption} kwH</Text>
+
+          <Text variant="body">What is your monthly electricity consumption ? </Text>
+          <Text variant="body">{electricity} kwH</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -150,7 +124,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={handleChangeConsumption}
+            onValueChange={onChangeElectricity}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 20 }}
@@ -158,7 +132,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={consumption}
+            value={electricity}
           />
         </View>
         <View
