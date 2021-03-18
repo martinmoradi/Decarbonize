@@ -4,6 +4,7 @@ import { Dimensions, ScrollView, View } from 'react-native';
 import { Button } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
+import SlideEnergySecond from '../components/Onboarding/Slide/SlideEnergy/SlideEnergySecond';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
 import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
 
@@ -27,7 +28,12 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
         <SlideEnergy onPress={() => scroll.current.scrollTo({ x: width * 2, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 3, animated: true })} />
+        <SlideEnergySecond
+          onPress={() => scroll.current.scrollTo({ x: width * 3, animated: true })}
+        />
+      </View>
+      <View style={{ width }}>
+        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })} />
       </View>
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
         <Button

@@ -13,9 +13,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
   const [clothes, setClothes] = useState('');
   const [furniture, setFurniture] = useState('');
   const [hobbies, setHobbies] = useState('');
-  const [selectedIndexClothes, setSelectedClothes] = useState();
-  const [selectedIndexFurniture, setSelectedFurniture] = useState();
-  const [selectedIndexHobbies, setSelectedHobbies] = useState();
+
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -27,7 +25,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
     },
     footer: {
       flex: 1,
-      borderTopRightRadius: 100,
+      borderTopLeftRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -37,9 +35,9 @@ const SlideHousing = ({ onPress }: PropsFood) => {
     title: {
       justifyContent: 'center',
       transform: [
-        { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 15 },
+        { rotate: '-90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 510) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 0 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
@@ -66,7 +64,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
+            borderBottomRightRadius: 75,
             flex: 1,
           }}
         >

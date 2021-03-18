@@ -40,15 +40,11 @@ const SlideFood = ({ onPress }: PropsFood) => {
       transform: [
         { rotate: '90deg' },
         { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 40 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
-
-  const handleSubmit = () => {
-    console.log('next');
-  };
 
   const component1 = <Text> Infrequently </Text>;
   const component2 = <Text> Occasionally</Text>;
@@ -76,7 +72,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
           <Text style={styles.title} variant="titleTopSlide">
             FOOD
           </Text>
-          <View style={{ alignItems: 'center', translateY: -50 }}>
+          <View style={{ alignItems: 'center', translateY: -45 }}>
             <IconSvg name="food" />
           </View>
         </View>

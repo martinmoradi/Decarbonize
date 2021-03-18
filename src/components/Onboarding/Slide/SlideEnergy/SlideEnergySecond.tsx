@@ -9,13 +9,14 @@ type PropsFood = {
   onPress: () => {};
 };
 
-const SlideEnergy = ({ onPress }: PropsFood) => {
+const SlideEnergySecond = ({ onPress }: PropsFood) => {
   const [people, setPeople] = useState();
   const [surface, setSurface] = useState();
-  const [child, setChild] = useState();
+  const [heat, setHeat] = useState([]);
   const [consumption, setConsumption] = useState();
 
   const { height, width } = Dimensions.get('window');
+
   const theme = useTheme();
   const styles = StyleSheet.create({
     container: {
@@ -26,7 +27,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -37,20 +38,15 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
       height: 100,
       justifyContent: 'center',
       transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
+        { rotate: '90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
   });
 
-  const handleSubmit = () => {
-    console.log('next');
-  };
-
   const buttonsPeople = ['1', '2', '3', '4+'];
-  const buttonsChild = ['0', '1', '2', '3', '4'];
 
   const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solar panel'];
   return (
@@ -66,15 +62,15 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
             ENERGY
           </Text>
-          <View style={{ alignItems: 'center', translateY: -98 }}>
-            <IconSvg name="energy" />
+          <View style={{ alignItems: 'center', translateY: -80 }}>
+            <IconSvg name="energyBis" />
           </View>
         </View>
       </View>
@@ -86,18 +82,6 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             buttons={buttonsPeople}
             selectedIndex={people}
             onPress={setPeople}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
-          <Text variant="body" style={{ textAlign: 'center' }}>
-            If there are children, how many are in joint custody?
-          </Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonsChild}
-            selectedIndex={child}
-            onPress={setChild}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
@@ -121,6 +105,36 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={surface}
           />
+          <Text variant="body">How do you heat your housing?</Text>
+          <ButtonGroup
+            buttons={buttonsHeat}
+            selectMultiple={true}
+            onPress={setHeat}
+            selectedIndexes={heat}
+            selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
+          />
+          <Text variant="body">What is your monthly energy consumption ? </Text>
+          <Text variant="body">{consumption} kwH</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={1000}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={20}
+            onValueChange={setConsumption}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 20 }}
+            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={consumption}
+          />
         </View>
         <View
           style={{
@@ -136,4 +150,4 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   );
 };
 
-export default SlideEnergy;
+export default SlideEnergySecond;
