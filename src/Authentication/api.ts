@@ -1,9 +1,10 @@
-interface userProps {
-  email?: string;
-  password?: string;
+export interface userPropsType {
+  email: string;
+  password: string;
+  remember: boolean;
 }
 
-export const config = (method: string, body: userProps) => {
+export const config = (method: string, body: userPropsType) => {
   return {
     method,
     headers: {

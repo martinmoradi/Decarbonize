@@ -1,53 +1,54 @@
-// @ts-nocheck
 import { useFormik } from 'formik';
 import React, { useContext, useRef } from 'react';
-import { TextInput as RNTextInput } from 'react-native';
+import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
-import { config } from './api';
-import { AuthContext } from './authContext/authContext';
+import { config, userPropsType } from './api';
+import { AuthContext } from './authContext';
+import { authActionType } from './authContext/authTypes';
 import Footer from './components/Footer';
+
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
-  const { dispatch } = useContext(AuthContext);
-  
-  const apiLogin = async (body: any) => {
+  const { state, dispatch } = useContext(AuthContext);
+
+  const apiLogin = async (body: userPropsType) => {
+    console.log('START_STATE = ', state);
     dispatch({
-      type: 'LOGIN_ATTEMPT',
+      type: authActionType.LOGIN_ATTEMPT,
     });
-    try {
-      const response = await fetch(
-        `https://decarbonize-perruches.herokuapp.com/login`,
-        config('POST', body)
-      );
-      const user = await response.json();
-      console.log('response', user);
-      const { data } = user;
+    const response = await fetch(
+      `https://decarbonize-perruches.herokuapp.com/login`,
+      config('POST', body)
+    );
+    const { data, error } = await response.json();
+    if (response.ok) {
       const token: string | null = response.headers.get('Authorization');
+      const user = { ...data };
       const payload = {
-        data,
+        user,
         token,
+        remember: body.remember,
       };
-      console.log('payload envoyé', payload);
       dispatch({
-        type: 'LOGIN_SUCCESS',
+        type: authActionType.LOGIN_SUCCESS,
         payload,
       });
-    } catch (err) {
-      console.log('error', err);
+    } else {
       dispatch({
-        type: 'LOGIN_ERROR',
-        payload: err.message,
+        type: authActionType.LOGIN_ERROR,
+        payload: error.message,
       });
     }
+    console.log('FINAL_STATE = ', state);
   };
 
   const {
@@ -138,7 +139,11 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
           </BorderlessButton>
         </Box>
         <Box alignItems="center" marginTop="m">
-          <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+          {state.isLoading ? (
+            <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
+          ) : (
+            <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+          )}
         </Box>
       </Box>
     </Container>
