@@ -12,13 +12,13 @@ const AuthenticationStack = createStackNavigator<AuthRoutesParamsList>();
 
 export const AuthenticationNavigator = () => {
   return (
-    <AuthenticationStack.Navigator headerMode="none">
+    <AuthenticationStack.Navigator headerMode="none" initialRouteName="Welcome" >
+      <AuthenticationStack.Screen name="Welcome" component={Welcome} />
       <AuthenticationStack.Screen name="Onboarding" component={OnboardingScreen} />
       <AuthenticationStack.Screen name="Login" component={Login} />
       <AuthenticationStack.Screen name="SignUp" component={SignUp} />
       <AuthenticationStack.Screen name="PasswordChanged" component={PasswordChanged} />
       <AuthenticationStack.Screen name="ForgotPassword" component={ForgotPassword} />
-      <AuthenticationStack.Screen name="Welcome" component={Welcome} />
     </AuthenticationStack.Navigator>
   );
 };

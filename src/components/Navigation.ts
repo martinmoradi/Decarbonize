@@ -21,12 +21,12 @@ export type AppRoutesParamsList = {
 };
 
 export type AuthRoutesParamsList = {
+  Welcome: undefined;
   Onboarding: undefined;
   Login: undefined;
   Auth: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
-  Welcome: undefined;
   PasswordChanged: undefined;
 };
 
