@@ -14,15 +14,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
-  console.log('energy:', energy);
-  const {
-    people,
-    surface,
-    electricity,
-    onChangePeople,
-    onChangeSurface,
-    onChangeElectricity,
-  } = energy;
+  const { people, surface, onChangePeople, onChangeSurface } = energy;
 
   const handleChangePeople = (e: number) => {
     onChangePeople(e + 1);
@@ -113,26 +105,6 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={surface}
-          />
-
-          <Text variant="body">What is your monthly electricity consumption ? </Text>
-          <Text variant="body">{electricity} kwH</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={1000}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
-            onValueChange={onChangeElectricity}
-            orientation="horizontal"
-            step={1}
-            style={{ width: '80%', height: 20 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={electricity}
           />
         </View>
         <View
