@@ -14,6 +14,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const [people, setPeople] = useState();
   const [surface, setSurface] = useState();
   const [heat, setHeat] = useState();
+  const [consumption, setConsumption] = useState();
 
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
@@ -62,6 +63,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const buttonsPeople = ['1', '2', '3', '4+'];
   const buttonsChild = ['0', '1', '2', '3', '4'];
 
+  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solar panel'];
   return (
     <View style={styles.container}>
       <View
@@ -97,7 +99,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onPress={setPeople}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
-          <Text variant="body">Value : 5 </Text>
+          <Text variant="body">{surface} m²</Text>
           <Slider
             animateTransitions
             animationType="timing"
