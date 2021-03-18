@@ -7,7 +7,7 @@ const SettingsScreen = () => {
   const { dispatch } = useContext(AuthContext);
   const logout = () => {
     dispatch({
-      type: 'LOGOUT',
+      type: 'logout',
     });
   };
   return (

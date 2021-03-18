@@ -6,6 +6,13 @@ export interface authStateType {
   isLoading: boolean;
 }
 
+export interface userPropsType {
+  email: string;
+  password: string;
+  passwordConfirmation?: string;
+  remember: boolean;
+}
+
 export enum authActionType {
   LOGIN_ATTEMPT = 'login_attempt',
   LOGIN_SUCCESS = 'login_success',
@@ -49,6 +56,7 @@ interface SignUpSuccess {
       id: number;
     };
     token: string;
+    remember: boolean;
   };
 }
 

@@ -1,8 +1,4 @@
-export interface userPropsType {
-  email: string;
-  password: string;
-  remember: boolean;
-}
+import { userPropsType } from '../Authentication/authContext/authTypes'
 
 export const config = (method: string, body: userPropsType) => {
   return {
@@ -15,6 +11,7 @@ export const config = (method: string, body: userPropsType) => {
       user: {
         email: body.email,
         password: body.password,
+        passwordConfirmation: body.passwordConfirmation,
       },
     }),
   };

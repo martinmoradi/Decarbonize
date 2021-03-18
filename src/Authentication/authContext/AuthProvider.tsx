@@ -1,15 +1,6 @@
 import React, { createContext, useReducer } from 'react';
-import authReducer from './authReducer';
+import authReducer, { initialState } from './authReducer';
 import { authStateType } from './authTypes';
-
-
-export const initialState: authStateType = {
-  isAuthenticated: false,
-  user: null,
-  token: null,
-  errorMessage: null,
-  isLoading: false,
-};
 
 export const AuthContext = createContext<{ state: authStateType; dispatch: React.Dispatch<any> }>({
   state: initialState,
@@ -20,7 +11,8 @@ interface Props {
   children: JSX.Element[] | JSX.Element;
 }
 
-const AuthProvider: React.FC<Props> = ({ children }) => {
+const AuthProvider = ({ children }: Props): JSX.Element => {
+  // TODO REMOVE THIS
   // @ts-ignore
   const [state, dispatch] = useReducer(authReducer, initialState);
 

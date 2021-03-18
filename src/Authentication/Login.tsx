@@ -7,9 +7,9 @@ import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
-import { config, userPropsType } from './api';
+import { config } from './api';
 import { AuthContext } from './authContext';
-import { authActionType } from './authContext/authTypes';
+import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
 
 const LoginSchema = Yup.object().shape({
@@ -21,6 +21,7 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
   const { state, dispatch } = useContext(AuthContext);
 
   const apiLogin = async (body: userPropsType) => {
+    console.log('ARGS_VALUES = ', body);
     console.log('START_STATE = ', state);
     dispatch({
       type: authActionType.LOGIN_ATTEMPT,
@@ -29,6 +30,7 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
       `https://decarbonize-perruches.herokuapp.com/login`,
       config('POST', body)
     );
+    console.log('API RESPONSE = ', response);
     const { data, error } = await response.json();
     if (response.ok) {
       const token: string | null = response.headers.get('Authorization');
@@ -63,12 +65,6 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '', remember: true },
     onSubmit: () => {
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{ name: 'Home' }],
-      //   })
-      // ),
       apiLogin(values);
     },
   });
