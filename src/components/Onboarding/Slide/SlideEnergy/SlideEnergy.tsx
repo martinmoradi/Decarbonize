@@ -13,6 +13,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
   const [people, setPeople] = useState();
   const [surface, setSurface] = useState();
   const [heat, setHeat] = useState();
+  const [consumption, setConsumption] = useState();
 
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
@@ -41,7 +42,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 40 },
   });
 
   const handleSubmit = () => {
@@ -50,7 +51,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
 
   const buttonsPeople = ['1', '2', '3', '4+'];
 
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solor panel'];
+  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solar panel'];
   return (
     <View style={styles.container}>
       <View
@@ -86,7 +87,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onPress={setPeople}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
-          <Text variant="body">Value : {surface}</Text>
+          <Text variant="body">{surface} m²</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -97,7 +98,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onValueChange={setSurface}
             orientation="horizontal"
             step={1}
-            style={{ width: '80%', height: 60 }}
+            style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
@@ -110,6 +111,25 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onPress={setHeat}
             selectedIndex={heat}
             selectedButtonStyle={styles.buttonStyle}
+          />
+          <Text variant="body">What is your monthly energy consumption ? </Text>
+          <Text variant="body">{consumption} kwH</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={1000}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={20}
+            onValueChange={setConsumption}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 40 }}
+            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={consumption}
           />
         </View>
         <View
