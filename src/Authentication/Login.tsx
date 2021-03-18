@@ -1,15 +1,15 @@
-// @ts-nocheck
 import { useFormik } from 'formik';
-import React, { useContext, useRef } from 'react';
-import { TextInput as RNTextInput } from 'react-native';
+import React, { useContext, useEffect, useRef } from 'react';
+import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
-import { AuthContext } from '../../App';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
 import { config } from './api';
+import { AuthContext } from './authContext';
+import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
@@ -17,31 +17,53 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
-  const { dispatch } = useContext(AuthContext);
+  const { state, dispatch } = useContext(AuthContext);
 
-  const apiLogin = async (body: any) => {
+  useEffect(() => {
+    if (state.errorMessage) {
+      console.log(state);
+    }
+  }, [state]);
+
+  const apiLogin = async (body: userPropsType) => {
     dispatch({
-      type: 'LOGIN_ATTEMPT',
+      type: authActionType.LOGIN_ATTEMPT,
     });
+<<<<<<< HEAD:src/Authentication/Auth.tsx
     try {
       const response = await fetch(`https://decarbonize-perruches.herokuapp.com/login`, config('POST', body));
       const user = await response.json();
       
       const { data } = user;
+=======
+    console.log(config('POST', body));
+    const response = await fetch(
+      `https://decarbonize-perruches.herokuapp.com/login`,
+      config('POST', body)
+    );
+    const { data, error } = await response.json();
+    if (response.ok) {
+>>>>>>> develop:src/Authentication/Login.tsx
       const token: string | null = response.headers.get('Authorization');
+      const user = { ...data };
       const payload = {
-        data,
+        user,
         token,
+        remember: body.remember,
       };
       dispatch({
-        type: 'LOGIN_SUCCESS',
+        type: authActionType.LOGIN_SUCCESS,
         payload,
       });
+<<<<<<< HEAD:src/Authentication/Auth.tsx
     } catch (err) {
       console.log(err)
+=======
+    } else {
+>>>>>>> develop:src/Authentication/Login.tsx
       dispatch({
-        type: 'LOGIN_ERROR',
-        payload: err.message,
+        type: authActionType.LOGIN_ERROR,
+        payload: error,
       });
     }
   };
@@ -58,12 +80,6 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '', remember: true },
     onSubmit: () => {
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{ name: 'Home' }],
-      //   })
-      // ),
       apiLogin(values);
     },
   });
@@ -82,9 +98,21 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
       <Text variant="title1" textAlign="center" marginBottom="l">
         Welcome back !
       </Text>
+
       <Text variant="body" textAlign="center" marginBottom="l">
         Use your credentials below and login to your account
       </Text>
+
+      {state.errorMessage && (
+        <Text
+          variant="body"
+          style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+          textAlign="center"
+          marginBottom="l"
+        >
+          {state.errorMessage}
+        </Text>
+      )}
       <Box>
         <Box marginBottom="m">
           <TextInput
@@ -134,7 +162,11 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
           </BorderlessButton>
         </Box>
         <Box alignItems="center" marginTop="m">
-          <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+          {state.isLoading ? (
+            <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
+          ) : (
+            <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+          )}
         </Box>
       </Box>
     </Container>

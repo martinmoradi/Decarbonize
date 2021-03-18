@@ -1,13 +1,15 @@
-import React from 'react';
+//@ts-nocheck
+import React, { useRef } from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Button } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
-import { Text } from '../components/Theme';
+import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
+  const scroll = useRef<ScrollView>(null);
 
   return (
     <ScrollView
@@ -16,15 +18,16 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       bounces={false}
       horizontal
       showsHorizontalScrollIndicator={false}
+      ref={scroll}
     >
       <View style={{ width }}>
-        <SlideFood />
+        <SlideFood onPress={() => scroll.current.scrollTo({ x: width * 1, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideEnergy />
+        <SlideEnergy onPress={() => scroll.current.scrollTo({ x: width * 2, animated: true })} />
       </View>
       <View style={{ width }}>
-        <Text variant="title2">Slide 3</Text>
+        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 3, animated: true })} />
       </View>
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
       <Text variant="title1" style={{ marginBottom: 20 }}> Great !</Text>
