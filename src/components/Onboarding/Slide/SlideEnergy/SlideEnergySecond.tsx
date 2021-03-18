@@ -55,7 +55,6 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
 
   const WoodEnergy = () => (
     <>
-      <View style={{ padding: 6 }}></View>
       <Text variant="body">Which type of wood ?</Text>
       <ButtonGroup
         buttons={buttonsWood}
@@ -66,7 +65,6 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
         containerStyle={{ borderWidth: 0 }}
         innerBorderStyle={{ width: 0 }}
       />
-      <View style={{ padding: 6 }}></View>
     </>
   );
   return (
@@ -96,19 +94,6 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup
-            buttons={buttonsHeat}
-            selectMultiple={true}
-            onPress={setHeat}
-            selectedIndexes={heat}
-            selectedButtonStyle={styles.buttonStyle}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
-          <View style={{ padding: 6 }}></View>
-          {heat.includes(2) && <WoodEnergy />}
           <Text variant="body">What is your monthly energy consumption ? </Text>
           <Text variant="body">{consumption} € </Text>
           <Slider
@@ -128,6 +113,20 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={consumption}
           />
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body">How do you heat your housing?</Text>
+          <ButtonGroup
+            buttons={buttonsHeat}
+            selectMultiple={true}
+            onPress={setHeat}
+            selectedIndexes={heat}
+            selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
+          />
+          <View style={{ padding: 6 }}></View>
+          {heat.includes(2) && <WoodEnergy />}
         </View>
         <View
           style={{

@@ -89,7 +89,7 @@ const SlideEnergyThird = ({ onPress }: PropsFood) => {
             maximumTrackTintColor="lightgray"
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+            minimumValue={0}
             onValueChange={setFuel}
             orientation="horizontal"
             step={10}
@@ -109,7 +109,7 @@ const SlideEnergyThird = ({ onPress }: PropsFood) => {
             maximumTrackTintColor="lightgray"
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+            minimumValue={0}
             onValueChange={setGas}
             orientation="horizontal"
             step={10}
@@ -128,7 +128,7 @@ const SlideEnergyThird = ({ onPress }: PropsFood) => {
             maximumTrackTintColor="lightgray"
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+            minimumValue={0}
             onValueChange={setWoodLodge}
             orientation="horizontal"
             step={10}
