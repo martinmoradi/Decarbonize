@@ -24,8 +24,9 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
       type: 'LOGIN_ATTEMPT',
     });
     try {
-      const response = await fetch(`http://127.0.0.1:3000/login`, config('POST', body));
+      const response = await fetch(`https://decarbonize-perruches.herokuapp.com/login`, config('POST', body));
       const user = await response.json();
+      
       const { data } = user;
       const token: string | null = response.headers.get('Authorization');
       const payload = {
