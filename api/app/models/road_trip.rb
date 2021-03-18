@@ -1,26 +1,28 @@
+#  Schema.rb
+#  t.string "vehicle_type"
+#  t.integer "distance"
+#  t.boolean "round_trip"
+
 class RoadTrip < ApplicationRecord
   has_one :emission, as: :emissionable, dependent: :destroy
   after_create :create_emission
 
-  def emitted_carbon
-    distance * 2
-  end
 
-  def calc_emission
+  def emitted_carbon # Per trip in kgs
     case vehicle_type
-      when "electric car"
-        return round_trip ? (19.8 * distance * 2) : (19.8 * distance)
-      when "diesel car"
-        return round_trip ? ( 156.56 * distance * 2) : ( 156.56 * distance)
-      when "petrol car"
-        return round_trip ? ( 164.86 * distance * 2) : ( 164.86 * distance)
+      when "electric_car"
+        round_trip ? (0.0198 * distance * 2) : (0.0198 * distance)
+      when "diesel_car"
+        round_trip ? ( 0.157 * distance * 2) : ( 0.157 * distance)
+      when "petrol_car"
+        round_trip ? ( 0.1649 * distance * 2) : ( 0.1649 * distance)
       when "bus"
-           return round_trip ? (104 * distance * 2) : (104 * distance)
+        round_trip ? (0.104 * distance * 2) : (0.104 * distance)
       when "tramway"
-        return round_trip ? ( 2.2 * distance * 2) : ( 2.2 * distance)
+        round_trip ? ( 0.022 * distance * 2) : ( 0.022 * distance)
       when "metro"
-        return round_trip ? ( 2.5 * distance * 2) : ( 2.5 * distance)
+        round_trip ? ( 0.025 * distance * 2) : ( 0.025 * distance)
     end
-
   end
+
 end
