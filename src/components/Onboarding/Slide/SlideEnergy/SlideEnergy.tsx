@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
-import OnboardingContext from '../../../../context/OnboardingContext';
+import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
@@ -11,27 +11,24 @@ type PropsFood = {
 };
 
 const SlideEnergy = ({ onPress }: PropsFood) => {
-  const [people, setPeople] = useState('');
-  const [surface, setSurface] = useState('');
-  const [heat, setHeat] = useState('');
   const [selectedIndex, setSelectedIndex] = useState();
   const [selectedIndex2, setSelectedIndex2] = useState();
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
+  console.log('context new2:', energy);
   const { people, surface, heat, onChangePeople, onChangeSurface, onChangeHeat } = energy;
 
   const handleChangePeople = (e: string) => {
-    onChangePeople(e);
+    onChangePeople();
   };
   const handleChangeSurface = (e: string) => {
-    onChangeSurface(e);
+    onChangeSurface();
   };
   const handleChangeHeat = (e: string) => {
-    onChangeHeat(e);
+    onChangeHeat();
   };
 
-  console.log('energy:', energy);
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -102,7 +99,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             onPress={setSelectedIndex}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
-          <Text variant="body">Value : {surface}</Text>
+          <Text variant="body">Value : 5 </Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -110,7 +107,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={setSurface}
+            onValueChange={onChangeSurface}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 60 }}
@@ -118,7 +115,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={surface}
+            value="5"
           />
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup
