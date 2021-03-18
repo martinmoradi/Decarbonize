@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -11,22 +11,37 @@ type PropsFood = {
 };
 
 const SlideEnergy = ({ onPress }: PropsFood) => {
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [selectedIndex2, setSelectedIndex2] = useState();
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
   console.log('context new2:', energy);
-  const { people, surface, heat, onChangePeople, onChangeSurface, onChangeHeat } = energy;
+  const {
+    people,
+    surface,
+    heat,
+    consumption,
+    onChangePeople,
+    onChangeSurface,
+    onChangeHeat,
+    onChangeConsumption,
+  } = energy;
 
   const handleChangePeople = (e: string) => {
+    console.log('e people:', e);
     onChangePeople();
   };
-  const handleChangeSurface = (e: string) => {
-    onChangeSurface();
+  const handleChangeSurface = (e: number) => {
+    console.log('e surface:', e);
+    onChangeSurface(e);
+    console.log(surface);
   };
   const handleChangeHeat = (e: string) => {
+    console.log('e heat:', e);
     onChangeHeat();
+  };
+  const handleChangeConsumption = (e: number) => {
+    console.log('e consumption:', e);
+    onChangeConsumption(e);
   };
 
   const styles = StyleSheet.create({
@@ -93,7 +108,10 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             selectedButtonStyle={styles.buttonStyle}
             buttons={buttonsPeople}
             selectedIndex={people}
-            onPress={setPeople}
+            onPress={handleChangePeople}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">{surface} m²</Text>
@@ -104,7 +122,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={onChangeSurface}
+            onValueChange={handleChangeSurface}
             orientation="horizontal"
             step={5}
             style={{ width: '80%', height: 40 }}
@@ -112,7 +130,36 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value="5"
+            value={surface}
+          />
+          <Text variant="body">How do you heat your housing?</Text>
+          <ButtonGroup
+            buttons={buttonsHeat}
+            onPress={handleChangeHeat}
+            selectedIndex={2}
+            selectedButtonStyle={styles.buttonStyle}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
+          />
+          <Text variant="body">What is your monthly energy consumption ? </Text>
+          <Text variant="body">{consumption} kwH</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={1000}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={20}
+            onValueChange={handleChangeConsumption}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 20 }}
+            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={consumption}
           />
         </View>
         <View

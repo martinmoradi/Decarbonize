@@ -12,6 +12,7 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
   const [people, setPeople] = useState(0);
   const [surface, setSurface] = useState(0);
   const [heat, setHeat] = useState('');
+  const [consumption, setConsumption] = useState(0);
   const [clothes, setClothes] = useState(0);
   const [furniture, setFurniture] = useState(0);
   const [hobbies, setHobbies] = useState(0);
@@ -19,27 +20,29 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
   const initialState: onboardingStateType = {
     food: {
       breakfast: breakfast,
-      onChangeBreakfast: () => setBreakfast,
+      onChangeBreakfast: setBreakfast,
       diet: diet,
-      onChangeDiet: () => setDiet,
+      onChangeDiet: setDiet,
     },
 
     energy: {
       people: people,
-      onChangePeople: () => setPeople,
+      onChangePeople: setPeople,
       surface: surface,
-      onChangeSurface: () => setSurface,
+      onChangeSurface: setSurface,
       heat: heat,
-      onChangeHeat: () => setHeat,
+      onChangeHeat: setHeat,
+      consumption: consumption,
+      onChangeConsumption: setConsumption,
     },
 
     habit: {
       clothes: clothes,
-      onChangeClothes: () => setClothes,
+      onChangeClothes: setClothes,
       furniture: furniture,
-      onChangeFurniture: () => setFurniture,
+      onChangeFurniture: setFurniture,
       hobbies: hobbies,
-      onChangeHobbies: () => setHobbies,
+      onChangeHobbies: setHobbies,
     },
   };
   return <OnboardingContext.Provider value={initialState}>{children}</OnboardingContext.Provider>;

@@ -1,26 +1,28 @@
 export interface onboardingStateType {
   food: {
     breakfast: number,
-    onChangeBreakfast: () => void,
+    onChangeBreakfast: (value: React.SetStateAction<number>) => void | null,
     diet: string,
-    onChangeDiet: () => void,
+    onChangeDiet: (value: React.SetStateAction<string>) => void | null,
   },
 
   energy: {
     people: number,
-    onChangePeople: () => void,
+    onChangePeople: (value: React.SetStateAction<number>) => void | null,
     surface: number,
-    onChangeSurface: () => void,
+    onChangeSurface: (value: React.SetStateAction<number>) => void | null,
     heat: string,
-    onChangeHeat: () => void,
+    onChangeHeat: (value: React.SetStateAction<string>) => void | null,
+    consumption: number,
+    onChangeConsumption: (value: React.SetStateAction<number>) => void | null,
   },
 
   habit: {
     clothes: number,
-    onChangeClothes: () => void,
+    onChangeClothes: (value: React.SetStateAction<number>) => void | null,
     furniture: number,
-    onChangeFurniture: () => void,
+    onChangeFurniture: (value: React.SetStateAction<number>) => void | null,
     hobbies: number,
-    onChangeHobbies: () => void,
+    onChangeHobbies: (value: React.SetStateAction<number>) => void | null,
   },
 }
