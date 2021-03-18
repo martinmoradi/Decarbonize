@@ -9,8 +9,8 @@ type PropsFood = {
   onPress: () => {};
 };
 const SlideFood2 = ({ onPress }: PropsFood) => {
-  const [whiteMeat, setWhiteMeat] = useState();
   const [vegetarian, setVegetarian] = useState();
+  const [vegan, setVegan] = useState();
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -24,7 +24,7 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
     },
     footer: {
       flex: 1,
-      borderTopRightRadius: 100,
+      borderTopLeftRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -37,9 +37,9 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
     title: {
       justifyContent: 'center',
       transform: [
-        { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 40 },
+        { rotate: '-90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 500) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
@@ -58,7 +58,7 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
+            borderBottomRightRadius: 75,
             flex: 1,
           }}
         >
@@ -73,31 +73,9 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat white meal ?
+            How much do you eat vegetarian meal ?
           </Text>
           <View style={{ padding: 6 }}></View>
-          <Text variant="body">{whiteMeat} : per week</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={14}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
-            onValueChange={setWhiteMeat}
-            orientation="horizontal"
-            step={1}
-            style={{ width: '80%', height: 50 }}
-            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={whiteMeat}
-          />
-          <View style={{ padding: 6 }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat vegetarian meal ? ?
-          </Text>
           <Text variant="body">{vegetarian} : per week</Text>
           <Slider
             animateTransitions
@@ -115,6 +93,28 @@ const SlideFood2 = ({ onPress }: PropsFood) => {
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={vegetarian}
+          />
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body" style={{ lineHeight: 32 }}>
+            How much do you eat vegan meal ? ?
+          </Text>
+          <Text variant="body">{vegan} : per week</Text>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={14}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={0}
+            onValueChange={setVegan}
+            orientation="horizontal"
+            step={1}
+            style={{ width: '80%', height: 50 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20 }}
+            value={vegan}
           />
         </View>
         <View

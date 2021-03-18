@@ -31,7 +31,7 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
     },
     footer: {
       flex: 1,
-      borderTopRightRadius: 100,
+      borderTopLeftRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -42,9 +42,9 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
       height: 100,
       justifyContent: 'center',
       transform: [
-        { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
+        { rotate: '-90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
@@ -82,7 +82,7 @@ const SlideEnergySecond = ({ onPress }: PropsFood) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
+            borderBottomRightRadius: 75,
             flex: 1,
           }}
         >
