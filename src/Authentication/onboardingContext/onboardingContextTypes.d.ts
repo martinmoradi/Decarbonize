@@ -2,10 +2,14 @@ export interface onboardingStateType {
   food: {
     breakfast: number,
     onChangeBreakfast: (value: React.SetStateAction<number>) => void | null,
-    grocery: string,
-    onChangeGrocery: (value: React.SetStateAction<string>) => void | null,
-    dairy: string,
-    onChangeDairy: (value: React.SetStateAction<string>) => void | null,
+    redMeat: number,
+    onChangeRedMeat: (value: React.SetStateAction<number>) => void | null,
+    whiteMeat: number,
+    onChangeWhiteMeat: (value: React.SetStateAction<number>) => void | null,
+    vegan: number,
+    onChangeVegan: (value: React.SetStateAction<number>) => void | null,
+    vegetarian: number,
+    onChangeVegetarian: (value: React.SetStateAction<number>) => void | null,
   },
 
   energy: {
@@ -13,13 +17,19 @@ export interface onboardingStateType {
     onChangePeople: (value: React.SetStateAction<number>) => void | null,
     surface: number,
     onChangeSurface: (value: React.SetStateAction<number>) => void | null,
-    heat: string,
-    onChangeHeat: (value: React.SetStateAction<string>) => void | null,
-    consumption: number,
-    onChangeConsumption: (value: React.SetStateAction<number>) => void | null,
+    electricity: number,
+    onChangeElectricity: (value: React.SetStateAction<number>) => void | null,
+    gas: number,
+    onChangeGas: (value: React.SetStateAction<number>) => void | null,
+    woodType: string,
+    onChangeWoodType: (value: React.SetStateAction<string>) => void | null,
+    wood: number,
+    onChangeWood: (value: React.SetStateAction<number>) => void | null,
+    ful: number,
+    onChangeFul: (value: React.SetStateAction<number>) => void | null,
   },
 
-  habit: {
+  splending: {
     clothes: number,
     onChangeClothes: (value: React.SetStateAction<number>) => void | null,
     furniture: number,

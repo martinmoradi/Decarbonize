@@ -1,13 +1,18 @@
 import { createContext } from 'react';
+import { onboardingStateType } from './onboardingContextTypes';
 
-const OnboardingContext = createContext({
+const OnboardingContext = createContext<onboardingStateType>({
   food: {
     breakfast: 0,
     onChangeBreakfast: () => {},
-    grocery: '',
-    onChangeGrocery: () => {},
-    dairy: '',
-    onChangeDairy: () => {},
+    redMeat: 0,
+    onChangeRedMeat: () => {},
+    whiteMeat: 0,
+    onChangeWhiteMeat: () => {},
+    vegan: 0,
+    onChangeVegan: () => {},
+    vegetarian: 0,
+    onChangeVegetarian: () => {},
   },
 
   energy: {
@@ -15,13 +20,19 @@ const OnboardingContext = createContext({
     onChangePeople: () => {},
     surface: 0,
     onChangeSurface: () => {},
-    heat: '',
-    onChangeHeat: () => {},
-    consumption: 0,
-    onChangeConsumption: () => {},
+    electricity: 0,
+    onChangeElectricity: () => {},
+    gas: 0,
+    onChangeGas: () => {},
+    woodType: '',
+    onChangeWoodType: () => {},
+    wood: 0,
+    onChangeWood: () => {},
+    ful: 0,
+    onChangeFul: () => {},
   },
 
-  habit: {
+  splending: {
     clothes: 0,
     onChangeClothes: () => {},
     furniture: 0,
