@@ -1,6 +1,6 @@
 export interface authStateType {
   isAuthenticated: boolean;
-  user: {} | null;
+  user: { id: number; email: string } | null;
   token: string | null;
   errorMessage: string | null;
   isLoading: boolean;
@@ -28,6 +28,7 @@ interface LoginSuccess {
       id: number;
     };
     token: string;
+    remember: boolean;
   };
 }
 
@@ -54,6 +55,10 @@ interface SignUpSuccess {
 interface SignUpError {
   type: authActionType.SIGNUP_ERROR;
   payload: string;
+}
+
+interface Logout {
+  type: authActionType.LOGOUT;
 }
 
 export type Action =

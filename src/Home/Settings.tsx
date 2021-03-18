@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { AuthContext } from '../Authentication/authContext/authContext';
+import { AuthContext } from '../Authentication/authContext';
 import { Button, Text } from '../components/';
 
 const SettingsScreen = () => {

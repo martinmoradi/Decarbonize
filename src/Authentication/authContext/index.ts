@@ -1,2 +1,1 @@
-export { AuthContext } from './authContext';
-export { authReducer, initialState } from './authReducer';
+export { AuthContext, default as AuthProvider } from './AuthProvider';
