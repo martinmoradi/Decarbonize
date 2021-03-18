@@ -55,6 +55,11 @@ const theme = {
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
+    titleX: {
+      fontSize: 54,
+      fontFamily: 'Avenir-Bold',
+      color: 'white',
+    },
     title2: {
       fontSize: 24,
       lineHeight: 30,
