@@ -11,8 +11,10 @@ type PropsFood = {
 };
 
 const SlideEnergy = ({ onPress }: PropsFood) => {
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [selectedIndex2, setSelectedIndex2] = useState();
+  const [people, setPeople] = useState();
+  const [surface, setSurface] = useState();
+  const [heat, setHeat] = useState();
+
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
@@ -93,22 +95,6 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             buttons={buttonsPeople}
             selectedIndex={people}
             onPress={setPeople}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
-          />
-          <View style={{ padding: 6 }}></View>
-          <Text variant="body" style={{ textAlign: 'center' }}>
-            If there are children, how many are in joint custody?
-          </Text>
-          <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
-            buttons={buttonsChild}
-            selectedIndex={child}
-            onPress={setChild}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">Value : 5 </Text>
