@@ -9,7 +9,7 @@ type PropsFood = {
   onPress: () => {};
 };
 const SlideFood = ({ onPress }: PropsFood) => {
-  const [breakfast, setBreakfast] = useState('');
+  const [breakfast, setBreakfast] = useState();
   const [redMeat, setRedMeat] = useState();
   const [whiteMeat, setWhiteMeat] = useState();
 
@@ -43,7 +43,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 60 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   const handleSubmit = () => {
@@ -83,8 +83,8 @@ const SlideFood = ({ onPress }: PropsFood) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How often do you have a breakfast per week?</Text>
-          <Text variant="body">Value : {breakfast}</Text>
+          <Text variant="body">How often do you have a breakfast?</Text>
+          <Text variant="body">{breakfast} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -95,7 +95,7 @@ const SlideFood = ({ onPress }: PropsFood) => {
             onValueChange={setBreakfast}
             orientation="horizontal"
             step={1}
-            style={{ width: '80%', height: 60 }}
+            style={{ width: '80%', height: 50 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
