@@ -5,21 +5,11 @@ import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
-
-type PropsSlide = {
-  onPress: () => {};
-};
+import { PropsSlide } from '../../onboardingTypes';
 
 const SlideFood = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
-  const {
-    breakfast,
-    redMeat,
-    whiteMeat,
-    onChangeBreakfast,
-    onChangeRedMeat,
-    onChangeWhiteMeat,
-  } = food;
+  const { whiteMeat, onChangeBreakfast, onChangeRedMeat, onChangeWhiteMeat } = food;
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');

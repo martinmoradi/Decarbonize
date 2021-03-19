@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { onboardingStateType } from '../onboardingTypes';
+import { IOnboardingStateType } from '../onboardingTypes';
 
-const OnboardingContext = createContext<onboardingStateType>({
+const OnboardingContext = createContext<IOnboardingStateType>({
   food: {
     breakfast: 0,
     onChangeBreakfast: () => {},
