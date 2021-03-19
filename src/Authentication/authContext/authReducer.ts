@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Action, authActionType, authStateType } from './authTypes';
-
+import {sendQuizToApi} from '../sendToApi';
 export const initialState: authStateType = {
   isAuthenticated: false,
   user: null,
