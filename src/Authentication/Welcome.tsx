@@ -1,49 +1,44 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, Image } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { Box, Button, Text, useTheme } from '../components';
+import { Box, Button, Text } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
+import { useTheme } from '../components/Theme';
 
 const { width } = Dimensions.get('window');
-// const picture = {
-//   src: require('./assets/5.png'),
-//   width: 3383,
-//   height: 5074,
-// };
-// export const assets = [picture.src];
+const picture = {
+  src: require('../components/assets/images/decarbonize-hero.png'),
+  width: 920,
+  height: 1100,
+};
+export const assets = [picture.src];
 const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
   const theme = useTheme();
+
   return (
     <Box flex={1} backgroundColor="background">
       <Box
-        flex={1}
+        flex={2}
         borderBottomRightRadius="xl"
-        backgroundColor="background2"
+        backgroundColor="primary"
         alignItems="center"
-        justifyContent="center" //previously flex-end
+        justifyContent="center"
       >
-        <Text variant="title1" style={{ marginBottom: 20 }}>
-          Welcome to Decarbonize
+        <Text variant="heroHome" style={{ marginTop: 100, marginBottom: 10 }}>
+          Decarbonize
         </Text>
-        <Text variant="title3">Make the world a better place </Text>
+        <Text variant="subHeroHome"> Your carbon emissions manager </Text>
 
-        {/* <Image
+        <Image
           source={picture.src}
           style={{
-            width: width - theme.borderRadii.xl,
+            width: width,
             height: ((width - theme.borderRadii.xl) * picture.height) / picture.width,
           }}
-        /> */}
+        />
       </Box>
       <Box flex={1} borderTopLeftRadius="xl">
-        <Box
-          backgroundColor="background2"
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-        />
+        <Box backgroundColor="primary" position="absolute" top={0} left={0} right={0} bottom={0} />
 
         <Box
           backgroundColor="background"
@@ -60,15 +55,13 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
           </Text>
           <Button
             variant="primary"
-            label="Create my account"
+            label="Let's go !"
             onPress={() => navigation.navigate('Onboarding')}
           />
-          <Text>Or</Text>
-          <Button label="Login to your account" onPress={() => navigation.navigate('Login')} />
 
-          <BorderlessButton onPress={() => navigation.navigate('ForgotPassword')}>
-            <Text variant="button" color="secondary">
-              Forgot password?
+          <BorderlessButton onPress={() => navigation.navigate('Login')}>
+            <Text variant="button" color="info">
+              Already have an account?
             </Text>
           </BorderlessButton>
         </Box>

@@ -5,7 +5,6 @@ import { AuthProvider } from './src/Authentication/authContext';
 import LoadAssets from './src/components/LoadAssets';
 import AuthRouter from './src/components/routers/AuthRouter';
 import { ThemeProvider } from './src/components/Theme';
-
 const fonts = {
   'Avenir-Bold': require('./assets/fonts/AvenirNextLTPro-Bold.otf'),
   'Avenir-Semibold': require('./assets/fonts/AvenirNextLTPro-Demi.otf'),

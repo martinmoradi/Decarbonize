@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import React, { useContext, useRef } from 'react';
-import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
+import { ActivityIndicator, Dimensions, TextInput as RNTextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
@@ -20,12 +20,13 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
+  const { height } = Dimensions.get('window');
+
   const { state, dispatch } = useContext(AuthContext);
   const apiSignup = async (body: userPropsType) => {
     dispatch({
       type: authActionType.SIGNUP_ATTEMPT,
     });
-    const test = config('POST', body);
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/signup`,
       config('POST', body)
@@ -82,96 +83,98 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   );
 
   return (
-    <Container pattern={0} {...{ footer }}>
-      <Text variant="title1" textAlign="center" marginBottom="l">
-        Create account
-      </Text>
-      <Text variant="body" textAlign="center" marginBottom="l">
-        Let’s us know what your email and your password
-      </Text>
-      {state.errorMessage && (
-        <Text
-          variant="body"
-          style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
-          textAlign="center"
-          marginBottom="l"
-        >
-          {state.errorMessage}
+    <Box style={{ maxHeight: height }}>
+      <Container pattern={0} {...{ footer }}>
+        <Text variant="title1" textAlign="center" marginBottom="l">
+          Create account
         </Text>
-      )}
-      <Box>
-        <Box marginBottom="m">
-          <TextInput
-            icon="mail"
-            placeholder="Enter your Email"
-            onChangeText={handleChange('email')}
-            onBlur={handleBlur('email')}
-            error={errors.email}
-            touched={touched.email}
-            autoCapitalize="none"
-            autoCompleteType="email"
-            returnKeyType="next"
-            returnKeyLabel="next"
-            onSubmitEditing={() => password.current?.focus()}
-          />
-        </Box>
+        <Text variant="body" textAlign="center" marginBottom="l">
+          Let’s us know what your email and your password
+        </Text>
+        {state.errorMessage && (
+          <Text
+            variant="body"
+            style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+            textAlign="center"
+            marginBottom="l"
+          >
+            {state.errorMessage}
+          </Text>
+        )}
+        <Box>
+          <Box marginBottom="m">
+            <TextInput
+              icon="mail"
+              placeholder="Enter your Email"
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              error={errors.email}
+              touched={touched.email}
+              autoCapitalize="none"
+              autoCompleteType="email"
+              returnKeyType="next"
+              returnKeyLabel="next"
+              onSubmitEditing={() => password.current?.focus()}
+            />
+          </Box>
 
-        <Box marginBottom="m">
-          <TextInput
-            ref={password}
-            icon="lock"
-            placeholder="Enter your Password"
-            onChangeText={handleChange('password')}
-            onBlur={handleBlur('password')}
-            error={errors.password}
-            touched={touched.password}
-            autoCompleteType="password"
-            autoCapitalize="none"
-            returnKeyType="go"
-            returnKeyLabel="go"
-            onSubmitEditing={() => passwordConfirmation.current?.focus()}
-            secureTextEntry
-          />
-        </Box>
+          <Box marginBottom="m">
+            <TextInput
+              ref={password}
+              icon="lock"
+              placeholder="Enter your Password"
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              error={errors.password}
+              touched={touched.password}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              returnKeyType="go"
+              returnKeyLabel="go"
+              onSubmitEditing={() => passwordConfirmation.current?.focus()}
+              secureTextEntry
+            />
+          </Box>
 
-        <Box marginBottom="m">
-          <TextInput
-            ref={passwordConfirmation}
-            icon="lock"
-            placeholder="Confirm your Password"
-            onChangeText={handleChange('passwordConfirmation')}
-            onBlur={handleBlur('passwordConfirmation')}
-            error={errors.passwordConfirmation}
-            touched={touched.passwordConfirmation}
-            autoCompleteType="password"
-            autoCapitalize="none"
-            returnKeyType="go"
-            returnKeyLabel="go"
-            onSubmitEditing={() => handleSubmit()}
-            secureTextEntry
-          />
+          <Box marginBottom="m">
+            <TextInput
+              ref={passwordConfirmation}
+              icon="lock"
+              placeholder="Confirm your Password"
+              onChangeText={handleChange('passwordConfirmation')}
+              onBlur={handleBlur('passwordConfirmation')}
+              error={errors.passwordConfirmation}
+              touched={touched.passwordConfirmation}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              returnKeyType="go"
+              returnKeyLabel="go"
+              onSubmitEditing={() => handleSubmit()}
+              secureTextEntry
+            />
+          </Box>
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="center"
+            marginVertical="s"
+          >
+            <Checkbox
+              label="Remember me"
+              checked={values.remember}
+              onChange={() => setFieldValue('remember', !values.remember)}
+            />
+          </Box>
+          <Box alignItems="center" marginTop="m">
+            {state.isLoading ? (
+              <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
+            ) : (
+              <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+            )}
+          </Box>
         </Box>
-        <Box
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-          marginVertical="s"
-        >
-          <Checkbox
-            label="Remember me"
-            checked={values.remember}
-            onChange={() => setFieldValue('remember', !values.remember)}
-          />
-        </Box>
-        <Box alignItems="center" marginTop="m">
-          {state.isLoading ? (
-            <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
-          ) : (
-            <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
-          )}
-        </Box>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 
