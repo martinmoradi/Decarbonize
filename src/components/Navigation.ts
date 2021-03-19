@@ -35,4 +35,5 @@ export type HomeRoutesParamsList = {
   History: undefined;
   Engagements: undefined;
   Settings: undefined;
+  NewTrip: undefined
 };
