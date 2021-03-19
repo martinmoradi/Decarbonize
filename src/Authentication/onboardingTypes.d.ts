@@ -1,0 +1,66 @@
+export interface onboardingStateType {
+  food: {
+    breakfast: number,
+    onChangeBreakfast: (value: React.SetStateAction<number>) => void | null,
+    redMeat: number,
+    onChangeRedMeat: (value: React.SetStateAction<number>) => void | null,
+    whiteMeat: number,
+    onChangeWhiteMeat: (value: React.SetStateAction<number>) => void | null,
+    vegan: number,
+    onChangeVegan: (value: React.SetStateAction<number>) => void | null,
+    vegetarian: number,
+    onChangeVegetarian: (value: React.SetStateAction<number>) => void | null,
+  },
+
+  energy: {
+    people: number,
+    onChangePeople: (value: React.SetStateAction<number>) => void | null,
+    surface: number,
+    onChangeSurface: (value: React.SetStateAction<number>) => void | null,
+    electricity: number,
+    onChangeElectricity: (value: React.SetStateAction<number>) => void | null,
+    gas: number,
+    onChangeGas: (value: React.SetStateAction<number>) => void | null,
+    woodType: string,
+    onChangeWoodType: (value: React.SetStateAction<string>) => void | null,
+    wood: number,
+    onChangeWood: (value: React.SetStateAction<number>) => void | null,
+    fuel: number,
+    onChangeFuel: (value: React.SetStateAction<number>) => void | null,
+    gasHeating: boolean,
+    onChangeGasHeating: (value: React.SetStateAction<boolean>) => void | null,
+    woodHeating: boolean,
+    onChangeWoodHeating: (value: React.SetStateAction<boolean>) => void | null,
+    fuelHeating: boolean,
+    onChangeFuelHeating: (value: React.SetStateAction<boolean>) => void | null,
+  },
+
+  spending: {
+    clothes: number,
+    onChangeClothes: (value: React.SetStateAction<number>) => void | null,
+    furniture: number,
+    onChangeFurniture: (value: React.SetStateAction<number>) => void | null,
+    hobbies: number,
+    onChangeHobbies: (value: React.SetStateAction<number>) => void | null,
+  },
+
+  onboardingData: onboardingDataType,
+}
+
+export interface onboardingDataType {
+  house_surface: number,
+  electricity_consumption: number,
+  gas_consumption: number,
+  wood_type: string,
+  wood_consumption: number,
+  fuel_consumption: number,
+  roommates: number,
+  clothes: number,
+  furnitures: number,
+  others: number,
+  breakfasts_per_week: number,
+  red_meats_per_week: number,
+  vegan_per_week: number,
+  vegetarian_per_week: number,
+  white_meats_per_week: number
+}

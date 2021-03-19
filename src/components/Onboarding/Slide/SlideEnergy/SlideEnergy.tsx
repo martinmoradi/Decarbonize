@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -6,27 +6,18 @@ import OnboardingContext from '../../../../Authentication/onboardingContext/Onbo
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-type PropsFood = {
+type PropsSlide = {
   onPress: () => {};
 };
 
-const SlideEnergy = ({ onPress }: PropsFood) => {
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [selectedIndex2, setSelectedIndex2] = useState();
+const SlideEnergy = ({ onPress }: PropsSlide) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
-  console.log('context new2:', energy);
-  const { people, surface, heat, onChangePeople, onChangeSurface, onChangeHeat } = energy;
+  const { people, surface, onChangePeople, onChangeSurface } = energy;
 
-  const handleChangePeople = (e: string) => {
-    onChangePeople();
-  };
-  const handleChangeSurface = (e: string) => {
-    onChangeSurface();
-  };
-  const handleChangeHeat = (e: string) => {
-    onChangeHeat();
+  const handleChangePeople = (e: number) => {
+    onChangePeople(e + 1);
   };
 
   const styles = StyleSheet.create({
@@ -38,7 +29,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -57,13 +48,8 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
-  const handleSubmit = () => {
-    console.log('next');
-  };
-
   const buttonsPeople = ['1', '2', '3', '4+'];
 
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood', 'Solor panel'];
   return (
     <View style={styles.container}>
       <View
@@ -77,7 +63,7 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
@@ -95,11 +81,14 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
           <ButtonGroup
             selectedButtonStyle={styles.buttonStyle}
             buttons={buttonsPeople}
-            selectedIndex={selectedIndex}
-            onPress={setSelectedIndex}
+            selectedIndex={people - 1}
+            onPress={handleChangePeople}
+            textStyle={{ textAlign: 'center' }}
+            containerStyle={{ borderWidth: 0 }}
+            innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
-          <Text variant="body">Value : 5 </Text>
+          <Text variant="body">{surface} m²</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -109,27 +98,23 @@ const SlideEnergy = ({ onPress }: PropsFood) => {
             minimumValue={20}
             onValueChange={onChangeSurface}
             orientation="horizontal"
-            step={1}
-            style={{ width: '80%', height: 60 }}
+            step={5}
+            style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
             value="5"
           />
-          <Text variant="body">How do you heat your housing?</Text>
-          <ButtonGroup
-            buttons={buttonsHeat}
-            onPress={setSelectedIndex2}
-            selectedIndex={selectedIndex2}
-            selectedButtonStyle={styles.buttonStyle}
-          />
         </View>
         <View
           style={{
-            flex: 0.9,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 20,
+            justifyContent: 'center',
             alignItems: 'center',
-            justifyContent: 'flex-end',
           }}
         >
           <Button variant="default" onPress={onPress} label="Next" />

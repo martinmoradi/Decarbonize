@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-type PropsFood = {
-  onPress: ({ onPress }: PropsFood) => {};
+type PropsSlide = {
+  onPress: () => {};
 };
 
-const SlideHousing = ({ onPress }: PropsFood) => {
-  const [clothes, setClothes] = useState('');
-  const [furniture, setFurniture] = useState('');
-  const [hobbies, setHobbies] = useState('');
-  const [selectedIndexClothes, setSelectedClothes] = useState();
-  const [selectedIndexFurniture, setSelectedFurniture] = useState();
-  const [selectedIndexHobbies, setSelectedHobbies] = useState();
+const SlideHousing = ({ onPress }: PropsSlide) => {
+  const { spending } = useContext(OnboardingContext);
+  const {
+    clothes,
+    furniture,
+    hobbies,
+    onChangeClothes,
+    onChangeFurniture,
+    onChangeHobbies,
+  } = spending;
+
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -38,20 +43,12 @@ const SlideHousing = ({ onPress }: PropsFood) => {
       justifyContent: 'center',
       transform: [
         { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 15 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
-
-  const handleSubmit = () => {
-    console.log('next');
-  };
-
-  const buttonClothes = ['0-50 €', '50-150 €', '>150€'];
-  const buttonFurniture = ['0-50 €', '50-150 €', '>150€'];
-  const buttonHobbies = ['0-50 €', '50-150 €', '>150€'];
 
   return (
     <View style={styles.container}>
@@ -71,7 +68,7 @@ const SlideHousing = ({ onPress }: PropsFood) => {
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            HABITS
+            SPENDING
           </Text>
           <View style={{ alignItems: 'center', translateY: -40 }}>
             <IconSvg name="habit" />
@@ -80,8 +77,8 @@ const SlideHousing = ({ onPress }: PropsFood) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How much do you spend monthly for clothes ?</Text>
-          <Text variant="body">Value : {clothes}</Text>
+          <Text variant="body">How much do you spend for clothes ?</Text>
+          <Text variant="body">{clothes} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -89,9 +86,9 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setClothes}
+            onValueChange={onChangeClothes}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
@@ -99,8 +96,9 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={clothes}
           />
-          <Text variant="body">How much do you spend monthly for furniture ?</Text>
-          <Text variant="body">Value : {furniture}</Text>
+          <View style={{ padding: 10 }}></View>
+          <Text variant="body">How much do you spend for furniture ?</Text>
+          <Text variant="body">{furniture} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -108,9 +106,9 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setFurniture}
+            onValueChange={onChangeFurniture}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
@@ -118,8 +116,9 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={furniture}
           />
-          <Text variant="body">How much do you spend monthly for hobbies ?</Text>
-          <Text variant="body">Value : {hobbies}</Text>
+          <View style={{ padding: 10 }}></View>
+          <Text variant="body">How much do you spend for hobbies ?</Text>
+          <Text variant="body">{hobbies} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -127,9 +126,9 @@ const SlideHousing = ({ onPress }: PropsFood) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={setHobbies}
+            onValueChange={onChangeHobbies}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
@@ -140,9 +139,12 @@ const SlideHousing = ({ onPress }: PropsFood) => {
         </View>
         <View
           style={{
-            flex: 0.9,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 20,
+            justifyContent: 'center',
             alignItems: 'center',
-            justifyContent: 'flex-end',
           }}
         >
           <Button variant="default" onPress={onPress} label="Next" />

@@ -1,15 +1,26 @@
 //@ts-nocheck
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Button, Text } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
+import SlideEnergySecond from '../components/Onboarding/Slide/SlideEnergy/SlideEnergySecond';
+import SlideEnergyThird from '../components/Onboarding/Slide/SlideEnergy/SlideEnergyThird';
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
+import SlideFood2 from '../components/Onboarding/Slide/SlideFood/SlideFood2';
 import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
+import SlideHousingBis from '../components/Onboarding/Slide/SlideHousing/SlideHousingBis';
+import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
   const scroll = useRef<ScrollView>(null);
+  const { energy } = useContext(OnboardingContext);
+  const { food } = useContext(OnboardingContext);
+  const { spending } = useContext(OnboardingContext);
+  const { woodHeating, fuelHeating, gasHeating } = energy;
+  const { onboardingData } = useContext(OnboardingContext);
+  console.log('onboardingData:', onboardingData);
 
   return (
     <ScrollView
@@ -24,11 +35,34 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
         <SlideFood onPress={() => scroll.current.scrollTo({ x: width * 1, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideEnergy onPress={() => scroll.current.scrollTo({ x: width * 2, animated: true })} />
+        <SlideFood2 onPress={() => scroll.current.scrollTo({ x: width * 2, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 3, animated: true })} />
+        <SlideEnergy onPress={() => scroll.current.scrollTo({ x: width * 3, animated: true })} />
       </View>
+      <View style={{ width }}>
+        <SlideEnergySecond
+          onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })}
+        />
+      </View>
+      {(woodHeating || fuelHeating || gasHeating) && (
+        <View style={{ width }}>
+          <SlideEnergyThird
+            onPress={() => scroll.current.scrollTo({ x: width * 5, animated: true })}
+          />
+        </View>
+      )}
+
+      <View style={{ width }}>
+        {woodHeating || fuelHeating || gasHeating ? (
+          <SlideHousingBis
+            onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })}
+          />
+        ) : (
+          <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })} />
+        )}
+      </View>
+
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
         <Text variant="title1" style={{ marginBottom: 20 }}>
           Great !
