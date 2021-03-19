@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -12,19 +12,13 @@ type PropsSlide = {
 
 const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
-  const {
-    fuel,
-    gas,
-    wood,
-    gasHeating,
-    fuelHeating,
-    woodHeating,
-    onChangeFuel,
-    onChangeGas,
-    onChangeWood,
-  } = energy;
+  const { gasHeating, fuelHeating, woodHeating, onChangeFuel, onChangeGas, onChangeWood } = energy;
 
   const { height, width } = Dimensions.get('window');
+
+  const [fuelValue, setFuelValue] = useState<number>(0);
+  const [woodValue, setWoodValue] = useState<number>(0);
+  const [gasValue, setGasValue] = useState<number>(0);
 
   const theme = useTheme();
   const styles = StyleSheet.create({
@@ -85,7 +79,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
           {fuelHeating && (
             <>
               <Text variant="body">Fuel</Text>
-              <Text variant="body">{fuel} € </Text>
+              <Text variant="body">{fuelValue} € </Text>
               <Slider
                 animateTransitions
                 animationType="timing"
@@ -93,7 +87,8 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
                 maximumValue={300}
                 minimumTrackTintColor={theme.colors.primary}
                 minimumValue={0}
-                onValueChange={onChangeFuel}
+                onValueChange={setFuelValue}
+                onSlidingComplete={onChangeFuel}
                 orientation="horizontal"
                 step={10}
                 style={{ width: '80%', height: 40 }}
@@ -101,7 +96,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
                 thumbTintColor={theme.colors.info}
                 thumbTouchSize={{ width: 40, height: 40 }}
                 trackStyle={{ height: 12, borderRadius: 20 }}
-                value={fuel}
+                value={fuelValue}
               />
             </>
           )}
@@ -109,7 +104,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
             <>
               <View style={{ padding: 6 }}></View>
               <Text variant="body">Gas </Text>
-              <Text variant="body">{gas} € </Text>
+              <Text variant="body">{gasValue} € </Text>
               <Slider
                 animateTransitions
                 animationType="timing"
@@ -117,7 +112,8 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
                 maximumValue={300}
                 minimumTrackTintColor={theme.colors.primary}
                 minimumValue={0}
-                onValueChange={onChangeGas}
+                onValueChange={setGasValue}
+                onSlidingComplete={onChangeGas}
                 orientation="horizontal"
                 step={10}
                 style={{ width: '80%', height: 40 }}
@@ -125,14 +121,14 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
                 thumbTintColor={theme.colors.info}
                 thumbTouchSize={{ width: 40, height: 40 }}
                 trackStyle={{ height: 12, borderRadius: 20 }}
-                value={gas}
+                value={gasValue}
               />
             </>
           )}
           {woodHeating && (
             <>
               <Text variant="body">Wood</Text>
-              <Text variant="body">{wood} € </Text>
+              <Text variant="body">{woodValue} € </Text>
               <Slider
                 animateTransitions
                 animationType="timing"
@@ -140,7 +136,8 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
                 maximumValue={300}
                 minimumTrackTintColor={theme.colors.primary}
                 minimumValue={0}
-                onValueChange={onChangeWood}
+                onValueChange={setWoodValue}
+                onSlidingComplete={onChangeWood}
                 orientation="horizontal"
                 step={10}
                 style={{ width: '80%', height: 40 }}
@@ -148,7 +145,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
                 thumbTintColor={theme.colors.info}
                 thumbTouchSize={{ width: 40, height: 40 }}
                 trackStyle={{ height: 12, borderRadius: 20 }}
-                value={wood}
+                value={woodValue}
               />
             </>
           )}

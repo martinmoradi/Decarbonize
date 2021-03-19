@@ -13,6 +13,7 @@ import SlideHousingBis from '../components/Onboarding/Slide/SlideHousing/SlideHo
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
+  console.log('render');
   const { width } = Dimensions.get('window');
   const scroll = useRef<ScrollView>(null);
   const { energy } = useContext(OnboardingContext);

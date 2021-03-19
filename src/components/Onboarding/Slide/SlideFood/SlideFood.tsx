@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -57,6 +57,10 @@ const SlideFood = ({ onPress }: PropsSlide) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
+  const [breakfastValue, setBreakfastValue] = useState<number>(0);
+  const [redMeatValue, setRedMeatValue] = useState<number>(0);
+  const [whiteMeatValue, setWhiteMeatValue] = useState<number>(0);
+
   return (
     <View style={styles.container}>
       <View
@@ -87,7 +91,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
           <Text variant="body" style={{ lineHeight: 32 }}>
             How often do you have a breakfast ?
           </Text>
-          <Text variant="body">{breakfast} : per week</Text>
+          <Text variant="body">{breakfastValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -95,7 +99,8 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             maximumValue={7}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeBreakfast}
+            onValueChange={setBreakfastValue}
+            onSlidingComplete={onChangeBreakfast}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}
@@ -103,13 +108,13 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={breakfast}
+            value={breakfastValue}
           />
           <View style={{ padding: 10 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How often do you eat red meat ?
           </Text>
-          <Text variant="body">{redMeat} : per week</Text>
+          <Text variant="body">{redMeatValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -117,7 +122,8 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeRedMeat}
+            onValueChange={setRedMeatValue}
+            onSlidingComplete={onChangeBreakfast}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}
@@ -125,13 +131,13 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={redMeat}
+            value={redMeatValue}
           />
           <View style={{ padding: 10 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat white meat ?
           </Text>
-          <Text variant="body">{whiteMeat} : per week</Text>
+          <Text variant="body">{whiteMeatValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -139,7 +145,8 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeWhiteMeat}
+            onValueChange={setWhiteMeatValue}
+            onSlidingComplete={onChangeWhiteMeat}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}

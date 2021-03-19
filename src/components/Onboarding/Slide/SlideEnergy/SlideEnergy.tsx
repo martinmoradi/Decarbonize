@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -14,7 +14,9 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
-  const { people, surface, onChangePeople, onChangeSurface } = energy;
+  const { people, onChangePeople, onChangeSurface } = energy;
+
+  const [surfaceValue, setSurfaceValue] = useState<number>(0);
 
   const handleChangePeople = (e: number) => {
     onChangePeople(e + 1);
@@ -88,7 +90,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             innerBorderStyle={{ width: 0 }}
           />
           <Text variant="body">What is the surface are of your housing?</Text>
-          <Text variant="body">{surface} m²</Text>
+          <Text variant="body">{surfaceValue} m²</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -96,7 +98,8 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={onChangeSurface}
+            onValueChange={setSurfaceValue}
+            onSlidingComplete={onChangeSurface}
             orientation="horizontal"
             step={5}
             style={{ width: '80%', height: 40 }}
@@ -104,7 +107,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value="5"
+            value={surfaceValue}
           />
         </View>
         <View
