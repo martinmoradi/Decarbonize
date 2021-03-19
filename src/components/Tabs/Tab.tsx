@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ({ children, active, transition, index, onPress }: TabProps) => {
+const Tab = ({ children, active, transition, index, onPress }: TabProps) => {
   const isActive = eq(active, index);
   const activeTransition = withTransition(isActive, { duration: DURATION });
   const isGoingLeft = greaterThan(transition, active);
@@ -48,3 +48,5 @@ export default ({ children, active, transition, index, onPress }: TabProps) => {
     </TouchableWithoutFeedback>
   );
 };
+
+export default Tab;
