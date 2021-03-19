@@ -33,6 +33,7 @@ export type AuthRoutesParamsList = {
 export type HomeRoutesParamsList = {
   Dashboard: undefined;
   History: undefined;
+  NewTrip: undefined;
   Engagements: undefined;
   Settings: undefined;
 };

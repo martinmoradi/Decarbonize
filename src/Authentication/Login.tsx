@@ -29,7 +29,6 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     dispatch({
       type: authActionType.LOGIN_ATTEMPT,
     });
-    console.log(config('POST', body));
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/login`,
       config('POST', body)

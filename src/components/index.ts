@@ -4,3 +4,4 @@ export { default as LoadAssets } from './LoadAssets';
 export { default as RoundedIcon } from './RoundedIcon';
 export { default as RoundedIconButton } from './RoundedIconButton';
 export { Box, makeStyles, Text, useTheme } from './Theme';
+export {default as DashboardGraph } from './DashboarGraph'
