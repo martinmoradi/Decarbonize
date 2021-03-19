@@ -31,6 +31,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-activity-rings": "^1.1.2",
+    "react-native-chart-kit": "^6.11.0",
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
@@ -38,8 +40,10 @@
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.2",
     "react-native-svg": "^12.1.0",
+    "react-native-svg-charts": "^5.4.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
+    "victory-native": "^35.3.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -48,6 +52,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "^0.63.51",
+    "@types/react-native-svg-charts": "^5.0.7",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "eslint": "^7.22.0",

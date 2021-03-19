@@ -1,21 +1,22 @@
 import React from 'react';
 import {  ScrollView } from 'react-native';
-import { Text, Box } from '../components';
+import { Text, Box, DashboardGraph } from '../components';
 import { Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('window');
-
+const { width } = Dimensions.get('window');
 const DashboardScreen = () => {
+
   return (
     <ScrollView>
 
     <Box style={{alignItems: "center"}}   >
       <Box paddingLeft="m" justifyContent="flex-end" paddingBottom="m" style={{width: width, height: 150, borderBottomEndRadius: 20, borderBottomStartRadius: 20}} backgroundColor="primary" marginBottom="m">
         <Text variant="title2" color="white" marginBottom="m">Good Morning !   ☀️</Text>
-        <Text variant="body" color="white">It's Monday, temperature outside is 20°C</Text>
+        <Text variant="body" color="white">It's Firday, temperature outside is 10°C</Text>
 
       </Box>
-      <Box alignItems="center" style={{width: width -30, height: 200, borderRadius: 10}} justifyContent="center" backgroundColor="primary">
-      <Text variant="title2" color="white">Donut</Text>
+      
+      <Box alignItems="center" style={{ borderRadius: 10, flex:1, width: width -30}} justifyContent="center" backgroundColor="primary">
+         <DashboardGraph/>
       </Box>
       <Box marginTop="m" paddingTop="m" style={{width: width -30, height: 100, borderRadius: 10}} justifyContent="center" backgroundColor="info">
         <Text variant="title3" color="white" margin="s">Cette semaine : </Text>

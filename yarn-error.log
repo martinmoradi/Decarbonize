@@ -1,0 +1,94 @@
+Arguments: 
+  /home/martin/.nvm/versions/node/v14.15.5/bin/node /home/martin/.nvm/versions/node/v14.15.5/bin/yarn add react-native-activity-rings
+
+PATH: 
+  /home/martin/.nvm/versions/node/v14.15.5/bin:/home/martin/.rvm/gems/ruby-3.0.0/bin:/home/martin/.rvm/gems/ruby-3.0.0@global/bin:/home/martin/.rvm/rubies/ruby-3.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin:/home/martin/.rvm/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.5
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/martin/.cache/yarn/v6/npm-@expo-vector-icons-12.0.4-52061fffab83ca74af52288b5f839b090f7dabed-integrity/node_modules/@expo/vector-icons/.yarn-metadata.json: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at /home/martin/.nvm/versions/node/v14.15.5/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/home/martin/.nvm/versions/node/v14.15.5/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/martin/.nvm/versions/node/v14.15.5/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "eject": "expo eject",
+      "bundle": "cd api && bundle",
+      "api": "cd api && rails s"
+    },
+    "dependencies": {
+      "@expo/vector-icons": "^12.0.4",
+      "@react-native-async-storage/async-storage": "^1.14.1",
+      "@react-native-community/masked-view": "0.1.10",
+      "@react-native-community/slider": "^3.0.3",
+      "@react-navigation/bottom-tabs": "^5.11.8",
+      "@react-navigation/native": "^5.9.3",
+      "@react-navigation/stack": "^5.14.3",
+      "@shopify/restyle": "^1.4.0",
+      "@svgr/cli": "^5.5.0",
+      "expo": "~40.0.0",
+      "expo-app-loading": "^1.0.1",
+      "expo-asset": "~8.2.1",
+      "expo-constants": "~9.3.3",
+      "expo-font": "~8.4.0",
+      "expo-status-bar": "~1.0.3",
+      "formik": "^2.2.6",
+      "react": "16.13.1",
+      "react-dom": "16.13.1",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+      "react-native-chart-kit": "^6.11.0",
+      "react-native-elements": "^3.3.2",
+      "react-native-gesture-handler": "~1.8.0",
+      "react-native-keyboard-aware-scroll-view": "^0.9.3",
+      "react-native-reanimated": "~1.13.0",
+      "react-native-safe-area-context": "3.1.9",
+      "react-native-screens": "~2.15.2",
+      "react-native-svg": "^12.1.0",
+      "react-native-svg-charts": "^5.4.0",
+      "react-native-vector-icons": "^8.1.0",
+      "react-native-web": "~0.13.12",
+      "yup": "^0.32.9"
+    },
+    "devDependencies": {
+      "@babel/core": "~7.9.0",
+      "@types/jest": "^26.0.20",
+      "@types/react": "^17.0.3",
+      "@types/react-dom": "~16.9.8",
+      "@types/react-native": "^0.63.51",
+      "@types/react-native-svg-charts": "^5.0.7",
+      "@types/react-test-renderer": "^17.0.1",
+      "@typescript-eslint/eslint-plugin": "^4.17.0",
+      "eslint": "^7.22.0",
+      "eslint-config-airbnb-typescript": "^12.3.1",
+      "eslint-config-prettier": "^8.1.0",
+      "eslint-plugin-jsx-a11y": "^6.4.1",
+      "eslint-plugin-react": "^7.22.0",
+      "prettier": "^2.2.1",
+      "prettier-plugin-organize-imports": "^1.1.1",
+      "typescript": "^4.0.7"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
