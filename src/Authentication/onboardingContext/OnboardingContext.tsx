@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { onboardingStateType } from './onboardingContextTypes';
+import { onboardingStateType } from '../onboardingTypes';
 
 const OnboardingContext = createContext<onboardingStateType>({
   food: {
@@ -45,6 +45,24 @@ const OnboardingContext = createContext<onboardingStateType>({
     onChangeFurniture: () => {},
     hobbies: 0,
     onChangeHobbies: () => {},
+  },
+
+  onboardingData: {
+    house_surface: 0,
+    electricity_consumption: 0,
+    gas_consumption: 0,
+    wood_type: '',
+    wood_consumption: 0,
+    fuel_consumption: 0,
+    roommates: 0,
+    clothes: 0,
+    furnitures: 0,
+    others: 0,
+    breakfasts_per_week: 0,
+    red_meats_per_week: 0,
+    vegan_per_week: 0,
+    vegetarian_per_week: 0,
+    white_meats_per_week: 0,
   },
 });
 

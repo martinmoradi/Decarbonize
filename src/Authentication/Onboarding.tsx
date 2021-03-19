@@ -9,13 +9,18 @@ import SlideEnergyThird from '../components/Onboarding/Slide/SlideEnergy/SlideEn
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
 import SlideFood2 from '../components/Onboarding/Slide/SlideFood/SlideFood2';
 import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
+import SlideHousingBis from '../components/Onboarding/Slide/SlideHousing/SlideHousingBis';
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
   const scroll = useRef<ScrollView>(null);
   const { energy } = useContext(OnboardingContext);
+  const { food } = useContext(OnboardingContext);
+  const { spending } = useContext(OnboardingContext);
   const { woodHeating, fuelHeating, gasHeating } = energy;
+  const { onboardingData } = useContext(OnboardingContext);
+  console.log('onboardingData:', onboardingData);
 
   return (
     <ScrollView
@@ -47,9 +52,17 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
           />
         </View>
       )}
+
       <View style={{ width }}>
-        <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })} />
+        {woodHeating || fuelHeating || gasHeating ? (
+          <SlideHousingBis
+            onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })}
+          />
+        ) : (
+          <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })} />
+        )}
       </View>
+
       <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
         <Text variant="title1" style={{ marginBottom: 20 }}>
           Great !

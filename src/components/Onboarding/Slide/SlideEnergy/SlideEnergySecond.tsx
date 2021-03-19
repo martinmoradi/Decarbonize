@@ -12,7 +12,7 @@ type PropsSlide = {
 
 const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
-  const [woodTypeIndex, setwoodTypeIndex] = useState<number | undefined>();
+  const [woodTypeIndex, setWoodTypeIndex] = useState<number | undefined>();
   const {
     electricity,
     woodHeating,
@@ -32,7 +32,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const buttonsWood = ['Wood logs', 'Wood pellets'];
   const handleWoodType = (e: number, woodType: string[]) => {
     onChangeWoodType(woodType[e]);
-    setwoodTypeIndex(e);
+    setWoodTypeIndex(e);
   };
   const [heat, setHeat] = useState<number[]>();
   const { height, width } = Dimensions.get('window');
@@ -43,10 +43,10 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
     !fuelHeating ? onChangeFuel(0) : null;
     !woodHeating ? onChangeWood(0) : null;
+    !woodHeating ? onChangeWoodType('') : null;
+    !woodHeating ? setWoodTypeIndex(undefined) : null;
     !gasHeating ? onChangeGas(0) : null;
-    console.log('gas', gas);
-  }, [heat]);
-  console.log('gas2', gas);
+  }, [heat, gasHeating, woodHeating, fuelHeating]);
   const theme = useTheme();
   const styles = StyleSheet.create({
     container: {
@@ -73,7 +73,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 40 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   const WoodEnergy = () => (
@@ -117,8 +117,8 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">What is your monthly electricity consumption ? </Text>
-          <Text variant="body">{electricity} € </Text>
+          <Text variant="body">What is your electricity consumption ? </Text>
+          <Text variant="body">{electricity} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -153,9 +153,12 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
         </View>
         <View
           style={{
-            flex: 0.9,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 20,
+            justifyContent: 'center',
             alignItems: 'center',
-            justifyContent: 'flex-end',
           }}
         >
           <Button variant="default" onPress={onPress} label="Next" />

@@ -43,4 +43,24 @@ export interface onboardingStateType {
     hobbies: number,
     onChangeHobbies: (value: React.SetStateAction<number>) => void | null,
   },
+
+  onboardingData: onboardingDataType,
+}
+
+export interface onboardingDataType {
+  house_surface: number,
+  electricity_consumption: number,
+  gas_consumption: number,
+  wood_type: string,
+  wood_consumption: number,
+  fuel_consumption: number,
+  roommates: number,
+  clothes: number,
+  furnitures: number,
+  others: number,
+  breakfasts_per_week: number,
+  red_meats_per_week: number,
+  vegan_per_week: number,
+  vegetarian_per_week: number,
+  white_meats_per_week: number
 }

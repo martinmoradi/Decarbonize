@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { onboardingStateType } from '../onboardingTypes';
 import OnboardingContext from './OnboardingContext';
-import { onboardingStateType } from './onboardingContextTypes';
 
 type PropsOnboardingProviders = {
   children: JSX.Element | JSX.Element[];
@@ -70,6 +70,24 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
       onChangeFurniture: setFurniture,
       hobbies: hobbies,
       onChangeHobbies: setHobbies,
+    },
+
+    onboardingData: {
+      house_surface: surface,
+      electricity_consumption: electricity,
+      gas_consumption: gas,
+      wood_type: woodType,
+      wood_consumption: wood,
+      fuel_consumption: fuel,
+      roommates: people,
+      clothes: clothes,
+      furnitures: furniture,
+      others: hobbies,
+      breakfasts_per_week: breakfast,
+      red_meats_per_week: redMeat,
+      vegan_per_week: vegan,
+      vegetarian_per_week: vegetarian,
+      white_meats_per_week: whiteMeat,
     },
   };
   return <OnboardingContext.Provider value={initialState}>{children}</OnboardingContext.Provider>;

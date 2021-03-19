@@ -24,11 +24,6 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
     onChangeWood,
   } = energy;
 
-  const getHeatList = (e: number) => {
-    const heatList: number[] = [];
-    heatList.includes(e) ? heatList.filter(number => number !== e) : heatList.push(e);
-  };
-
   const { height, width } = Dimensions.get('window');
 
   const theme = useTheme();
@@ -57,7 +52,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   return (
@@ -160,9 +155,12 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
         </View>
         <View
           style={{
-            flex: 0.9,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 20,
+            justifyContent: 'center',
             alignItems: 'center',
-            justifyContent: 'flex-end',
           }}
         >
           <Button variant="default" onPress={onPress} label="Next" />

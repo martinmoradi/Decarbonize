@@ -32,7 +32,7 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
     },
     footer: {
       flex: 1,
-      borderTopLeftRadius: 100,
+      borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
@@ -42,9 +42,9 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
     title: {
       justifyContent: 'center',
       transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 510) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 0 },
+        { rotate: '90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
@@ -63,7 +63,7 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
+            borderBottomLeftRadius: 75,
             flex: 1,
           }}
         >
@@ -77,8 +77,8 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How much do you spend monthly for clothes ?</Text>
-          <Text variant="body">{clothes} €</Text>
+          <Text variant="body">How much do you spend for clothes ?</Text>
+          <Text variant="body">{clothes} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -96,8 +96,9 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={clothes}
           />
-          <Text variant="body">How much do you spend monthly for furniture ?</Text>
-          <Text variant="body">{furniture} €</Text>
+          <View style={{ padding: 10 }}></View>
+          <Text variant="body">How much do you spend for furniture ?</Text>
+          <Text variant="body">{furniture} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -115,8 +116,9 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
             trackStyle={{ height: 12, borderRadius: 20 }}
             value={furniture}
           />
-          <Text variant="body">How much do you spend monthly for hobbies ?</Text>
-          <Text variant="body">{hobbies} €</Text>
+          <View style={{ padding: 10 }}></View>
+          <Text variant="body">How much do you spend for hobbies ?</Text>
+          <Text variant="body">{hobbies} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -137,9 +139,12 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
         </View>
         <View
           style={{
-            flex: 0.9,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 20,
+            justifyContent: 'center',
             alignItems: 'center',
-            justifyContent: 'flex-end',
           }}
         >
           <Button variant="default" onPress={onPress} label="Next" />

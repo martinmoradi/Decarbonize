@@ -45,7 +45,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 35 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   const buttonsPeople = ['1', '2', '3', '4+'];
@@ -109,9 +109,12 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
         </View>
         <View
           style={{
-            flex: 0.9,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 20,
+            justifyContent: 'center',
             alignItems: 'center',
-            justifyContent: 'flex-end',
           }}
         >
           <Button variant="default" onPress={onPress} label="Next" />
