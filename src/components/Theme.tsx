@@ -50,6 +50,20 @@ const theme = {
       color: 'background',
       textAlign: 'center',
     },
+    heroHome: {
+      fontSize: 60,
+      lineHeight: 60,
+      fontFamily: 'Avenir-Bold',
+      color: 'background',
+      textAlign: 'center',
+    },
+    subHeroHome: {
+      fontSize: 26,
+      lineHeight: 26,
+      fontFamily: 'Avenir-Semibold',
+      color: 'background',
+      textAlign: 'center',
+    },
     title1: {
       fontSize: 28,
       fontFamily: 'Avenir-Semibold',
