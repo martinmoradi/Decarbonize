@@ -49,7 +49,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
       transform: [
         { rotate: '90deg' },
         { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2.2 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },

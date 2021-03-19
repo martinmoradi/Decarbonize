@@ -40,9 +40,9 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
       height: 100,
       justifyContent: 'center',
       transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
+        { rotate: '90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2.2 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },

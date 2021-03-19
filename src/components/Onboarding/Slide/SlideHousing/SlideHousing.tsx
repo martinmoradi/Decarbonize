@@ -43,8 +43,8 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
       justifyContent: 'center',
       transform: [
         { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 500) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 1.8 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
@@ -68,7 +68,7 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            SPENDING
+            LEISURE
           </Text>
           <View style={{ alignItems: 'center', translateY: -40 }}>
             <IconSvg name="habit" />

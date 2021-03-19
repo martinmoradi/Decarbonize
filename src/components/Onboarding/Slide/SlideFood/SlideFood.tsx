@@ -51,7 +51,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
           translateY:
             Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - height / 1.3) / 2,
         },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
+        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 1.7 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
