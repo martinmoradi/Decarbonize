@@ -95,6 +95,6 @@ class FixedEmission < ApplicationRecord
   ####### TOTAL MONTHLY ##########
 
   def monthly_emitted_carbon
-    housing + spendings + alimentation + drinks_and_garbage
+    (housing + spendings + alimentation + drinks_and_garbage).round(2)
   end
 end
