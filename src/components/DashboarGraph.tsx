@@ -41,6 +41,9 @@ const DashboardGraph = ()=>{
     <VictoryChart horizontal
         domainPadding={80}
         theme={VictoryTheme.material}
+        animate={{
+          duration: 2000,
+        }}
       >
         <VictoryAxis
           tickValues={[1, 2]}
