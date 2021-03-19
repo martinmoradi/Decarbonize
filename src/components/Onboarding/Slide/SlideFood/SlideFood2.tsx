@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -46,6 +46,9 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
+  const [vegetarianValue, setVegetarianValue] = useState<number>(0);
+  const [veganValue, setVeganValue] = useState<number>(0);
+
   return (
     <View style={styles.container}>
       <View
@@ -77,7 +80,7 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
             How much do you eat vegetarian meal ?
           </Text>
           <View style={{ padding: 6 }}></View>
-          <Text variant="body">{vegetarian} : per week</Text>
+          <Text variant="body">{vegetarianValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -85,7 +88,8 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeVegetarian}
+            onValueChange={setVegetarianValue}
+            onSlidingComplete={onChangeVegetarian}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
@@ -93,13 +97,13 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={vegetarian}
+            value={vegetarianValue}
           />
           <View style={{ padding: 6 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegan meal ? ?
           </Text>
-          <Text variant="body">{vegan} : per week</Text>
+          <Text variant="body">{veganValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -107,7 +111,8 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
             maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeVegan}
+            onValueChange={setVeganValue}
+            onSlidingComplete={onChangeVegan}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 50 }}
@@ -115,7 +120,7 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={vegan}
+            value={veganValue}
           />
         </View>
         <View

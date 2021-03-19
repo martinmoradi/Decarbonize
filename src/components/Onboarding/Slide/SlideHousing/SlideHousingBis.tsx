@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -50,6 +50,10 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
+  const [clothValue, setClothValue] = useState<number>(0);
+  const [furnitureValue, setFurnitureValue] = useState<number>(0);
+  const [hobbiesValue, setHobbiesValue] = useState<number>(0);
+
   return (
     <View style={styles.container}>
       <View
@@ -78,7 +82,7 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>
-          <Text variant="body">{clothes} € / month</Text>
+          <Text variant="body">{clothValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -86,7 +90,8 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeClothes}
+            onValueChange={setClothValue}
+            onSlidingComplete={onChangeClothes}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -94,11 +99,11 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={clothes}
+            value={clothValue}
           />
           <View style={{ padding: 10 }}></View>
           <Text variant="body">How much do you spend for furniture ?</Text>
-          <Text variant="body">{furniture} € / month</Text>
+          <Text variant="body">{furnitureValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -106,7 +111,8 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeFurniture}
+            onValueChange={setFurnitureValue}
+            onSlidingComplete={onChangeFurniture}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -114,11 +120,11 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={furniture}
+            value={furnitureValue}
           />
           <View style={{ padding: 10 }}></View>
           <Text variant="body">How much do you spend for hobbies ?</Text>
-          <Text variant="body">{hobbies} € / month</Text>
+          <Text variant="body">{hobbiesValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -126,7 +132,8 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
             maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeHobbies}
+            onValueChange={setHobbiesValue}
+            onSlidingComplete={onChangeHobbies}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -134,7 +141,7 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={hobbies}
+            value={hobbiesValue}
           />
         </View>
         <View
