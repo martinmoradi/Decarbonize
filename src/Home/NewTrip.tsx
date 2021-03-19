@@ -1,63 +1,21 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { Text, Box } from '../components';
-import DashboardGraph from '../components/DashboarGraph';
-import { Dimensions } from 'react-native';
-const { width } = Dimensions.get('window');
-const DashboardScreen = () => {
+import { Dimensions, ScrollView, View } from 'react-native';
+import { Box, Text } from '../components';
+const { width, height } = Dimensions.get('window');
+
+const NewTripScreen = () => {
   return (
     <ScrollView>
-      <Box style={{ alignItems: 'center' }}>
-        <Box
-          paddingLeft="m"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={{
-            width: width,
-            height: 150,
-            borderBottomEndRadius: 20,
-            borderBottomStartRadius: 20,
-          }}
-          backgroundColor="primary"
-          marginBottom="m"
-        >
-          <Text variant="title2" color="white" marginBottom="m">
-            Good Morning ! ☀️
-          </Text>
-          <Text variant="body" color="white">
-            It's Firday, temperature outside is 10°C
-          </Text>
-        </Box>
-
+      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
         <Box
           alignItems="center"
-          style={{ borderRadius: 10, flex: 1, width: width - 30 }}
+          style={{ width: width - 30, height: 400, borderRadius: 10 }}
           justifyContent="center"
           backgroundColor="primary"
         >
-          <DashboardGraph />
-        </Box>
-        <Box
-          marginTop="m"
-          paddingTop="m"
-          style={{ width: width - 30, height: 100, borderRadius: 10 }}
-          justifyContent="center"
-          backgroundColor="info"
-        >
-          <Text variant="title3" color="white" margin="s">
-            Cette semaine :{' '}
+          <Text variant="title2" color="white">
+            NEW TRIP SCREEN
           </Text>
-          <Box
-            alignItems="center"
-            style={{ width: width - 30, height: 80, borderRadius: 10 }}
-            justifyContent="center"
-            backgroundColor="primary"
-          >
-            <Text variant="title2" color="white">
-              {' '}
-              Food Boxes
-            </Text>
-          </Box>
         </Box>
         <Box
           marginTop="xl"
@@ -67,7 +25,7 @@ const DashboardScreen = () => {
           backgroundColor="info"
         >
           <Text variant="title3" color="white" margin="s">
-            Tes Trajets :{' '}
+            Ton historique :{' '}
           </Text>
           <Box
             alignItems="center"
@@ -78,7 +36,7 @@ const DashboardScreen = () => {
           >
             <Text variant="title3" color="white">
               {' '}
-              Trajet 1
+              Semaine 1 - CO2 - Score
             </Text>
           </Box>
           <Box
@@ -90,7 +48,7 @@ const DashboardScreen = () => {
           >
             <Text variant="title3" color="white">
               {' '}
-              Trajet 2
+              Semaine 2 - CO2 - Score
             </Text>
           </Box>
           <Box
@@ -102,7 +60,7 @@ const DashboardScreen = () => {
           >
             <Text variant="title3" color="white">
               {' '}
-              Trajet 3
+              Semaine 3 - CO2 - Score
             </Text>
           </Box>
           <Box
@@ -114,7 +72,7 @@ const DashboardScreen = () => {
           >
             <Text variant="title3" color="white">
               {' '}
-              Trajet 4
+              Semaine 4 - CO2 - Score
             </Text>
           </Box>
           <Box
@@ -126,7 +84,7 @@ const DashboardScreen = () => {
           >
             <Text variant="title3" color="white">
               {' '}
-              Trajet 5
+              Semaine 5 - CO2 - Score
             </Text>
           </Box>
           <Box
@@ -138,13 +96,13 @@ const DashboardScreen = () => {
           >
             <Text variant="title3" color="white">
               {' '}
-              Trajet 6
+              Semaine 6 - CO2 - Score
             </Text>
           </Box>
         </Box>
-      </Box>
+      </View>
     </ScrollView>
   );
 };
 
-export default DashboardScreen;
+export default NewTripScreen;
