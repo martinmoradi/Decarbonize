@@ -44,9 +44,9 @@ export default (props: any) => {
 
   const navigationRoute = ['Dashboard', 'Engagements', 'NewTrip', 'History', 'Settings'];
 
-  const active = new Value<number>(0);
+  const active = new Value<number>(currentIndex);
   const transition = withTransition(active, { duration: DURATION });
-  const activeTransition = new Value(0);
+  const activeTransition = new Value(currentIndex);
 
   useCode(
     () =>
@@ -57,18 +57,23 @@ export default (props: any) => {
     [active, activeTransition]
   );
 
+  const handlePress = (index: number) => {
+    active.setValue(index);
+    navigation.navigate(navigationRoute[index]);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.tabs}>
         {tabs.map(({ icon }, index) => (
           <View key={index} style={styles.tab}>
             <Weave {...{ active, transition, index }} />
-            <Tab onPress={() => active.setValue(index)} {...{ active, transition, index }}>
+            <Tab onPress={() => handlePress(index)} {...{ active, transition, index }}>
               {icon}
             </Tab>
           </View>
         ))}
-        <Particules {...{ transition, activeTransition }} />
+        {/* <Particules {...{ transition, activeTransition }} /> */}
       </View>
     </SafeAreaView>
   );
