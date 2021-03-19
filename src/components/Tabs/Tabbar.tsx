@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default (props: any) => {
+const Tabbar = (props: any) => {
   let currentIndex = props.state.index;
   const { navigation } = props;
 
@@ -79,6 +79,7 @@ export default (props: any) => {
   );
 };
 
+export default Tabbar
 // before
 {
   /* <Tab onPress={() => active.setValue(index)} {...{ active, transition, index }}>
