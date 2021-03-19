@@ -104,7 +104,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={surface}
+            value="5"
           />
         </View>
         <View
