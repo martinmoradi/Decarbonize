@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
-import IconSvg from '../../../../../assets/icons/IconSvg';
-import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
-import Button from '../../../Button';
-import { Text, useTheme } from '../../../Theme';
+import IconSvg from '../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import Button from '../../../components/Button';
+import { Text, useTheme } from '../../../components/Theme';
 
 type PropsSlide = {
   onPress: () => {};
@@ -123,7 +123,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
             onValueChange={setRedMeatValue}
-            onSlidingComplete={onChangeBreakfast}
+            onSlidingComplete={onChangeRedMeat}
             orientation="horizontal"
             step={1}
             style={{ width: '80%', height: 40 }}

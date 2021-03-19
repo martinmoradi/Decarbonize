@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
-import IconSvg from '../../../../../assets/icons/IconSvg';
-import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
-import Button from '../../../Button';
-import { Text, useTheme } from '../../../Theme';
+import IconSvg from '../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import Button from '../../../components/Button';
+import { Text, useTheme } from '../../../components/Theme';
 
 type PropsSlide = {
   onPress: () => {};

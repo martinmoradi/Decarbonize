@@ -1,7 +1,6 @@
 import * as React from 'react';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { OnboardingProvider } from './src/Authentication/onboardingContext/OnboardingProvider';
 import LoadAssets from './src/components/LoadAssets';
 import { ThemeProvider } from './src/components/Theme';
 import AuthRouter from './src/components/routers/AuthRouter';
@@ -18,11 +17,9 @@ const App = () => {
     <LoadAssets {...{ fonts }}>
       <ThemeProvider>
         <AuthProvider>
-          <OnboardingProvider>
-            <SafeAreaProvider>
-              <AuthRouter />
-            </SafeAreaProvider>
-          </OnboardingProvider>
+          <SafeAreaProvider>
+            <AuthRouter />
+          </SafeAreaProvider>
         </AuthProvider>
       </ThemeProvider>
     </LoadAssets>
