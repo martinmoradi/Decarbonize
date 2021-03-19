@@ -6,10 +6,10 @@ import OnboardingContext from '../../../../Authentication/onboardingContext/Onbo
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-type PropsFood = {
+type PropsSlide = {
   onPress: () => {};
 };
-const SlideFood2 = ({ onPress }: PropsFood) => {
+const SlideFood2 = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
   const { vegetarian, vegan, onChangeVegetarian, onChangeVegan } = food;
 

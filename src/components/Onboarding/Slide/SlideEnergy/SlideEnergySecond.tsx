@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
 import IconSvg from '../../../../../assets/icons/IconSvg';
@@ -6,25 +6,47 @@ import OnboardingContext from '../../../../Authentication/onboardingContext/Onbo
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-type PropsFood = {
+type PropsSlide = {
   onPress: () => {};
 };
 
-const SlideEnergySecond = ({ onPress }: PropsFood) => {
+const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
   const [woodTypeIndex, setwoodTypeIndex] = useState<number | undefined>();
-  const { electricity, onChangeElectricity, onChangeWoodType } = energy;
+  const {
+    electricity,
+    woodHeating,
+    fuelHeating,
+    gasHeating,
+    gas,
+    onChangeElectricity,
+    onChangeWoodType,
+    onChangeWoodHeating,
+    onChangeFuelHeating,
+    onChangeGasHeating,
+    onChangeFuel,
+    onChangeGas,
+    onChangeWood,
+  } = energy;
   const buttonsHeat = ['Fioul', 'Gas', 'Wood'];
   const buttonsWood = ['Wood logs', 'Wood pellets'];
   const handleWoodType = (e: number, woodType: string[]) => {
     onChangeWoodType(woodType[e]);
     setwoodTypeIndex(e);
   };
-
   const [heat, setHeat] = useState<number[]>();
-
   const { height, width } = Dimensions.get('window');
 
+  useEffect(() => {
+    heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
+    heat?.includes(1) ? onChangeGasHeating(true) : onChangeGasHeating(false);
+    heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
+    !fuelHeating ? onChangeFuel(0) : null;
+    !woodHeating ? onChangeWood(0) : null;
+    !gasHeating ? onChangeGas(0) : null;
+    console.log('gas', gas);
+  }, [heat]);
+  console.log('gas2', gas);
   const theme = useTheme();
   const styles = StyleSheet.create({
     container: {

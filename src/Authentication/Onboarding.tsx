@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Button, Text } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
@@ -9,10 +9,13 @@ import SlideEnergyThird from '../components/Onboarding/Slide/SlideEnergy/SlideEn
 import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
 import SlideFood2 from '../components/Onboarding/Slide/SlideFood/SlideFood2';
 import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
+import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
   const scroll = useRef<ScrollView>(null);
+  const { energy } = useContext(OnboardingContext);
+  const { woodHeating, fuelHeating, gasHeating } = energy;
 
   return (
     <ScrollView
@@ -37,11 +40,13 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
           onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })}
         />
       </View>
-      <View style={{ width }}>
-        <SlideEnergyThird
-          onPress={() => scroll.current.scrollTo({ x: width * 5, animated: true })}
-        />
-      </View>
+      {(woodHeating || fuelHeating || gasHeating) && (
+        <View style={{ width }}>
+          <SlideEnergyThird
+            onPress={() => scroll.current.scrollTo({ x: width * 5, animated: true })}
+          />
+        </View>
+      )}
       <View style={{ width }}>
         <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })} />
       </View>

@@ -6,11 +6,11 @@ import OnboardingContext from '../../../../Authentication/onboardingContext/Onbo
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-type PropsFood = {
+type PropsSlide = {
   onPress: () => {};
 };
 
-const SlideEnergy = ({ onPress }: PropsFood) => {
+const SlideEnergy = ({ onPress }: PropsSlide) => {
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);

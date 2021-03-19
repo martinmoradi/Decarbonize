@@ -6,14 +6,23 @@ import OnboardingContext from '../../../../Authentication/onboardingContext/Onbo
 import Button from '../../../Button';
 import { Text, useTheme } from '../../../Theme';
 
-type PropsFood = {
+type PropsSlide = {
   onPress: () => {};
 };
 
-const SlideEnergyThird = ({ onPress }: PropsFood) => {
+const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
-  console.log('energy3:', energy);
-  const { fuel, gas, wood, onChangeFuel, onChangeGas, onChangeWood } = energy;
+  const {
+    fuel,
+    gas,
+    wood,
+    gasHeating,
+    fuelHeating,
+    woodHeating,
+    onChangeFuel,
+    onChangeGas,
+    onChangeWood,
+  } = energy;
 
   const getHeatList = (e: number) => {
     const heatList: number[] = [];
@@ -78,64 +87,76 @@ const SlideEnergyThird = ({ onPress }: PropsFood) => {
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">Fuel</Text>
-          <Text variant="body">{fuel} € </Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
-            onValueChange={onChangeFuel}
-            orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={fuel}
-          />
-          <View style={{ padding: 6 }}></View>
-          <Text variant="body">Gas </Text>
-          <Text variant="body">{gas} € </Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
-            onValueChange={onChangeGas}
-            orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={gas}
-          />
-          <Text variant="body">Wood</Text>
-          <Text variant="body">{wood} € </Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
-            onValueChange={onChangeWood}
-            orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={wood}
-          />
+          {fuelHeating && (
+            <>
+              <Text variant="body">Fuel</Text>
+              <Text variant="body">{fuel} € </Text>
+              <Slider
+                animateTransitions
+                animationType="timing"
+                maximumTrackTintColor="lightgray"
+                maximumValue={300}
+                minimumTrackTintColor={theme.colors.primary}
+                minimumValue={0}
+                onValueChange={onChangeFuel}
+                orientation="horizontal"
+                step={10}
+                style={{ width: '80%', height: 40 }}
+                thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+                thumbTintColor={theme.colors.info}
+                thumbTouchSize={{ width: 40, height: 40 }}
+                trackStyle={{ height: 12, borderRadius: 20 }}
+                value={fuel}
+              />
+            </>
+          )}
+          {gasHeating && (
+            <>
+              <View style={{ padding: 6 }}></View>
+              <Text variant="body">Gas </Text>
+              <Text variant="body">{gas} € </Text>
+              <Slider
+                animateTransitions
+                animationType="timing"
+                maximumTrackTintColor="lightgray"
+                maximumValue={300}
+                minimumTrackTintColor={theme.colors.primary}
+                minimumValue={0}
+                onValueChange={onChangeGas}
+                orientation="horizontal"
+                step={10}
+                style={{ width: '80%', height: 40 }}
+                thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+                thumbTintColor={theme.colors.info}
+                thumbTouchSize={{ width: 40, height: 40 }}
+                trackStyle={{ height: 12, borderRadius: 20 }}
+                value={gas}
+              />
+            </>
+          )}
+          {woodHeating && (
+            <>
+              <Text variant="body">Wood</Text>
+              <Text variant="body">{wood} € </Text>
+              <Slider
+                animateTransitions
+                animationType="timing"
+                maximumTrackTintColor="lightgray"
+                maximumValue={300}
+                minimumTrackTintColor={theme.colors.primary}
+                minimumValue={0}
+                onValueChange={onChangeWood}
+                orientation="horizontal"
+                step={10}
+                style={{ width: '80%', height: 40 }}
+                thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
+                thumbTintColor={theme.colors.info}
+                thumbTouchSize={{ width: 40, height: 40 }}
+                trackStyle={{ height: 12, borderRadius: 20 }}
+                value={wood}
+              />
+            </>
+          )}
         </View>
         <View
           style={{
