@@ -40,6 +40,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
         token,
         remember: body.remember,
       };
+      console.log("coucou");
       dispatch({
         type: authActionType.SIGNUP_SUCCESS,
         payload,
