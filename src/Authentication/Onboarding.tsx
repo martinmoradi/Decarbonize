@@ -3,13 +3,13 @@ import React, { useContext, useRef } from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Button, Text } from '../components';
 import { AuthNavigationProps } from '../components/Navigation';
-import SlideEnergy from '../components/Onboarding/Slide/SlideEnergy/SlideEnergy';
-import SlideEnergySecond from '../components/Onboarding/Slide/SlideEnergy/SlideEnergySecond';
-import SlideEnergyThird from '../components/Onboarding/Slide/SlideEnergy/SlideEnergyThird';
-import SlideFood from '../components/Onboarding/Slide/SlideFood/SlideFood';
-import SlideFood2 from '../components/Onboarding/Slide/SlideFood/SlideFood2';
-import SlideHousing from '../components/Onboarding/Slide/SlideHousing/SlideHousing';
-import SlideHousingBis from '../components/Onboarding/Slide/SlideHousing/SlideHousingBis';
+import SlideEnergy from './Slide/SlideEnergy/SlideEnergy';
+import SlideEnergySecond from './Slide/SlideEnergy/SlideEnergySecond';
+import SlideEnergyThird from './Slide/SlideEnergy/SlideEnergyThird';
+import SlideFood from './Slide/SlideFood/SlideFood';
+import SlideFood2 from './Slide/SlideFood/SlideFood2';
+import SlideHousing from './Slide/SlideHousing/SlideHousing';
+import SlideHousingBis from './Slide/SlideHousing/SlideHousingBis';
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
