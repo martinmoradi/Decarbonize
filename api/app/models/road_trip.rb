@@ -7,6 +7,15 @@ class RoadTrip < ApplicationRecord
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
   has_many :regular_trips
+  after_create :create_emission
+  
+  attribute :amount
+
+  def amount
+    emission.amount
+  end
+
+
 
   # Per trip in kgs
 
@@ -25,5 +34,9 @@ class RoadTrip < ApplicationRecord
     when 'metro'
       round_trip ? (0.025 * distance * 2) : (0.025 * distance)
     end
+  end
+
+  def create_emission
+    Emission.create!(user_id: self.user.id, emissionable: self, amount: self.emitted_carbon)
   end
 end

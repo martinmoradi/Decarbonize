@@ -22,35 +22,28 @@ FixedEmission.create!(
 )
 puts 'Toto has completed the onboarding successfully !'
 
-200.times do
-  road_trip =
-    RoadTrip.create(
-      vehicle_type: 'diesel_car',
-      user_id: 1,
-      distance: Faker::Number.between(from: 5, to: 250),
-      round_trip: Faker::Boolean.boolean(true_ratio: 0.7),
-      created_at: Faker::Date.between(from: '2019-01-01', to: '2021-03-19'),
-    )
-  Emission.create!(
-    amount: road_trip.emitted_carbon,
-    emissionable: road_trip,
+650.times do
+  RoadTrip.create(
+    vehicle_type: 'diesel_car',
     user_id: 1,
-    created_at: road_trip.created_at,
+    distance: Faker::Number.between(from: 5, to: 250),
+    round_trip: Faker::Boolean.boolean(true_ratio: 0.7),
+    created_at: Faker::Date.between(from: '2019-01-01', to: '2021-03-20'),
   )
 end
-puts '200 road trips successfully added to Toto'
+puts '650 road trips successfully added to Toto'
 
-20.times do
-  air_trip =
-    AirTrip.create(
-      user_id: 1,
-      round_trip: true,
-      departure: Faker::Address.city,
-      arrival: Faker::Address.city,
-      departure_latitude: Faker::Address.latitude,
-      departure_longitude: Faker::Address.longitude,
-      arrival_latitude: Faker::Address.latitude,
-      arrival_longitude: Faker::Address.longitude,
-    )
+80.times do
+  AirTrip.create(
+    user_id: 1,
+    round_trip: true,
+    departure: Faker::Address.city,
+    arrival: Faker::Address.city,
+    departure_latitude: Faker::Address.latitude,
+    departure_longitude: Faker::Address.longitude,
+    arrival_latitude: Faker::Address.latitude,
+    arrival_longitude: Faker::Address.longitude,
+    created_at: Faker::Date.between(from: '2019-01-01', to: '2021-03-20'),
+  )
 end
-puts '20 air trips successfully added to Toto'
+puts '80 air trips successfully added to Toto'

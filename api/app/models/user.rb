@@ -22,40 +22,92 @@ class User < ApplicationRecord
   has_many :road_trips, dependent: :destroy
   has_one :fixed_emission, dependent: :destroy
 
-  def yearly_total_emitted
+  # TOTALS
+
+  def yearly_total
+    (fixed_emission.yearly_fixed_emissions + yearly_roadtrip_emissions + yearly_airtrip_emissions)
+      .round(2)
+  end
+
+  def monthly_total
     (
-      fixed_emission.daily_emitted_carbon *
-        ((Date.today - Date.today.at_beginning_of_year).days.to_i / 86_400) +
-        current_year_roadtrips_emissions
+      fixed_emission.monthly_fixed_emissions + monthly_roadtrip_emissions +
+        monthly_airtrip_emissions
     ).round(2)
   end
 
-  def total_roadtrips_emissions
-    emissions = Emission.where(user_id: id, emissionable_type: 'RoadTrip')
-    (emissions.reduce(0) { |sum, emission| sum + emission.amount }).round(2)
+  def weekly_total
+    (fixed_emission.weekly_fixed_emissions + weekly_roadtrip_emissions + weekly_airtrip_emissions)
+      .round(2)
   end
 
-  def current_year_roadtrips_emissions
-    emissions =
-      Emission.find_by_sql(
-        "SELECT * FROM emissions WHERE created_at BETWEEN '#{Date.today - 1.year}' AND '#{Date.today}' AND user_id = '#{id}' AND emissionable_type = 'RoadTrip'",
-      )
-    (emissions.reduce(0) { |sum, emission| sum + emission.amount }).round(2)
+  # ROAD TRIPS EMISSIONS
+
+  def total_roadtrip_emissions
+    (road_trips.reduce(0) { |sum, road_trip| sum + road_trip.emission.amount }).round(2)
   end
 
-  def current_month_roadtrips_emissions
-    emissions =
-      Emission.find_by_sql(
-        "SELECT * FROM emissions WHERE created_at BETWEEN '#{Date.today - 1.month}' AND '#{Date.today}' AND user_id = '#{id}'",
-      )
-    (emissions.reduce(0) { |sum, emission| sum + emission.amount }).round(2)
+  def yearly_roadtrip_emissions
+    (
+      road_trips
+        .where(created_at: Date.today.beginning_of_year..Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
   end
 
-  def current_week_roadtrips_emissions
-    emissions =
-      Emission.find_by_sql(
-        "SELECT * FROM emissions WHERE created_at BETWEEN '#{Date.today - 1.week}' AND '#{Date.today}' AND user_id = '#{id}'",
-      )
-    (emissions.reduce(0) { |sum, emission| sum + emission.amount }).round(2)
+  def monthly_roadtrip_emissions
+    (
+      road_trips
+        .where(created_at: Date.today.beginning_of_month..Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
+  end
+
+  def weekly_roadtrip_emissions
+    (
+      road_trips
+        .where(created_at: Date.today.beginning_of_week..Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
+  end
+
+  def daily_roadtrip_emissions
+    (road_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
+      .round(2)
+  end
+
+  # AIR TRIPS EMISSIONS
+
+  def total_airtrip_emissions
+    (air_trips.reduce(0) { |sum, road_trip| sum + road_trip.emission.amount }).round(2)
+  end
+
+  def yearly_airtrip_emissions
+    (
+      air_trips
+        .where(created_at: Date.today.beginning_of_year..Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
+  end
+
+  def monthly_airtrip_emissions
+    (
+      air_trips
+        .where(created_at: Date.today.beginning_of_month..Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
+  end
+
+  def weekly_airtrip_emissions
+    (
+      air_trips
+        .where(created_at: Date.today.beginning_of_week..Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
+  end
+
+  def daily_airtrip_emissions
+    (air_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
+      .round(2)
   end
 end
