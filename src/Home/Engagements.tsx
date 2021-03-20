@@ -1,19 +1,92 @@
-import React from 'react';
-import { View } from 'react-native';
-import { Text } from '../components/Theme';
+import React, { useState } from 'react';
+import { View, ScrollView } from 'react-native';
+import { Text, Box } from '../components';
+import { Dimensions } from 'react-native';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Tips from '../components/Tips/Tips';
+const { width, height } = Dimensions.get('window');
 
 const EngagementsScreen = () => {
+  const [dotPag, setDotPag] = useState<number>(1);
+
+  const tipsData = [
+    { title: 'Item1' },
+    { title: 'Item2' },
+    { title: 'Item3' },
+    { title: 'Item4' },
+    { title: 'Item5' },
+    { title: 'Item6' },
+    { title: 'Item7' },
+    { title: 'Item8' },
+  ];
+
+  const engagementsData = [
+    { title: 'Item1' },
+    { title: 'Item2' },
+    { title: 'Item3' },
+    { title: 'Item4' },
+    { title: 'Item5' },
+    { title: 'Item6' },
+    { title: 'Item7' },
+    { title: 'Item8' },
+  ];
+
+  const renderItem = ({ item }) => {
+    return (
+      <Text variant="title2" color="white" style={{ textAlign: 'center' }}>
+        {item.title}
+      </Text>
+    );
+  };
+
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#A9EFD2',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text variant="title2">Engagements et trophées</Text>
-    </View>
+    <ScrollView>
+      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
+        <Box
+          alignItems="center"
+          style={{ width: width - 30, height: height / 3, borderRadius: 10 }}
+          justifyContent="center"
+          backgroundColor="primary"
+        >
+          <Carousel
+            data={tipsData}
+            renderItem={renderItem}
+            sliderWidth={width}
+            itemWidth={height / 3}
+            inactiveSlideShift={0}
+            useScrollView={true}
+            onSnapToItem={index => setDotPag(index)}
+            autoplay={false}
+          />
+          <Pagination
+            dotsLength={tipsData.length}
+            activeDotIndex={dotPag}
+            dotStyle={{
+              width: 10,
+              height: 10,
+              borderRadius: 5,
+              backgroundColor: 'rgba(255, 255, 255, 0.92)',
+            }}
+            inactiveDotOpacity={0.4}
+            inactiveDotScale={0.6}
+          />
+        </Box>
+        <Box
+          marginTop="xl"
+          paddingTop="m"
+          style={{ width: width - 30, borderRadius: 10 }}
+          justifyContent="center"
+          backgroundColor="info"
+        >
+          <Text variant="title3" color="white" margin="s">
+            Engagements :{' '}
+          </Text>
+          {engagementsData.map((item, index) => (
+            <Tips engagement={item} index={index} />
+          ))}
+        </Box>
+      </View>
+    </ScrollView>
   );
 };
 

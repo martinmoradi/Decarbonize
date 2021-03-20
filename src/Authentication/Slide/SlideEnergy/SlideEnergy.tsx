@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
-import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
 
 const SlideEnergy = ({ onPress }: PropsSlide) => {
   const { height, width } = Dimensions.get('window');
@@ -20,21 +20,12 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   };
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
     footer: {
       flex: 1,
       borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
+
     title: {
       height: 100,
       justifyContent: 'center',
@@ -50,14 +41,15 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   const buttonsPeople = ['1', '2', '3', '4+'];
 
   return (
-    <View style={styles.container}>
-      <View
+    <View style={theme.slideStyle.container}>
+      <SlideTitle title="Energy" svgTitle="energy" isReversed={false} />
+      {/* <View
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.primary,
         }}
       ></View>
-      <View style={styles.slider}>
+      <View style={theme.slideStyle.slider}>
         <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
         <View
           style={{
@@ -73,12 +65,12 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             <IconSvg name="energy" />
           </View>
         </View>
-      </View>
-      <View style={styles.footer}>
+      </View> */}
+      <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
           <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
+            selectedButtonStyle={theme.slideStyle.buttonStyle}
             buttons={buttonsPeople}
             selectedIndex={people - 1}
             onPress={handleChangePeople}

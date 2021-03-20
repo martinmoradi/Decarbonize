@@ -6,17 +6,11 @@ import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
 
 const SlideHousing = ({ onPress }: PropsSlide) => {
   const { spending } = useContext(OnboardingContext);
-  const {
-    clothes,
-    furniture,
-    hobbies,
-    onChangeClothes,
-    onChangeFurniture,
-    onChangeHobbies,
-  } = spending;
+  const { onChangeClothes, onChangeFurniture, onChangeHobbies } = spending;
 
   const { height, width } = Dimensions.get('window');
   const theme = useTheme();
@@ -52,7 +46,8 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
   const [hobbiesValue, setHobbiesValue] = useState<number>(0);
   return (
     <View style={styles.container}>
-      <View
+      <SlideTitle title="SPENDING" svgTitle="habit" isReversed={false} />
+      {/* <View
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.primary,
@@ -74,7 +69,7 @@ const SlideHousing = ({ onPress }: PropsSlide) => {
             <IconSvg name="habit" />
           </View>
         </View>
-      </View>
+      </View> */}
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>

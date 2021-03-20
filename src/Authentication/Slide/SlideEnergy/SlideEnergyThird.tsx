@@ -6,6 +6,7 @@ import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
 
 const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
@@ -48,7 +49,8 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={styles.container}>
-      <View
+      <SlideTitle title="Energy" svgTitle="energy" isReversed={false} />
+      {/* <View
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.primary,
@@ -70,7 +72,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
             <IconSvg name="energyBis" />
           </View>
         </View>
-      </View>
+      </View> */}
       <View style={styles.footer}>
         <View style={styles.content}>
           {fuelHeating && (

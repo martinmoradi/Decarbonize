@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
-import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
 
 const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
@@ -33,16 +33,28 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const [electricityValue, setElectricityValue] = useState<number>(0);
   const { height, width } = Dimensions.get('window');
 
-  useEffect(() => {
+  const checkHeat = (heat: number[] | undefined) => {
     heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
     heat?.includes(1) ? onChangeGasHeating(true) : onChangeGasHeating(false);
     heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
+  };
+
+  useEffect(() => {
+    // heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
+    // heat?.includes(1) ? onChangeGasHeating(true) : onChangeGasHeating(false);
+    // heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
+    checkHeat(heat);
+    if (!woodHeating) {
+      onChangeWood(0);
+      onChangeWoodType('');
+      setWoodTypeIndex(undefined);
+    }
+
     !fuelHeating ? onChangeFuel(0) : null;
-    !woodHeating ? onChangeWood(0) : null;
-    !woodHeating ? onChangeWoodType('wood_logs') : null;
-    !woodHeating ? setWoodTypeIndex(undefined) : null;
     !gasHeating ? onChangeGas(0) : null;
-  }, [heat, gasHeating, woodHeating, fuelHeating]);
+  }, [heat]);
+  console.log('render energy second');
+
   const theme = useTheme();
   const styles = StyleSheet.create({
     container: {
@@ -88,7 +100,8 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   );
   return (
     <View style={styles.container}>
-      <View
+      <SlideTitle title="Energy" svgTitle="energy" isReversed={true} />
+      {/* <View
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.primary,
@@ -110,7 +123,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             <IconSvg name="energyBis" />
           </View>
         </View>
-      </View>
+      </View> */}
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">What is your electricity consumption ? </Text>

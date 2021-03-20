@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
-import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
+import IconSvg from '../../../../assets/icons/IconSvg';
 
 const SlideFood2 = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
@@ -49,29 +50,7 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
-        }}
-      ></View>
-      <View style={styles.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
-          style={{
-            backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
-            flex: 1,
-          }}
-        >
-          <Text style={styles.title} variant="titleTopSlide">
-            FOOD
-          </Text>
-          <View style={{ alignItems: 'center', translateY: -45 }}>
-            <IconSvg name="food" />
-          </View>
-        </View>
-      </View>
+      <SlideTitle title="FOOD" svgTitle="food" isReversed={true} />
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
