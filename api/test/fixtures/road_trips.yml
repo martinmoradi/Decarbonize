@@ -2,10 +2,10 @@
 
 one:
   vehicle_type: MyString
-  distance: 
+  distance:
   round_trip: false
 
 two:
   vehicle_type: MyString
-  distance: 
+  distance:
   round_trip: false

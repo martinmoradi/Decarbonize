@@ -79,7 +79,7 @@ const Tabbar = (props: any) => {
   );
 };
 
-export default Tabbar
+export default Tabbar;
 // before
 {
   /* <Tab onPress={() => active.setValue(index)} {...{ active, transition, index }}>

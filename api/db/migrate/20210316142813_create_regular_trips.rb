@@ -2,19 +2,14 @@ class CreateRegularTrips < ActiveRecord::Migration[6.1]
   def change
     create_table :regular_trips do |t|
       t.references :user, null: false, foreign_key: true
-      t.string :vehicle_type
-      t.float :departure_latitude
-      t.float :departure_longitude
-      t.float :arrival_latitude
-      t.float :arrival_longitude
-      t.boolean :round_trip
-      t.integer :monday
-      t.integer :tuesday
-      t.integer :wednesday
-      t.integer :thursday
-      t.integer :friday
-      t.integer :saturday
-      t.integer :sunday
+      t.references :road_trip, null: false, foreign_key: true
+      t.boolean :monday, default: false
+      t.boolean :tuesday, default: false
+      t.boolean :wednesday, default: false
+      t.boolean :thursday, default: false
+      t.boolean :friday, default: false
+      t.boolean :saturday, default: false
+      t.boolean :sunday, default: false
 
       t.timestamps
     end

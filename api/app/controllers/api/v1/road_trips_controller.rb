@@ -18,9 +18,12 @@ class Api::V1::RoadTripsController < Api::V1::ApiBaseController
     @road_trip = RoadTrip.new(road_trip_params)
 
     if @road_trip.save
-      Emission.create!(amount: @road_trip.emitted_carbon, emissionable: @road_trip, user_id: current_user.id)
-      render json: @road_trip, status: :created,
-             location: api_v1_road_trips_url(@road_trip)
+      Emission.create!(
+        amount: @road_trip.emitted_carbon,
+        emissionable: @road_trip,
+        user_id: current_user.id
+      )
+      render json: @road_trip, status: :created, location: api_v1_road_trips_url(@road_trip)
     else
       render json: @road_trip.errors, status: :unprocessable_entity
     end

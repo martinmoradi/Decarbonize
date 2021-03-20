@@ -6,9 +6,7 @@ describe SessionsController, type: :request do
   let(:logout_url) { '/api/logout' }
 
   context 'When logging in' do
-    before do
-      login(user)
-    end
+    before { login(user) }
 
     it 'returns a token' do
       expect(response.headers['Authorization']).to be_present
@@ -20,14 +18,7 @@ describe SessionsController, type: :request do
   end
 
   context 'When password is missing' do
-    before do
-      post login_url, params: {
-        user: {
-          email: user.email,
-          password: nil
-        }
-      }
-    end
+    before { post login_url, params: { user: { email: user.email, password: nil } } }
 
     it 'returns 401' do
       expect(response.status).to eq(401)
