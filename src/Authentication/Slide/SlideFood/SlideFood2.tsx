@@ -5,10 +5,8 @@ import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
+import { PropsSlide } from '../../onboardingTypes';
 
-type PropsSlide = {
-  onPress: () => {};
-};
 const SlideFood2 = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
   const { vegetarian, vegan, onChangeVegetarian, onChangeVegan } = food;

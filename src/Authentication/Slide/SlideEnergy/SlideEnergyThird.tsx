@@ -5,10 +5,7 @@ import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
-
-type PropsSlide = {
-  onPress: () => {};
-};
+import { PropsSlide } from '../../onboardingTypes';
 
 const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);

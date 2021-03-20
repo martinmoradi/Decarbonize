@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { onboardingStateType } from '../onboardingTypes';
+import { IOnboardingStateType } from '../onboardingTypes';
 import OnboardingContext from './OnboardingContext';
 
 type PropsOnboardingProviders = {
@@ -26,7 +26,7 @@ export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
   const [gasHeating, setGasHeating] = useState<boolean>(false);
   const [woodHeating, setWoodHeating] = useState<boolean>(false);
 
-  const initialState: onboardingStateType = {
+  const initialState: IOnboardingStateType = {
     food: {
       breakfast: breakfast,
       onChangeBreakfast: setBreakfast,

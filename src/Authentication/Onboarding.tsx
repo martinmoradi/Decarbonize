@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useContext, useRef } from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
 import { Button, Text } from '../components';
@@ -13,12 +12,9 @@ import SlideHousingBis from './Slide/SlideHousing/SlideHousingBis';
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
-  console.log('render');
   const { width } = Dimensions.get('window');
   const scroll = useRef<ScrollView>(null);
   const { energy } = useContext(OnboardingContext);
-  const { food } = useContext(OnboardingContext);
-  const { spending } = useContext(OnboardingContext);
   const { woodHeating, fuelHeating, gasHeating } = energy;
   const { onboardingData } = useContext(OnboardingContext);
   console.log('onboardingData:', onboardingData);
@@ -33,23 +29,23 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       ref={scroll}
     >
       <View style={{ width }}>
-        <SlideFood onPress={() => scroll.current.scrollTo({ x: width * 1, animated: true })} />
+        <SlideFood onPress={() => scroll.current?.scrollTo({ x: width * 1, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideFood2 onPress={() => scroll.current.scrollTo({ x: width * 2, animated: true })} />
+        <SlideFood2 onPress={() => scroll.current?.scrollTo({ x: width * 2, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideEnergy onPress={() => scroll.current.scrollTo({ x: width * 3, animated: true })} />
+        <SlideEnergy onPress={() => scroll.current?.scrollTo({ x: width * 3, animated: true })} />
       </View>
       <View style={{ width }}>
         <SlideEnergySecond
-          onPress={() => scroll.current.scrollTo({ x: width * 4, animated: true })}
+          onPress={() => scroll.current?.scrollTo({ x: width * 4, animated: true })}
         />
       </View>
       {(woodHeating || fuelHeating || gasHeating) && (
         <View style={{ width }}>
           <SlideEnergyThird
-            onPress={() => scroll.current.scrollTo({ x: width * 5, animated: true })}
+            onPress={() => scroll.current?.scrollTo({ x: width * 5, animated: true })}
           />
         </View>
       )}
@@ -57,10 +53,12 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
       <View style={{ width }}>
         {woodHeating || fuelHeating || gasHeating ? (
           <SlideHousingBis
-            onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })}
+            onPress={() => scroll.current?.scrollTo({ x: width * 6, animated: true })}
           />
         ) : (
-          <SlideHousing onPress={() => scroll.current.scrollTo({ x: width * 6, animated: true })} />
+          <SlideHousing
+            onPress={() => scroll.current?.scrollTo({ x: width * 6, animated: true })}
+          />
         )}
       </View>
 

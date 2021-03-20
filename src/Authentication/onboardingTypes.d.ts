@@ -1,4 +1,4 @@
-export interface onboardingStateType {
+export interface IOnboardingStateType {
   food: {
     breakfast: number | null,
     onChangeBreakfast: (value: React.SetStateAction<number | null>) => void | null,
@@ -44,10 +44,10 @@ export interface onboardingStateType {
     onChangeHobbies: (value: React.SetStateAction<number | null>) => void | null,
   },
 
-  onboardingData: onboardingDataType,
+  onboardingData: IOnboardingDataType,
 }
 
-export interface onboardingDataType {
+export interface IOnboardingDataType {
   house_surface: number | null,
   electricity_consumption: number | null,
   gas_consumption: number | null,
@@ -64,3 +64,7 @@ export interface onboardingDataType {
   vegetarian_per_week: number | null,
   white_meats_per_week: number | null
 }
+
+export type PropsSlide = {
+  onPress: () => void;
+};
