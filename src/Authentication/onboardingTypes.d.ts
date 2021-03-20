@@ -51,7 +51,7 @@ export interface IOnboardingDataType {
   house_surface: number | null,
   electricity_consumption: number | null,
   gas_consumption: number | null,
-  wood_type: string | null,
+  wood_type: string,
   wood_consumption: number | null,
   fuel_consumption: number | null,
   roommates: number | null,

@@ -6,10 +6,11 @@ import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
-import { config } from './api';
+import { config, configQuiz } from './api';
 import { AuthContext } from './authContext';
 import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
+import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const SignUpSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
@@ -21,34 +22,64 @@ const SignUpSchema = Yup.object().shape({
 
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const { height } = Dimensions.get('window');
-
+  const { onboardingData } = useContext(OnboardingContext);
   const { state, dispatch } = useContext(AuthContext);
+
+
   const apiSignup = async (body: userPropsType) => {
     dispatch({
       type: authActionType.SIGNUP_ATTEMPT,
     });
-    const response = await fetch(
-      `https://decarbonize-perruches.herokuapp.com/signup`,
-      config('POST', body)
-    );
-    const { data, error } = await response.json();
-    if (response.ok) {
-      const token: string | null = response.headers.get('Authorization');
-      const user = { ...data };
-      const payload = {
-        user,
-        token,
-        remember: body.remember,
-      };
-      dispatch({
-        type: authActionType.SIGNUP_SUCCESS,
-        payload,
-      });
-    } else {
-      dispatch({
-        type: authActionType.SIGNUP_ERROR,
-        payload: error.message,
-      });
+
+    try {
+      const response = await fetch(
+        `https://decarbonize-perruches.herokuapp.com/signup`,
+        config('POST', body)
+      );
+      const { data, error } = await response.json();
+
+      if (!response.ok) {
+        dispatch({
+          type: authActionType.SIGNUP_ERROR,
+          payload: error.message,
+        });
+      } else {
+        const token: string = response.headers.get('Authorization');
+        const user = { ...data };
+        const payload = {
+          user,
+          token,
+          remember: body.remember,
+        };
+
+        try {
+
+
+          const responseApi = await fetch(
+            `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
+            configQuiz('POST', onboardingData, token)
+          );
+
+          const responseSendApi = await responseApi.json();
+
+          if (!responseApi.ok) {
+            dispatch({
+              type: authActionType.SIGNUP_ERROR,
+              payload: error.message,
+            })
+            return
+          }
+
+          dispatch({
+            type: authActionType.SIGNUP_SUCCESS,
+            payload,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

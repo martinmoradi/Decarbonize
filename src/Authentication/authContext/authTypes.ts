@@ -13,6 +13,25 @@ export interface userPropsType {
   remember: boolean;
 }
 
+export interface quizPropsType {
+  breakfasts_per_week: number,
+  clothes: number,
+  electricity_consumption: number,
+  fuel_consumption: number,
+  furnitures: number,
+  gas_consumption: number,
+  house_surface: number,
+  others: number,
+  red_meats_per_week: number,
+  roommates: number,
+  vegan_per_week: number,
+  vegetarian_per_week: number,
+  white_meats_per_week: number,
+  wood_consumption: number,
+  wood_type: string ,
+}
+
+
 export enum authActionType {
   LOGIN_ATTEMPT = 'login_attempt',
   LOGIN_SUCCESS = 'login_success',
