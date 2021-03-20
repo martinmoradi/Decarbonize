@@ -18,7 +18,9 @@ class Api::V1::RegularTripsController < Api::V1::ApiBaseController
     @regular_trip = RegularTrip.new(regular_trip_params)
 
     if @regular_trip.save
-      render json: @regular_trip, status: :created, location: api_v1_regular_trips_url(@regular_trip)
+      render json: @regular_trip,
+             status: :created,
+             location: api_v1_regular_trips_url(@regular_trip)
     else
       render json: @regular_trip.errors, status: :unprocessable_entity
     end
@@ -47,7 +49,23 @@ class Api::V1::RegularTripsController < Api::V1::ApiBaseController
 
   # Only allow a list of trusted parameters through.
   def regular_trip_params
-    params.require(:regular_trip).permit(:user_id, :vehicle_type, :departure_latitude, :departure_longitude,
-                                         :arrival_latitude, :arrival_longitude, :round_trip, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+    params
+      .require(:regular_trip)
+      .permit(
+        :user_id,
+        :vehicle_type,
+        :departure_latitude,
+        :departure_longitude,
+        :arrival_latitude,
+        :arrival_longitude,
+        :round_trip,
+        :monday,
+        :tuesday,
+        :wednesday,
+        :thursday,
+        :friday,
+        :saturday,
+        :sunday
+      )
   end
 end
