@@ -6,7 +6,7 @@ class CreateFixedEmissions < ActiveRecord::Migration[6.1]
       t.float :electricity_consumption, default: 188
       t.float :gas_consumption, default: 0
       t.float :wood_consumption, default: 0
-      t.string :wood_type, default: "wood_logs"
+      t.string :wood_type, default: 'wood_logs'
       t.float :fuel_consumption, default: 0
       t.integer :roommates, default: 1
       t.float :clothes, default: 0
