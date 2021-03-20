@@ -6,9 +6,7 @@ describe Api::UsersController, type: :request do
   context 'When fetching a user' do
     before do
       login_with_api(user)
-      get "/api/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
+      get "/api/users/#{user.id}", headers: { 'Authorization': response.headers['Authorization'] }
     end
 
     it 'returns 200' do
@@ -24,9 +22,7 @@ describe Api::UsersController, type: :request do
   context 'When a user is missing' do
     before do
       login_with_api(user)
-      get '/api/users/blank', headers: {
-        'Authorization': response.headers['Authorization']
-      }
+      get '/api/users/blank', headers: { 'Authorization': response.headers['Authorization'] }
     end
 
     it 'returns 404' do
@@ -35,9 +31,7 @@ describe Api::UsersController, type: :request do
   end
 
   context 'When the Authorization header is missing' do
-    before do
-      get "/api/users/#{user.id}"
-    end
+    before { get "/api/users/#{user.id}" }
 
     it 'returns 401' do
       expect(response.status).to eq(401)

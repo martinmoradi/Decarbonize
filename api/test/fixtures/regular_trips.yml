@@ -8,13 +8,13 @@ one:
   arrival_latitude: 1.5
   arrival_longitude: 1.5
   round_trip: false
-  monday: 
-  tuesday: 
-  wednesday: 
-  thursday: 
-  friday: 
-  saturday: 
-  sunday: 
+  monday:
+  tuesday:
+  wednesday:
+  thursday:
+  friday:
+  saturday:
+  sunday:
 
 two:
   user: two
@@ -24,10 +24,10 @@ two:
   arrival_latitude: 1.5
   arrival_longitude: 1.5
   round_trip: false
-  monday: 
-  tuesday: 
-  wednesday: 
-  thursday: 
-  friday: 
-  saturday: 
-  sunday: 
+  monday:
+  tuesday:
+  wednesday:
+  thursday:
+  friday:
+  saturday:
+  sunday:

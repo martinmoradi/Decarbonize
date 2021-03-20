@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import Animated, { eq, interpolate } from "react-native-reanimated";
-import { mix, withTransition } from "react-native-redash";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import Animated, { eq, interpolate } from 'react-native-reanimated';
+import { mix, withTransition } from 'react-native-redash';
 
-import { Colors, ICON_SIZE, PADDING } from "./icons/Constants";
+import { Colors, ICON_SIZE, PADDING } from './icons/Constants';
 
 interface WeaveProps {
   active: Animated.Node<number>;
@@ -14,8 +14,8 @@ const SIZE = ICON_SIZE + PADDING * 2;
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   weave: {
     borderRadius: SIZE / 2,
@@ -38,9 +38,7 @@ export default ({ active, index }: WeaveProps) => {
   });
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[styles.weave, { opacity, transform: [{ scale }] }]}
-      />
+      <Animated.View style={[styles.weave, { opacity, transform: [{ scale }] }]} />
     </View>
   );
 };

@@ -6,14 +6,7 @@ describe RegistrationsController, type: :request do
   let(:signup_url) { '/api/signup' }
 
   context 'When creating a new user' do
-    before do
-      post signup_url, params: {
-        user: {
-          email: user.email,
-          password: user.password
-        }
-      }
-    end
+    before { post signup_url, params: { user: { email: user.email, password: user.password } } }
 
     it 'returns 200' do
       expect(response.status).to eq(200)
@@ -30,12 +23,13 @@ describe RegistrationsController, type: :request do
 
   context 'When an email already exists' do
     before do
-      post signup_url, params: {
-        user: {
-          email: existing_user.email,
-          password: existing_user.password
-        }
-      }
+      post signup_url,
+           params: {
+             user: {
+               email: existing_user.email,
+               password: existing_user.password
+             }
+           }
     end
 
     it 'returns 400' do
