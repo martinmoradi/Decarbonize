@@ -1,28 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
-import IconSvg from '../../../../../assets/icons/IconSvg';
-import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
-import Button from '../../../Button';
-import { Text, useTheme } from '../../../Theme';
+import IconSvg from '../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import Button from '../../../components/Button';
+import { Text, useTheme } from '../../../components/Theme';
+import { PropsSlide } from '../../onboardingTypes';
 
-type PropsSlide = {
-  onPress: () => {};
-};
+const SlideFood2 = ({ onPress }: PropsSlide) => {
+  const { food } = useContext(OnboardingContext);
+  const { vegetarian, vegan, onChangeVegetarian, onChangeVegan } = food;
 
-const SlideHousingBis = ({ onPress }: PropsSlide) => {
-  const { spending } = useContext(OnboardingContext);
-  const {
-    clothes,
-    furniture,
-    hobbies,
-    onChangeClothes,
-    onChangeFurniture,
-    onChangeHobbies,
-  } = spending;
-
-  const { height, width } = Dimensions.get('window');
   const theme = useTheme();
+  const { height, width } = Dimensions.get('window');
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -39,16 +30,22 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
       backgroundColor: theme.colors.primary,
       borderRadius: 20,
     },
+    btnContainer: {
+      borderWidth: 0,
+    },
     title: {
       justifyContent: 'center',
       transform: [
         { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 500) / 2 },
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
+
+  const [vegetarianValue, setVegetarianValue] = useState<number>(0);
+  const [veganValue, setVeganValue] = useState<number>(0);
 
   return (
     <View style={styles.container}>
@@ -68,73 +65,60 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            SPENDING
+            FOOD
           </Text>
-          <View style={{ alignItems: 'center', translateY: -40 }}>
-            <IconSvg name="habit" />
+          <View style={{ alignItems: 'center', translateY: -45 }}>
+            <IconSvg name="food" />
           </View>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">How much do you spend for clothes ?</Text>
-          <Text variant="body">{clothes} € / month</Text>
+          <Text variant="body" style={{ lineHeight: 32 }}>
+            How much do you eat vegetarian meal ?
+          </Text>
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body">{vegetarianValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={1000}
+            maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeClothes}
+            onValueChange={setVegetarianValue}
+            onSlidingComplete={onChangeVegetarian}
             orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
+            step={1}
+            style={{ width: '80%', height: 50 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={clothes}
+            value={vegetarianValue}
           />
-          <View style={{ padding: 10 }}></View>
-          <Text variant="body">How much do you spend for furniture ?</Text>
-          <Text variant="body">{furniture} € / month</Text>
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body" style={{ lineHeight: 32 }}>
+            How much do you eat vegan meal ? ?
+          </Text>
+          <Text variant="body">{veganValue} : per week</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={1000}
+            maximumValue={14}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeFurniture}
+            onValueChange={setVeganValue}
+            onSlidingComplete={onChangeVegan}
             orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
+            step={1}
+            style={{ width: '80%', height: 50 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={furniture}
-          />
-          <View style={{ padding: 10 }}></View>
-          <Text variant="body">How much do you spend for hobbies ?</Text>
-          <Text variant="body">{hobbies} € / month</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={1000}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
-            onValueChange={onChangeHobbies}
-            orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={hobbies}
+            value={veganValue}
           />
         </View>
         <View
@@ -154,4 +138,4 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
   );
 };
 
-export default SlideHousingBis;
+export default SlideFood2;

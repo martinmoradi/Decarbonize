@@ -1,29 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { Slider } from 'react-native-elements';
-import IconSvg from '../../../../../assets/icons/IconSvg';
-import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
-import Button from '../../../Button';
-import { Text, useTheme } from '../../../Theme';
+import IconSvg from '../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import Button from '../../../components/Button';
+import { Text, useTheme } from '../../../components/Theme';
+import { PropsSlide } from '../../onboardingTypes';
 
-type PropsSlide = {
-  onPress: () => {};
-};
-
-const SlideFood = ({ onPress }: PropsSlide) => {
-  const { food } = useContext(OnboardingContext);
+const SlideHousingBis = ({ onPress }: PropsSlide) => {
+  const { spending } = useContext(OnboardingContext);
   const {
-    breakfast,
-    redMeat,
-    whiteMeat,
-    onChangeBreakfast,
-    onChangeRedMeat,
-    onChangeWhiteMeat,
-  } = food;
+    clothes,
+    furniture,
+    hobbies,
+    onChangeClothes,
+    onChangeFurniture,
+    onChangeHobbies,
+  } = spending;
 
-  const theme = useTheme();
   const { height, width } = Dimensions.get('window');
-
+  const theme = useTheme();
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -33,29 +29,27 @@ const SlideFood = ({ onPress }: PropsSlide) => {
     },
     footer: {
       flex: 1,
-      borderTopRightRadius: 100,
+      borderTopLeftRadius: 100,
       backgroundColor: 'white',
     },
     buttonStyle: {
       backgroundColor: theme.colors.primary,
       borderRadius: 20,
     },
-    btnContainer: {
-      borderWidth: 0,
-    },
     title: {
       justifyContent: 'center',
       transform: [
-        { rotate: '90deg' },
-        {
-          translateY:
-            Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - height / 1.3) / 2,
-        },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 30 },
+        { rotate: '-90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
       ],
     },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
+
+  const [clothValue, setClothValue] = useState<number>(0);
+  const [furnitureValue, setFurnitureValue] = useState<number>(0);
+  const [hobbiesValue, setHobbiesValue] = useState<number>(0);
 
   return (
     <View style={styles.container}>
@@ -70,84 +64,81 @@ const SlideFood = ({ onPress }: PropsSlide) => {
         <View
           style={{
             backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
+            borderBottomRightRadius: 75,
             flex: 1,
           }}
         >
           <Text style={styles.title} variant="titleTopSlide">
-            FOOD
+            SPENDING
           </Text>
-          <View style={{ alignItems: 'center', translateY: -45 }}>
-            <IconSvg name="food" />
+          <View style={{ alignItems: 'center', translateY: -40 }}>
+            <IconSvg name="habit" />
           </View>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you have a breakfast ?
-          </Text>
-          <Text variant="body">{breakfast} : per week</Text>
+          <Text variant="body">How much do you spend for clothes ?</Text>
+          <Text variant="body">{clothValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={7}
+            maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeBreakfast}
+            onValueChange={setClothValue}
+            onSlidingComplete={onChangeClothes}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={breakfast}
+            value={clothValue}
           />
           <View style={{ padding: 10 }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you eat red meat ?
-          </Text>
-          <Text variant="body">{redMeat} : per week</Text>
+          <Text variant="body">How much do you spend for furniture ?</Text>
+          <Text variant="body">{furnitureValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={14}
+            maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeRedMeat}
+            onValueChange={setFurnitureValue}
+            onSlidingComplete={onChangeFurniture}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={redMeat}
+            value={furnitureValue}
           />
           <View style={{ padding: 10 }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat white meat ?
-          </Text>
-          <Text variant="body">{whiteMeat} : per week</Text>
+          <Text variant="body">How much do you spend for hobbies ?</Text>
+          <Text variant="body">{hobbiesValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
             maximumTrackTintColor="lightgray"
-            maximumValue={14}
+            maximumValue={1000}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={0}
-            onValueChange={onChangeWhiteMeat}
+            onValueChange={setHobbiesValue}
+            onSlidingComplete={onChangeHobbies}
             orientation="horizontal"
-            step={1}
+            step={10}
             style={{ width: '80%', height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={whiteMeat}
+            value={hobbiesValue}
           />
         </View>
         <View
@@ -167,4 +158,4 @@ const SlideFood = ({ onPress }: PropsSlide) => {
   );
 };
 
-export default SlideFood;
+export default SlideHousingBis;

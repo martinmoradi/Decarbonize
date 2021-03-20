@@ -68,7 +68,9 @@ class FixedEmission < ApplicationRecord
     breakfasts_per_week * 4.33 * 0.37
   end
 
-  @drinks_and_garbage = (241.25 + 707.67) / 12.0
+  def drinks_and_garbage
+    (241.25 + 707.67) / 12.0
+  end
 
   def red_meat
     red_meats_per_week * 4.33 * 6.29
@@ -93,6 +95,6 @@ class FixedEmission < ApplicationRecord
   ####### TOTAL MONTHLY ##########
 
   def monthly_emitted_carbon
-    housing + spendings + alimentation + @drinks_and_garbage
+    (housing + spendings + alimentation + drinks_and_garbage).round(2)
   end
 end

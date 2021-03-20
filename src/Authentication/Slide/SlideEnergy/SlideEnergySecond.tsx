@@ -1,24 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { ButtonGroup, Slider } from 'react-native-elements';
-import IconSvg from '../../../../../assets/icons/IconSvg';
-import OnboardingContext from '../../../../Authentication/onboardingContext/OnboardingContext';
-import Button from '../../../Button';
-import { Text, useTheme } from '../../../Theme';
-
-type PropsSlide = {
-  onPress: () => {};
-};
+import IconSvg from '../../../../assets/icons/IconSvg';
+import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import Button from '../../../components/Button';
+import { Text, useTheme } from '../../../components/Theme';
+import { PropsSlide } from '../../onboardingTypes';
 
 const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
   const [woodTypeIndex, setWoodTypeIndex] = useState<number | undefined>();
   const {
-    electricity,
     woodHeating,
     fuelHeating,
     gasHeating,
-    gas,
     onChangeElectricity,
     onChangeWoodType,
     onChangeWoodHeating,
@@ -35,6 +30,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     setWoodTypeIndex(e);
   };
   const [heat, setHeat] = useState<number[]>();
+  const [electricityValue, setElectricityValue] = useState<number>(0);
   const { height, width } = Dimensions.get('window');
 
   useEffect(() => {
@@ -118,7 +114,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">What is your electricity consumption ? </Text>
-          <Text variant="body">{electricity} € / month</Text>
+          <Text variant="body">{electricityValue} € / month</Text>
           <Slider
             animateTransitions
             animationType="timing"
@@ -126,7 +122,8 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             maximumValue={300}
             minimumTrackTintColor={theme.colors.primary}
             minimumValue={20}
-            onValueChange={onChangeElectricity}
+            onValueChange={setElectricityValue}
+            onSlidingComplete={onChangeElectricity}
             orientation="horizontal"
             step={10}
             style={{ width: '80%', height: 40 }}
@@ -134,7 +131,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
             trackStyle={{ height: 12, borderRadius: 20 }}
-            value={electricity}
+            value={electricityValue}
           />
           <View style={{ padding: 6 }}></View>
           <Text variant="body">How do you heat your housing?</Text>
