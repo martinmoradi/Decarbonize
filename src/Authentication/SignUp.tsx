@@ -24,54 +24,62 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const { height } = Dimensions.get('window');
   const { onboardingData } = useContext(OnboardingContext);
   const { state, dispatch } = useContext(AuthContext);
-  
-  const apiSignup = async (body: userPropsType) => {
 
+
+  const apiSignup = async (body: userPropsType) => {
     dispatch({
       type: authActionType.SIGNUP_ATTEMPT,
     });
 
-    const response = await fetch(
-      `https://decarbonize-perruches.herokuapp.com/signup`,
-      config('POST', body)
-    );
-    const { data, error } = await response.json();
-    if (response.ok) {
-      const token: string = response.headers.get('Authorization');
-      const user = { ...data };
-      const payload = {
-        user,
-        token,
-        remember: body.remember,
-      };
-
-      console.log(' state call api', token);
-      console.log(' data', onboardingData);
-
-      const responseApi = await fetch(
-        `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
-        configQuiz('POST', onboardingData, token)
+    try {
+      const response = await fetch(
+        `https://decarbonize-perruches.herokuapp.com/signup`,
+        config('POST', body)
       );
-      
-      const myObject = await responseApi.json();
+      const { data, error } = await response.json();
 
-      if (responseApi.ok) {
-        console.log('bien envoyé à api');
-        console.log(myObject)
+      if (!response.ok) {
+        dispatch({
+          type: authActionType.SIGNUP_ERROR,
+          payload: error.message,
+        });
       } else {
-        console.log("error.message");
+        const token: string = response.headers.get('Authorization');
+        const user = { ...data };
+        const payload = {
+          user,
+          token,
+          remember: body.remember,
+        };
+
+        try {
+          console.log(' state call api', token);
+          console.log(' data', onboardingData);
+
+          const responseApi = await fetch(
+            `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
+            configQuiz('POST', onboardingData, token)
+          );
+
+          const responseSendApi = await responseApi.json();
+
+          if (!responseApi.ok) {
+            console.log('erreur à l envoi api');
+          } else {
+            console.log('bien envoyé à api');
+            console.log(responseSendApi);
+          }
+
+          dispatch({
+            type: authActionType.SIGNUP_SUCCESS,
+            payload,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }
-
-      dispatch({
-        type: authActionType.SIGNUP_SUCCESS,
-        payload,
-      });
-
-    } else {
-      dispatch({
-        type: authActionType.SIGNUP_ERROR,
-        payload: error.message,
-      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
