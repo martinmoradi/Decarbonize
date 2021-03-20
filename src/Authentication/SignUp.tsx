@@ -53,8 +53,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
         };
 
         try {
-          console.log(' state call api', token);
-          console.log(' data', onboardingData);
+
 
           const responseApi = await fetch(
             `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
@@ -64,10 +63,11 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
           const responseSendApi = await responseApi.json();
 
           if (!responseApi.ok) {
-            console.log('erreur à l envoi api');
-          } else {
-            console.log('bien envoyé à api');
-            console.log(responseSendApi);
+            dispatch({
+              type: authActionType.SIGNUP_ERROR,
+              payload: error.message,
+            })
+            return
           }
 
           dispatch({
