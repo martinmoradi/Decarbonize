@@ -12,7 +12,6 @@ import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
-
 const SignUpSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   passwordConfirmation: Yup.string()
@@ -25,38 +24,49 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const { height } = Dimensions.get('window');
   const { onboardingData } = useContext(OnboardingContext);
   const { state, dispatch } = useContext(AuthContext);
+  
   const apiSignup = async (body: userPropsType) => {
+
     dispatch({
       type: authActionType.SIGNUP_ATTEMPT,
     });
+
     const response = await fetch(
       `https://decarbonize-perruches.herokuapp.com/signup`,
       config('POST', body)
     );
     const { data, error } = await response.json();
     if (response.ok) {
-      const token: string | null = response.headers.get('Authorization');
+      const token: string = response.headers.get('Authorization');
       const user = { ...data };
       const payload = {
         user,
         token,
         remember: body.remember,
       };
-      console.log("coucou");
+
+      console.log(' state call api', token);
+      console.log(' data', onboardingData);
+
+      const responseApi = await fetch(
+        `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
+        configQuiz('POST', onboardingData, token)
+      );
+      
+      const myObject = await responseApi.json();
+
+      if (responseApi.ok) {
+        console.log('bien envoyé à api');
+        console.log(myObject)
+      } else {
+        console.log("error.message");
+      }
+
       dispatch({
         type: authActionType.SIGNUP_SUCCESS,
         payload,
       });
-      console.log(" state call api", state)
-      console.log(" data", onboardingData)
 
-      const responseApi = await fetch(`https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`, configQuiz('POST', onboardingData  , state.token));
-    const {error } = await responseApi.json();
-    if (responseApi.ok) {
-        console.log("bien envoyé à api");
-      } else {
-        console.log(error.message)
-      }
     } else {
       dispatch({
         type: authActionType.SIGNUP_ERROR,

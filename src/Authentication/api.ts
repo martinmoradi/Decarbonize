@@ -16,12 +16,12 @@ export const config = (method: string, body: userPropsType) => {
   };
 };
 
-export const configQuiz = (method: string, body: quizPropsType, token: string | null) => {
+export const configQuiz = (method: string, body: quizPropsType, token: string) => {
   return {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token
+      'Authorization': `${token}`
     },
     body: JSON.stringify({
       

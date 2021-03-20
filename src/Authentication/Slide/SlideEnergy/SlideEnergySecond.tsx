@@ -39,7 +39,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
     !fuelHeating ? onChangeFuel(0) : null;
     !woodHeating ? onChangeWood(0) : null;
-    !woodHeating ? onChangeWoodType('') : null;
+    !woodHeating ? onChangeWoodType('wood_logs') : null;
     !woodHeating ? setWoodTypeIndex(undefined) : null;
     !gasHeating ? onChangeGas(0) : null;
   }, [heat, gasHeating, woodHeating, fuelHeating]);
