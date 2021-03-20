@@ -5,7 +5,9 @@
 class AirTrip < ApplicationRecord
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
+
   before_create :calc_distance
+  after_create :create_emission
 
   def calc_distance
     p = 0.017453292519943295 # PI / 180
@@ -21,5 +23,9 @@ class AirTrip < ApplicationRecord
     (distance * 0.255).round(2) if distance < 1500
     (distance * 0.15).round(2) if distance > 2200
     (distance * 0.156).round(2)
+  end
+
+  def create_emission
+    Emission.create!(user_id: self.user.id, emissionable: self, amount: self.emitted_carbon)
   end
 end

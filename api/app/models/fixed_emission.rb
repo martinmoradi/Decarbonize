@@ -26,10 +26,10 @@ class FixedEmission < ApplicationRecord
 
   # All Values are exprimed Monthly and return kgCo2
 
-  ####### HOUSING AND HEATING ####################
+  # HOUSING & HEATING
 
   def wood_emissions
-    0 if wood_consumption == 0
+    0 if wood_consumption.zero?
     wood_type == 'wood_logs' ? wood_consumption / 0.04 * 0.295 : wood_consumption / 0.065 * 0.0304
   end
 
@@ -52,13 +52,13 @@ class FixedEmission < ApplicationRecord
     ) / roommates.to_f
   end
 
-  ######## SPENDINGS #########
+  # SPENDINGS
 
   def spendings
     clothes * 0.5 + furnitures + others * 0.055
   end
 
-  ###### ALIMENTATION ###############
+  # ALIMENTATION
 
   def breakfast
     breakfasts_per_week * 4.33 * 0.37
@@ -88,13 +88,21 @@ class FixedEmission < ApplicationRecord
     breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage
   end
 
-  ####### TOTAL MONTHLY ##########
+  # TOTALS
 
-  def monthly_emitted_carbon
+  def monthly_fixed_emissions
     (housing + spendings + alimentation).round(2)
   end
 
-  def daily_emitted_carbon
-    (monthly_emitted_carbon / 30.4167).round(2)
+  def daily_fixed_emissions
+    (monthly_fixed_emissions / 30.4167).round(2)
+  end
+
+  def yearly_fixed_emissions
+    (monthly_fixed_emissions * 12).round(2)
+  end
+
+  def weekly_fixed_emissions
+    (daily_fixed_emissions * 7).round(2)
   end
 end
