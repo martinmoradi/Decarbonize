@@ -47,7 +47,6 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
   return (
     <View style={styles.container}>
       <SlideTitle title="SPENDING" svgTitle="habit" isReversed={true} />
-
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>
