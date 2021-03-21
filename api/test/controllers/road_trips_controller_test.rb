@@ -1,22 +1,22 @@
 require 'test_helper'
 
-class RoadTripsControllerTest < ActionDispatch::IntegrationTest
-  setup { @road_trip = road_trips(:one) }
+class LandripsControllerTest < ActionDispatch::IntegrationTest
+  setup { @land_trip = land_trips(:one) }
 
   test 'should get index' do
-    get road_trips_url, as: :json
+    get land_trips_url, as: :json
     assert_response :success
   end
 
-  test 'should create road_trip' do
-    assert_difference('RoadTrip.count') do
-      post road_trips_url,
+  test 'should create land_trip' do
+    assert_difference('LandTrip.count') do
+      post land_trips_url,
            params: {
-             road_trip: {
-               distance: @road_trip.distance,
-               round_trip: @road_trip.round_trip,
-               vehicle_type: @road_trip.vehicle_type
-             }
+             land_trip: {
+               distance: @land_trip.distance,
+               round_trip: @land_trip.round_trip,
+               vehicle_type: @land_trip.vehicle_type,
+             },
            },
            as: :json
     end
@@ -24,26 +24,26 @@ class RoadTripsControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
-  test 'should show road_trip' do
-    get road_trip_url(@road_trip), as: :json
+  test 'should show land_trip' do
+    get land_trip_url(@land_trip), as: :json
     assert_response :success
   end
 
-  test 'should update road_trip' do
-    patch road_trip_url(@road_trip),
+  test 'should update land_trip' do
+    patch land_trip_url(@land_trip),
           params: {
-            road_trip: {
-              distance: @road_trip.distance,
-              round_trip: @road_trip.round_trip,
-              vehicle_type: @road_trip.vehicle_type
-            }
+            land_trip: {
+              distance: @land_trip.distance,
+              round_trip: @land_trip.round_trip,
+              vehicle_type: @land_trip.vehicle_type,
+            },
           },
           as: :json
     assert_response 200
   end
 
-  test 'should destroy road_trip' do
-    assert_difference('RoadTrip.count', -1) { delete road_trip_url(@road_trip), as: :json }
+  test 'should destroy land_trip' do
+    assert_difference('LandTrip.count', -1) { delete land_trip_url(@land_trip), as: :json }
 
     assert_response 204
   end

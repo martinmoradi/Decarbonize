@@ -22,8 +22,8 @@ FixedEmission.create!(
 )
 puts 'Toto has completed the onboarding successfully !'
 
-650.times do
-  RoadTrip.create(
+300.times do
+  LandTrip.create(
     vehicle_type: 'diesel_car',
     user_id: 1,
     distance: Faker::Number.between(from: 5, to: 250),
@@ -31,7 +31,18 @@ puts 'Toto has completed the onboarding successfully !'
     created_at: Faker::Date.between(from: '2019-01-01', to: '2021-03-20'),
   )
 end
-puts '650 road trips successfully added to Toto'
+puts '300 road trips successfully added to Toto'
+
+30.times do
+  LandTrip.create(
+    vehicle_type: 'train',
+    user_id: 1,
+    distance: Faker::Number.between(from: 200, to: 600),
+    round_trip: Faker::Boolean.boolean(true_ratio: 0.7),
+    created_at: Faker::Date.between(from: '2019-01-01', to: '2021-03-20'),
+  )
+end
+puts '30 train trips successfully added to Toto'
 
 80.times do
   AirTrip.create(
@@ -47,3 +58,35 @@ puts '650 road trips successfully added to Toto'
   )
 end
 puts '80 air trips successfully added to Toto'
+
+Commitment.create!(
+  title: 'I switch my appliances off instead of leaving them on standby',
+  description: '-6.2 kgco2 per year in housing',
+)
+Commitment.create!(
+  title: 'I reduce the heating at home by 1°C',
+  description: '-201.6 kgco2 per year in housing',
+)
+Commitment.create!(
+  title: 'I opt in for eco-friendly driving',
+  description: '-15% on all car emissions',
+)
+Commitment.create!(
+  title: 'I drink tap water instead of bottled water',
+  description: '-215 kgco2 per year in alimentation',
+)
+Commitment.create!(title: 'I reduce food waste', description: '-31 kgco2 per year in alimentation')
+Commitment.create!(
+  title: 'I buy groceries in a bulk food store',
+  description: '-35 kgco2 per year in alimentation',
+)
+Commitment.create!(
+  title: "I'm engaged in a zero waste objective",
+  description: '-707.67 kg per year in garbage',
+)
+puts 'Commitments successfully created'
+
+Commitment.all.each do |commitment|
+  UserCommitment.create!(commitment_id: commitment.id, user_id: 1) if Faker::Boolean.boolean
+end
+puts 'Random commitments successfully added on Toto'

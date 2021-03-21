@@ -20,11 +20,33 @@ class FixedEmission < ApplicationRecord
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
 
-  #   TODO
-  #  Quand on aura engagements ->
-  #  Si user.engagments.zero_garbage -> Retirer 707.67 par an
-
   # All Values are exprimed Monthly and return kgCo2
+
+  # COMMITMENTS CHECKS
+
+  def appliances
+    user.user_commitments.where(commitment_id: 1).exists? ? (-6.2 / 12.0) : 0
+  end
+
+  def reduced_heating
+    user.user_commitments.where(commitment_id: 2).exists? ? (-201.6 / 12.0) : 0
+  end
+
+  def tap_water
+    user.user_commitments.where(commitment_id: 4).exists? ? (-215.0 / 12.0) : 0
+  end
+
+  def food_wastes
+    user.user_commitments.where(commitment_id: 5).exists? ? (-31.0 / 12.0) : 0
+  end
+
+  def bulk_food
+    user.user_commitments.where(commitment_id: 6).exists? ? (-35.0 / 12.0) : 0
+  end
+
+  def zero_wastes
+    user.user_commitments.where(commitment_id: 7).exists? ? -707.67 : 0
+  end
 
   # HOUSING & HEATING
 
@@ -45,19 +67,21 @@ class FixedEmission < ApplicationRecord
     electricity_consumption / 0.15
   end
 
-  def housing
-    (
-      (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
-        (fuel_consumption * 0.324) + wood_emissions
-    ) / roommates.to_f
-  end
-
   def weekly_housing
     (housing / 4.33).round(2)
   end
 
-  def yearly_alimentation
-    alimentation * 12
+  def housing
+    (
+      (
+        (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
+          (fuel_consumption * 0.324) + wood_emissions + appliances + reduced_heating
+      ) / roommates.to_f
+    ).round(2)
+  end
+
+  def yearly_housing
+    (housing * 12).round(2)
   end
 
   # SPENDINGS
@@ -81,7 +105,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def drinks_and_garbage
-    (241.25 + 707.67) / 12.0
+    (241.25 + 707.67 + zero_wastes) / 12.0
   end
 
   def red_meat
@@ -108,11 +132,14 @@ class FixedEmission < ApplicationRecord
   end
 
   def alimentation
-    (breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage).round(2)
+    (
+      breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage + tap_water +
+        food_wastes + bulk_food
+    ).round(2)
   end
 
-  def yearly_housing
-    housing * 12
+  def yearly_alimentation
+    (alimentation * 12).round(2)
   end
 
   # TOTALS

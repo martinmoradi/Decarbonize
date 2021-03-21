@@ -10,8 +10,8 @@ Rails
         resource :regular_trips do
           resource :emissions, module: :regular_trips
         end
-        resource :road_trips do
-          resource :emissions, module: :road_trips
+        resource :land_trips do
+          resource :emissions, module: :land_trips
         end
         resource :air_trips do
           resource :emissions, module: :air_trips
@@ -22,16 +22,16 @@ Rails
 
     devise_for :users,
                defaults: {
-                 format: :json
+                 format: :json,
                },
                path: '',
                path_names: {
                  sign_in: 'login',
                  sign_out: 'logout',
-                 registration: 'signup'
+                 registration: 'signup',
                },
                controllers: {
                  sessions: 'sessions',
-                 registrations: 'registrations'
+                 registrations: 'registrations',
                }
   end
