@@ -52,10 +52,26 @@ class FixedEmission < ApplicationRecord
     ) / roommates.to_f
   end
 
+  def weekly_housing
+    (housing / 4.33).round(2)
+  end
+
+  def yearly_alimentation
+    alimentation * 12
+  end
+
   # SPENDINGS
+
+  def weekly_spendings
+    (spendings / 4.33).round(2)
+  end
 
   def spendings
     clothes * 0.5 + furnitures + others * 0.055
+  end
+
+  def yearly_spendings
+    spendings * 12
   end
 
   # ALIMENTATION
@@ -84,8 +100,19 @@ class FixedEmission < ApplicationRecord
     vegan_per_week * 4.33 * 0.3939
   end
 
+  def weekly_alimentation
+    (
+      breakfasts_per_week * 0.37 + white_meats_per_week * 1.35 + vegetarian_per_week * 0.51 +
+        vegan_per_week * 0.3939
+    ).round(2)
+  end
+
   def alimentation
-    breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage
+    (breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage).round(2)
+  end
+
+  def yearly_housing
+    housing * 12
   end
 
   # TOTALS
