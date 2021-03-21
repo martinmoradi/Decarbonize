@@ -1,10 +1,12 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { Text, Box } from '../components';
-import DashboardGraph from '../components/DashboarGraph';
+import { Text, Box, MeteoBar } from '../components';
+import DashboardGraph from '../components/DashboardGraph';
 import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
+
 const DashboardScreen = () => {
+
   return (
     <ScrollView>
       <Box style={{ alignItems: 'center' }}>
@@ -14,33 +16,30 @@ const DashboardScreen = () => {
           paddingBottom="m"
           style={{
             width: width,
-            height: 150,
+            height: 210,
             borderBottomEndRadius: 20,
             borderBottomStartRadius: 20,
           }}
           backgroundColor="primary"
-          marginBottom="m"
+          marginBottom="s"
         >
-          <Text variant="title2" color="white" marginBottom="m">
-            Good Morning ! ☀️
-          </Text>
-          <Text variant="body" color="white">
-            It's Firday, temperature outside is 10°C
-          </Text>
+          <MeteoBar/>
         </Box>
 
         <Box
           alignItems="center"
-          style={{ borderRadius: 10, flex: 1, width: width - 30 }}
+          style={{ borderRadius: 20, flex: 1, width: width }}
           justifyContent="center"
           backgroundColor="primary"
         >
           <DashboardGraph />
         </Box>
         <Box
-          marginTop="m"
+          marginTop="s"
           paddingTop="m"
-          style={{ width: width - 30, height: 100, borderRadius: 10 }}
+          marginBottom="s"
+
+          style={{ width: width, height: 100, borderRadius: 20 }}
           justifyContent="center"
           backgroundColor="info"
         >
@@ -49,7 +48,7 @@ const DashboardScreen = () => {
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 80, borderRadius: 10 }}
+            style={{ width: width, height: 80, borderRadius: 20 }}
             justifyContent="center"
             backgroundColor="primary"
           >
@@ -60,9 +59,9 @@ const DashboardScreen = () => {
           </Box>
         </Box>
         <Box
-          marginTop="xl"
+          marginTop="m"
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={{ width: width, borderRadius: 20 }}
           justifyContent="center"
           backgroundColor="info"
         >
@@ -71,7 +70,7 @@ const DashboardScreen = () => {
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -83,7 +82,7 @@ const DashboardScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -95,7 +94,7 @@ const DashboardScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -107,7 +106,7 @@ const DashboardScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -119,7 +118,7 @@ const DashboardScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -131,7 +130,7 @@ const DashboardScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"

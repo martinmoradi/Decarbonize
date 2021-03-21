@@ -2,6 +2,8 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Box } from '../components';
 import { Dimensions } from 'react-native';
+import HistoryGraph from '../components/HistoryGraph';
+
 const { width, height } = Dimensions.get('window');
 
 const HistoryScreen = () => {
@@ -14,9 +16,7 @@ const HistoryScreen = () => {
           justifyContent="center"
           backgroundColor="primary"
         >
-          <Text variant="title2" color="white">
-            Graphique
-          </Text>
+          <HistoryGraph/>
         </Box>
         <Box
           marginTop="xl"
