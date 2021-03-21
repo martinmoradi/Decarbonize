@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup, Slider } from 'react-native-elements';
+import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
+import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
@@ -23,7 +24,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     onChangeGas,
     onChangeWood,
   } = energy;
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood'];
+  const buttonsHeat = ['Fuel', 'Gas', 'Wood'];
   const buttonsWood = ['Wood logs', 'Wood pellets'];
   const handleWoodType = (e: number, woodType: string[]) => {
     onChangeWoodType(woodType[e]);
@@ -40,10 +41,8 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   };
 
   useEffect(() => {
-    // heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
-    // heat?.includes(1) ? onChangeGasHeating(true) : onChangeGasHeating(false);
-    // heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
     checkHeat(heat);
+
     if (!woodHeating) {
       onChangeWood(0);
       onChangeWoodType('');
@@ -100,52 +99,21 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   );
   return (
     <View style={styles.container}>
-      <SlideTitle title="Energy" svgTitle="energy" isReversed={true} />
-      {/* <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
-        }}
-      ></View>
-      <View style={styles.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
-          style={{
-            backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
-            flex: 1,
-          }}
-        >
-          <Text style={styles.title} variant="titleTopSlide">
-            ENERGY
-          </Text>
-          <View style={{ alignItems: 'center', translateY: -80 }}>
-            <IconSvg name="energyBis" />
-          </View>
-        </View>
-      </View> */}
+      <SlideTitle title="ENERGY" svgTitle="energy" isReversed={true} />
+
       <View style={styles.footer}>
         <View style={styles.content}>
-          <Text variant="body">What is your electricity consumption ? </Text>
+          <Text variant="body">What is your electricity consumption ?</Text>
           <Text variant="body">{electricityValue} € / month</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+          <SliderOnboarding
             onValueChange={setElectricityValue}
             onSlidingComplete={onChangeElectricity}
-            orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
             value={electricityValue}
+            step={10}
+            maximumValue={300}
+            minimumValue={20}
           />
+
           <View style={{ padding: 6 }}></View>
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup

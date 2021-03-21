@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { Slider } from 'react-native-elements';
-import IconSvg from '../../../../assets/icons/IconSvg';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
+import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
@@ -49,102 +48,50 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={styles.container}>
-      <SlideTitle title="Energy" svgTitle="energy" isReversed={false} />
-      {/* <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
-        }}
-      ></View>
-      <View style={styles.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
-          style={{
-            backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
-            flex: 1,
-          }}
-        >
-          <Text style={styles.title} variant="titleTopSlide">
-            ENERGY
-          </Text>
-          <View style={{ alignItems: 'center', translateY: -80 }}>
-            <IconSvg name="energyBis" />
-          </View>
-        </View>
-      </View> */}
+      <SlideTitle title="ENERGY" svgTitle="energy" isReversed={false} />
+
       <View style={styles.footer}>
         <View style={styles.content}>
           {fuelHeating && (
             <>
-              <Text variant="body">Fuel</Text>
-              <Text variant="body">{fuelValue} € </Text>
-              <Slider
-                animateTransitions
-                animationType="timing"
-                maximumTrackTintColor="lightgray"
-                maximumValue={300}
-                minimumTrackTintColor={theme.colors.primary}
-                minimumValue={0}
+              <Text variant="body">What is your Fuel consumption ?</Text>
+              <Text variant="body">{fuelValue} € / month</Text>
+              <SliderOnboarding
                 onValueChange={setFuelValue}
                 onSlidingComplete={onChangeFuel}
-                orientation="horizontal"
-                step={10}
-                style={{ width: '80%', height: 40 }}
-                thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-                thumbTintColor={theme.colors.info}
-                thumbTouchSize={{ width: 40, height: 40 }}
-                trackStyle={{ height: 12, borderRadius: 20 }}
                 value={fuelValue}
+                step={10}
+                maximumValue={300}
+                minimumValue={0}
               />
             </>
           )}
           {gasHeating && (
             <>
               <View style={{ padding: 6 }}></View>
-              <Text variant="body">Gas </Text>
-              <Text variant="body">{gasValue} € </Text>
-              <Slider
-                animateTransitions
-                animationType="timing"
-                maximumTrackTintColor="lightgray"
-                maximumValue={300}
-                minimumTrackTintColor={theme.colors.primary}
-                minimumValue={0}
+              <Text variant="body">What is your Gas consumption ?</Text>
+              <Text variant="body">{gasValue} € / month</Text>
+              <SliderOnboarding
                 onValueChange={setGasValue}
                 onSlidingComplete={onChangeGas}
-                orientation="horizontal"
-                step={10}
-                style={{ width: '80%', height: 40 }}
-                thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-                thumbTintColor={theme.colors.info}
-                thumbTouchSize={{ width: 40, height: 40 }}
-                trackStyle={{ height: 12, borderRadius: 20 }}
                 value={gasValue}
+                step={10}
+                maximumValue={300}
+                minimumValue={0}
               />
             </>
           )}
           {woodHeating && (
             <>
-              <Text variant="body">Wood</Text>
-              <Text variant="body">{woodValue} € </Text>
-              <Slider
-                animateTransitions
-                animationType="timing"
-                maximumTrackTintColor="lightgray"
-                maximumValue={300}
-                minimumTrackTintColor={theme.colors.primary}
-                minimumValue={0}
+              <Text variant="body">What is your Wood consumption ?</Text>
+              <Text variant="body">{woodValue} € / month</Text>
+              <SliderOnboarding
                 onValueChange={setWoodValue}
                 onSlidingComplete={onChangeWood}
-                orientation="horizontal"
-                step={10}
-                style={{ width: '80%', height: 40 }}
-                thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-                thumbTintColor={theme.colors.info}
-                thumbTouchSize={{ width: 40, height: 40 }}
-                trackStyle={{ height: 12, borderRadius: 20 }}
                 value={woodValue}
+                step={10}
+                maximumValue={300}
+                minimumValue={0}
               />
             </>
           )}

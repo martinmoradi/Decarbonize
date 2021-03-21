@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup, Slider } from 'react-native-elements';
+import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
+import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergy = ({ onPress }: PropsSlide) => {
   const { height, width } = Dimensions.get('window');
@@ -42,30 +43,8 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="Energy" svgTitle="energy" isReversed={false} />
-      {/* <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
-        }}
-      ></View>
-      <View style={theme.slideStyle.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
-          style={{
-            backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
-            flex: 1,
-          }}
-        >
-          <Text style={styles.title} variant="titleTopSlide">
-            ENERGY
-          </Text>
-          <View style={{ alignItems: 'center', translateY: -98 }}>
-            <IconSvg name="energy" />
-          </View>
-        </View>
-      </View> */}
+      <SlideTitle title="ENERGY" svgTitle="energy" isReversed={false} />
+
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
@@ -80,25 +59,16 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
           />
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">{surfaceValue} m²</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+          <SliderOnboarding
             onValueChange={setSurfaceValue}
             onSlidingComplete={onChangeSurface}
-            orientation="horizontal"
-            step={5}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
             value={surfaceValue}
+            step={5}
+            maximumValue={300}
+            minimumValue={20}
           />
         </View>
+
         <View
           style={{
             position: 'absolute',

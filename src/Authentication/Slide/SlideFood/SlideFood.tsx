@@ -1,16 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { Slider } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
-import IconSvg from '../../../../assets/icons/IconSvg';
+import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideFood = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
-  const { whiteMeat, onChangeBreakfast, onChangeRedMeat, onChangeWhiteMeat } = food;
+  const { onChangeBreakfast, onChangeRedMeat, onChangeWhiteMeat } = food;
 
   const theme = useTheme();
   const { height, width } = Dimensions.get('window');
@@ -61,70 +60,42 @@ const SlideFood = ({ onPress }: PropsSlide) => {
           <Text variant="body" style={{ lineHeight: 32 }}>
             How often do you have a breakfast ?
           </Text>
-          <Text variant="body">{breakfastValue} : per week</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={7}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
+          <Text variant="body">{breakfastValue} / week</Text>
+          <SliderOnboarding
             onValueChange={setBreakfastValue}
             onSlidingComplete={onChangeBreakfast}
-            orientation="horizontal"
-            step={1}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
             value={breakfastValue}
+            step={1}
+            maximumValue={7}
+            minimumValue={0}
           />
+
           <View style={{ padding: 10 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How often do you eat red meat ?
           </Text>
-          <Text variant="body">{redMeatValue} : per week</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={14}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
+          <Text variant="body">{redMeatValue} / week</Text>
+          <SliderOnboarding
             onValueChange={setRedMeatValue}
             onSlidingComplete={onChangeRedMeat}
-            orientation="horizontal"
-            step={1}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
             value={redMeatValue}
+            step={1}
+            maximumValue={14}
+            minimumValue={0}
           />
+
           <View style={{ padding: 10 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat white meat ?
           </Text>
-          <Text variant="body">{whiteMeatValue} : per week</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={14}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={0}
+          <Text variant="body">{whiteMeatValue} / week</Text>
+          <SliderOnboarding
             onValueChange={setWhiteMeatValue}
             onSlidingComplete={onChangeWhiteMeat}
-            orientation="horizontal"
+            value={whiteMeatValue}
             step={1}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
-            value={whiteMeat}
+            maximumValue={14}
+            minimumValue={0}
           />
         </View>
         <View
