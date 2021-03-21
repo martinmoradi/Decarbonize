@@ -20,11 +20,33 @@ class FixedEmission < ApplicationRecord
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
 
-  #   TODO
-  #  Quand on aura engagements ->
-  #  Si user.engagments.zero_garbage -> Retirer 707.67 par an
-
   # All Values are exprimed Monthly and return kgCo2
+
+  # COMMITMENTS CHECK
+
+  def appliances
+    user.user_commitments.where(commitment_id: 1).exists? ? (-6.2 / 12.0) : 0
+  end
+
+  def reduced_heating
+    user.user_commitments.where(commitment_id: 2).exists? ? (-201.6 / 12.0) : 0
+  end
+
+  def tap_water
+    user.user_commitments.where(commitment_id: 4).exists? ? (-215.0 / 12.0) : 0
+  end
+
+  def food_wastes
+    user.user_commitments.where(commitment_id: 5).exists? ? (-31.0 / 12.0) : 0
+  end
+
+  def bulk_food
+    user.user_commitments.where(commitment_id: 6).exists? ? (-35.0 / 12.0) : 0
+  end
+
+  def zero_waste
+    user.user_commitments.where(commitment_id: 7).exists? ? (-707.67) : 0
+  end
 
   # HOUSING & HEATING
 
@@ -52,7 +74,7 @@ class FixedEmission < ApplicationRecord
   def housing
     (
       (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
-        (fuel_consumption * 0.324) + wood_emissions
+        (fuel_consumption * 0.324) + wood_emissions + appliances + reduced_heating
     ) / roommates.to_f
   end
 
@@ -81,7 +103,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def drinks_and_garbage
-    (241.25 + 707.67) / 12.0
+    (241.25 + 707.67 + zero_waste) / 12.0
   end
 
   def red_meat
@@ -108,7 +130,10 @@ class FixedEmission < ApplicationRecord
   end
 
   def alimentation
-    (breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage).round(2)
+    (
+      breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage + tap_water +
+        food_wastes + bulk_food
+    ).round(2)
   end
 
   def yearly_alimentation

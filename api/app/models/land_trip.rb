@@ -15,6 +15,11 @@ class LandTrip < ApplicationRecord
     emission.amount
   end
 
+  def is_eco_driving?(emissions)
+    emissions if vehicle_type != 'diesel_car' || vehicle_type != 'petrol_car'
+    user.user_commitments.where(commitment_id: 3).exists? ? (emissions * 0.85) : emissions
+  end
+
   # Per trip in kgs
 
   def emitted_carbon
@@ -22,9 +27,11 @@ class LandTrip < ApplicationRecord
     when 'electric_car'
       round_trip ? (0.0198 * distance * 2) : (0.0198 * distance)
     when 'diesel_car'
-      round_trip ? (0.157 * distance * 2) : (0.157 * distance)
+      emissions = round_trip ? (0.157 * distance * 2) : (0.157 * distance)
+      is_eco_driving?(emissions)
     when 'petrol_car'
-      round_trip ? (0.1649 * distance * 2) : (0.1649 * distance)
+      emissions = round_trip ? (0.1649 * distance * 2) : (0.1649 * distance)
+      is_eco_driving?(emissions)
     when 'bus'
       round_trip ? (0.104 * distance * 2) : (0.104 * distance)
     when 'tramway'
@@ -37,6 +44,6 @@ class LandTrip < ApplicationRecord
   end
 
   def create_emission
-    Emission.create!(user_id: self.user.id, emissionable: self, amount: self.emitted_carbon)
+    Emission.create!(user_id: user.id, emissionable: self, amount: emitted_carbon.round(2))
   end
 end

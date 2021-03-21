@@ -1,6 +1,6 @@
-require "test_helper"
+require 'test_helper'
 
-class UsersCommitmentTest < ActiveSupport::TestCase
+class UserCommitmentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

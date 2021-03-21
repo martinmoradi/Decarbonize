@@ -98,10 +98,10 @@ ActiveRecord::Schema.define(version: 2021_03_21_110130) do
 
   create_table "user_commitments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "commitments_id", null: false
+    t.bigint "commitment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["commitments_id"], name: "index_user_commitments_on_commitments_id"
+    t.index ["commitment_id"], name: "index_user_commitments_on_commitment_id"
     t.index ["user_id"], name: "index_user_commitments_on_user_id"
   end
 
@@ -125,6 +125,6 @@ ActiveRecord::Schema.define(version: 2021_03_21_110130) do
   add_foreign_key "land_trips", "users"
   add_foreign_key "regular_trips", "land_trips"
   add_foreign_key "regular_trips", "users"
-  add_foreign_key "user_commitments", "commitments", column: "commitments_id"
+  add_foreign_key "user_commitments", "commitments"
   add_foreign_key "user_commitments", "users"
 end

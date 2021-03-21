@@ -78,6 +78,15 @@ Commitment.create!(
 Commitment.create!(title: 'I reduce food waste', description: '-31 kgco2 per year in alimentation')
 Commitment.create!(
   title: 'I buy groceries in a bulk food store',
-  description: '-31 kgco2 per year in alimentation',
+  description: '-35 kgco2 per year in alimentation',
+)
+Commitment.create!(
+  title: "I'm engaged in a zero waste objective",
+  description: '-707.67 kg per year in garbage',
 )
 puts 'Commitments successfully created'
+
+Commitment.all.each do |commitment|
+  UserCommitment.create!(commitment_id: commitment.id, user_id: 1) if Faker::Boolean.boolean
+end
+puts 'Random commitments successfully added on Toto'
