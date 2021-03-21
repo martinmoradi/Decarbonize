@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
@@ -7,52 +7,18 @@ import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
-import { config } from './api';
-import { AuthContext } from './authContext';
-import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/useActions';
+
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
 const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
-  const { state, dispatch } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (state.errorMessage) {
-      console.log(state);
-    }
-  }, [state]);
-
-  const apiLogin = async (body: userPropsType) => {
-    dispatch({
-      type: authActionType.LOGIN_ATTEMPT,
-    });
-    const response = await fetch(
-      `https://decarbonize-perruches.herokuapp.com/login`,
-      config('POST', body)
-    );
-    const { data, error } = await response.json();
-    if (response.ok) {
-      const token: string | null = response.headers.get('Authorization');
-      const user = { ...data };
-      const payload = {
-        user,
-        token,
-        remember: body.remember,
-      };
-      dispatch({
-        type: authActionType.LOGIN_SUCCESS,
-        payload,
-      });
-    } else {
-      dispatch({
-        type: authActionType.LOGIN_ERROR,
-        payload: error,
-      });
-    }
-  };
+  const { login } = useActions();
+  const { errorMessage, isLoading } = useTypedSelector(state => state.authentication);
 
   const {
     handleChange,
@@ -66,7 +32,7 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
     validationSchema: LoginSchema,
     initialValues: { email: '', password: '', remember: true },
     onSubmit: () => {
-      apiLogin(values);
+      login(values);
     },
   });
 
@@ -89,14 +55,14 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
         Use your credentials below and login to your account
       </Text>
 
-      {state.errorMessage && (
+      {errorMessage && (
         <Text
           variant="body"
           style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
           textAlign="center"
           marginBottom="l"
         >
-          {state.errorMessage}
+          {errorMessage}
         </Text>
       )}
       <Box>
@@ -148,7 +114,7 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
           </BorderlessButton>
         </Box>
         <Box alignItems="center" marginTop="m">
-          {state.isLoading ? (
+          {isLoading ? (
             <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
           ) : (
             <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
