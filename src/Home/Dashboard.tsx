@@ -16,7 +16,7 @@ const DashboardScreen = () => {
           paddingBottom="m"
           style={{
             width: width,
-            height: 210,
+            height: 155,
             borderBottomEndRadius: 20,
             borderBottomStartRadius: 20,
           }}

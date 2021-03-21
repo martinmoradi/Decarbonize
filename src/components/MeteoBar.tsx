@@ -6,11 +6,11 @@ import * as Location from 'expo-location';
 const MeteoBar = () => {
   const today = new Date();
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const [city, setCity] = React.useState("Berlin")
-  const [meteo, setMeteo] = React.useState(0);
-  const curHr = today.getHours()
+  const currentHour = today.getHours()
   const [timeFrame, setTimeFrame] = React.useState("Good Morning !"); 
   const [location, setLocation] = React.useState({latitude: 0, longitude: 0});
+  const [meteo, setMeteo] = React.useState(0);
+  const [city, setCity] = React.useState("");
 
 
   const permissionFlow = async ()=>{
@@ -18,39 +18,38 @@ const MeteoBar = () => {
     if(status !== 'granted'){
       throw new Error('Location permission not granted');
     }
-    const templocation = await Location.getCurrentPositionAsync({});
-    setLocation({latitude:templocation.coords.latitude, longitude:templocation.coords.longitude});
-    const geoCode = await Location.reverseGeocodeAsync(location)
-    const city = geoCode[0].city
-    if(!city){
-      throw new Error('City not found');
+    const position = await Location.getCurrentPositionAsync({});
+    if(!position){
+      throw new Error('Location not found');
     }
-    setCity(city);
+    setLocation({latitude:position.coords.latitude, longitude:position.coords.longitude});
   }
 
+  const fetchWeather = async () => {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=c469f11dbd61f2b3429aeefed47dc1b6`
+    );
+    const meteo = await response.json();
+    setMeteo(meteo.main.temp);
+    setCity(`in ${meteo.name}`)
+  };
 
   React.useEffect(()=>{
-    if (curHr < 12) {
+    if (currentHour < 12) {
       setTimeFrame("Good Morning !")
-    } else if (curHr < 18) {
+    } else if (currentHour < 18) {
       setTimeFrame("Good Afternoon !")
     } else {
       setTimeFrame("Good Evening !")
     }
     permissionFlow()
   }, [])
- 
+
   
-  const fetchWeather = async () => {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=c469f11dbd61f2b3429aeefed47dc1b6`
-    );
-    const meteo = await response.json();
-    setMeteo(meteo.main.temp);
-  };
+
   React.useEffect(() => {
     fetchWeather();
-  }, [city]);
+  }, [location]);
 
   return (
     <Box>
@@ -58,7 +57,7 @@ const MeteoBar = () => {
             {timeFrame}
           </Text>
     <Text variant="body" color="white">
-      It's {weekday[today.getDay()]}, temperature outside is {meteo}°C in {city}
+      It's {weekday[today.getDay()]}, temperature outside is {meteo}°C {city}
     </Text>
     </Box>
     
