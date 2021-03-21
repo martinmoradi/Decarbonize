@@ -50,6 +50,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   return (
     <View style={styles.container}>
       <SlideTitle title="FOOD" svgTitle="food" isReversed={true} />
+
       <View style={styles.footer}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
