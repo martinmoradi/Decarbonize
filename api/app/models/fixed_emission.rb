@@ -22,7 +22,7 @@ class FixedEmission < ApplicationRecord
 
   # All Values are exprimed Monthly and return kgCo2
 
-  # COMMITMENTS CHECK
+  # COMMITMENTS CHECKS
 
   def appliances
     user.user_commitments.where(commitment_id: 1).exists? ? (-6.2 / 12.0) : 0
@@ -44,8 +44,8 @@ class FixedEmission < ApplicationRecord
     user.user_commitments.where(commitment_id: 6).exists? ? (-35.0 / 12.0) : 0
   end
 
-  def zero_waste
-    user.user_commitments.where(commitment_id: 7).exists? ? (-707.67) : 0
+  def zero_wastes
+    user.user_commitments.where(commitment_id: 7).exists? ? -707.67 : 0
   end
 
   # HOUSING & HEATING
@@ -73,13 +73,15 @@ class FixedEmission < ApplicationRecord
 
   def housing
     (
-      (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
-        (fuel_consumption * 0.324) + wood_emissions + appliances + reduced_heating
-    ) / roommates.to_f
+      (
+        (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
+          (fuel_consumption * 0.324) + wood_emissions + appliances + reduced_heating
+      ) / roommates.to_f
+    ).round(2)
   end
 
   def yearly_housing
-    housing * 12
+    (housing * 12).round(2)
   end
 
   # SPENDINGS
@@ -103,7 +105,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def drinks_and_garbage
-    (241.25 + 707.67 + zero_waste) / 12.0
+    (241.25 + 707.67 + zero_wastes) / 12.0
   end
 
   def red_meat
@@ -137,7 +139,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def yearly_alimentation
-    alimentation * 12
+    (alimentation * 12).round(2)
   end
 
   # TOTALS

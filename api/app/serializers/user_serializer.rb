@@ -43,4 +43,32 @@ class UserSerializer
   attribute :yearly_spendings do |object|
     object.fixed_emission.yearly_spendings
   end
+
+  attribute :appliances? do |object|
+    object.user_commitments.where(commitment_id: 1).exists?
+  end
+
+  attribute :reduced_heating? do |object|
+    object.user_commitments.where(commitment_id: 2).exists?
+  end
+
+  attribute :eco_driving? do |object|
+    object.user_commitments.where(commitment_id: 3).exists?
+  end
+
+  attribute :tap_water? do |object|
+    object.user_commitments.where(commitment_id: 4).exists?
+  end
+
+  attribute :food_wastes? do |object|
+    object.user_commitments.where(commitment_id: 5).exists?
+  end
+
+  attribute :bulk_food? do |object|
+    object.user_commitments.where(commitment_id: 6).exists?
+  end
+
+  attribute :zero_wastes? do |object|
+    object.user_commitments.where(commitment_id: 7).exists?
+  end
 end
