@@ -3,19 +3,17 @@
 #  t.integer "distance"
 #  t.boolean "round_trip"
 
-class RoadTrip < ApplicationRecord
+class LandTrip < ApplicationRecord
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
   has_many :regular_trips
   after_create :create_emission
-  
+
   attribute :amount
 
   def amount
     emission.amount
   end
-
-
 
   # Per trip in kgs
 
@@ -33,6 +31,8 @@ class RoadTrip < ApplicationRecord
       round_trip ? (0.022 * distance * 2) : (0.022 * distance)
     when 'metro'
       round_trip ? (0.025 * distance * 2) : (0.025 * distance)
+    when 'train'
+      round_trip ? (0.02525 * distance * 2) : (0.02525 * distance)
     end
   end
 

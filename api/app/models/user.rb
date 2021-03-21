@@ -17,69 +17,71 @@ class User < ApplicationRecord
               message: "L'adresse email n'est pas correcte.",
             }
 
+  has_one :fixed_emission, dependent: :destroy
   has_many :emissions, dependent: :destroy
   has_many :air_trips, dependent: :destroy
-  has_many :road_trips, dependent: :destroy
-  has_one :fixed_emission, dependent: :destroy
+  has_many :land_trips, dependent: :destroy
+  has_many :user_commitments, dependent: :destroy
+  has_many :commitments
 
   # TOTALS
 
   def yearly_total
-    (fixed_emission.yearly_fixed_emissions + yearly_roadtrip_emissions + yearly_airtrip_emissions)
+    (fixed_emission.yearly_fixed_emissions + yearly_landtrip_emissions + yearly_airtrip_emissions)
       .round(2)
   end
 
   def monthly_total
     (
-      fixed_emission.monthly_fixed_emissions + monthly_roadtrip_emissions +
+      fixed_emission.monthly_fixed_emissions + monthly_landtrip_emissions +
         monthly_airtrip_emissions
     ).round(2)
   end
 
   def weekly_total
-    (fixed_emission.weekly_fixed_emissions + weekly_roadtrip_emissions + weekly_airtrip_emissions)
+    (fixed_emission.weekly_fixed_emissions + weekly_landtrip_emissions + weekly_airtrip_emissions)
       .round(2)
   end
 
-  # ROAD TRIPS EMISSIONS
+  # LAND TRIPS EMISSIONS
 
-  def total_roadtrip_emissions
-    (road_trips.reduce(0) { |sum, road_trip| sum + road_trip.emission.amount }).round(2)
+  def total_landtrip_emissions
+    (land_trips.reduce(0) { |sum, land_trip| sum + land_trip.emission.amount }).round(2)
   end
 
-  def yearly_roadtrip_emissions
+  def yearly_landtrip_emissions
     (
-      road_trips
+      land_trips
         .where(created_at: Date.today.beginning_of_year..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
 
-  def monthly_roadtrip_emissions
+  def monthly_landtrip_emissions
     (
-      road_trips
+      land_trips
         .where(created_at: Date.today.beginning_of_month..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
 
-  def weekly_roadtrip_emissions
+  def weekly_landtrip_emissions
     (
-      road_trips
+      land_trips
         .where(created_at: Date.today.beginning_of_week..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
 
-  def daily_roadtrip_emissions
-    (road_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
+  def daily_landtrip_emissions
+    (land_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
       .round(2)
   end
 
   # AIR TRIPS EMISSIONS
 
   def total_airtrip_emissions
-    (air_trips.reduce(0) { |sum, road_trip| sum + road_trip.emission.amount }).round(2)
+    (air_trips.reduce(0) { |sum, land_trip| sum + land_trip.emission.amount }).round(2)
   end
 
   def yearly_airtrip_emissions

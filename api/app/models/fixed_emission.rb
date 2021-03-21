@@ -45,6 +45,10 @@ class FixedEmission < ApplicationRecord
     electricity_consumption / 0.15
   end
 
+  def weekly_housing
+    (housing / 4.33).round(2)
+  end
+
   def housing
     (
       (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
@@ -52,12 +56,8 @@ class FixedEmission < ApplicationRecord
     ) / roommates.to_f
   end
 
-  def weekly_housing
-    (housing / 4.33).round(2)
-  end
-
-  def yearly_alimentation
-    alimentation * 12
+  def yearly_housing
+    housing * 12
   end
 
   # SPENDINGS
@@ -111,8 +111,8 @@ class FixedEmission < ApplicationRecord
     (breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage).round(2)
   end
 
-  def yearly_housing
-    housing * 12
+  def yearly_alimentation
+    alimentation * 12
   end
 
   # TOTALS

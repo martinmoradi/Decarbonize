@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RoadTripTest < ActiveSupport::TestCase
+class LandTripTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

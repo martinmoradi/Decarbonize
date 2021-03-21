@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_142817) do
+ActiveRecord::Schema.define(version: 2021_03_21_110130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_142817) do
     t.boolean "round_trip", default: true, null: false
     t.string "departure", null: false
     t.string "arrival", null: false
-    t.float "distance", default: 0.0
+    t.float "distance", default: 0.0, null: false
     t.float "departure_latitude", null: false
     t.float "departure_longitude", null: false
     t.float "arrival_latitude", null: false
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 2021_03_16_142817) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_air_trips_on_user_id"
+  end
+
+  create_table "commitments", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "emissions", force: :cascade do |t|
@@ -44,49 +51,58 @@ ActiveRecord::Schema.define(version: 2021_03_16_142817) do
   create_table "fixed_emissions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.float "house_surface", null: false
-    t.float "electricity_consumption", default: 188.0
-    t.float "gas_consumption", default: 0.0
-    t.float "wood_consumption", default: 0.0
-    t.string "wood_type", default: "wood_logs"
-    t.float "fuel_consumption", default: 0.0
-    t.integer "roommates", default: 1
-    t.float "clothes", default: 0.0
-    t.float "furnitures", default: 0.0
-    t.float "others", default: 0.0
-    t.integer "breakfasts_per_week", default: 0
-    t.integer "red_meats_per_week", default: 0
-    t.integer "vegan_per_week", default: 0
-    t.integer "vegetarian_per_week", default: 0
-    t.integer "white_meats_per_week", default: 0
+    t.float "electricity_consumption", default: 0.0, null: false
+    t.float "gas_consumption", default: 0.0, null: false
+    t.float "wood_consumption", default: 0.0, null: false
+    t.string "wood_type", default: "wood_logs", null: false
+    t.float "fuel_consumption", default: 0.0, null: false
+    t.integer "roommates", default: 1, null: false
+    t.float "clothes", default: 0.0, null: false
+    t.float "furnitures", default: 0.0, null: false
+    t.float "others", default: 0.0, null: false
+    t.integer "breakfasts_per_week", default: 0, null: false
+    t.integer "red_meats_per_week", default: 0, null: false
+    t.integer "vegan_per_week", default: 0, null: false
+    t.integer "vegetarian_per_week", default: 0, null: false
+    t.integer "white_meats_per_week", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_fixed_emissions_on_user_id"
   end
 
-  create_table "regular_trips", force: :cascade do |t|
+  create_table "land_trips", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "road_trip_id", null: false
-    t.boolean "monday", default: false
-    t.boolean "tuesday", default: false
-    t.boolean "wednesday", default: false
-    t.boolean "thursday", default: false
-    t.boolean "friday", default: false
-    t.boolean "saturday", default: false
-    t.boolean "sunday", default: false
+    t.string "vehicle_type", default: "diesel_car", null: false
+    t.integer "distance", null: false
+    t.boolean "round_trip", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["road_trip_id"], name: "index_regular_trips_on_road_trip_id"
+    t.index ["user_id"], name: "index_land_trips_on_user_id"
+  end
+
+  create_table "regular_trips", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "land_trip_id", null: false
+    t.boolean "monday", default: false, null: false
+    t.boolean "tuesday", default: false, null: false
+    t.boolean "wednesday", default: false, null: false
+    t.boolean "thursday", default: false, null: false
+    t.boolean "friday", default: false, null: false
+    t.boolean "saturday", default: false, null: false
+    t.boolean "sunday", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["land_trip_id"], name: "index_regular_trips_on_land_trip_id"
     t.index ["user_id"], name: "index_regular_trips_on_user_id"
   end
 
-  create_table "road_trips", force: :cascade do |t|
+  create_table "user_commitments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "vehicle_type", default: "diesel_car"
-    t.integer "distance", null: false
-    t.boolean "round_trip", default: false
+    t.bigint "commitments_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_road_trips_on_user_id"
+    t.index ["commitments_id"], name: "index_user_commitments_on_commitments_id"
+    t.index ["user_id"], name: "index_user_commitments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,7 +122,9 @@ ActiveRecord::Schema.define(version: 2021_03_16_142817) do
   add_foreign_key "air_trips", "users"
   add_foreign_key "emissions", "users"
   add_foreign_key "fixed_emissions", "users"
-  add_foreign_key "regular_trips", "road_trips"
+  add_foreign_key "land_trips", "users"
+  add_foreign_key "regular_trips", "land_trips"
   add_foreign_key "regular_trips", "users"
-  add_foreign_key "road_trips", "users"
+  add_foreign_key "user_commitments", "commitments", column: "commitments_id"
+  add_foreign_key "user_commitments", "users"
 end
