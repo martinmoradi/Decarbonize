@@ -6,7 +6,9 @@ export enum AuthActionType {
   SIGNUP_ATTEMPT = 'signup_attempt',
   SIGNUP_SUCCESS = 'signup_success',
   SIGNUP_ERROR = 'signup_error',
-  LOAD_USER = 'load_user',
+  LOAD_USER_ATTEMPT = 'load_user_attempt',
+  LOAD_USER_SUCCESS = 'load_user_success',
+  LOAD_USER_ERROR = 'load_user_error',
 }
 
 export interface UserParamsType {

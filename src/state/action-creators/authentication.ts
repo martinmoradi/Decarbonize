@@ -73,7 +73,32 @@ export const login = (loginParams: UserParamsType) => {
 };
 
 export const loadUser = () => {
-  
-} 
+  return async (dispatch: Dispatch<AuthAction>) => {
+    dispatch({
+      type: AuthActionType.LOAD_USER_ATTEMPT,
+    });
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token) return;
+      const response = await fetch(`http://127.0.0.1:3000/login`, {
+        method: 'POST',
+        headers: headers(token),
+      });
+      const { data, error } = await response.json();
+      if (!response.ok) {
+        throw new Error(error);
+      }
+      dispatch({
+        type: AuthActionType.LOAD_USER_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: AuthActionType.LOAD_USER_ERROR,
+        payload: err.message,
+      });
+    }
+  };
+};
 
 export const deleteAccount = () => {};
