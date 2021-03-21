@@ -9,19 +9,19 @@ const { width, height } = Dimensions.get('window');
 const HistoryScreen = () => {
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
+      <View style={{ alignItems: 'center', marginTop: height / 20 }}>
         <Box
           alignItems="center"
-          style={{ width: width - 30, height: 400, borderRadius: 10 }}
+          style={{ width: width, borderRadius: 10, paddingLeft:30 }}
           justifyContent="center"
           backgroundColor="primary"
         >
           <HistoryGraph/>
         </Box>
         <Box
-          marginTop="xl"
+          marginTop="s"
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={{ width: width, borderRadius: 10 }}
           justifyContent="center"
           backgroundColor="info"
         >
@@ -30,7 +30,7 @@ const HistoryScreen = () => {
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -42,7 +42,7 @@ const HistoryScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -54,7 +54,7 @@ const HistoryScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -66,7 +66,7 @@ const HistoryScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -78,7 +78,7 @@ const HistoryScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
@@ -90,7 +90,7 @@ const HistoryScreen = () => {
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 50, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"

@@ -18,7 +18,15 @@ const DashboardScreen = () => {
             width: width,
             height: 155,
             borderBottomEndRadius: 20,
-            borderBottomStartRadius: 20,
+            borderBottomStartRadius: 20,shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 9,
+},
+shadowOpacity: 0.50,
+shadowRadius: 12.35,
+
+elevation: 19,
           }}
           backgroundColor="primary"
           marginBottom="s"
