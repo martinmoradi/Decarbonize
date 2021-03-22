@@ -58,7 +58,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 20,
+            bottom: hp('2.5%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}
