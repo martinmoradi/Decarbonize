@@ -6,7 +6,6 @@ import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const DashboardScreen = () => {
-
   return (
     <ScrollView>
       <Box style={{ alignItems: 'center' }}>
@@ -23,7 +22,7 @@ const DashboardScreen = () => {
           backgroundColor="primary"
           marginBottom="s"
         >
-          <MeteoBar/>
+          <MeteoBar />
         </Box>
 
         <Box
@@ -38,13 +37,12 @@ const DashboardScreen = () => {
           marginTop="s"
           paddingTop="m"
           marginBottom="s"
-
           style={{ width: width, height: 100, borderRadius: 20 }}
           justifyContent="center"
           backgroundColor="info"
         >
           <Text variant="title3" color="white" margin="s">
-            Cette semaine :{' '}
+            Cette semaine :
           </Text>
           <Box
             alignItems="center"
@@ -53,7 +51,6 @@ const DashboardScreen = () => {
             backgroundColor="primary"
           >
             <Text variant="title2" color="white">
-              {' '}
               Food Boxes
             </Text>
           </Box>
@@ -66,7 +63,7 @@ const DashboardScreen = () => {
           backgroundColor="info"
         >
           <Text variant="title3" color="white" margin="s">
-            Tes Trajets :{' '}
+            Tes Trajets :
           </Text>
           <Box
             alignItems="center"
@@ -76,7 +73,6 @@ const DashboardScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Trajet 1
             </Text>
           </Box>
@@ -88,7 +84,6 @@ const DashboardScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Trajet 2
             </Text>
           </Box>
@@ -100,7 +95,6 @@ const DashboardScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Trajet 3
             </Text>
           </Box>
@@ -112,7 +106,6 @@ const DashboardScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Trajet 4
             </Text>
           </Box>
@@ -124,7 +117,6 @@ const DashboardScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Trajet 5
             </Text>
           </Box>
@@ -136,7 +128,6 @@ const DashboardScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Trajet 6
             </Text>
           </Box>

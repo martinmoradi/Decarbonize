@@ -16,7 +16,7 @@ const HistoryScreen = () => {
           justifyContent="center"
           backgroundColor="primary"
         >
-          <HistoryGraph/>
+          <HistoryGraph />
         </Box>
         <Box
           marginTop="xl"
@@ -26,7 +26,7 @@ const HistoryScreen = () => {
           backgroundColor="info"
         >
           <Text variant="title3" color="white" margin="s">
-            Ton historique :{' '}
+            Ton historique :
           </Text>
           <Box
             alignItems="center"
@@ -36,7 +36,6 @@ const HistoryScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Semaine 1 - CO2 - Score
             </Text>
           </Box>
@@ -48,7 +47,6 @@ const HistoryScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Semaine 2 - CO2 - Score
             </Text>
           </Box>
@@ -60,7 +58,6 @@ const HistoryScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Semaine 3 - CO2 - Score
             </Text>
           </Box>
@@ -72,7 +69,6 @@ const HistoryScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Semaine 4 - CO2 - Score
             </Text>
           </Box>
@@ -84,7 +80,6 @@ const HistoryScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Semaine 5 - CO2 - Score
             </Text>
           </Box>
@@ -96,7 +91,6 @@ const HistoryScreen = () => {
             borderBottomColor="white"
           >
             <Text variant="title3" color="white">
-              {' '}
               Semaine 6 - CO2 - Score
             </Text>
           </Box>

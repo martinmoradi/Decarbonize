@@ -24,6 +24,7 @@ export const signup = (signupParams: UserParamsType) => {
       }
       const token = response.headers.get('Authorization');
       if (remember && token) {
+        await AsyncStorage.removeItem('token');
         await AsyncStorage.setItem('token', token);
       }
       dispatch({
@@ -103,6 +104,7 @@ export const loadUser = () => {
 
 export const logout = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
+    await AsyncStorage.removeItem('token');
     dispatch({
       type: AuthActionType.LOGOUT,
     });

@@ -1,12 +1,11 @@
 import { useFormik } from 'formik';
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { ActivityIndicator, Dimensions, TextInput as RNTextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import Footer from './components/Footer';
-import OnboardingContext from './onboardingContext/OnboardingContext';
 import { useActions, useTypedSelector } from '../hooks/';
 import { AuthNavigationProps } from '../components/Navigation';
 
@@ -19,9 +18,8 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
-  const { postForm, signup } = useActions();
+  const { signup } = useActions();
   const { height } = Dimensions.get('window');
-  const { onboardingData } = useContext(OnboardingContext);
   const { errorMessage, isLoading } = useTypedSelector(state => state.authentication);
 
   const {
@@ -42,7 +40,6 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
     },
     onSubmit: () => {
       signup(values);
-      postForm(onboardingData);
     },
   });
   const password = useRef<RNTextInput>(null);
@@ -64,16 +61,16 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
         <Text variant="body" textAlign="center" marginBottom="l">
           Let’s us know what your email and your password
         </Text>
-        {errorMessage && (
+        {errorMessage ? (
           <Text
             variant="body"
             style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
             textAlign="center"
             marginBottom="l"
           >
-            {errorMessage}
+            errorMessage
           </Text>
-        )}
+        ) : null}
         <Box>
           <Box marginBottom="m">
             <TextInput

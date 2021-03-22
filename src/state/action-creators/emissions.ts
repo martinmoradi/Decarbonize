@@ -13,14 +13,11 @@ export const postForm = (onboardingData: IOnboardingDataType) => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
-      const response = await fetch(
-        `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
-        {
-          method: 'POST',
-          headers: headers(token),
-          body: { ...onboardingData },
-        }
-      );
+      const response = await fetch(`http://127.0.0.1:3000/api/v1/fixed_emissions`, {
+        method: 'POST',
+        headers: headers(token),
+        body: JSON.stringify({ fixed_emission: { ...onboardingData } }),
+      });
       const { data, error } = await response.json();
       if (!response.ok) {
         throw new Error(error);
