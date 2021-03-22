@@ -38,6 +38,14 @@ const HistoryGraph = () => {
         data={data}
       />
       <VictoryScatter data={data} size={4} />
+      <VictoryLegend x={125} y={10}
+  title="History"
+  centerTitle
+  orientation="horizontal"
+  gutter={20}
+  style={{ title: {fontSize: 20, fontweight: 'bold'} }}
+  data={[]}
+/>
     </VictoryChart>
   );
 };

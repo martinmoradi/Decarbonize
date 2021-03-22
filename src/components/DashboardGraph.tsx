@@ -44,7 +44,7 @@ const DashboardGraph = () => {
       domainPadding={80}
       theme={VictoryTheme.material}
       animate={{
-        duration: 2000,
+        duration: 1000,
       }}
     >
       <VictoryAxis tickValues={[1, 2]} tickFormat={['Reco', 'You']} />
