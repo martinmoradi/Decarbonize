@@ -20,7 +20,6 @@ export const HomeNavigator = () => {
 
   useEffect(() => {
     if (user) {
-      // @ts-ignore
       const { has_completed_onboarding } = user;
       if (isEmpty && !has_completed_onboarding) {
         postForm(onboardingData);
