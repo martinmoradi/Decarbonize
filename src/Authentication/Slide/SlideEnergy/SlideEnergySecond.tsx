@@ -52,7 +52,6 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     !fuelHeating ? onChangeFuel(0) : null;
     !gasHeating ? onChangeGas(0) : null;
   }, [heat]);
-  console.log('render energy second');
 
   const theme = useTheme();
   const styles = StyleSheet.create({
