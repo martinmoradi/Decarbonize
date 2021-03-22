@@ -10,23 +10,26 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
 
   # GET /fixed_emissions/1
   def show
-    render json: @fixed_emission
+    render json: {
+             status: {
+               code: 200,
+             },
+             data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+           }
   end
 
   # POST /fixed_emissions
   def create
     @fixed_emission = FixedEmission.new(fixed_emission_params)
     @fixed_emission.user_id = current_user.id
-
     if @fixed_emission.save
-      Emission.create!(
-        amount: @fixed_emission.monthly_emitted_carbon,
-        emissionable: @fixed_emission,
-        user_id: current_user.id
-      )
-      render json: @fixed_emission,
-             status: :created,
-             location: api_v1_fixed_emissions_url(@fixed_emission)
+      render json: {
+               status: {
+                 code: 200,
+                 message: 'Fixed emission was successfully created',
+               },
+               data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+             }
     else
       render json: @fixed_emission.errors, status: :unprocessable_entity
     end
@@ -73,7 +76,7 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
         :red_meats_per_week,
         :vegan_per_week,
         :vegetarian_per_week,
-        :white_meats_per_week
+        :white_meats_per_week,
       )
   end
 end
