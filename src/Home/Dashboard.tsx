@@ -31,7 +31,7 @@ const DashboardScreen = () => {
           backgroundColor="primary"
           marginBottom="s"
         >
-          {/* <MeteoBar /> */}
+          <MeteoBar />
         </Box>
 
         <Box
