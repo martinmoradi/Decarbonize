@@ -3,8 +3,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions, ScrollView, View, Image } from 'react-native';
-import { Box, Text, TextButton } from '../components';
+import { Dimensions, ScrollView, View, Image, StyleSheet } from 'react-native';
+import { Box, Text, useTheme } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
 import TravelMode from './TravelMode';
@@ -12,8 +12,16 @@ import TravelMode from './TravelMode';
 const NewTripScreen = ({ navigation }) => {
   const carImg = require('../../assets/images/car.jpg');
 
+  const theme = useTheme();
+
   return (
     <ScrollView>
+      <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.primary,
+        }}
+      ></View>
       <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
         <Box
           paddingLeft="m"
@@ -30,9 +38,6 @@ const NewTripScreen = ({ navigation }) => {
               width: 0,
               height: 9,
             },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
           }}
           backgroundColor="primary"
           marginBottom="s"
@@ -59,15 +64,15 @@ const NewTripScreen = ({ navigation }) => {
             shadowRadius: 12.35,
             elevation: 19,
           }}
-          backgroundColor="primary"
+          backgroundColor="white"
         >
-          <Text variant="title2" color="white">
+          <Text variant="title2" color="primary">
             SVG
           </Text>
         </Box>
         <Box
           paddingTop="m"
-          style={{ width: width, borderRadius: 30 }}
+          style={{ width: width, borderTopLeftRadius: 30, borderTopRightRadius: 30 }}
           justifyContent="center"
           alignItems="center"
           backgroundColor="white"
@@ -86,63 +91,133 @@ const NewTripScreen = ({ navigation }) => {
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCarTrip')}
             >
-              <TravelMode travelMode="Car travel" imgUrl="carImg" />
+              <View
+                style={{
+                  marginLeft: wp('10%'),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={require('../../assets/images/car.jpg')}
+                  style={{ height: 70, width: 70, borderRadius: 15 }}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Car Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={{ width: wp('90%'), height: 80, borderBottomWidth: 2, borderRadius: 20 }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCommonTrip')}
             >
-              <Text variant="button">Bus</Text>
+              <View
+                style={{
+                  marginLeft: wp('10%'),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={require('../../assets/images/bus.jpg')}
+                  style={{ height: 70, width: 70, borderRadius: 15 }}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Bus Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={{ width: wp('90%'), height: 80, borderBottomWidth: 2, borderRadius: 20 }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCommonTrip')}
             >
-              <Text variant="button">Metro</Text>
+              <View
+                style={{
+                  marginLeft: wp('10%'),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={require('../../assets/images/subway.jpg')}
+                  style={{ height: 70, width: 70, borderRadius: 15 }}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Subway Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={{ width: wp('90%'), height: 80, borderBottomWidth: 2, borderRadius: 20 }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCommonTrip')}
             >
-              <Text variant="button">Train</Text>
+              <View
+                style={{
+                  marginLeft: wp('10%'),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={require('../../assets/images/subway.jpg')}
+                  style={{ height: 70, width: 70, borderRadius: 15 }}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Train Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={{ width: wp('90%'), height: 80, borderBottomWidth: 2, borderRadius: 20 }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewAirTrip')}
             >
-              <Text variant="button">Avion</Text>
+              <View
+                style={{
+                  marginLeft: wp('10%'),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={require('../../assets/images/subway.jpg')}
+                  style={{ height: 70, width: 70, borderRadius: 15 }}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Airplane Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
         </Box>
