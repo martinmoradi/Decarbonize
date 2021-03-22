@@ -20,22 +20,23 @@ const[recommendedData, setRecommendedData] = React.useState({recommendedHousing:
 
 const switchYearly = ()=>{
   setUserData({userHousing: data.yearly_housing, userFood: data.yearly_alimentation, userSpendings: data.yearly_spendings, userTravel: data.yearly_landtrip_emissions + data.yearly_airtrip_emissions})
-  setRecommendedData({recommendedHousing: 1700, recommendedFood: 1700, recommendedSpendings: 1700, recommendedTravel:1700})
+  setRecommendedData({recommendedHousing: 1700, recommendedFood: 2000, recommendedSpendings: 1500, recommendedTravel:1600})
 }
 
 const switchMonthly = ()=>{
   setUserData({userHousing: data.monthly_housing, userFood: data.monthly_alimentation, userSpendings: data.monthly_spendings, userTravel: data.monthly_landtrip_emissions + data.monthly_airtrip_emissions})
-  setRecommendedData({recommendedHousing: 170, recommendedFood: 170, recommendedSpendings: 170, recommendedTravel:170})
+  setRecommendedData({recommendedHousing: 141, recommendedFood: 166, recommendedSpendings: 125, recommendedTravel:133})
 }
 
 //// IL MANQUE WEEKLY_ALIMENTATION DANS LE STATE
 const switchWeekly = ()=>{
-  setUserData({userHousing: data.weekly_housing, userFood: data.monthly_alimentation, userSpendings: data.weekly_spendings, userTravel: data.weekly_landtrip_emissions + data.weekly_airtrip_emissions})
-  setRecommendedData({recommendedHousing: 50, recommendedFood: 50, recommendedSpendings: 50, recommendedTravel:50})
+  setUserData({userHousing: data.weekly_housing, userFood: data.weekly_alimentation, userSpendings: data.weekly_spendings, userTravel: data.weekly_landtrip_emissions + data.weekly_airtrip_emissions})
+  setRecommendedData({recommendedHousing: 4.5, recommendedFood: 5.4, recommendedSpendings: 4.1, recommendedTravel:4.3})
 }
 
 React.useEffect(()=>{
-switchYearly()
+  console.log(data)
+switchWeekly()
 },[data])
 
 
@@ -71,7 +72,7 @@ const travel = [
       }}
     >
       <VictoryAxis tickValues={[1, 2]} tickFormat={['Reco', 'You']} />
-      <VictoryAxis dependentAxis tickFormat={x => `${x / 1000}k`} />
+      <VictoryAxis dependentAxis tickFormat={x => `${x}kg`} />
       <VictoryStack>
         <VictoryBar data={housing} x="graph" y="co2Amount" />
         <VictoryBar data={food} x="graph" y="co2Amount" />
@@ -80,9 +81,12 @@ const travel = [
       </VictoryStack>
       <VictoryLegend
         x={20}
-        y={10}
+        y={2}
+        title="Kg Co2 emitted"
+        centerTitle
         orientation="horizontal"
         gutter={20}
+        
         data={[
           { name: 'Housing', symbol: { fill: 'tomato' } },
           { name: 'Food', symbol: { fill: 'gold' } },
@@ -94,9 +98,10 @@ const travel = [
 
     </VictoryChart>
     <Box style={{flexDirection:"row" ,justifyContent: 'center'}}>
-    <TextButton label="Yearly" onPress={switchYearly} style={{width:60, margin: 5}}/>
-    <TextButton label="Monthly" onPress={switchMonthly} style={{width:60, margin: 5}}/>
     <TextButton label="Weekly" onPress={switchWeekly} style={{width:60, margin: 5}}/>
+    <TextButton label="Monthly" onPress={switchMonthly} style={{width:60, margin: 5}}/>
+    <TextButton label="Yearly" onPress={switchYearly} style={{width:60, margin: 5}}/>
+
     </Box>
     </Box>
   );

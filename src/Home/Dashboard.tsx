@@ -11,7 +11,7 @@ const DashboardScreen = () => {
       <Box style={{ alignItems: 'center' }}>
         <Box
           paddingLeft="m"
-          marginTop="s"
+          paddingTop="s"
           justifyContent="flex-end"
           paddingBottom="m"
           style={{
