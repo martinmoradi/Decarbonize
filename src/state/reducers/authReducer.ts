@@ -15,6 +15,7 @@ const initialState: AuthStateType = {
 
 const authReducer = (state = initialState, action: AuthAction): AuthStateType => {
   switch (action.type) {
+    case AuthActionType.LOAD_USER_ATTEMPT:
     case AuthActionType.LOGIN_ATTEMPT:
     case AuthActionType.SIGNUP_ATTEMPT:
       return {
@@ -22,6 +23,7 @@ const authReducer = (state = initialState, action: AuthAction): AuthStateType =>
         errorMessage: null,
         isLoading: true,
       };
+    case AuthActionType.LOAD_USER_SUCCESS:
     case AuthActionType.SIGNUP_SUCCESS:
     case AuthActionType.LOGIN_SUCCESS:
       return {
@@ -29,6 +31,7 @@ const authReducer = (state = initialState, action: AuthAction): AuthStateType =>
         errorMessage: null,
         isLoading: false,
       };
+    case AuthActionType.LOAD_USER_ERROR:
     case AuthActionType.SIGNUP_ERROR:
     case AuthActionType.LOGIN_ERROR:
       return {

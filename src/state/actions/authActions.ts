@@ -41,10 +41,12 @@ interface LoadUserAttempt {
 
 interface LoadUserSuccess {
   type: AuthActionType.LOAD_USER_SUCCESS;
+  payload: UserType;
 }
 
 interface LoadUserError {
   type: AuthActionType.LOAD_USER_ERROR;
+  payload: string;
 }
 
 export type AuthAction =

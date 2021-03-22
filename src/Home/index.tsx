@@ -22,7 +22,7 @@ export const HomeNavigator = () => {
     if (isEmpty) {
       postForm(onboardingData);
     }
-  }, [user]);
+  }, []);
 
   return (
     <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>

@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AuthenticationNavigator } from '../../Authentication';
-import { useTypedSelector } from '../../hooks';
+import { useTypedSelector, useActions } from '../../hooks';
 import { AppRoutesParamsList } from '../../components/Navigation';
 import { HomeNavigator } from '../../Home';
 

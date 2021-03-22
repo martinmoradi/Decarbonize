@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { headers } from '../../api/decarbonizeApi';
+import { headers } from '../../tools/api';
 import { EmissionsAction } from '../actions';
 import { EmissionsActionType } from '../types';
 import { IOnboardingDataType } from '../../Authentication/onboardingTypes';
