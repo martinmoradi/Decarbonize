@@ -24,12 +24,12 @@ export interface EmissionsType {
     weekly_spendings: number;
     monthly_spendings: number;
     yearly_spendings: number;
-    'appliances?': boolean;
-    'reduced_heating?': boolean;
-    'eco_driving?': boolean;
-    'tap_water?': boolean;
-    'food_wastes?': boolean;
-    'bulk_food?': boolean;
-    'zero_wastes?': boolean;
+    appliances: boolean;
+    reduced_heating: boolean;
+    eco_driving: boolean;
+    tap_water: boolean;
+    food_wastes: boolean;
+    bulk_food: boolean;
+    zero_wastes: boolean;
   };
 }

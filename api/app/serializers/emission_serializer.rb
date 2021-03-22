@@ -44,31 +44,31 @@ class EmissionSerializer
     object.fixed_emission.yearly_spendings
   end
 
-  attribute :appliances? do |object|
+  attribute :appliances do |object|
     object.user_commitments.where(commitment_id: 1).exists?
   end
 
-  attribute :reduced_heating? do |object|
+  attribute :reduced_heating do |object|
     object.user_commitments.where(commitment_id: 2).exists?
   end
 
-  attribute :eco_driving? do |object|
+  attribute :eco_driving do |object|
     object.user_commitments.where(commitment_id: 3).exists?
   end
 
-  attribute :tap_water? do |object|
+  attribute :tap_water do |object|
     object.user_commitments.where(commitment_id: 4).exists?
   end
 
-  attribute :food_wastes? do |object|
+  attribute :food_wastes do |object|
     object.user_commitments.where(commitment_id: 5).exists?
   end
 
-  attribute :bulk_food? do |object|
+  attribute :bulk_food do |object|
     object.user_commitments.where(commitment_id: 6).exists?
   end
 
-  attribute :zero_wastes? do |object|
+  attribute :zero_wastes do |object|
     object.user_commitments.where(commitment_id: 7).exists?
   end
 end
