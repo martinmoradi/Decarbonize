@@ -91,7 +91,7 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "Bus"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "bus"})}
             >
               <Text variant="button">Bus</Text>
             </BorderlessButton>
@@ -105,7 +105,21 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "Metro"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "tramway"})}
+            >
+              <Text variant="button">Tramway</Text>
+            </BorderlessButton>
+          </Box>
+          <Box
+            alignItems="center"
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            justifyContent="center"
+            backgroundColor="primary"
+            borderBottomColor="white"
+          >
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "metro"})}
             >
               <Text variant="button">Metro</Text>
             </BorderlessButton>
@@ -119,7 +133,7 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen',  {type: "Train"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen',  {type: "train"})}
             >
               <Text variant="button">Train</Text>
             </BorderlessButton>
