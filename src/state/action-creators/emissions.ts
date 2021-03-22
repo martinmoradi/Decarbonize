@@ -62,6 +62,8 @@ export const fetchEmissions = () => {
         payload: data,
       });
     } catch (err) {
+      console.log(err.message)
+
       dispatch({
         type: EmissionsActionType.FETCH_EMISSIONS_ERROR,
         payload: err.message,

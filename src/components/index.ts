@@ -7,3 +7,5 @@ export { Box, makeStyles, Text, useTheme } from './Theme';
 export { default as DashboardGraph } from './DashboardGraph';
 export { default as MeteoBar } from './MeteoBar';
 export {default as VictoryCustomTheme} from './VictoryCustomTheme';
+export { default as TextButton } from './TextButton';
+export {default as Trajet} from './Trajet';
