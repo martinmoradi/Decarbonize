@@ -6,3 +6,4 @@ export { default as RoundedIconButton } from './RoundedIconButton';
 export { Box, makeStyles, Text, useTheme } from './Theme';
 export { default as DashboardGraph } from './DashboardGraph';
 export { default as MeteoBar } from './MeteoBar';
+export {default as VictoryCustomTheme} from './VictoryCustomTheme';
