@@ -30,7 +30,7 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
     end
   end
 
-  end
+  
 
   # PATCH/PUT /land_trip/1
   def update
