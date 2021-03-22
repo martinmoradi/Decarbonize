@@ -53,7 +53,7 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_fixed_emission
-    @fixed_emission = FixedEmission.find_by(user_id: current_user.id)
+    @fixed_emission = FixedEmission.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
