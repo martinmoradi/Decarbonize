@@ -7,7 +7,7 @@ import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
 
-const SlideFood2 = ({ onPress }: PropsSlide) => {
+const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
   const { onChangeVegetarian, onChangeVegan } = food;
 
@@ -57,7 +57,7 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
             How much do you eat vegetarian meal ?
           </Text>
           <View style={{ padding: 6 }}></View>
-          <Text variant="body">{vegetarianValue} : per week</Text>
+          <Text variant="body">{vegetarianValue} / week</Text>
           <SliderOnboarding
             onValueChange={setVegetarianValue}
             onSlidingComplete={onChangeVegetarian}
@@ -71,7 +71,7 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegan meal ? ?
           </Text>
-          <Text variant="body">{veganValue} : per week</Text>
+          <Text variant="body">{veganValue} / week</Text>
           <SliderOnboarding
             onValueChange={setVeganValue}
             onSlidingComplete={onChangeVegan}
@@ -99,4 +99,4 @@ const SlideFood2 = ({ onPress }: PropsSlide) => {
   );
 };
 
-export default SlideFood2;
+export default SlideFoodSecond;

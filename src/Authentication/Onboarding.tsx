@@ -6,7 +6,7 @@ import SlideEnergy from './Slide/SlideEnergy/SlideEnergy';
 import SlideEnergySecond from './Slide/SlideEnergy/SlideEnergySecond';
 import SlideEnergyThird from './Slide/SlideEnergy/SlideEnergyThird';
 import SlideFood from './Slide/SlideFood/SlideFood';
-import SlideFood2 from './Slide/SlideFood/SlideFood2';
+import SlideFoodSecond from './Slide/SlideFood/SlideFoodSecond';
 import SlideHousing from './Slide/SlideHousing/SlideHousing';
 import SlideHousingBis from './Slide/SlideHousing/SlideHousingBis';
 import OnboardingContext from './onboardingContext/OnboardingContext';
@@ -30,7 +30,9 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
         <SlideFood onPress={() => scroll.current?.scrollTo({ x: width * 1, animated: true })} />
       </View>
       <View style={{ width }}>
-        <SlideFood2 onPress={() => scroll.current?.scrollTo({ x: width * 2, animated: true })} />
+        <SlideFoodSecond
+          onPress={() => scroll.current?.scrollTo({ x: width * 2, animated: true })}
+        />
       </View>
       <View style={{ width }}>
         <SlideEnergy onPress={() => scroll.current?.scrollTo({ x: width * 3, animated: true })} />

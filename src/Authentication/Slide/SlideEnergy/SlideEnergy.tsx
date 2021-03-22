@@ -21,12 +21,6 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   };
 
   const styles = StyleSheet.create({
-    footer: {
-      flex: 1,
-      borderTopRightRadius: 100,
-      backgroundColor: 'white',
-    },
-
     title: {
       height: 100,
       justifyContent: 'center',

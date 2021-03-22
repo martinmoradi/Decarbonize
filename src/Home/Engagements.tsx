@@ -4,6 +4,7 @@ import { Text, Box } from '../components';
 import { Dimensions } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Tips from '../components/Tips/Tips';
+import { ecologyFacts } from '../data/ecologyFacts';
 const { width, height } = Dimensions.get('window');
 
 const EngagementsScreen = () => {
@@ -31,10 +32,13 @@ const EngagementsScreen = () => {
     { title: 'Item8' },
   ];
 
-  const renderItem = ({ item }) => {
+  type PropsRenderItem = {
+    item: string;
+  };
+  const renderItem = ({ item }: PropsRenderItem) => {
     return (
-      <Text variant="title2" color="white" style={{ textAlign: 'center' }}>
-        {item.title}
+      <Text variant="body" color="white" style={{ textAlign: 'center' }}>
+        {item}
       </Text>
     );
   };
@@ -49,7 +53,7 @@ const EngagementsScreen = () => {
           backgroundColor="primary"
         >
           <Carousel
-            data={tipsData}
+            data={ecologyFacts}
             renderItem={renderItem}
             sliderWidth={width}
             itemWidth={height / 3}
