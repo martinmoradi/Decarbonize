@@ -85,8 +85,8 @@ const EngagementsScreen = () => {
           <Text variant="title3" color="white" margin="s">
             Engagements :{' '}
           </Text>
-          {engagementsData.map((item, index) => (
-            <Tips engagement={item} index={index} />
+          {engagementsData?.map((item, index) => (
+            <Tips engagement={item} index={index} key={`${(item.title, index)}`} />
           ))}
         </Box>
       </View>

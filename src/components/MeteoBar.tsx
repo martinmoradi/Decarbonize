@@ -53,10 +53,13 @@ const MeteoBar = () => {
       <Text variant="title2" color="white" marginBottom="m">
         {timeFrame} ☀️
       </Text>
-      {location.latitude!==0?   <Text variant="body" color="white">
-        It's {weekday[today.getDay()]}, temperature outside is {meteo}°C {city}
-      </Text>: <Text variant="body" color="white"></Text>}
-    
+      {location.latitude !== 0 ? (
+        <Text variant="body" color="white">
+          It's {weekday[today.getDay()]}, temperature outside is {meteo}°C {city}
+        </Text>
+      ) : (
+        <Text variant="body" color="white"></Text>
+      )}
     </Box>
   );
 };

@@ -31,7 +31,7 @@ const DashboardScreen = () => {
           backgroundColor="primary"
           marginBottom="s"
         >
-          <MeteoBar />
+          {/* <MeteoBar /> */}
         </Box>
 
         <Box
@@ -110,12 +110,12 @@ const DashboardScreen = () => {
           <Text variant="title3" color="white" margin="s">
             Tes Trajets :
           </Text>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
+          <Trajet />
+          <Trajet />
+          <Trajet />
+          <Trajet />
+          <Trajet />
+          <Trajet />
         </Box>
       </Box>
     </ScrollView>

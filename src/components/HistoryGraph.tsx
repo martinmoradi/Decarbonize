@@ -1,5 +1,11 @@
 import React from 'react';
-import { VictoryLine, VictoryChart, VictoryScatter, VictoryAxis, VictoryLegend } from 'victory-native';
+import {
+  VictoryLine,
+  VictoryChart,
+  VictoryScatter,
+  VictoryAxis,
+  VictoryLegend,
+} from 'victory-native';
 import { VictoryCustomTheme } from '.';
 
 const data = [
@@ -24,7 +30,6 @@ const HistoryGraph = () => {
         duration: 1000,
       }}
       style={{}}
-      
     >
       <VictoryAxis style={{ grid: { stroke: 'transparent' } }} />
       <VictoryAxis
@@ -38,14 +43,16 @@ const HistoryGraph = () => {
         data={data}
       />
       <VictoryScatter data={data} size={4} />
-      <VictoryLegend x={125} y={10}
-  title="History"
-  centerTitle
-  orientation="horizontal"
-  gutter={20}
-  style={{ title: {fontSize: 20, fontweight: 'bold'} }}
-  data={[]}
-/>
+      <VictoryLegend
+        x={125}
+        y={10}
+        title="History"
+        centerTitle
+        orientation="horizontal"
+        gutter={20}
+        style={{ title: { fontSize: 20, fontweight: 'bold' } }}
+        data={[]}
+      />
     </VictoryChart>
   );
 };

@@ -26,6 +26,7 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
       <Box
         flexDirection="row"
         height={48}
+        borderRadius="xl"
         alignItems="center"
         borderWidth={StyleSheet.hairlineWidth}
         borderColor={color}
