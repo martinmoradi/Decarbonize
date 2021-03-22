@@ -3,8 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../api/decarbonizeApi';
 import { EmissionsAction } from '../actions';
 import { EmissionsActionType } from '../types';
+import { IOnboardingDataType } from '../../Authentication/onboardingTypes';
 
-export const postForm = onboardingData => {
+export const postForm = (onboardingData: IOnboardingDataType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
