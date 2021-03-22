@@ -95,7 +95,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def yearly_spendings
-    spendings * 12
+    (spendings * 12).round(2)
   end
 
   # ALIMENTATION

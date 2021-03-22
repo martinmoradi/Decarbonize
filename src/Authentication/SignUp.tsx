@@ -1,16 +1,13 @@
 import { useFormik } from 'formik';
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { ActivityIndicator, Dimensions, TextInput as RNTextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
-import { AuthNavigationProps } from '../components/Navigation';
-import { config, configQuiz } from './api';
-import { AuthContext } from './authContext';
-import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
-import OnboardingContext from './onboardingContext/OnboardingContext';
+import { useActions, useTypedSelector } from '../hooks/';
+import { AuthNavigationProps } from '../components/Navigation';
 
 const SignUpSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
@@ -21,67 +18,9 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
+  const { signup } = useActions();
   const { height } = Dimensions.get('window');
-  const { onboardingData } = useContext(OnboardingContext);
-  const { state, dispatch } = useContext(AuthContext);
-
-
-  const apiSignup = async (body: userPropsType) => {
-    dispatch({
-      type: authActionType.SIGNUP_ATTEMPT,
-    });
-
-    try {
-      const response = await fetch(
-        `https://decarbonize-perruches.herokuapp.com/signup`,
-        config('POST', body)
-      );
-      const { data, error } = await response.json();
-
-      if (!response.ok) {
-        dispatch({
-          type: authActionType.SIGNUP_ERROR,
-          payload: error.message,
-        });
-      } else {
-        const token: string = response.headers.get('Authorization');
-        const user = { ...data };
-        const payload = {
-          user,
-          token,
-          remember: body.remember,
-        };
-
-        try {
-
-
-          const responseApi = await fetch(
-            `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
-            configQuiz('POST', onboardingData, token)
-          );
-
-          const responseSendApi = await responseApi.json();
-
-          if (!responseApi.ok) {
-            dispatch({
-              type: authActionType.SIGNUP_ERROR,
-              payload: error.message,
-            })
-            return
-          }
-
-          dispatch({
-            type: authActionType.SIGNUP_SUCCESS,
-            payload,
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { errorMessage, isLoading } = useTypedSelector(state => state.authentication);
 
   const {
     handleChange,
@@ -100,7 +39,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
       remember: true,
     },
     onSubmit: () => {
-      apiSignup(values);
+      signup(values);
     },
   });
   const password = useRef<RNTextInput>(null);
@@ -122,16 +61,16 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
         <Text variant="body" textAlign="center" marginBottom="l">
           Let’s us know what your email and your password
         </Text>
-        {state.errorMessage && (
+        {errorMessage ? (
           <Text
             variant="body"
             style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
             textAlign="center"
             marginBottom="l"
           >
-            {state.errorMessage}
+            errorMessage
           </Text>
-        )}
+        ) : null}
         <Box>
           <Box marginBottom="m">
             <TextInput
@@ -197,7 +136,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
             />
           </Box>
           <Box alignItems="center" marginTop="m">
-            {state.isLoading ? (
+            {isLoading ? (
               <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
             ) : (
               <Button variant="primary" onPress={handleSubmit} label="Log into your account" />

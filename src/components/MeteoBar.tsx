@@ -1,29 +1,28 @@
 import React from 'react';
-import { Text ,Box} from '../components';
+import { Text, Box } from '../components/Theme';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 
 const MeteoBar = () => {
   const today = new Date();
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const currentHour = today.getHours()
-  const [timeFrame, setTimeFrame] = React.useState("Good Morning !"); 
-  const [location, setLocation] = React.useState({latitude: 0, longitude: 0});
+  const currentHour = today.getHours();
+  const [timeFrame, setTimeFrame] = React.useState('Good Morning !');
+  const [location, setLocation] = React.useState({ latitude: 0, longitude: 0 });
   const [meteo, setMeteo] = React.useState(0);
-  const [city, setCity] = React.useState("");
+  const [city, setCity] = React.useState('');
 
-
-  const permissionFlow = async ()=>{
-    const {status} = await Permissions.askAsync(Permissions.LOCATION)
-    if(status !== 'granted'){
+  const permissionFlow = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
       throw new Error('Location permission not granted');
     }
     const position = await Location.getCurrentPositionAsync({});
-    if(!position){
+    if (!position) {
       throw new Error('Location not found');
     }
-    setLocation({latitude:position.coords.latitude, longitude:position.coords.longitude});
-  }
+    setLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude });
+  };
 
   const fetchWeather = async () => {
     const response = await fetch(
@@ -31,21 +30,19 @@ const MeteoBar = () => {
     );
     const meteo = await response.json();
     setMeteo(meteo.main.temp);
-    setCity(`in ${meteo.name}`)
+    setCity(`in ${meteo.name}`);
   };
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     if (currentHour < 12) {
-      setTimeFrame("Good Morning !")
+      setTimeFrame('Good Morning !');
     } else if (currentHour < 18) {
-      setTimeFrame("Good Afternoon !")
+      setTimeFrame('Good Afternoon !');
     } else {
-      setTimeFrame("Good Evening !")
+      setTimeFrame('Good Evening !');
     }
-    permissionFlow()
-  }, [])
-
-  
+    permissionFlow();
+  }, []);
 
   React.useEffect(() => {
     fetchWeather();
@@ -54,14 +51,13 @@ const MeteoBar = () => {
   return (
     <Box>
       <Text variant="title2" color="white" marginBottom="m">
-            {timeFrame}
-          </Text>
-    <Text variant="body" color="white">
-      It's {weekday[today.getDay()]}, temperature outside is {meteo}°C {city}
-    </Text>
+        {timeFrame}
+      </Text>
+      <Text variant="body" color="white">
+        It's {weekday[today.getDay()]}, temperature outside is {meteo}°C {city}
+      </Text>
     </Box>
-    
   );
 };
 
-export default MeteoBar
+export default MeteoBar;
