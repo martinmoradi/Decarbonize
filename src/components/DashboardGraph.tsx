@@ -8,60 +8,63 @@ import {
   VictoryLegend,
 } from 'victory-native';
 import { useTypedSelector } from '../hooks';
-
-
-
+import { Box, TextButton } from '../components';
 
 
 
 const DashboardGraph = () => {
-  const { data, isEmpty } = useTypedSelector(state => state.emissions);
+const { data } = useTypedSelector(state => state.emissions);
+const[userData, setUserData]=React.useState({userHousing: data.yearly_housing, userFood: data.yearly_alimentation, userSpendings: data.yearly_spendings, userTravel: data.yearly_landtrip_emissions + data.yearly_airtrip_emissions})
+const[recommendedData, setRecommendedData] = React.useState({recommendedHousing: 1700, recommendedFood: 1700, recommendedSpendings: 1700, recommendedTravel:1700})
 
-const [userHousing, setUserHousing] = React.useState(17000);
-const [userFood, setUserFood] = React.useState(17000);
-const [userSpendings, setUserSpendings] = React.useState(17000);
-const [userTravel, setUserTravel] = React.useState(17000);
 
-const recommendedHousing = 7000;
-const recommendedFood = 4000;
-const recommendedSpendings = 5000;
-const recommendedTravel = 10000;
+const switchYearly = ()=>{
+  setUserData({userHousing: data.yearly_housing, userFood: data.yearly_alimentation, userSpendings: data.yearly_spendings, userTravel: data.yearly_landtrip_emissions + data.yearly_airtrip_emissions})
+  setRecommendedData({recommendedHousing: 1700, recommendedFood: 1700, recommendedSpendings: 1700, recommendedTravel:1700})
+}
 
+const switchMonthly = ()=>{
+  setUserData({userHousing: data.monthly_housing, userFood: data.monthly_alimentation, userSpendings: data.monthly_spendings, userTravel: data.monthly_landtrip_emissions + data.monthly_airtrip_emissions})
+  setRecommendedData({recommendedHousing: 170, recommendedFood: 170, recommendedSpendings: 170, recommendedTravel:170})
+}
+
+//// IL MANQUE WEEKLY_ALIMENTATION DANS LE STATE
+const switchWeekly = ()=>{
+  setUserData({userHousing: data.weekly_housing, userFood: data.monthly_alimentation, userSpendings: data.weekly_spendings, userTravel: data.weekly_landtrip_emissions + data.weekly_airtrip_emissions})
+  setRecommendedData({recommendedHousing: 50, recommendedFood: 50, recommendedSpendings: 50, recommendedTravel:50})
+}
 
 React.useEffect(()=>{
-
-setUserHousing(data.yearly_housing)
-setUserFood(data.yearly_alimentation)
-setUserSpendings(data.yearly_spendings)
-setUserTravel(data.yearly_landtrip_emissions + data.yearly_airtrip_emissions)
+switchYearly()
 },[data])
 
 
 
 const housing = [
-  { graph: 1, co2Amount: recommendedHousing },
-  { graph: 2, co2Amount: userHousing },
+  { graph: 1, co2Amount: recommendedData.recommendedHousing },
+  { graph: 2, co2Amount: userData.userHousing },
 ];
 
 const food = [
-  { graph: 1, co2Amount: recommendedFood },
-  { graph: 2, co2Amount: userFood },
+  { graph: 1, co2Amount: recommendedData.recommendedFood },
+  { graph: 2, co2Amount: userData.userFood },
 ];
 
 const spendings = [
-  { graph: 1, co2Amount: recommendedSpendings },
-  { graph: 2, co2Amount: userSpendings },
+  { graph: 1, co2Amount: recommendedData.recommendedSpendings },
+  { graph: 2, co2Amount: userData.userSpendings },
 ];
 const travel = [
-  { graph: 1, co2Amount: recommendedTravel },
-  { graph: 2, co2Amount: userTravel },
+  { graph: 1, co2Amount: recommendedData.recommendedTravel },
+  { graph: 2, co2Amount: userData.userTravel },
 ];
 
 
   return (
+    <Box>
     <VictoryChart
       horizontal
-      domainPadding={80}
+      domainPadding={100}
       theme={VictoryTheme.material}
       animate={{
         duration: 1000,
@@ -76,8 +79,8 @@ const travel = [
         <VictoryBar cornerRadius={{ top: 15 }} data={travel} x="graph" y="co2Amount" />
       </VictoryStack>
       <VictoryLegend
-        x={50}
-        y={20}
+        x={20}
+        y={10}
         orientation="horizontal"
         gutter={20}
         data={[
@@ -87,7 +90,15 @@ const travel = [
           { name: 'Travel', symbol: { fill: 'green' } },
         ]}
       />
+
+
     </VictoryChart>
+    <Box style={{flexDirection:"row" ,justifyContent: 'center'}}>
+    <TextButton label="Yearly" onPress={switchYearly} style={{width:60, margin: 5}}/>
+    <TextButton label="Monthly" onPress={switchMonthly} style={{width:60, margin: 5}}/>
+    <TextButton label="Weekly" onPress={switchWeekly} style={{width:60, margin: 5}}/>
+    </Box>
+    </Box>
   );
 };
 

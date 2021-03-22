@@ -17,15 +17,15 @@ const DashboardScreen = () => {
             width: width,
             height: 155,
             borderBottomEndRadius: 20,
-            borderBottomStartRadius: 20,shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 9,
-},
-shadowOpacity: 0.50,
-shadowRadius: 12.35,
-
-elevation: 19,
+            borderBottomStartRadius: 20,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 9,
+            },
+            shadowOpacity: 0.5,
+            shadowRadius: 12.35,
+            elevation: 19,
           }}
           backgroundColor="primary"
           marginBottom="s"
@@ -35,7 +35,19 @@ elevation: 19,
 
         <Box
           alignItems="center"
-          style={{ borderRadius: 20, flex: 1, width: width }}
+          style={{
+            borderRadius: 20,
+            flex: 1,
+            width: width,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 9,
+            },
+            shadowOpacity: 0.5,
+            shadowRadius: 12.35,
+            elevation: 19,
+          }}
           justifyContent="center"
           backgroundColor="primary"
         >
@@ -45,7 +57,19 @@ elevation: 19,
           marginTop="s"
           paddingTop="m"
           marginBottom="s"
-          style={{ width: width, height: 100, borderRadius: 20 }}
+          style={{
+            width: width,
+            height: 100,
+            borderRadius: 20,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 9,
+            },
+            shadowOpacity: 0.5,
+            shadowRadius: 12.35,
+            elevation: 19,
+          }}
           justifyContent="center"
           backgroundColor="info"
         >
@@ -54,7 +78,19 @@ elevation: 19,
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderRadius: 20 }}
+            style={{
+              width: width,
+              height: 80,
+              borderRadius: 20,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 9,
+              },
+              shadowOpacity: 0.5,
+              shadowRadius: 12.35,
+              elevation: 19,
+            }}
             justifyContent="center"
             backgroundColor="primary"
           >
