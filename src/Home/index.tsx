@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { HomeRoutesParamsList } from '../components/Navigation';
 import Tabbar from '../components/Tabs/Tabbar';
 import DashboardScreen from './Dashboard';
@@ -7,10 +7,22 @@ import EngagementsScreen from './Engagements';
 import HistoryScreen from './History';
 import NewTripScreen from './NewTrip';
 import SettingsScreen from './Settings';
+import { useActions, useTypedSelector } from '../hooks';
+import OnboardingContext from '../Authentication/onboardingContext/OnboardingContext';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesParamsList>();
 
 export const HomeNavigator = () => {
+  const { onboardingData } = useContext(OnboardingContext);
+  const { isEmpty } = useTypedSelector(state => state.emissions);
+  const { postForm } = useActions();
+
+  useEffect(() => {
+    if (isEmpty) {
+      postForm(onboardingData);
+    }
+  }, []);
+
   return (
     <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />

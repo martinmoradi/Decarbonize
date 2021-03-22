@@ -51,7 +51,7 @@ const OnboardingContext = createContext<IOnboardingStateType>({
     house_surface: 0,
     electricity_consumption: 0,
     gas_consumption: 0,
-    wood_type: "wood_logs",
+    wood_type: 'wood_logs',
     wood_consumption: 0,
     fuel_consumption: 0,
     roommates: 0,
