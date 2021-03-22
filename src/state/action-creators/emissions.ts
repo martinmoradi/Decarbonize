@@ -14,7 +14,7 @@ export const postForm = (onboardingData: IOnboardingDataType) => {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
       const response = await fetch(
-        `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
+        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
           method: 'POST',
           headers: headers(token),
@@ -47,7 +47,7 @@ export const fetchEmissions = () => {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
       const response = await fetch(
-        `https://decarbonize-perruches.herokuapp.com/api/v1/fixed_emissions`,
+        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
           method: 'GET',
           headers: headers(token),
