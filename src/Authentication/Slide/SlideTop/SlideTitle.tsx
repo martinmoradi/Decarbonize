@@ -35,7 +35,7 @@ const SlideTitle = ({ title, svgTitle, isReversed }: PropsSlideTop) => {
     titleLeft: {
       transform: [
         { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : hp('-22%') },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : hp('-23%') },
         { translateX: Platform.OS === 'ios' ? width / 40 + 12 : wp('5%') },
       ],
     },
@@ -52,7 +52,7 @@ const SlideTitle = ({ title, svgTitle, isReversed }: PropsSlideTop) => {
       transform: [
         { rotate: '90deg' },
         {
-          translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : hp('-22%'),
+          translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : hp('-23%'),
         },
         { translateX: Platform.OS === 'ios' ? width / 2 + 75 : wp('60%') },
       ],
@@ -84,7 +84,7 @@ const SlideTitle = ({ title, svgTitle, isReversed }: PropsSlideTop) => {
           >
             {title}
           </Text>
-          <View style={{ alignItems: 'center', translateY: -45 }}>
+          <View style={{ alignItems: 'center', translateY: hp('-7%') }}>
             <IconSvg name={svgTitle} />
           </View>
         </View>

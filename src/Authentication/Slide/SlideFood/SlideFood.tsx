@@ -64,7 +64,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
 
           <View style={{ padding: hp('1%') }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat white meat ?
+            How often do you eat white meat ?
           </Text>
           <Text variant="body">{whiteMeatValue} / week</Text>
           <SliderOnboarding
