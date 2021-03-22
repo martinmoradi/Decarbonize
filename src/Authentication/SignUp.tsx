@@ -5,14 +5,10 @@ import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../components';
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
-import { AuthNavigationProps } from '../components/Navigation';
-import { config, configQuiz } from './api';
-import { AuthContext } from './authContext';
-import { authActionType, userPropsType } from './authContext/authTypes';
 import Footer from './components/Footer';
 import OnboardingContext from './onboardingContext/OnboardingContext';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import { useActions } from '../hooks/useActions';
+import { useActions, useTypedSelector } from '../hooks/';
+import { AuthNavigationProps } from '../components/Navigation';
 
 const SignUpSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
@@ -23,10 +19,9 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
+  const { postForm, signup } = useActions();
   const { height } = Dimensions.get('window');
   const { onboardingData } = useContext(OnboardingContext);
-
-  const { signup } = useActions();
   const { errorMessage, isLoading } = useTypedSelector(state => state.authentication);
 
   const {
@@ -47,6 +42,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
     },
     onSubmit: () => {
       signup(values);
+      postForm(onboardingData);
     },
   });
   const password = useRef<RNTextInput>(null);

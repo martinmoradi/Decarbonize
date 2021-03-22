@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthActionType, UserParamsType } from '../action-types';
+import { AuthActionType, UserParamsType } from '../types';
 import { AuthAction } from '../actions';
-import { headers } from '../../api/headers';
+import { headers } from '../../api/decarbonizeApi';
 
 export const signup = (signupParams: UserParamsType) => {
   const { email, password, passwordConfirmation, remember } = signupParams;
@@ -98,6 +98,14 @@ export const loadUser = () => {
         payload: err.message,
       });
     }
+  };
+};
+
+export const logout = () => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    dispatch({
+      type: AuthActionType.LOGOUT,
+    });
   };
 };
 

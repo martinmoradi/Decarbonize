@@ -8,8 +8,8 @@ import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import { AuthNavigationProps } from '../components/Navigation';
 import Footer from './components/Footer';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import { useActions } from '../hooks/useActions';
+import { useTypedSelector, useActions } from '../hooks';
+
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),

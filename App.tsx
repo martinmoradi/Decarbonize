@@ -4,7 +4,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoadAssets from './src/components/LoadAssets';
 import { ThemeProvider } from './src/components/Theme';
 import AuthRouter from './src/components/routers/AuthRouter';
-import AuthProvider from './src/Authentication/authContext/AuthProvider';
 import { store } from './src/state';
 import { Provider } from 'react-redux';
 
@@ -19,11 +18,9 @@ const App = () => {
     <Provider store={store}>
       <LoadAssets {...{ fonts }}>
         <ThemeProvider>
-          <AuthProvider>
             <SafeAreaProvider>
               <AuthRouter />
             </SafeAreaProvider>
-          </AuthProvider>
         </ThemeProvider>
       </LoadAssets>
     </Provider>

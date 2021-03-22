@@ -1,4 +1,4 @@
-import { AuthActionType } from '../action-types';
+import { AuthActionType } from '../types';
 
 export interface UserType {
   user: { id: number; email: string };
@@ -35,8 +35,16 @@ interface Logout {
   type: AuthActionType.LOGOUT;
 }
 
-interface LoadUser {
-  type: AuthActionType.LOAD_USER;
+interface LoadUserAttempt {
+  type: AuthActionType.LOAD_USER_ATTEMPT;
+}
+
+interface LoadUserSuccess {
+  type: AuthActionType.LOAD_USER_SUCCESS;
+}
+
+interface LoadUserError {
+  type: AuthActionType.LOAD_USER_ERROR;
 }
 
 export type AuthAction =
@@ -47,4 +55,6 @@ export type AuthAction =
   | SignUpAttempt
   | SignUpSuccess
   | SignUpError
-  | LoadUser;
+  | LoadUserAttempt
+  | LoadUserSuccess
+  | LoadUserError;

@@ -7,21 +7,21 @@ type PropsOnboardingProviders = {
 };
 
 export const OnboardingProvider = ({ children }: PropsOnboardingProviders) => {
-  const [breakfast, setBreakfast] = useState<number | null>(0);
-  const [redMeat, setRedMeat] = useState<number | null>(0);
-  const [whiteMeat, setWhiteMeat] = useState<number | null>(0);
-  const [vegan, setVegan] = useState<number | null>(0);
-  const [vegetarian, setVegetarian] = useState<number | null>(0);
+  const [breakfast, setBreakfast] = useState<number>(0);
+  const [redMeat, setRedMeat] = useState<number>(0);
+  const [whiteMeat, setWhiteMeat] = useState<number>(0);
+  const [vegan, setVegan] = useState<number>(0);
+  const [vegetarian, setVegetarian] = useState<number>(0);
   const [people, setPeople] = useState<number>(0);
-  const [surface, setSurface] = useState<number | null>(0);
-  const [electricity, setElectricity] = useState<number | null>(0);
-  const [gas, setGas] = useState<number | null>(0);
-  const [woodType, setWoodType] = useState<string | null>('');
-  const [wood, setWood] = useState<number | null>(0);
-  const [fuel, setFuel] = useState<number | null>(0);
-  const [clothes, setClothes] = useState<number | null>(0);
-  const [furniture, setFurniture] = useState<number | null>(0);
-  const [hobbies, setHobbies] = useState<number | null>(0);
+  const [surface, setSurface] = useState<number>(0);
+  const [electricity, setElectricity] = useState<number>(0);
+  const [gas, setGas] = useState<number>(0);
+  const [woodType, setWoodType] = useState<string>('');
+  const [wood, setWood] = useState<number>(0);
+  const [fuel, setFuel] = useState<number>(0);
+  const [clothes, setClothes] = useState<number>(0);
+  const [furniture, setFurniture] = useState<number>(0);
+  const [hobbies, setHobbies] = useState<number>(0);
   const [fuelHeating, setFuelHeating] = useState<boolean>(false);
   const [gasHeating, setGasHeating] = useState<boolean>(false);
   const [woodHeating, setWoodHeating] = useState<boolean>(false);

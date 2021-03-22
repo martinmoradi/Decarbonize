@@ -16,8 +16,6 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
   const scroll = useRef<ScrollView>(null);
   const { energy } = useContext(OnboardingContext);
   const { woodHeating, fuelHeating, gasHeating } = energy;
-  const { onboardingData } = useContext(OnboardingContext);
-  console.log('onboardingData:', onboardingData);
 
   return (
     <ScrollView
