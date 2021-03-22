@@ -81,7 +81,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def housing
-    (housing / 12).round(2)
+    (yearly_housing / 12).round(2)
   end
 
   # SPENDINGS

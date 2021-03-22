@@ -28,10 +28,15 @@ interface FetchEmissionsError {
   payload: string;
 }
 
+interface EmissionsReset {
+  type: EmissionsActionType.EMISSIONS_RESET;
+}
+
 export type EmissionsAction =
   | PostEmissionsAttempt
   | PostEmissionsSuccess
   | PostEmissionsError
   | FetchEmissionsAttempt
   | FetchEmissionsSuccess
-  | FetchEmissionsError;
+  | FetchEmissionsError
+  | EmissionsReset;

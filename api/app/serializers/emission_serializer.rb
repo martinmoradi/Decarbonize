@@ -10,7 +10,14 @@ class EmissionSerializer
              :yearly_landtrip_emissions,
              :weekly_airtrip_emissions,
              :monthly_airtrip_emissions,
-             :yearly_airtrip_emissions
+             :yearly_airtrip_emissions,
+             :weekly_travel_emissions,
+             :monthly_travel_emissions,
+             :yearly_travel_emissions
+
+  attribute :weekly_alimentation do |object|
+    object.fixed_emission.weekly_alimentation
+  end
 
   attribute :monthly_alimentation do |object|
     object.fixed_emission.alimentation
