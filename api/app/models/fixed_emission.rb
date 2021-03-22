@@ -125,10 +125,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def weekly_alimentation
-    (
-      breakfasts_per_week * 0.37 + white_meats_per_week * 1.35 + vegetarian_per_week * 0.51 +
-        vegan_per_week * 0.3939
-    ).round(2)
+    (alimentation / 4.33).round(2)
   end
 
   def alimentation
