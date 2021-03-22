@@ -11,7 +11,7 @@ export const signup = (signupParams: UserParamsType) => {
       type: AuthActionType.SIGNUP_ATTEMPT,
     });
     try {
-      const response = await fetch(`http://127.0.0.1:3000/signup`, {
+      const response = await fetch(`https://decarbonize-perruches.herokuapp.com/signup`, {
         method: 'POST',
         headers: headers(),
         body: JSON.stringify({
@@ -47,7 +47,7 @@ export const login = (loginParams: UserParamsType) => {
       type: AuthActionType.LOGIN_ATTEMPT,
     });
     try {
-      const response = await fetch(`http://127.0.0.1:3000/login`, {
+      const response = await fetch(`https://decarbonize-perruches.herokuapp.com/login`, {
         method: 'POST',
         headers: headers(),
         body: JSON.stringify({ user: { email, password } }),
@@ -81,7 +81,7 @@ export const loadUser = () => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) return;
-      const response = await fetch(`http://127.0.0.1:3000/login`, {
+      const response = await fetch(`https://decarbonize-perruches.herokuapp.com/login`, {
         method: 'POST',
         headers: headers(token),
       });
