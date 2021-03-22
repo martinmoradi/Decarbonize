@@ -11,32 +11,9 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
   const { spending } = useContext(OnboardingContext);
   const { onChangeClothes, onChangeFurniture, onChangeHobbies } = spending;
 
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   const theme = useTheme();
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopLeftRadius: 100,
-      backgroundColor: 'white',
-    },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
-    title: {
-      justifyContent: 'center',
-      transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
-      ],
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
@@ -45,9 +22,10 @@ const SlideHousingBis = ({ onPress }: PropsSlide) => {
   const [hobbiesValue, setHobbiesValue] = useState<number>(0);
 
   return (
-    <View style={styles.container}>
+    <View style={theme.slideStyle.container}>
       <SlideTitle title="SPENDING" svgTitle="habit" isReversed={true} />
-      <View style={styles.footer}>
+
+      <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>
           <Text variant="body">{clothValue} € / month</Text>

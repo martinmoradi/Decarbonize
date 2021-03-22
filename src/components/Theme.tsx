@@ -136,6 +136,11 @@ const theme = {
       borderTopRightRadius: 100,
       backgroundColor: 'white',
     },
+    footerReverse: {
+      flex: 1,
+      borderTopLeftRadius: 100,
+      backgroundColor: 'white',
+    },
     buttonStyle: {
       backgroundColor: palette.green,
       borderRadius: 20,

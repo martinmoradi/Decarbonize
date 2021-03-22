@@ -32,7 +32,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   };
   const [heat, setHeat] = useState<number[]>();
   const [electricityValue, setElectricityValue] = useState<number>(0);
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   const checkHeat = (heat: number[] | undefined) => {
     heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
@@ -56,30 +56,6 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
 
   const theme = useTheme();
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopLeftRadius: 100,
-      backgroundColor: 'white',
-    },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
-    title: {
-      height: 100,
-      justifyContent: 'center',
-      transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
-      ],
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
@@ -90,7 +66,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
         buttons={buttonsWood}
         onPress={e => handleWoodType(e, buttonsWood)}
         selectedIndex={woodTypeIndex}
-        selectedButtonStyle={styles.buttonStyle}
+        selectedButtonStyle={theme.slideStyle.buttonStyle}
         textStyle={{ textAlign: 'center' }}
         containerStyle={{ borderWidth: 0 }}
         innerBorderStyle={{ width: 0 }}
@@ -98,10 +74,10 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     </>
   );
   return (
-    <View style={styles.container}>
+    <View style={theme.slideStyle.container}>
       <SlideTitle title="ENERGY" svgTitle="energy" isReversed={true} />
 
-      <View style={styles.footer}>
+      <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
           <Text variant="body">What is your electricity consumption ?</Text>
           <Text variant="body">{electricityValue} € / month</Text>
@@ -121,7 +97,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             selectMultiple={true}
             onPress={setHeat}
             selectedIndexes={heat}
-            selectedButtonStyle={styles.buttonStyle}
+            selectedButtonStyle={theme.slideStyle.buttonStyle}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}

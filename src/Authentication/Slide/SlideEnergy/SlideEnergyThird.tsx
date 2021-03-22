@@ -11,7 +11,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
   const { gasHeating, fuelHeating, woodHeating, onChangeFuel, onChangeGas, onChangeWood } = energy;
 
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   const [fuelValue, setFuelValue] = useState<number>(0);
   const [woodValue, setWoodValue] = useState<number>(0);
@@ -19,38 +19,14 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
 
   const theme = useTheme();
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopRightRadius: 100,
-      backgroundColor: 'white',
-    },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
-    title: {
-      height: 100,
-      justifyContent: 'center',
-      transform: [
-        { rotate: '90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 650) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 2 + 75 : width / 2 + 0 },
-      ],
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   return (
-    <View style={styles.container}>
+    <View style={theme.slideStyle.container}>
       <SlideTitle title="ENERGY" svgTitle="energy" isReversed={false} />
 
-      <View style={styles.footer}>
+      <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           {fuelHeating && (
             <>

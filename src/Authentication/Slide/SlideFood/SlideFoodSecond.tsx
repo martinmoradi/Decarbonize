@@ -15,21 +15,6 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const { height, width } = Dimensions.get('window');
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopLeftRadius: 100,
-      backgroundColor: 'white',
-    },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
     btnContainer: {
       borderWidth: 0,
     },
@@ -48,10 +33,10 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const [veganValue, setVeganValue] = useState<number>(0);
 
   return (
-    <View style={styles.container}>
+    <View style={theme.slideStyle.container}>
       <SlideTitle title="FOOD" svgTitle="food" isReversed={true} />
 
-      <View style={styles.footer}>
+      <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegetarian meal ?

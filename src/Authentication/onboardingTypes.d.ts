@@ -77,7 +77,7 @@ export type PropsSlideTop = {
 
 export type PropsSliderOnboarding = {
   onValueChange: Dispatch<SetStateAction<number>>
-  onSlidingComplete: (value: React.SetStateAction<number | null>) => void | null,
+  onSlidingComplete: (value: React.SetStateAction<number>) => void,
   value: number,
   step: number,
   maximumValue: number,
