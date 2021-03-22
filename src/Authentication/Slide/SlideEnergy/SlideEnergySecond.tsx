@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup, Slider } from 'react-native-elements';
-import IconSvg from '../../../../assets/icons/IconSvg';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
+import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const { energy } = useContext(OnboardingContext);
@@ -23,7 +24,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     onChangeGas,
     onChangeWood,
   } = energy;
-  const buttonsHeat = ['Fioul', 'Gas', 'Wood'];
+  const buttonsHeat = ['Fuel', 'Gas', 'Wood'];
   const buttonsWood = ['Wood logs', 'Wood pellets'];
   const handleWoodType = (e: number, woodType: string[]) => {
     onChangeWoodType(woodType[e]);
@@ -31,44 +32,30 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   };
   const [heat, setHeat] = useState<number[]>();
   const [electricityValue, setElectricityValue] = useState<number>(0);
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
-  useEffect(() => {
+  const checkHeat = (heat: number[] | undefined) => {
     heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
     heat?.includes(1) ? onChangeGasHeating(true) : onChangeGasHeating(false);
     heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
+  };
+
+  useEffect(() => {
+    checkHeat(heat);
+
+    if (!woodHeating) {
+      onChangeWood(0);
+      onChangeWoodType('');
+      setWoodTypeIndex(undefined);
+    }
+
     !fuelHeating ? onChangeFuel(0) : null;
-    !woodHeating ? onChangeWood(0) : null;
-    !woodHeating ? onChangeWoodType('wood_logs') : null;
-    !woodHeating ? setWoodTypeIndex(undefined) : null;
     !gasHeating ? onChangeGas(0) : null;
-  }, [heat, gasHeating, woodHeating, fuelHeating]);
+  }, [heat]);
+  console.log('render energy second');
+
   const theme = useTheme();
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopLeftRadius: 100,
-      backgroundColor: 'white',
-    },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
-    title: {
-      height: 100,
-      justifyContent: 'center',
-      transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
-      ],
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
@@ -79,7 +66,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
         buttons={buttonsWood}
         onPress={e => handleWoodType(e, buttonsWood)}
         selectedIndex={woodTypeIndex}
-        selectedButtonStyle={styles.buttonStyle}
+        selectedButtonStyle={theme.slideStyle.buttonStyle}
         textStyle={{ textAlign: 'center' }}
         containerStyle={{ borderWidth: 0 }}
         innerBorderStyle={{ width: 0 }}
@@ -87,52 +74,22 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     </>
   );
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
-        }}
-      ></View>
-      <View style={styles.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
-          style={{
-            backgroundColor: theme.colors.primary,
-            borderBottomRightRadius: 75,
-            flex: 1,
-          }}
-        >
-          <Text style={styles.title} variant="titleTopSlide">
-            ENERGY
-          </Text>
-          <View style={{ alignItems: 'center', translateY: -80 }}>
-            <IconSvg name="energyBis" />
-          </View>
-        </View>
-      </View>
-      <View style={styles.footer}>
+    <View style={theme.slideStyle.container}>
+      <SlideTitle title="ENERGY" svgTitle="energy" isReversed={true} />
+
+      <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
-          <Text variant="body">What is your electricity consumption ? </Text>
+          <Text variant="body">What is your electricity consumption ?</Text>
           <Text variant="body">{electricityValue} € / month</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+          <SliderOnboarding
             onValueChange={setElectricityValue}
             onSlidingComplete={onChangeElectricity}
-            orientation="horizontal"
-            step={10}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
             value={electricityValue}
+            step={10}
+            maximumValue={300}
+            minimumValue={20}
           />
+
           <View style={{ padding: 6 }}></View>
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup
@@ -140,7 +97,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             selectMultiple={true}
             onPress={setHeat}
             selectedIndexes={heat}
-            selectedButtonStyle={styles.buttonStyle}
+            selectedButtonStyle={theme.slideStyle.buttonStyle}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}

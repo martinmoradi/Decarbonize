@@ -5,6 +5,7 @@ import {
   useTheme as useReTheme,
 } from '@shopify/restyle';
 import React, { ReactNode } from 'react';
+import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -122,6 +123,40 @@ const theme = {
       // ],
     },
   },
+
+  slideStyle: {
+    container: {
+      flex: 1,
+    },
+    slider: {
+      height: height / 3,
+    },
+    footer: {
+      flex: 1,
+      borderTopRightRadius: 100,
+      backgroundColor: 'white',
+    },
+    footerReverse: {
+      flex: 1,
+      borderTopLeftRadius: 100,
+      backgroundColor: 'white',
+    },
+    buttonStyle: {
+      backgroundColor: palette.green,
+      borderRadius: 20,
+    },
+    title: {
+      height: 100,
+      justifyContent: 'center',
+      transform: [
+        { rotate: '-90deg' },
+        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
+        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
+      ],
+    },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+  },
+
   breakpoints: {
     phone: 0,
     tablet: 768,
@@ -151,3 +186,5 @@ export const makeStyles = <T extends NamedStyles<T>>(styles: (theme: Theme) => T
   const currentTheme = useTheme();
   return styles(currentTheme);
 };
+
+

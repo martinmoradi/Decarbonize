@@ -7,44 +7,64 @@ import {
   VictoryAxis,
   VictoryLegend,
 } from 'victory-native';
+import { useTypedSelector } from '../hooks';
 
-const recoHousing = 20000;
-const recoFood = 20000;
-const recoSpendings = 10000;
-const recoTravel = 20000;
 
-const youHousing = 17000;
-const youFood = 12500;
-const youSpendings = 13250;
-const youTravel = 13250;
+
+
+
+
+const DashboardGraph = () => {
+  const { data, isEmpty } = useTypedSelector(state => state.emissions);
+
+const [userHousing, setUserHousing] = React.useState(17000);
+const [userFood, setUserFood] = React.useState(17000);
+const [userSpendings, setUserSpendings] = React.useState(17000);
+const [userTravel, setUserTravel] = React.useState(17000);
+
+const recommendedHousing = 7000;
+const recommendedFood = 4000;
+const recommendedSpendings = 5000;
+const recommendedTravel = 10000;
+
+
+React.useEffect(()=>{
+
+setUserHousing(data.yearly_housing)
+setUserFood(data.yearly_alimentation)
+setUserSpendings(data.yearly_spendings)
+setUserTravel(data.yearly_landtrip_emissions + data.yearly_airtrip_emissions)
+},[data])
+
+
 
 const housing = [
-  { graph: 1, co2Amount: recoHousing },
-  { graph: 2, co2Amount: youHousing },
+  { graph: 1, co2Amount: recommendedHousing },
+  { graph: 2, co2Amount: userHousing },
 ];
 
 const food = [
-  { graph: 1, co2Amount: recoFood },
-  { graph: 2, co2Amount: youFood },
+  { graph: 1, co2Amount: recommendedFood },
+  { graph: 2, co2Amount: userFood },
 ];
 
 const spendings = [
-  { graph: 1, co2Amount: recoSpendings },
-  { graph: 2, co2Amount: youSpendings },
+  { graph: 1, co2Amount: recommendedSpendings },
+  { graph: 2, co2Amount: userSpendings },
 ];
 const travel = [
-  { graph: 1, co2Amount: recoTravel },
-  { graph: 2, co2Amount: youTravel },
+  { graph: 1, co2Amount: recommendedTravel },
+  { graph: 2, co2Amount: userTravel },
 ];
 
-const DashboardGraph = () => {
+
   return (
     <VictoryChart
       horizontal
       domainPadding={80}
       theme={VictoryTheme.material}
       animate={{
-        duration: 2000,
+        duration: 1000,
       }}
     >
       <VictoryAxis tickValues={[1, 2]} tickFormat={['Reco', 'You']} />
