@@ -16,6 +16,7 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
   # POST /land_trip
   def create
     @land_trip = LandTrip.new(land_trip_params)
+    
     if @land_trip.save
       render json: @land_trip, status: :created, location: api_v1_land_trip_url(@land_trip)
     else

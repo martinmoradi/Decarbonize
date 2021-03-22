@@ -13,14 +13,16 @@ export const postCommonTrip = (tripData: {vehicle_type: string, round_trip: bool
                 const token = await AsyncStorage.getItem('token');
                 if (!token) throw new Error('No token found');
                 const response = await fetch(
-                    `https://perruches-decarbonize.herokuapp.com/api/v1/land_trip`,
+                    `https://perruches-decarbonize.herokuapp.com/api/v1/land_trips`,
                     {
                       method: 'POST',
                       headers: headers(token),
                       body: JSON.stringify({ land_trip: { ...tripData } }),
                     }
                   );
+
                   const { data, error } = await response.json();
+                  
                   if (!response.ok) {
                     throw new Error(error);
                   }

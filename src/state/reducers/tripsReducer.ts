@@ -9,10 +9,9 @@ interface TripStateType {
 
 const initialState: TripStateType = {
   data: {
-
-
-
-    
+    vehicle_type: "", 
+    round_trip: false,
+    distance: 0
   },
   errorMessage: null,
   isLoading: false,
