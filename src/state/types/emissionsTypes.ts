@@ -5,10 +5,13 @@ export enum EmissionsActionType {
   FETCH_EMISSIONS_ATTEMPT = 'fetch_emissions_attempt',
   FETCH_EMISSIONS_SUCCESS = 'fetch_emissions_success',
   FETCH_EMISSIONS_ERROR = 'fetch_emissions_error',
+  EMISSIONS_RESET = 'emissions_reset',
 }
 
 export interface EmissionsType {
   emissions: {
+    weekly_total: number;
+    monthly_total: number;
     yearly_total: number;
     weekly_landtrip_emissions: number;
     monthly_landtrip_emissions: number;
@@ -16,6 +19,10 @@ export interface EmissionsType {
     weekly_airtrip_emissions: number;
     monthly_airtrip_emissions: number;
     yearly_airtrip_emissions: number;
+    weekly_travel_emissions: number;
+    monthly_travel_emissions: number;
+    yearly_travel_emissions: number;
+    weekly_alimentation: number;
     monthly_alimentation: number;
     yearly_alimentation: number;
     weekly_housing: number;
@@ -24,12 +31,12 @@ export interface EmissionsType {
     weekly_spendings: number;
     monthly_spendings: number;
     yearly_spendings: number;
-    'appliances?': boolean;
-    'reduced_heating?': boolean;
-    'eco_driving?': boolean;
-    'tap_water?': boolean;
-    'food_wastes?': boolean;
-    'bulk_food?': boolean;
-    'zero_wastes?': boolean;
+    appliances: boolean;
+    reduced_heating: boolean;
+    eco_driving: boolean;
+    tap_water: boolean;
+    food_wastes: boolean;
+    bulk_food: boolean;
+    zero_wastes: boolean;
   };
 }

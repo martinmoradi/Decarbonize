@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthActionType, UserParamsType } from '../types';
-import { AuthAction } from '../actions';
+import { AuthActionType, UserParamsType, EmissionsActionType } from '../types';
+import { AuthAction, EmissionsAction } from '../actions';
 import { headers } from '../../tools/api';
 
 export const signup = (signupParams: UserParamsType) => {
@@ -103,11 +103,14 @@ export const loadUser = () => {
 };
 
 export const logout = () => {
-  return async (dispatch: Dispatch<AuthAction>) => {
+  return async (dispatch: Dispatch<AuthAction | EmissionsAction>) => {
     await AsyncStorage.removeItem('token');
     dispatch({
-      type: AuthActionType.LOGOUT,
-    });
+      type: EmissionsActionType.EMISSIONS_RESET,
+    }),
+      dispatch({
+        type: AuthActionType.LOGOUT,
+      });
   };
 };
 
