@@ -10,9 +10,9 @@ interface EmissionsStateType {
 
 const initialState: EmissionsStateType = {
   data: {
-    yearly_total: 0,
-    monthly_total: 0,
     weekly_total: 0,
+    monthly_total: 0,
+    yearly_total: 0,
     weekly_landtrip_emissions: 0,
     monthly_landtrip_emissions: 0,
     yearly_landtrip_emissions: 0,
@@ -22,6 +22,7 @@ const initialState: EmissionsStateType = {
     weekly_travel_emissions: 0,
     monthly_travel_emissions: 0,
     yearly_travel_emissions: 0,
+    weekly_alimentation: 0,
     monthly_alimentation: 0,
     yearly_alimentation: 0,
     weekly_housing: 0,
@@ -48,8 +49,10 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
     case EmissionsActionType.FETCH_EMISSIONS_ATTEMPT:
     case EmissionsActionType.POST_EMISSIONS_ATTEMPT:
       return {
-        ...state,
+        data: initialState.data,
+        errorMessage: null,
         isLoading: true,
+        isEmpty: true,
       };
     case EmissionsActionType.FETCH_EMISSIONS_SUCCESS:
     case EmissionsActionType.POST_EMISSIONS_SUCCESS:
@@ -62,9 +65,14 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
     case EmissionsActionType.FETCH_EMISSIONS_ERROR:
     case EmissionsActionType.POST_EMISSIONS_ERROR:
       return {
-        ...state,
+        data: initialState.data,
         errorMessage: action.payload,
         isLoading: false,
+        isEmpty: true,
+      };
+    case EmissionsActionType.EMISSIONS_RESET:
+      return {
+        ...initialState,
       };
     default:
       return state;
