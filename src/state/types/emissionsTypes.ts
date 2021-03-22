@@ -16,6 +16,9 @@ export interface EmissionsType {
     weekly_airtrip_emissions: number;
     monthly_airtrip_emissions: number;
     yearly_airtrip_emissions: number;
+    weekly_travel_emissions: number;
+    monthly_travel_emissions: number;
+    yearly_travel_emissions: number;
     monthly_alimentation: number;
     yearly_alimentation: number;
     weekly_housing: number;
