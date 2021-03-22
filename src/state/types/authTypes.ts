@@ -19,5 +19,5 @@ export interface UserParamsType {
 }
 
 export interface UserType {
-  user: { id: number; email: string; has_completed_onboarding: boolean };
+  id: number; email: string; has_completed_onboarding: boolean ;
 }

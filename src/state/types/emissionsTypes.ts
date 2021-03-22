@@ -9,7 +9,6 @@ export enum EmissionsActionType {
 }
 
 export interface EmissionsType {
-  emissions: {
     weekly_total: number;
     monthly_total: number;
     yearly_total: number;
@@ -38,5 +37,4 @@ export interface EmissionsType {
     food_wastes: boolean;
     bulk_food: boolean;
     zero_wastes: boolean;
-  };
 }
