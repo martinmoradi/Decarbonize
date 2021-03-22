@@ -1,17 +1,29 @@
 import React from 'react';
 import { Box, Text, Button } from '../../components';
 import { TripStackNavigationProps } from '../../components/Navigation';
-import { Dimensions, TextInput } from 'react-native';
+import Checkbox from '../../components/Form/Checkbox';
+import { useActions, useTypedSelector } from '../../hooks';
+import { Dimensions, TextInput, ActivityIndicator } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const NewCommonTripScreen = ({
   route,
   navigation,
 }: TripStackNavigationProps<'NewCommonTripScreen'>) => {
-  const [distance, setDistance] = React.useState(undefined);
+  const { postCommonTrip } = useActions();
+  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
+  const [tripData, setTripData] = React.useState({
+    vehicle_type: route.params.type,
+    round_trip: false,
+    distance: 0,
+  });
 
   const changeDistance = (e: string) => {
-    setDistance(parseFloat(e));
+    setTripData({
+      vehicle_type: route.params.type,
+      round_trip: tripData.round_trip,
+      distance: parseFloat(e),
+    });
   };
 
   return (
@@ -40,6 +52,16 @@ const NewCommonTripScreen = ({
           SVG du {route.params.type}
         </Text>
       </Box>
+      {errorMessage ? (
+          <Text
+            variant="body"
+            style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+            textAlign="center"
+            marginBottom="l"
+          >
+            errorMessage
+          </Text>
+        ) : null}
       <Box
         marginBottom="s"
         justifyContent="center"
@@ -47,7 +69,7 @@ const NewCommonTripScreen = ({
         paddingBottom="m"
         style={{
           width: width - 40,
-          height: 100,
+          height: 200,
           borderRadius: 20,
           shadowColor: '#000',
           shadowOffset: {
@@ -64,14 +86,39 @@ const NewCommonTripScreen = ({
           Distance en Km
         </Text>
         <TextInput
-          style={{ height: 40, width: 100, margin: 12, backgroundColor: 'white', justifyContent:"center" }}
+          style={{
+            height: 40,
+            width: 100,
+            margin: 12,
+            backgroundColor: 'white',
+            justifyContent: 'center',
+          }}
           onChangeText={changeDistance}
-          value={distance}
-          placeholder={"0"}
+          value={tripData.distance}
+          placeholder={'0'}
           keyboardType="numeric"
         />
+        <Checkbox
+          label="Aller Retour ?"
+          checked={tripData.round_trip}
+          onChange={() =>
+            setTripData({
+              vehicle_type: route.params.type,
+              round_trip: !tripData.round_trip,
+              distance: tripData.distance,
+            })
+          }
+        />
       </Box>
-      <Button variant="primary" label="Valider" onPress={() => alert(distance)} />
+      {isLoading ? (
+        <Button
+          variant="primary"
+          label={<ActivityIndicator />}
+          onPress={() => postCommonTrip(tripData)}
+        />
+      ) : (
+        <Button variant="primary" label="Valider" onPress={() => postCommonTrip(tripData)} />
+      )}
       <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
     </Box>
   );
