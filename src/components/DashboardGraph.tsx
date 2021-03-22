@@ -35,7 +35,6 @@ const switchWeekly = ()=>{
 }
 
 React.useEffect(()=>{
-  console.log(data)
 switchWeekly()
 },[data])
 
