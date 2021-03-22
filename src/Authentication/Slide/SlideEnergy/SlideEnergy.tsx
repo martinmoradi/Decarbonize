@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { ButtonGroup, Slider } from 'react-native-elements';
-import IconSvg from '../../../../assets/icons/IconSvg';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
+import SlideTitle from '../SlideTop/SlideTitle';
+import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergy = ({ onPress }: PropsSlide) => {
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
   const { people, onChangePeople, onChangeSurface } = energy;
@@ -20,65 +21,20 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   };
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    slider: {
-      height: height / 3,
-    },
-    footer: {
-      flex: 1,
-      borderTopRightRadius: 100,
-      backgroundColor: 'white',
-    },
-    buttonStyle: {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 20,
-    },
-    title: {
-      height: 100,
-      justifyContent: 'center',
-      transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 450) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
-      ],
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
   const buttonsPeople = ['1', '2', '3', '4+'];
 
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
-        }}
-      ></View>
-      <View style={styles.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
-          style={{
-            backgroundColor: theme.colors.primary,
-            borderBottomLeftRadius: 75,
-            flex: 1,
-          }}
-        >
-          <Text style={styles.title} variant="titleTopSlide">
-            ENERGY
-          </Text>
-          <View style={{ alignItems: 'center', translateY: -98 }}>
-            <IconSvg name="energy" />
-          </View>
-        </View>
-      </View>
-      <View style={styles.footer}>
+    <View style={theme.slideStyle.container}>
+      <SlideTitle title="ENERGY" svgTitle="energy" isReversed={false} />
+
+      <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
           <ButtonGroup
-            selectedButtonStyle={styles.buttonStyle}
+            selectedButtonStyle={theme.slideStyle.buttonStyle}
             buttons={buttonsPeople}
             selectedIndex={people - 1}
             onPress={handleChangePeople}
@@ -88,25 +44,16 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
           />
           <Text variant="body">What is the surface are of your housing?</Text>
           <Text variant="body">{surfaceValue} m²</Text>
-          <Slider
-            animateTransitions
-            animationType="timing"
-            maximumTrackTintColor="lightgray"
-            maximumValue={300}
-            minimumTrackTintColor={theme.colors.primary}
-            minimumValue={20}
+          <SliderOnboarding
             onValueChange={setSurfaceValue}
             onSlidingComplete={onChangeSurface}
-            orientation="horizontal"
-            step={5}
-            style={{ width: '80%', height: 40 }}
-            thumbStyle={{ height: 20, width: 20, borderWidth: 2, borderColor: 'black' }}
-            thumbTintColor={theme.colors.info}
-            thumbTouchSize={{ width: 40, height: 40 }}
-            trackStyle={{ height: 12, borderRadius: 20 }}
             value={surfaceValue}
+            step={5}
+            maximumValue={300}
+            minimumValue={20}
           />
         </View>
+
         <View
           style={{
             position: 'absolute',
