@@ -9,7 +9,7 @@ const NewTripScreen = () => {
       <View style={{ alignItems: 'center', marginTop: height / 15 }}>
         <Box
           alignItems="center"
-          style={{ width: width - 30, height: 400, borderRadius: 10 }}
+          style={{ width: width - 30, height: 100, borderRadius: 10 }}
           justifyContent="center"
           backgroundColor="primary"
         >
