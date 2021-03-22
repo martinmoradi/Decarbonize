@@ -2,34 +2,19 @@ import React, { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Box } from '../components';
 import { Dimensions } from 'react-native';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 import Tips from '../components/Tips/Tips';
 import { ecologyFacts } from '../data/ecologyFacts';
 const { width, height } = Dimensions.get('window');
 
 const EngagementsScreen = () => {
-  const [dotPag, setDotPag] = useState<number>(1);
-
-  const tipsData = [
-    { title: 'Item1' },
-    { title: 'Item2' },
-    { title: 'Item3' },
-    { title: 'Item4' },
-    { title: 'Item5' },
-    { title: 'Item6' },
-    { title: 'Item7' },
-    { title: 'Item8' },
-  ];
-
   const engagementsData = [
-    { title: 'Item1' },
-    { title: 'Item2' },
-    { title: 'Item3' },
-    { title: 'Item4' },
-    { title: 'Item5' },
-    { title: 'Item6' },
-    { title: 'Item7' },
-    { title: 'Item8' },
+    { title: 'Switch off my devices in standby' },
+    { title: 'Reduce heating 1 degree' },
+    { title: 'Adopt eco-driving' },
+    { title: 'I drink tap water instead of bottles' },
+    { title: 'Reduce my food waste' },
+    { title: 'Do your shopping in bulk' },
   ];
 
   type PropsRenderItem = {
@@ -37,9 +22,11 @@ const EngagementsScreen = () => {
   };
   const renderItem = ({ item }: PropsRenderItem) => {
     return (
-      <Text variant="body" color="white" style={{ textAlign: 'center' }}>
-        {item}
-      </Text>
+      <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
+        <Text variant="body" color="white" style={{ textAlign: 'center' }}>
+          {item}
+        </Text>
+      </View>
     );
   };
 
@@ -47,33 +34,34 @@ const EngagementsScreen = () => {
     <ScrollView>
       <View style={{ alignItems: 'center', marginTop: height / 15 }}>
         <Box
+          flexDirection="row"
+          justifyContent="space-around"
           alignItems="center"
           style={{ width: width - 30, height: height / 3, borderRadius: 10 }}
-          justifyContent="center"
           backgroundColor="primary"
         >
-          <Carousel
-            data={ecologyFacts}
-            renderItem={renderItem}
-            sliderWidth={width}
-            itemWidth={height / 3}
-            inactiveSlideShift={0}
-            useScrollView={true}
-            onSnapToItem={(index: number) => setDotPag(index)}
-            autoplay={false}
-          />
-          <Pagination
-            dotsLength={tipsData.length}
-            activeDotIndex={dotPag}
-            dotStyle={{
-              width: 10,
-              height: 10,
-              borderRadius: 5,
-              backgroundColor: 'rgba(255, 255, 255, 0.92)',
-            }}
-            inactiveDotOpacity={0.4}
-            inactiveDotScale={0.6}
-          />
+          <Text variant="title1" color="white" margin="s">
+            {'<'}
+          </Text>
+          <View style={{ width: width - 100 }}>
+            <Carousel
+              // style={{ flex }}
+              data={ecologyFacts}
+              renderItem={renderItem}
+              sliderWidth={width - 100}
+              itemWidth={width - 100}
+              inactiveSlideShift={0}
+              sliderHeight={height / 3}
+              itemHeight={height / 3}
+              useScrollView={true}
+              onSnapToItem={(index: number) => setDotPag(index)}
+              autoplay={false}
+              loop={true}
+            />
+          </View>
+          <Text variant="title1" color="white" margin="s">
+            {'>'}
+          </Text>
         </Box>
         <Box
           marginTop="xl"
