@@ -1,2 +1,2 @@
-export { AuthAction, UserType } from './authActions';
+export { AuthAction } from './authActions';
 export { EmissionsAction } from './emissionsAction';

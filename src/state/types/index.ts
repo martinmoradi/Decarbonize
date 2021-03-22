@@ -1,2 +1,2 @@
-export { AuthActionType, UserParamsType } from './authTypes';
+export { AuthActionType, UserParamsType, UserType } from './authTypes';
 export { EmissionsActionType, EmissionsType } from './emissionsTypes';

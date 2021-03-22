@@ -17,3 +17,7 @@ export interface UserParamsType {
   passwordConfirmation?: string;
   remember: boolean;
 }
+
+export interface UserType {
+  user: { id: number; email: string };
+}

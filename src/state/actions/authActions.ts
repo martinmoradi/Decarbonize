@@ -1,8 +1,5 @@
-import { AuthActionType } from '../types';
+import { AuthActionType, UserType } from '../types';
 
-export interface UserType {
-  user: { id: number; email: string };
-}
 interface LoginAttempt {
   type: AuthActionType.LOGIN_ATTEMPT;
 }

@@ -1,5 +1,5 @@
-import { AuthActionType } from '../types';
-import { AuthAction, UserType } from '../actions';
+import { AuthActionType, UserType } from '../types';
+import { AuthAction } from '../actions';
 
 interface AuthStateType {
   user: UserType | null;
