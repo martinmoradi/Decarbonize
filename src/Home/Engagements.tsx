@@ -59,7 +59,7 @@ const EngagementsScreen = () => {
             itemWidth={height / 3}
             inactiveSlideShift={0}
             useScrollView={true}
-            onSnapToItem={index => setDotPag(index)}
+            onSnapToItem={(index: number) => setDotPag(index)}
             autoplay={false}
           />
           <Pagination
