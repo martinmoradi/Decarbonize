@@ -1,10 +1,11 @@
 import React from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
-import { Box, Text, TextButton } from '../components';
+import { Box, Text } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
+import { TripStackNavigationProps } from '../components/Navigation';
 
-const NewTripScreen = ({ navigation }) => {
+const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>) => {
   return (
     <ScrollView>
       <View style={{ alignItems: 'center' }}>
@@ -76,7 +77,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCarTrip')}
+              onPress={() => navigation.navigate('NewCarTripScreen')}
             >
               <Text variant="button">Voiture</Text>
             </BorderlessButton>
@@ -90,7 +91,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip')}
+              onPress={() => navigation.navigate('NewCommonTripScreen')}
             >
               <Text variant="button">Bus</Text>
             </BorderlessButton>
@@ -104,7 +105,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip')}
+              onPress={() => navigation.navigate('NewCommonTripScreen')}
             >
               <Text variant="button">Metro</Text>
             </BorderlessButton>
@@ -118,7 +119,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip')}
+              onPress={() => navigation.navigate('NewCommonTripScreen')}
             >
               <Text variant="button">Train</Text>
             </BorderlessButton>
@@ -132,7 +133,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewAirTrip')}
+              onPress={() => navigation.navigate('NewAirTripScreen')}
             >
               <Text variant="button">Avion</Text>
             </BorderlessButton>

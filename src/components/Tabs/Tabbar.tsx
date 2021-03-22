@@ -42,7 +42,7 @@ const Tabbar = (props: any) => {
   let currentIndex = props.state.index;
   const { navigation } = props;
 
-  const navigationRoute = ['Dashboard', 'Engagements', 'NewTrip', 'History', 'Settings'];
+  const navigationRoute = ['Dashboard', 'Engagements', 'NewTripNavigator', 'History', 'Settings'];
 
   const active = new Value<number>(currentIndex);
   const transition = withTransition(active, { duration: DURATION });
