@@ -14,7 +14,6 @@ const HomeTab = createBottomTabNavigator<HomeRoutesParamsList>();
 
 export const HomeNavigator = () => {
   const { onboardingData } = useContext(OnboardingContext);
-  const { user } = useTypedSelector(state => state.authentication);
   const { isEmpty } = useTypedSelector(state => state.emissions);
   const { postForm } = useActions();
 
