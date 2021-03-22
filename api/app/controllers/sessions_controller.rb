@@ -9,10 +9,7 @@ class SessionsController < Devise::SessionsController
                code: 200,
                message: 'Logged in successfully.',
              },
-             data: {
-               id: resource.id,
-               email: resource.email,
-             },
+             data: UserSerializer.new(resource).serializable_hash[:data][:attributes],
            }
   end
 
