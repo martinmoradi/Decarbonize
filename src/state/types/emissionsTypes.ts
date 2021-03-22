@@ -5,6 +5,9 @@ export enum EmissionsActionType {
   FETCH_EMISSIONS_ATTEMPT = 'fetch_emissions_attempt',
   FETCH_EMISSIONS_SUCCESS = 'fetch_emissions_success',
   FETCH_EMISSIONS_ERROR = 'fetch_emissions_error',
+  PUT_EMISSIONS_ATTEMPT = 'put_emissions_attempt',
+  PUT_EMISSIONS_SUCCESS = 'put_emissions_success',
+  PUT_EMISSIONS_ERROR = 'put_emissions_error',
   EMISSIONS_RESET = 'emissions_reset',
 }
 

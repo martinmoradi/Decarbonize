@@ -1,29 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Box } from '../components';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Tips from '../components/Tips/Tips';
 import { ecologyFacts } from '../data/ecologyFacts';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 const { width, height } = Dimensions.get('window');
 
 const EngagementsScreen = () => {
+  const emissions = useTypedSelector(state => state.emissions.data);
+  const {
+    appliances,
+    reduced_heating,
+    eco_driving,
+    tap_water,
+    food_wastes,
+    bulk_food,
+    zero_wastes,
+  } = emissions;
+
   const engagementsData = [
-    { title: 'Switch off my devices in standby' },
-    { title: 'Reduce heating 1 degree' },
-    { title: 'Adopt eco-driving' },
-    { title: 'I drink tap water instead of bottles' },
-    { title: 'Reduce my food waste' },
-    { title: 'Do your shopping in bulk' },
+    { title: 'Switch off my devices in standby', isCommitted: appliances },
+    { title: 'Reduce heating 1 degree', isCommitted: reduced_heating },
+    { title: 'Adopt eco-driving', isCommitted: eco_driving },
+    { title: 'I drink tap water instead of bottles', isCommitted: tap_water },
+    { title: 'Reduce my food waste', isCommitted: food_wastes },
+    { title: 'Do your shopping in bulk', isCommitted: bulk_food },
+    { title: 'A zero waste approach', isCommitted: zero_wastes },
   ];
 
   type PropsRenderItem = {
     item: string;
+    index: number;
   };
-  const renderItem = ({ item }: PropsRenderItem) => {
+  const renderItem = ({ item, index }: PropsRenderItem) => {
     return (
       <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-        <Text variant="body" color="white" style={{ textAlign: 'center' }}>
+        <Text key={index} variant="body" color="white" style={{ textAlign: 'center' }}>
           {item}
         </Text>
       </View>
@@ -45,7 +59,6 @@ const EngagementsScreen = () => {
           </Text>
           <View style={{ width: width - 100 }}>
             <Carousel
-              // style={{ flex }}
               data={ecologyFacts}
               renderItem={renderItem}
               sliderWidth={width - 100}
@@ -54,7 +67,6 @@ const EngagementsScreen = () => {
               sliderHeight={height / 3}
               itemHeight={height / 3}
               useScrollView={true}
-              onSnapToItem={(index: number) => setDotPag(index)}
               autoplay={false}
               loop={true}
             />
@@ -74,7 +86,7 @@ const EngagementsScreen = () => {
             Engagements :{' '}
           </Text>
           {engagementsData.map((item, index) => (
-            <Tips engagement={item} index={index} />
+            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} />
           ))}
         </Box>
       </View>
