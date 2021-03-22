@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';

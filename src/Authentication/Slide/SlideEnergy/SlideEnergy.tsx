@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
@@ -9,7 +9,7 @@ import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergy = ({ onPress }: PropsSlide) => {
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
   const { people, onChangePeople, onChangeSurface } = energy;

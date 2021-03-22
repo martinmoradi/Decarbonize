@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';

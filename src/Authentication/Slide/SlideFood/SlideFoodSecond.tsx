@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
@@ -12,20 +12,9 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const { onChangeVegetarian, onChangeVegan } = food;
 
   const theme = useTheme();
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   const styles = StyleSheet.create({
-    btnContainer: {
-      borderWidth: 0,
-    },
-    title: {
-      justifyContent: 'center',
-      transform: [
-        { rotate: '-90deg' },
-        { translateY: Platform.OS === 'ios' ? (height / 3 - 590) / 2 : (height / 3 - 500) / 2 },
-        { translateX: Platform.OS === 'ios' ? width / 40 + 12 : width / 40 + 16 },
-      ],
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
