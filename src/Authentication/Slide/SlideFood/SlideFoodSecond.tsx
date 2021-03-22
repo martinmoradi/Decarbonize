@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
@@ -15,7 +16,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const { width } = Dimensions.get('window');
 
   const styles = StyleSheet.create({
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
   const [vegetarianValue, setVegetarianValue] = useState<number>(0);
@@ -30,7 +31,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegetarian meal ?
           </Text>
-          <View style={{ padding: 6 }}></View>
+          <View style={{ padding: hp('1%') }}></View>
           <Text variant="body">{vegetarianValue} / week</Text>
           <SliderOnboarding
             onValueChange={setVegetarianValue}
@@ -41,7 +42,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
             minimumValue={0}
           />
 
-          <View style={{ padding: 6 }}></View>
+          <View style={{ padding: hp('1%') }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegan meal ? ?
           </Text>
@@ -61,7 +62,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 20,
+            bottom: hp('2.5%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
@@ -18,7 +19,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
     btnContainer: {
       borderWidth: 0,
     },
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
   const [breakfastValue, setBreakfastValue] = useState<number>(0);
@@ -44,7 +45,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             minimumValue={0}
           />
 
-          <View style={{ padding: 10 }}></View>
+          <View style={{ padding: hp('1%') }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
             How often do you eat red meat ?
           </Text>
@@ -58,9 +59,9 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             minimumValue={0}
           />
 
-          <View style={{ padding: 10 }}></View>
+          <View style={{ padding: hp('1%') }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat white meat ?
+            How often do you eat white meat ?
           </Text>
           <Text variant="body">{whiteMeatValue} / week</Text>
           <SliderOnboarding
@@ -77,7 +78,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 20,
+            bottom: hp('2.5%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}
