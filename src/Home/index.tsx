@@ -19,10 +19,14 @@ export const HomeNavigator = () => {
   const { postForm, fetchEmissions } = useActions();
 
   useEffect(() => {
-    if (isEmpty && user && !user.user.has_completed_onboarding) {
-      postForm(onboardingData);
-    } else if (isEmpty && user && user.user.has_completed_onboarding) {
-      fetchEmissions();
+    if (user) {
+      // @ts-ignore
+      const { has_completed_onboarding } = user;
+      if (isEmpty && !has_completed_onboarding) {
+        postForm(onboardingData);
+      } else if (isEmpty && has_completed_onboarding) {
+        fetchEmissions();
+      }
     }
   }, []);
 

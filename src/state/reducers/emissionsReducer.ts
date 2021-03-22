@@ -27,13 +27,13 @@ const initialState: EmissionsStateType = {
     weekly_spendings: 0,
     monthly_spendings: 0,
     yearly_spendings: 0,
-    'appliances?': false,
-    'reduced_heating?': false,
-    'eco_driving?': false,
-    'tap_water?': false,
-    'food_wastes?': false,
-    'bulk_food?': false,
-    'zero_wastes?': false,
+    appliances: false,
+    reduced_heating: false,
+    eco_driving: false,
+    tap_water: false,
+    food_wastes: false,
+    bulk_food: false,
+    zero_wastes: false,
   },
   errorMessage: null,
   isLoading: false,
@@ -42,11 +42,13 @@ const initialState: EmissionsStateType = {
 
 const emissionReducer = (state = initialState, action: EmissionsAction): EmissionsStateType => {
   switch (action.type) {
+    case EmissionsActionType.FETCH_EMISSIONS_ATTEMPT:
     case EmissionsActionType.POST_EMISSIONS_ATTEMPT:
       return {
         ...state,
         isLoading: true,
       };
+    case EmissionsActionType.FETCH_EMISSIONS_SUCCESS:
     case EmissionsActionType.POST_EMISSIONS_SUCCESS:
       return {
         data: action.payload,
@@ -54,6 +56,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
         isLoading: false,
         isEmpty: false,
       };
+    case EmissionsActionType.FETCH_EMISSIONS_ERROR:
     case EmissionsActionType.POST_EMISSIONS_ERROR:
       return {
         ...state,
