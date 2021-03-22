@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { RectButtonProperties } from 'react-native-gesture-handler';
+import {} from 'react-native-gesture-handler'
 
 interface ButtonProps {
   variant?: 'default' | 'primary';

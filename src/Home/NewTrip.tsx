@@ -1,97 +1,141 @@
 import React from 'react';
 import { Dimensions, ScrollView, View } from 'react-native';
-import { Box, Text } from '../components';
-const { width, height } = Dimensions.get('window');
+import { Box, Text, TextButton } from '../components';
+const { width } = Dimensions.get('window');
+import { BorderlessButton } from 'react-native-gesture-handler';
 
-const NewTripScreen = () => {
+const NewTripScreen = ({ navigation }) => {
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
+      <View style={{ alignItems: 'center' }}>
         <Box
-          alignItems="center"
-          style={{ width: width - 30, height: 100, borderRadius: 10 }}
-          justifyContent="center"
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={{
+            width: width,
+            height: 100,
+            borderBottomEndRadius: 20,
+            borderBottomStartRadius: 20,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 9,
+            },
+            shadowOpacity: 0.5,
+            shadowRadius: 12.35,
+            elevation: 19,
+          }}
           backgroundColor="primary"
+          marginBottom="s"
         >
           <Text variant="title2" color="white">
-            NEW TRIP SCREEN
+            NOUVEAU TRAJET
           </Text>
         </Box>
         <Box
-          marginTop="xl"
+          marginBottom="s"
+          justifyContent="center"
+          alignItems="center"
+          paddingBottom="m"
+          style={{
+            width: width - 40,
+            height: 100,
+            borderRadius: 20,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 9,
+            },
+            shadowOpacity: 0.5,
+            shadowRadius: 12.35,
+            elevation: 19,
+          }}
+          backgroundColor="primary"
+        >
+          <Text variant="title2" color="white">
+            SVG
+          </Text>
+        </Box>
+        <Box
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={{ width: width, borderRadius: 20 }}
           justifyContent="center"
           backgroundColor="info"
         >
           <Text variant="title3" color="white" margin="s">
-            Ton historique :
+            Choisis un moyen de transport:
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 1 - CO2 - Score
-            </Text>
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCarTrip')}
+            >
+              <Text variant="button">Voiture</Text>
+            </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 2 - CO2 - Score
-            </Text>
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTrip')}
+            >
+              <Text variant="button">Bus</Text>
+            </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 3 - CO2 - Score
-            </Text>
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTrip')}
+            >
+              <Text variant="button">Metro</Text>
+            </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 4 - CO2 - Score
-            </Text>
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTrip')}
+            >
+              <Text variant="button">Train</Text>
+            </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
             justifyContent="center"
             backgroundColor="primary"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 5 - CO2 - Score
-            </Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Semaine 6 - CO2 - Score
-            </Text>
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewAirTrip')}
+            >
+              <Text variant="button">Avion</Text>
+            </BorderlessButton>
           </Box>
         </Box>
       </View>
