@@ -1,13 +1,20 @@
 import React from 'react';
-import { Dimensions, ScrollView, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Dimensions, ScrollView, View, Image } from 'react-native';
 import { Box, Text, TextButton } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
+import TravelMode from './TravelMode';
 
 const NewTripScreen = ({ navigation }) => {
+  const carImg = require('../../assets/images/car.jpg');
+
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
         <Box
           paddingLeft="m"
           paddingTop="s"
@@ -60,25 +67,26 @@ const NewTripScreen = ({ navigation }) => {
         </Box>
         <Box
           paddingTop="m"
-          style={{ width: width, borderRadius: 20 }}
+          style={{ width: width, borderRadius: 30 }}
           justifyContent="center"
-          backgroundColor="info"
+          alignItems="center"
+          backgroundColor="white"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="button" margin="s">
             Choisis un moyen de transport:
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={{ width: wp('90%'), height: 80, borderBottomWidth: 2, borderRadius: 20 }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCarTrip')}
             >
-              <Text variant="button">Voiture</Text>
+              <TravelMode travelMode="Car travel" imgUrl="carImg" />
             </BorderlessButton>
           </Box>
           <Box
