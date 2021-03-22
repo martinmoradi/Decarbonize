@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
@@ -19,7 +20,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
 
   const theme = useTheme();
   const styles = StyleSheet.create({
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
   return (
@@ -44,7 +45,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
           )}
           {gasHeating && (
             <>
-              <View style={{ padding: 6 }}></View>
+              <View style={{ padding: hp('1%') }}></View>
               <Text variant="body">What is your Gas consumption ?</Text>
               <Text variant="body">{gasValue} € / month</Text>
               <SliderOnboarding
@@ -77,7 +78,7 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 20,
+            bottom: hp('2.5%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}

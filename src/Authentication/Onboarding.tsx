@@ -7,8 +7,8 @@ import SlideEnergySecond from './Slide/SlideEnergy/SlideEnergySecond';
 import SlideEnergyThird from './Slide/SlideEnergy/SlideEnergyThird';
 import SlideFood from './Slide/SlideFood/SlideFood';
 import SlideFoodSecond from './Slide/SlideFood/SlideFoodSecond';
-import SlideHousing from './Slide/SlideHousing/SlideHousing';
-import SlideHousingBis from './Slide/SlideHousing/SlideHousingBis';
+import SlideHousing from './Slide/SlideHousing/SlideSpending';
+import SlideHousingBis from './Slide/SlideHousing/SlideSpendingBis';
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {

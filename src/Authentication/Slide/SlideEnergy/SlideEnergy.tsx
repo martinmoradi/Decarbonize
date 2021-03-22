@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
@@ -12,19 +12,14 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   const { width } = Dimensions.get('window');
   const theme = useTheme();
   const { energy } = useContext(OnboardingContext);
-  const { people, onChangePeople, onChangeSurface } = energy;
+  const { onChangePeople, onChangeSurface } = energy;
 
   const [surfaceValue, setSurfaceValue] = useState<number>(0);
-
-  const handleChangePeople = (e: number) => {
-    onChangePeople(e + 1);
-  };
+  const [peopleValue, setPeopleValue] = useState<number>(0);
 
   const styles = StyleSheet.create({
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
-
-  const buttonsPeople = ['1', '2', '3', '4+'];
 
   return (
     <View style={theme.slideStyle.container}>
@@ -33,16 +28,17 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
-          <ButtonGroup
-            selectedButtonStyle={theme.slideStyle.buttonStyle}
-            buttons={buttonsPeople}
-            selectedIndex={people - 1}
-            onPress={handleChangePeople}
-            textStyle={{ textAlign: 'center' }}
-            containerStyle={{ borderWidth: 0 }}
-            innerBorderStyle={{ width: 0 }}
+          <Text variant="body">{peopleValue} </Text>
+          <SliderOnboarding
+            onValueChange={setPeopleValue}
+            onSlidingComplete={onChangePeople}
+            value={peopleValue}
+            step={1}
+            maximumValue={10}
+            minimumValue={0}
           />
-          <Text variant="body">What is the surface are of your housing?</Text>
+          <View style={{ padding: hp('1%') }}></View>
+          <Text variant="body">What is the area of your housing?</Text>
           <Text variant="body">{surfaceValue} m²</Text>
           <SliderOnboarding
             onValueChange={setSurfaceValue}
@@ -50,7 +46,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             value={surfaceValue}
             step={5}
             maximumValue={300}
-            minimumValue={20}
+            minimumValue={0}
           />
         </View>
 
@@ -59,7 +55,7 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 20,
+            bottom: hp('2.5%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}
