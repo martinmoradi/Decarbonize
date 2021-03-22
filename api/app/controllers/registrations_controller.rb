@@ -15,10 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
                  code: 200,
                  message: 'Signed up sucessfully.',
                },
-               data: {
-                 id: resource.id,
-                 email: resource.email,
-               },
+               data: UserSerializer.new(resource).serializable_hash[:data][:attributes],
              }
     else
       render json: {

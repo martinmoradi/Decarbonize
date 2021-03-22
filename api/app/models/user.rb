@@ -112,4 +112,17 @@ class User < ApplicationRecord
     (air_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
       .round(2)
   end
+
+  def weekly_travel_emissions
+    (weekly_airtrip_emissions + weekly_landtrip_emissions).round(2)
+  end
+
+  def monthly_travel_emissions
+    (monthly_airtrip_emissions + monthly_landtrip_emissions).round(2)
+  end
+
+  def yearly_travel_emissions
+    (yearly_airtrip_emissions + yearly_landtrip_emissions).round(2)
+  end
+  
 end

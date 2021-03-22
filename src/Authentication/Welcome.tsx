@@ -15,7 +15,6 @@ export const assets = [picture.src];
 const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
   const theme = useTheme();
   const { loadUser } = useActions();
-
   const { user } = useTypedSelector(state => state.authentication);
 
   useEffect(() => {

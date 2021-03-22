@@ -71,7 +71,7 @@ class FixedEmission < ApplicationRecord
     (housing / 4.33).round(2)
   end
 
-  def housing
+  def yearly_housing
     (
       (
         (house_surface * 17.5) + (elec_kwh * 0.06) + (gas_consumption * 0.23) +
@@ -80,8 +80,8 @@ class FixedEmission < ApplicationRecord
     ).round(2)
   end
 
-  def yearly_housing
-    (housing * 12).round(2)
+  def housing
+    (yearly_housing / 12).round(2)
   end
 
   # SPENDINGS
@@ -125,10 +125,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def weekly_alimentation
-    (
-      breakfasts_per_week * 0.37 + white_meats_per_week * 1.35 + vegetarian_per_week * 0.51 +
-        vegan_per_week * 0.3939
-    ).round(2)
+    (alimentation / 4.33).round(2)
   end
 
   def alimentation

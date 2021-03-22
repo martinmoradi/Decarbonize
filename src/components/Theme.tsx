@@ -19,6 +19,7 @@ export const palette = {
 };
 
 const theme = {
+
   colors: {
     white: palette.white,
     primary: palette.green,
@@ -31,6 +32,7 @@ const theme = {
     background: palette.white,
     background2: '#F6F6F6',
   },
+
   spacing: {
     s: 8,
     m: 16,
