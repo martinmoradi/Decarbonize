@@ -7,71 +7,55 @@ import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
 
-const SlideFood = ({ onPress }: PropsSlide) => {
+const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const { food } = useContext(OnboardingContext);
-  const { onChangeBreakfast, onChangeRedMeat, onChangeWhiteMeat } = food;
+  const { onChangeVegetarian, onChangeVegan } = food;
 
   const theme = useTheme();
   const { width } = Dimensions.get('window');
 
   const styles = StyleSheet.create({
-    btnContainer: {
-      borderWidth: 0,
-    },
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
   });
 
-  const [breakfastValue, setBreakfastValue] = useState<number>(0);
-  const [redMeatValue, setRedMeatValue] = useState<number>(0);
-  const [whiteMeatValue, setWhiteMeatValue] = useState<number>(0);
+  const [vegetarianValue, setVegetarianValue] = useState<number>(0);
+  const [veganValue, setVeganValue] = useState<number>(0);
 
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="FOOD" svgTitle="food" isReversed={false} />
+      <SlideTitle title="FOOD" svgTitle="food" isReversed={true} />
 
-      <View style={theme.slideStyle.footer}>
+      <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you have a breakfast ?
+            How much do you eat vegetarian meal ?
           </Text>
-          <Text variant="body">{breakfastValue} / week</Text>
+          <View style={{ padding: 6 }}></View>
+          <Text variant="body">{vegetarianValue} / week</Text>
           <SliderOnboarding
-            onValueChange={setBreakfastValue}
-            onSlidingComplete={onChangeBreakfast}
-            value={breakfastValue}
-            step={1}
-            maximumValue={7}
-            minimumValue={0}
-          />
-
-          <View style={{ padding: 10 }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you eat red meat ?
-          </Text>
-          <Text variant="body">{redMeatValue} / week</Text>
-          <SliderOnboarding
-            onValueChange={setRedMeatValue}
-            onSlidingComplete={onChangeRedMeat}
-            value={redMeatValue}
+            onValueChange={setVegetarianValue}
+            onSlidingComplete={onChangeVegetarian}
+            value={vegetarianValue}
             step={1}
             maximumValue={14}
             minimumValue={0}
           />
 
-          <View style={{ padding: 10 }}></View>
+          <View style={{ padding: 6 }}></View>
           <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat white meat ?
+            How much do you eat vegan meal ? ?
           </Text>
-          <Text variant="body">{whiteMeatValue} / week</Text>
+          <Text variant="body">{veganValue} / week</Text>
           <SliderOnboarding
-            onValueChange={setWhiteMeatValue}
-            onSlidingComplete={onChangeWhiteMeat}
-            value={whiteMeatValue}
+            onValueChange={setVeganValue}
+            onSlidingComplete={onChangeVegan}
+            value={veganValue}
             step={1}
             maximumValue={14}
             minimumValue={0}
           />
         </View>
+
         <View
           style={{
             position: 'absolute',
@@ -89,4 +73,4 @@ const SlideFood = ({ onPress }: PropsSlide) => {
   );
 };
 
-export default SlideFood;
+export default SlideFoodSecond;
