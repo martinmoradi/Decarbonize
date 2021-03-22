@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { Text, Box, MeteoBar } from '../components';
+import { Text, Box, MeteoBar, Trajet } from '../components';
 import DashboardGraph from '../components/DashboardGraph';
 import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
@@ -11,6 +11,7 @@ const DashboardScreen = () => {
       <Box style={{ alignItems: 'center' }}>
         <Box
           paddingLeft="m"
+          marginTop="s"
           justifyContent="flex-end"
           paddingBottom="m"
           style={{
@@ -49,7 +50,7 @@ const DashboardScreen = () => {
             elevation: 19,
           }}
           justifyContent="center"
-          backgroundColor="primary"
+          backgroundColor="white"
         >
           <DashboardGraph />
         </Box>
@@ -71,7 +72,7 @@ const DashboardScreen = () => {
             elevation: 19,
           }}
           justifyContent="center"
-          backgroundColor="info"
+          backgroundColor="primary"
         >
           <Text variant="title3" color="white" margin="s">
             Cette semaine :
@@ -92,9 +93,9 @@ const DashboardScreen = () => {
               elevation: 19,
             }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="white"
           >
-            <Text variant="title2" color="white">
+            <Text variant="title2" color="primary">
               Food Boxes
             </Text>
           </Box>
@@ -104,77 +105,17 @@ const DashboardScreen = () => {
           paddingTop="m"
           style={{ width: width, borderRadius: 20 }}
           justifyContent="center"
-          backgroundColor="info"
+          backgroundColor="primary"
         >
           <Text variant="title3" color="white" margin="s">
             Tes Trajets :
           </Text>
-          <Box
-            alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Trajet 1
-            </Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Trajet 2
-            </Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Trajet 3
-            </Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Trajet 4
-            </Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Trajet 5
-            </Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
-            justifyContent="center"
-            backgroundColor="primary"
-            borderBottomColor="white"
-          >
-            <Text variant="title3" color="white">
-              Trajet 6
-            </Text>
-          </Box>
+          <Trajet/>
+          <Trajet/>
+          <Trajet/>
+          <Trajet/>
+          <Trajet/>
+          <Trajet/>
         </Box>
       </Box>
     </ScrollView>

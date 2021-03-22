@@ -12,7 +12,7 @@ const AuthRouter = () => {
 
   return (
     <>
-      {!user ? (
+      {user ? (
         <AppStack.Navigator headerMode="none">
           <AppStack.Screen name="Authentication" component={AuthenticationNavigator} />
         </AppStack.Navigator>
