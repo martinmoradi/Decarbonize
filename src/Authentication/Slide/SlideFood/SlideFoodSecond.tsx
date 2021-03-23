@@ -1,16 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
+import { useTypedSelector } from '../../../hooks';
+import { useDispatch } from 'react-redux';
+import { OnboardingFoodActionType } from '../../../redux/types';
 
 const SlideFoodSecond = ({ onPress }: PropsSlide) => {
-  const { food } = useContext(OnboardingContext);
-  const { onChangeVegetarian, onChangeVegan } = food;
+  const { food } = useTypedSelector(state => state.onboarding);
+  const [vegan, setVegan] = useState(food.vegan);
+  const [vegetarian, setVegetarian] = useState(food.vegetarian);
+  const dispatch = useDispatch();
 
   const theme = useTheme();
   const { width } = Dimensions.get('window');
@@ -19,8 +23,11 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
-  const [vegetarianValue, setVegetarianValue] = useState<number>(0);
-  const [veganValue, setVeganValue] = useState<number>(0);
+  const handlePress = () => {
+    dispatch({ type: OnboardingFoodActionType.SET_VEGETARIAN, payload: vegetarian });
+    dispatch({ type: OnboardingFoodActionType.SET_VEGAN, payload: vegan });
+    onPress();
+  };
 
   return (
     <View style={theme.slideStyle.container}>
@@ -32,11 +39,10 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
             How much do you eat vegetarian meal ?
           </Text>
           <View style={{ padding: hp('1%') }}></View>
-          <Text variant="body">{vegetarianValue} / week</Text>
+          <Text variant="body">{vegetarian} / week</Text>
           <SliderOnboarding
-            onValueChange={setVegetarianValue}
-            onSlidingComplete={onChangeVegetarian}
-            value={vegetarianValue}
+            onValueChange={(value: number) => setVegetarian(value)}
+            value={vegetarian}
             step={1}
             maximumValue={14}
             minimumValue={0}
@@ -46,11 +52,10 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
           <Text variant="body" style={{ lineHeight: 32 }}>
             How much do you eat vegan meal ? ?
           </Text>
-          <Text variant="body">{veganValue} / week</Text>
+          <Text variant="body">{vegan} / week</Text>
           <SliderOnboarding
-            onValueChange={setVeganValue}
-            onSlidingComplete={onChangeVegan}
-            value={veganValue}
+            onValueChange={(value: number) => setVegan(value)}
+            value={vegan}
             step={1}
             maximumValue={14}
             minimumValue={0}
@@ -67,7 +72,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
             alignItems: 'center',
           }}
         >
-          <Button variant="default" onPress={onPress} label="Next" />
+          <Button variant="default" onPress={handlePress} label="Next" />
         </View>
       </View>
     </View>
