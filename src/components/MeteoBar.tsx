@@ -54,7 +54,7 @@ const MeteoBar = () => {
         {timeFrame} ☀️
       </Text>
       {location.latitude !== 0 ? (
-        <Text variant="body" color="white">
+        <Text variant="body">
           It's {weekday[today.getDay()]}, temperature outside is {meteo}°C {city}
         </Text>
       ) : (

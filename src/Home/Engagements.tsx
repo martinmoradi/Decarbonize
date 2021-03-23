@@ -51,6 +51,8 @@ const EngagementsScreen = () => {
           style={{ width: width - 30, height: height / 3, borderRadius: 10 }}
           justifyContent="center"
           backgroundColor="primary"
+          paddingTop="m"
+          overflow="hidden"
         >
           <Carousel
             data={ecologyFacts}
