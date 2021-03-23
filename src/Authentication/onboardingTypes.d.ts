@@ -77,16 +77,15 @@ export type PropsSlide = {
 };
 
 export type PropsSlideTop = {
-  title: string,
-  svgTitle: string,
-  isReversed: boolean,
-}
+  title: string;
+  svgTitle: string;
+  isReversed: boolean;
+};
 
 export type PropsSliderOnboarding = {
-  onValueChange: Dispatch<SetStateAction<number>>
-  onSlidingComplete: (value: React.SetStateAction<number>) => void,
-  value: number,
-  step: number,
-  maximumValue: number,
-  minimumValue: number,
-}
+  onValueChange: Dispatch<SetStateAction<number>>;
+  value: number;
+  step: number;
+  maximumValue: number;
+  minimumValue: number;
+};

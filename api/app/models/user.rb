@@ -52,6 +52,7 @@ class User < ApplicationRecord
   def yearly_landtrip_emissions
     (
       land_trips
+        .includes(:emission)
         .where(created_at: Date.today.beginning_of_year..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
@@ -60,6 +61,7 @@ class User < ApplicationRecord
   def monthly_landtrip_emissions
     (
       land_trips
+        .includes(:emission)
         .where(created_at: Date.today.beginning_of_month..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
@@ -68,25 +70,32 @@ class User < ApplicationRecord
   def weekly_landtrip_emissions
     (
       land_trips
+        .includes(:emission)
         .where(created_at: Date.today.beginning_of_week..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
 
   def daily_landtrip_emissions
-    (land_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
-      .round(2)
+    (
+      land_trips
+        .includes(:emission)
+        .where(created_at: Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
   end
 
   # AIR TRIPS EMISSIONS
 
   def total_airtrip_emissions
-    (air_trips.reduce(0) { |sum, land_trip| sum + land_trip.emission.amount }).round(2)
+    (air_trips.includes(:emission).reduce(0) { |sum, land_trip| sum + land_trip.emission.amount })
+      .round(2)
   end
 
   def yearly_airtrip_emissions
     (
       air_trips
+        .includes(:emission)
         .where(created_at: Date.today.beginning_of_year..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
@@ -95,6 +104,7 @@ class User < ApplicationRecord
   def monthly_airtrip_emissions
     (
       air_trips
+        .includes(:emission)
         .where(created_at: Date.today.beginning_of_month..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
@@ -103,14 +113,19 @@ class User < ApplicationRecord
   def weekly_airtrip_emissions
     (
       air_trips
+        .includes(:emission)
         .where(created_at: Date.today.beginning_of_week..Date.today)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
 
   def daily_airtrip_emissions
-    (air_trips.where(created_at: Date.today).reduce(0) { |sum, trip| sum + trip.emission.amount })
-      .round(2)
+    (
+      air_trips
+        .includes(:emission)
+        .where(created_at: Date.today)
+        .reduce(0) { |sum, trip| sum + trip.emission.amount }
+    ).round(2)
   end
 
   def weekly_travel_emissions
@@ -124,5 +139,4 @@ class User < ApplicationRecord
   def yearly_travel_emissions
     (yearly_airtrip_emissions + yearly_landtrip_emissions).round(2)
   end
-  
 end
