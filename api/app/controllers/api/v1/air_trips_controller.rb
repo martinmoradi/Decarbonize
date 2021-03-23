@@ -23,7 +23,7 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
                  code: 200,
                  message: 'Air Trip emission was successfully created',
                },
-               data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+               data: AirTripSerializer.new(current_user).serializable_hash[:data][:attributes],
              }
     else
       render json: @air_trip.errors, status: :unprocessable_entity
