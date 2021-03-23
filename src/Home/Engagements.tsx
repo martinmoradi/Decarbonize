@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Text, Box } from '../components';
 import { Dimensions } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -45,10 +45,10 @@ const EngagementsScreen = () => {
 
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
+      <View style={styles.container}>
         <Box
           alignItems="center"
-          style={{ width: width - 30, height: height / 3, borderRadius: 10 }}
+          style={styles.boxContainer}
           justifyContent="center"
           backgroundColor="primary"
           paddingTop="m"
@@ -80,7 +80,7 @@ const EngagementsScreen = () => {
         <Box
           marginTop="xl"
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={styles.boxCommitment}
           justifyContent="center"
           backgroundColor="info"
         >
@@ -96,4 +96,19 @@ const EngagementsScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    marginTop: height / 15,
+  },
+  boxContainer: {
+    width: width - 30,
+    height: height / 3,
+    borderRadius: 10,
+  },
+  boxCommitment: {
+    width: width - 30,
+    borderRadius: 10,
+  },
+});
 export default EngagementsScreen;

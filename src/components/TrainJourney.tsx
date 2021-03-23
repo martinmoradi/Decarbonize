@@ -4,35 +4,20 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions, Image, View } from 'react-native';
+import { Dimensions, Image, View, StyleSheet } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const TrainJourney = () => {
   return (
     <Box
-      style={{ width: wp('90%'), height: 60, borderBottomWidth: 2, borderRadius: 20 }}
+      style={styles.boxContainer}
       justifyContent="center"
       backgroundColor="lightgray"
       borderBottomColor="white"
     >
-      <View
-        style={{
-          marginLeft: wp('10%'),
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}
-      >
-        <View
-          style={{
-            backgroundColor: 'blue',
-            padding: 5,
-            borderRadius: 10,
-          }}
-        >
-          <Image
-            source={require('../../assets/images/train.png')}
-            style={{ height: 24, width: 24, tintColor: 'white' }}
-          />
+      <View style={styles.viewContainer}>
+        <View style={styles.viewImg}>
+          <Image source={require('../../assets/images/train.png')} style={styles.imgStyle} />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">Train Travel</Text>
@@ -41,5 +26,21 @@ const TrainJourney = () => {
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  boxContainer: {
+    width: wp('90%'),
+    height: 60,
+    borderBottomWidth: 2,
+    borderRadius: 20,
+  },
+  viewContainer: { marginLeft: wp('10%'), flexDirection: 'row', alignItems: 'center' },
+  viewImg: {
+    backgroundColor: 'blue',
+    padding: 5,
+    borderRadius: 10,
+  },
+  imgStyle: { height: 24, width: 24, tintColor: 'white' },
+});
 
 export default TrainJourney;

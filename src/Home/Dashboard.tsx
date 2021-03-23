@@ -25,20 +25,7 @@ const DashboardScreen = () => {
           paddingTop="s"
           justifyContent="flex-end"
           paddingBottom="m"
-          style={{
-            width: width,
-            height: 155,
-            borderBottomEndRadius: 20,
-            borderBottomStartRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
+          style={styles.boxContainer}
           backgroundColor="primaryLight"
           marginBottom="s"
         >
@@ -47,19 +34,7 @@ const DashboardScreen = () => {
 
         <Box
           alignItems="center"
-          style={{
-            borderRadius: 20,
-            flex: 1,
-            width: width,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
+          style={styles.boxGraph}
           justifyContent="center"
           backgroundColor="white"
         >
@@ -69,19 +44,7 @@ const DashboardScreen = () => {
           marginTop="s"
           paddingTop="m"
           marginBottom="s"
-          style={{
-            width: width,
-            height: 100,
-            borderRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
+          style={[styles.boxInfo, { height: 100 }]}
           justifyContent="center"
           backgroundColor="primary"
         >
@@ -90,19 +53,7 @@ const DashboardScreen = () => {
           </Text>
           <Box
             alignItems="center"
-            style={{
-              width: width,
-              height: 80,
-              borderRadius: 20,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 9,
-              },
-              shadowOpacity: 0.5,
-              shadowRadius: 12.35,
-              elevation: 19,
-            }}
+            style={styles.boxInfo}
             justifyContent="center"
             backgroundColor="white"
           >
@@ -114,7 +65,7 @@ const DashboardScreen = () => {
         <Box
           marginTop="m"
           paddingTop="m"
-          style={{ width: width, borderTopLeftRadius: 30, borderTopRightRadius: 30 }}
+          style={styles.boxTravel}
           justifyContent="center"
           backgroundColor="white"
           alignItems="center"
@@ -133,4 +84,51 @@ const DashboardScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  boxContainer: {
+    width: width,
+    height: 155,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  boxInfo: {
+    width: width,
+    height: 80,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  boxGraph: {
+    width: width,
+    borderRadius: 20,
+    flex: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  boxTravel: {
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+});
 export default DashboardScreen;
