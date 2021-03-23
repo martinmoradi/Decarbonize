@@ -1,9 +1,7 @@
 import React from 'react';
 import { Box, Text, Button } from '../../components';
 import { TripStackNavigationProps } from '../../components/Navigation';
-import Checkbox from '../../components/Form/Checkbox';
-import { useActions, useTypedSelector } from '../../hooks';
-import { Dimensions, TextInput, ActivityIndicator } from 'react-native';
+import { Dimensions, TextInput } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const AirPortSearch = ({route, navigation}: TripStackNavigationProps<'AirPortSearch'>)=>{

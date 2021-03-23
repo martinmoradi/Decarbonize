@@ -16,9 +16,15 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
   # POST /air_trips
   def create
     @air_trip = AirTrip.new(air_trip_params)
-
+    @air_trip.user_id = current_user.id
     if @air_trip.save
-      render json: @air_trip, status: :created, location: api_v1_air_trips_url(@air_trip)
+      render json: {
+               status: {
+                 code: 200,
+                 message: 'Air Trip emission was successfully created',
+               },
+               data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+             }
     else
       render json: @air_trip.errors, status: :unprocessable_entity
     end
@@ -47,6 +53,6 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # Only allow a list of trusted parameters through.
   def air_trip_params
-    params.require(:air_trip).permit(:round_trip, :distance)
+    params.require(:air_trip).permit(:round_trip, :departure_latitude, :departure_longitude, :arrival_latitude, :arrival_longitude, :departure, :arrival )
   end
 end
