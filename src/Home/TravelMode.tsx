@@ -20,7 +20,10 @@ const TravelMode = ({ travelMode, imgUrl }: PropsTravel) => {
         alignItems: 'center',
       }}
     >
-      <Image source={imgUrl} style={{ height: 70, width: 70, borderRadius: 15 }} />
+      <Image
+        source={require(`../../assets/images${imgUrl}.jpg`)}
+        style={{ height: 70, width: 70, borderRadius: 15 }}
+      />
       <View style={{ marginLeft: wp('5%') }}>
         <Text variant="button">{travelMode}</Text>
       </View>

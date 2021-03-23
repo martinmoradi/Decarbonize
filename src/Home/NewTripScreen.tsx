@@ -151,14 +151,28 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'tramway' })}
             >
-              <Text variant="button">Tramway</Text>
+              <View
+                style={{
+                  marginLeft: wp('10%'),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  source={require('../../assets/images/tramway.jpg')}
+                  style={{ height: 70, width: 70, borderRadius: 15 }}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Tramway Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={{ width: wp('90%'), height: 80, borderBottomWidth: 2, borderRadius: 20 }}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
@@ -201,7 +215,7 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
                 }}
               >
                 <Image
-                  source={require('../../assets/images/subway.jpg')}
+                  source={require('../../assets/images/train.jpg')}
                   style={{ height: 70, width: 70, borderRadius: 15 }}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
@@ -229,7 +243,7 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
                 }}
               >
                 <Image
-                  source={require('../../assets/images/subway.jpg')}
+                  source={require('../../assets/images/airplane.png')}
                   style={{ height: 70, width: 70, borderRadius: 15 }}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
