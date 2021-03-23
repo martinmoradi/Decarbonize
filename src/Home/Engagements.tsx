@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
+import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Box } from '../components';
 import {
   heightPercentageToDP as hp,
@@ -23,6 +23,8 @@ const EngagementsScreen = () => {
     bulk_food,
     zero_wastes,
   } = emissions;
+
+  const scroll = useRef<Carousel<string>>(null);
 
   const engagementsData = [
     { title: 'Switch off my devices in standby', isCommitted: appliances },
@@ -67,10 +69,12 @@ const EngagementsScreen = () => {
           style={styles.boxStyle}
           backgroundColor="lightgray"
         >
-          <Text variant="title1" margin="s">
-            {'<'}
-          </Text>
-          <View style={styles.viewContainer}>
+          <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
+            <Text variant="title1" color="white" margin="s">
+              {'<'}
+            </Text>
+          </TouchableOpacity>
+          <View style={{ width: width - 100 }}>
             <Carousel
               data={ecologyFacts}
               renderItem={renderItem}
@@ -82,11 +86,14 @@ const EngagementsScreen = () => {
               useScrollView={true}
               autoplay={false}
               loop={true}
+              ref={scroll}
             />
           </View>
-          <Text variant="title1" margin="s">
-            {'>'}
-          </Text>
+          <TouchableOpacity onPress={() => scroll.current?.snapToNext()}>
+            <Text variant="title1" color="white" margin="s">
+              {'>'}
+            </Text>
+          </TouchableOpacity>
         </Box>
         <Box
           alignItems="center"
@@ -96,8 +103,8 @@ const EngagementsScreen = () => {
           justifyContent="center"
           backgroundColor="white"
         >
-          <Text variant="title3" margin="s">
-            Engagements :{' '}
+          <Text variant="title3" color="white" margin="s">
+            Engagements :
           </Text>
           {engagementsData.map((item, index) => (
             <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} />
