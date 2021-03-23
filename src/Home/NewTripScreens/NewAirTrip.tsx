@@ -13,9 +13,9 @@ const NewAirTripScreen = ({ route, navigation }: TripStackNavigationProps<'NewAi
   React.useEffect(() => {
     if (route.params ) {
       if (route.params.type === 'departure') {
-        setDeparture(route.params.query);
+        setDeparture(route.params.queryResult);
       } else {
-        setArrival(route.params.query);
+        setArrival(route.params.queryResult);
       }
     }
   }, [route.params]);
@@ -68,7 +68,7 @@ const NewAirTripScreen = ({ route, navigation }: TripStackNavigationProps<'NewAi
         <Text variant="title2" color="white">
           Aéroport de départ
         </Text>
-        {departure !== ('') ? <Text>{departure}</Text> : null}
+        {departure !== ('') ? <Text>{departure.name}</Text> : null}
         <Button
           variant="default"
           label="Selectionner"
@@ -98,7 +98,7 @@ const NewAirTripScreen = ({ route, navigation }: TripStackNavigationProps<'NewAi
         <Text variant="title2" color="white">
           Aéroport d'arrivée
         </Text>
-        {arrival !== ('') ? <Text>{arrival}</Text> : null}
+        {arrival !== ('') ? <Text>{arrival.name}</Text> : null}
         <Button
           variant="default"
           label="Selectionner"

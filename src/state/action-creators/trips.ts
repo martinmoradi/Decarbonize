@@ -39,3 +39,4 @@ export const postCommonTrip = (tripData: {vehicle_type: string, round_trip: bool
             }
         };
 }
+
