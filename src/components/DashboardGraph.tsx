@@ -7,6 +7,7 @@ import {
   VictoryAxis,
   VictoryLegend,
 } from 'victory-native';
+import { StyleSheet } from 'react-native';
 import { useTypedSelector } from '../hooks';
 import { Box } from '../components/Theme';
 import TextButton from '../components/TextButton';
@@ -129,12 +130,16 @@ const DashboardGraph = () => {
         />
       </VictoryChart>
       <Box style={{ flexDirection: 'row', justifyContent: 'center' }}>
-        <TextButton label="Weekly" onPress={switchWeekly} style={{ width: 60, margin: 5 }} />
-        <TextButton label="Monthly" onPress={switchMonthly} style={{ width: 60, margin: 5 }} />
-        <TextButton label="Yearly" onPress={switchYearly} style={{ width: 60, margin: 5 }} />
+        <TextButton label="Weekly" onPress={switchWeekly} style={styles.textButton} />
+        <TextButton label="Monthly" onPress={switchMonthly} style={styles.textButton} />
+        <TextButton label="Yearly" onPress={switchYearly} style={styles.textButton} />
       </Box>
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  textButton: { width: 60, margin: 5 },
+});
 
 export default DashboardGraph;

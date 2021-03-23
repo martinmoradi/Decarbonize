@@ -1,33 +1,32 @@
 import React from 'react';
-import { Dimensions, ScrollView, View } from 'react-native';
-import { Box, Text } from '../components';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Dimensions, ScrollView, View, Image, StyleSheet } from 'react-native';
+import { Box, Text, useTheme } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { TripStackNavigationProps } from '../components/Navigation';
 
 const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>) => {
+  const theme = useTheme();
+
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center' }}>
+      <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.primary,
+        }}
+      ></View>
+      <View style={{ alignItems: 'center', flex: 1 }}>
         <Box
           paddingLeft="m"
           paddingTop="s"
           justifyContent="flex-end"
           paddingBottom="m"
-          style={{
-            width: width,
-            height: 100,
-            borderBottomEndRadius: 20,
-            borderBottomStartRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
+          style={styles.boxContainer}
           backgroundColor="primary"
           marginBottom="s"
         >
@@ -35,121 +34,143 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
             NOUVEAU TRAJET
           </Text>
         </Box>
-        <Box
-          marginBottom="s"
-          justifyContent="center"
-          alignItems="center"
-          paddingBottom="m"
-          style={{
-            width: width - 40,
-            height: 100,
-            borderRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
-          backgroundColor="primary"
-        >
-          <Text variant="title2" color="white">
-            SVG
-          </Text>
-        </Box>
+        <View style={styles.viewContainer}>
+          <Image
+            source={require('../../assets/images/transportation.jpg')}
+            style={styles.imgStyle}
+          />
+        </View>
         <Box
           paddingTop="m"
-          style={{ width: width, borderRadius: 20 }}
+          style={styles.boxTravel}
           justifyContent="center"
-          backgroundColor="info"
+          alignItems="center"
+          backgroundColor="white"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="title3" margin="s">
             Choisis un moyen de transport:
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={styles.boxTravelMode}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewCarTripScreen')}
             >
-              <Text variant="button">Voiture</Text>
+              <View style={styles.cardContainer}>
+                <Image source={require('../../assets/images/car.jpg')} style={styles.iconStyle} />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Car Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={styles.boxTravelMode}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "bus"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'bus' })}
             >
-              <Text variant="button">Bus</Text>
+              <View style={styles.cardContainer}>
+                <Image source={require('../../assets/images/bus.jpg')} style={styles.iconStyle} />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Bus Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={styles.boxTravelMode}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "tramway"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'tramway' })}
             >
-              <Text variant="button">Tramway</Text>
+              <View style={styles.cardContainer}>
+                <Image
+                  source={require('../../assets/images/tramway.jpg')}
+                  style={styles.iconStyle}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Tramway Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={styles.boxTravelMode}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen', {type: "metro"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'metro' })}
             >
-              <Text variant="button">Metro</Text>
+              <View style={styles.cardContainer}>
+                <Image
+                  source={require('../../assets/images/subway.jpg')}
+                  style={styles.iconStyle}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Subway Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={styles.boxTravelMode}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTripScreen',  {type: "train"})}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'train' })}
             >
-              <Text variant="button">Train</Text>
+              <View style={styles.cardContainer}>
+                <Image source={require('../../assets/images/train.jpg')} style={styles.iconStyle} />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Train Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            style={styles.boxTravelMode}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
             <BorderlessButton
               style={{ width: width }}
               onPress={() => navigation.navigate('NewAirTripScreen')}
             >
-              <Text variant="button">Avion</Text>
+              <View style={styles.cardContainer}>
+                <Image
+                  source={require('../../assets/images/airplane.png')}
+                  style={styles.iconStyle}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Airplane Travel</Text>
+                </View>
+              </View>
             </BorderlessButton>
           </Box>
         </Box>
@@ -158,4 +179,59 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
   );
 };
 
+const styles = StyleSheet.create({
+  boxContainer: {
+    width: width,
+    height: 100,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  viewContainer: {
+    marginBottom: hp('2.5%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: wp('90%'),
+    height: 120,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  imgStyle: {
+    height: 120,
+    width: wp('90%'),
+    borderRadius: 15,
+  },
+  iconStyle: {
+    height: 70,
+    width: 70,
+    borderRadius: 15,
+  },
+  boxTravel: {
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  boxTravelMode: {
+    width: wp('90%'),
+    height: 80,
+    borderBottomWidth: 2,
+    borderRadius: 20,
+  },
+  cardContainer: {
+    marginLeft: wp('10%'),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
 export default NewTripScreen;

@@ -75,7 +75,7 @@ export const fetchEmissions = () => {
 export const putEmissions = (onboardingData: OnboardingDataType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
-      type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
+      type: EmissionsActionType.PUT_EMISSIONS_ATTEMPT,
     });
     try {
       const token = await AsyncStorage.getItem('token');
@@ -83,7 +83,7 @@ export const putEmissions = (onboardingData: OnboardingDataType) => {
       const response = await fetch(
         `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
-          method: 'POST',
+          method: 'PUT',
           headers: headers(token),
           body: JSON.stringify({ fixed_emission: { ...onboardingData } }),
         }

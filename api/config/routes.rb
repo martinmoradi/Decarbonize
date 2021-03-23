@@ -17,6 +17,8 @@ Rails
           resource :emissions, module: :air_trips
         end
         resource :airports
+        resource :users
+        resource :user_commitments
       end
     end
 
