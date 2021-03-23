@@ -10,16 +10,70 @@ const initialState: OnboardingEnergyStateType = {
   woodType: 'wood_logs',
   wood: 0,
   fuel: 0,
-  gasHeating: false,
-  woodHeating: false,
-  fuelHeating: false,
+  isGasHeating: false,
+  isWoodHeating: false,
+  isFuelHeating: false,
 };
 
 const energyReducer = (
   state = initialState,
   action: OnboardingAction
 ): OnboardingEnergyStateType => {
-  return { ...state };
+switch (action.type) {
+  case OnboardingEnergyActionType.SET_PEOPLE:
+  return {
+    ...state,
+    people: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_SURFACE:
+  return {
+    ...state,
+    surface: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_ELECTRICITY:
+  return {
+    ...state,
+    electricity: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_GAS:
+  return {
+    ...state,
+    gas: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_WOOD_TYPE:
+  return {
+    ...state,
+    woodType: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_WOOD:
+  return {
+    ...state,
+    wood: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_FUEL:
+  return {
+    ...state,
+    fuel: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_IS_WOOD_HEATING:
+  return {
+    ...state,
+    isWoodHeating: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_IS_GAS_HEATING:
+  return {
+    ...state,
+    isGasHeating: action.payload,
+  }
+  case OnboardingEnergyActionType.SET_IS_FUEL_HEATING:
+  return {
+    ...state,
+    isFuelHeating: action.payload,
+  }
+  default:
+    return state;
+}
+  
 };
 
 export default energyReducer;

@@ -12,7 +12,25 @@ const spendingReducer = (
   state = initialState,
   action: OnboardingAction
 ): OnboardingSpendingStateType => {
-  return { ...state };
+  switch (action.type) {
+    case OnboardingSpendingActionType.SET_CLOTHES:
+      return {
+        ...state,
+        clothes: action.payload,
+      }
+      case OnboardingSpendingActionType.SET_FURNITURE:
+      return {
+        ...state,
+        furniture: action.payload,
+      }
+      case OnboardingSpendingActionType.SET_HOBBIES:
+      return {
+        ...state,
+        hobbies: action.payload,
+      }
+    default:
+    return state;
+  } 
 };
 
 export default spendingReducer;
