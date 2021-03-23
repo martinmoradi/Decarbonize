@@ -1,6 +1,10 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { Text, Box } from '../components';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Tips from '../components/Tips/Tips';
@@ -37,7 +41,7 @@ const EngagementsScreen = () => {
   const renderItem = ({ item, index }: PropsRenderItem) => {
     return (
       <View style={styles.viewContainer}>
-        <Text key={index} variant="body" color="white" style={{ textAlign: 'center' }}>
+        <Text key={index} variant="body" style={{ textAlign: 'center' }}>
           {item}
         </Text>
       </View>
@@ -48,16 +52,25 @@ const EngagementsScreen = () => {
     <ScrollView>
       <View style={styles.mainView}>
         <Box
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
+          backgroundColor="primary"
+          marginBottom="s"
+        ></Box>
+        <Box
           flexDirection="row"
           justifyContent="space-around"
           alignItems="center"
           style={styles.boxStyle}
-          backgroundColor="primary"
+          backgroundColor="lightgray"
         >
-          <Text variant="title1" color="white" margin="s">
+          <Text variant="title1" margin="s">
             {'<'}
           </Text>
-          <View style={{ width: width - 100 }}>
+          <View style={styles.viewContainer}>
             <Carousel
               data={ecologyFacts}
               renderItem={renderItem}
@@ -71,18 +84,19 @@ const EngagementsScreen = () => {
               loop={true}
             />
           </View>
-          <Text variant="title1" color="white" margin="s">
+          <Text variant="title1" margin="s">
             {'>'}
           </Text>
         </Box>
         <Box
-          marginTop="xl"
+          alignItems="center"
+          marginTop="m"
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={styles.boxCommitment}
           justifyContent="center"
-          backgroundColor="info"
+          backgroundColor="white"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="title3" margin="s">
             Engagements :{' '}
           </Text>
           {engagementsData.map((item, index) => (
@@ -98,16 +112,41 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     justifyContent: 'center',
-    padding: 10,
+    borderRadius: 10,
   },
   mainView: {
     alignItems: 'center',
-    marginTop: height / 15,
+    flex: 1,
+    backgroundColor: '#39D697',
   },
   boxStyle: {
-    width: width - 30,
-    height: height / 3,
-    borderRadius: 10,
+    marginBottom: hp('2.5%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: wp('90%'),
+    height: 120,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxContainer: {
+    width: width,
+    height: 50,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxCommitment: {
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
 });
 export default EngagementsScreen;
