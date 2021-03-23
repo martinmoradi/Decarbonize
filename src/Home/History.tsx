@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Text, Box } from '../components';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import HistoryGraph from '../components/HistoryGraph';
 
@@ -9,12 +10,12 @@ const { width, height } = Dimensions.get('window');
 const HistoryScreen = () => {
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center', marginTop: height / 20 }}>
+      <View style={styles.viewContainer}>
         <Box
           alignItems="center"
-          style={{ width: width, borderRadius: 10, paddingLeft:30 }}
+          style={styles.boxGraph}
           justifyContent="center"
-          backgroundColor="primary"
+          backgroundColor="lightgray"
         >
           <HistoryGraph />
         </Box>
@@ -23,76 +24,64 @@ const HistoryScreen = () => {
           paddingTop="m"
           style={{ width: width, borderRadius: 10 }}
           justifyContent="center"
-          backgroundColor="info"
+          backgroundColor="white"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="title3" margin="s">
             Ton historique :
           </Text>
           <Box
             alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
+            style={styles.boxStyle}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 1 - CO2 - Score
-            </Text>
+            <Text variant="title3">Semaine 1 - CO2 - Score</Text>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
+            style={styles.boxStyle}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 2 - CO2 - Score
-            </Text>
+            <Text variant="title3">Semaine 2 - CO2 - Score</Text>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
+            style={styles.boxStyle}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 3 - CO2 - Score
-            </Text>
+            <Text variant="title3">Semaine 3 - CO2 - Score</Text>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
+            style={styles.boxStyle}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 4 - CO2 - Score
-            </Text>
+            <Text variant="title3">Semaine 4 - CO2 - Score</Text>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
+            style={styles.boxStyle}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 5 - CO2 - Score
-            </Text>
+            <Text variant="title3">Semaine 5 - CO2 - Score</Text>
           </Box>
           <Box
             alignItems="center"
-            style={{ width: width, height: 50, borderBottomWidth: 2 }}
+            style={styles.boxStyle}
             justifyContent="center"
-            backgroundColor="primary"
+            backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="title3" color="white">
-              Semaine 6 - CO2 - Score
-            </Text>
+            <Text variant="title3">Semaine 6 - CO2 - Score</Text>
           </Box>
         </Box>
       </View>
@@ -100,4 +89,21 @@ const HistoryScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  viewContainer: {
+    alignItems: 'center',
+    backgroundColor: '#39D697',
+  },
+  boxGraph: {
+    marginTop: height / 20,
+    width: wp('95%'),
+    borderRadius: 10,
+    paddingLeft: 30,
+  },
+  boxStyle: {
+    width: width,
+    height: 50,
+    borderBottomWidth: 2,
+  },
+});
 export default HistoryScreen;
