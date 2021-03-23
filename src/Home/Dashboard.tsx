@@ -1,13 +1,22 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { Text, Box, MeteoBar, Trajet } from '../components';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import { Text, Box, MeteoBar, Trajet, useTheme } from '../components';
 import DashboardGraph from '../components/DashboardGraph';
 import { Dimensions } from 'react-native';
+import BusJourney from '../components/BusJourney';
+import TrainJourney from '../components/TrainJourney';
 const { width } = Dimensions.get('window');
 
 const DashboardScreen = () => {
+  const theme = useTheme();
   return (
     <ScrollView>
+      <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.primary,
+        }}
+      ></View>
       <Box style={{ alignItems: 'center' }}>
         <Box
           paddingLeft="m"
@@ -28,7 +37,7 @@ const DashboardScreen = () => {
             shadowRadius: 12.35,
             elevation: 19,
           }}
-          backgroundColor="primary"
+          backgroundColor="primaryLight"
           marginBottom="s"
         >
           <MeteoBar />
@@ -103,19 +112,20 @@ const DashboardScreen = () => {
         <Box
           marginTop="m"
           paddingTop="m"
-          style={{ width: width, borderRadius: 20 }}
+          style={{ width: width, borderTopLeftRadius: 30, borderTopRightRadius: 30 }}
           justifyContent="center"
-          backgroundColor="primary"
+          backgroundColor="white"
+          alignItems="center"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="title3" margin="s">
             Tes Trajets :
           </Text>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
+          <Trajet />
+          <BusJourney />
+          <TrainJourney />
+          <Trajet />
+          <Trajet />
+          <Trajet />
         </Box>
       </Box>
     </ScrollView>

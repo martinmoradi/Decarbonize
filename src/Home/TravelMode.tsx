@@ -8,10 +8,12 @@ import { Text } from '../components';
 
 export type PropsTravel = {
   travelMode: string;
-  imgUrl: ImageSourcePropType;
 };
 
 const TravelMode = ({ travelMode, imgUrl }: PropsTravel) => {
+  const images = {
+    car: require('../../assets/images/car.jpg'),
+  };
   return (
     <View
       style={{
@@ -20,10 +22,7 @@ const TravelMode = ({ travelMode, imgUrl }: PropsTravel) => {
         alignItems: 'center',
       }}
     >
-      <Image
-        source={require(`../../assets/images${imgUrl}.jpg`)}
-        style={{ height: 70, width: 70, borderRadius: 15 }}
-      />
+      <Image source={imgUrl} style={{ height: 70, width: 70, borderRadius: 15 }} />
       <View style={{ marginLeft: wp('5%') }}>
         <Text variant="button">{travelMode}</Text>
       </View>

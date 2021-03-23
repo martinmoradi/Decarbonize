@@ -7,7 +7,7 @@ import {
 import { Dimensions, Image, View } from 'react-native';
 const { width } = Dimensions.get('window');
 
-const Trajet = () => {
+const BusJourney = () => {
   return (
     <Box
       style={{ width: wp('90%'), height: 60, borderBottomWidth: 2, borderRadius: 20 }}
@@ -24,22 +24,22 @@ const Trajet = () => {
       >
         <View
           style={{
-            backgroundColor: '#39D697',
+            backgroundColor: '#FF0058',
             padding: 5,
             borderRadius: 10,
           }}
         >
           <Image
-            source={require('../../assets/images/van.png')}
+            source={require('../../assets/images/autobus.png')}
             style={{ height: 24, width: 24, tintColor: 'white' }}
           />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">Car Travel</Text>
+          <Text variant="body">Bus Travel</Text>
         </View>
       </View>
     </Box>
   );
 };
 
-export default Trajet;
+export default BusJourney;

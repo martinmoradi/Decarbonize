@@ -8,12 +8,9 @@ import { Box, Text, useTheme } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
 import TravelMode from './TravelMode';
-import IconSvg from '../../assets/icons/IconSvg';
 import { TripStackNavigationProps } from '../components/Navigation';
 
 const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>) => {
-  const carImg = require('../../assets/images/car.jpg');
-
   const theme = useTheme();
 
   return (
@@ -78,7 +75,7 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
           alignItems="center"
           backgroundColor="white"
         >
-          <Text variant="button" margin="s">
+          <Text variant="title3" margin="s">
             Choisis un moyen de transport:
           </Text>
           <Box
