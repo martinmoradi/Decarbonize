@@ -1,4 +1,4 @@
-import { TripActionType, TripType } from '../types';
+import { TripActionType } from '../types';
 
 interface PostTripAttempt {
     type: TripActionType.POST_TRIP_ATTEMPT;
@@ -6,7 +6,7 @@ interface PostTripAttempt {
   
   interface PostTripSuccess {
     type: TripActionType.POST_TRIP_SUCCESS;
-    payload: TripType;
+    payload: object;
   }
   
   interface PostTripError {
