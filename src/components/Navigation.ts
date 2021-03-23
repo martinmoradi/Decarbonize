@@ -52,4 +52,6 @@ export type TripRoutesList = {
   NewCarTripScreen: undefined;
   NewAirTripScreen: undefined;
   NewCommonTripScreen: undefined;
+  AirPortSearch: undefined;
+  AirPortResults: undefined;
 };
