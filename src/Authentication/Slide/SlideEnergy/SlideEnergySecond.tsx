@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ButtonGroup } from 'react-native-elements';
@@ -28,17 +28,20 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const buttonsHeat = ['Fuel', 'Gas', 'Wood'];
   const buttonsWood = ['Wood logs', 'Wood pellets'];
 
-  const handleWoodType = (index: number) => {
+  const handleWoodType = useCallback((index: number) => {
     const woodTypes: WoodsType[] = ['wood_logs', 'wood_pellets'];
     setWoodType(woodTypes[index]);
     setWoodTypeIndex(index);
-  };
+  }, []);
 
-  const checkHeat = (selectedHeatingIndexes: number[]) => {
-    selectedHeatingIndexes?.includes(0) ? setIsFuelHeating(true) : setIsFuelHeating(false);
-    selectedHeatingIndexes?.includes(1) ? setIsGasHeating(true) : setIsGasHeating(false);
-    selectedHeatingIndexes?.includes(2) ? setIsWoodHeating(true) : setIsWoodHeating(false);
-  };
+  const checkHeat = useCallback(
+    (selectedHeatingIndexes: number[]) => {
+      selectedHeatingIndexes?.includes(0) ? setIsFuelHeating(true) : setIsFuelHeating(false);
+      selectedHeatingIndexes?.includes(1) ? setIsGasHeating(true) : setIsGasHeating(false);
+      selectedHeatingIndexes?.includes(2) ? setIsWoodHeating(true) : setIsWoodHeating(false);
+    },
+    [selectedHeatingIndexes]
+  );
 
   useEffect(() => {
     const selectedIndexes = [];

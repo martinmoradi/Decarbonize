@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback, useState } from 'react';
+import React, { useRef, useMemo, useCallback } from 'react';
 import { Dimensions, FlatList, View, StyleSheet } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from './Slide/SlideEnergy/SlideEnergy';
@@ -32,10 +32,10 @@ const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => 
   const slides = useMemo(
     () => [
       <SlideFood onPress={() => slidePress(1)} />,
-      <SlideFoodSecond onPress={() => () => slidePress(2)} />,
-      <SlideEnergy onPress={() => () => slidePress(2)} />,
-      <SlideEnergySecond onPress={() => slidePress(3)} />,
-      <SlideEnergyThird onPress={() => slidePress(3)} />,
+      <SlideFoodSecond onPress={() => slidePress(2)} />,
+      <SlideEnergy onPress={() => slidePress(3)} />,
+      <SlideEnergySecond onPress={() => slidePress(4)} />,
+      <SlideEnergyThird onPress={() => slidePress(5)} />,
       <SlideHousing onPress={() => navigation.navigate('SignUp')} />,
     ],
     [navigation, slidePress]
