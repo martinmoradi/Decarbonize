@@ -1,6 +1,5 @@
 class LandTripSerializer
     include JSONAPI::Serializer
-    
   
     attribute :emitted_carbon do |object|
       object.land_trips.last.emitted_carbon
