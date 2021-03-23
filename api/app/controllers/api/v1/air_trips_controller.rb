@@ -3,14 +3,27 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # GET /air_trips
   def index
-    @air_trips = AirTrip.all
+    @land_trips = LandTrip.includes(:emission).where('emission.id = ?', current_user.id)
 
-    render json: @air_trips
+    @air_trips = AirTrip.includes(:emission).where('emission.id = ?', current_user.id)
+    render json: {
+      status:{
+        code: 200
+      },
+      data: {
+        "land_trips": @land_trips , "air_trips": @air_trips
+      }
+    }
   end
 
   # GET /air_trips/1
   def show
-    render json: @air_trip
+    render json: {
+      status:{
+        code: 200
+      },
+      data: TripsSerializer.new(current_user).serializable_hash
+    }
   end
 
   # POST /air_trips
@@ -48,7 +61,7 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_air_trip
-    @air_trip = AirTrip.find(params[:id])
+    @air_trip = AirTrip.find_by(user_id: current_user.id)
   end
 
   # Only allow a list of trusted parameters through.

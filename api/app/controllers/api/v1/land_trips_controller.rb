@@ -3,10 +3,14 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
 
   # GET /land_trip
   def index
-    @land_trip = LandTrip.all
-
-    render json: @land_trip
+    @land_trips = LandTrip.all.where(user_id: current_user.id)
+    @air_trips = AirTrip.all.where(user_id: current_user.id)
+  
+    render json:  @land_trips, include: {:emission}, except: [:updated_at, :id, :user_id]
+    
+    
   end
+  
 
   # GET /land_trip/1
   def show

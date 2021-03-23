@@ -24,7 +24,7 @@ const tripsReducer = (state = initialState, action: TripAction): TripStateType =
       };
     case TripActionType.POST_TRIP_SUCCESS:
       return {
-        data: [...initialState.data, action.payload ],
+        data: [...state.data, action.payload ],
         errorMessage: null,
         isLoading: false,
       };
