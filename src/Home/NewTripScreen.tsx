@@ -9,8 +9,9 @@ const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
 import TravelMode from './TravelMode';
 import IconSvg from '../../assets/icons/IconSvg';
+import { TripStackNavigationProps } from '../components/Navigation';
 
-const NewTripScreen = ({ navigation }) => {
+const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>) => {
   const carImg = require('../../assets/images/car.jpg');
 
   const theme = useTheme();
@@ -92,7 +93,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCarTrip')}
+              onPress={() => navigation.navigate('NewCarTripScreen')}
             >
               <View
                 style={{
@@ -120,7 +121,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip')}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'bus' })}
             >
               <View
                 style={{
@@ -148,7 +149,21 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip')}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'tramway' })}
+            >
+              <Text variant="button">Tramway</Text>
+            </BorderlessButton>
+          </Box>
+          <Box
+            alignItems="center"
+            style={{ width: width, height: 80, borderBottomWidth: 2 }}
+            justifyContent="center"
+            backgroundColor="primary"
+            borderBottomColor="white"
+          >
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'metro' })}
             >
               <View
                 style={{
@@ -176,7 +191,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip')}
+              onPress={() => navigation.navigate('NewCommonTripScreen', { type: 'train' })}
             >
               <View
                 style={{
@@ -204,7 +219,7 @@ const NewTripScreen = ({ navigation }) => {
           >
             <BorderlessButton
               style={{ width: width }}
-              onPress={() => navigation.navigate('NewAirTrip')}
+              onPress={() => navigation.navigate('NewAirTripScreen')}
             >
               <View
                 style={{
