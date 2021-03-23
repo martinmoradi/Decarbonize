@@ -1,6 +1,10 @@
 import React, { useRef } from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { Text, Box, Button } from '../components';
+import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Box } from '../components';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Tips from '../components/Tips/Tips';
@@ -38,8 +42,8 @@ const EngagementsScreen = () => {
   };
   const renderItem = ({ item, index }: PropsRenderItem) => {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-        <Text key={index} variant="body" color="white" style={{ textAlign: 'center' }}>
+      <View style={styles.viewContainer}>
+        <Text key={index} variant="body" style={{ textAlign: 'center' }}>
           {item}
         </Text>
       </View>
@@ -48,13 +52,22 @@ const EngagementsScreen = () => {
 
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
+      <View style={styles.mainView}>
+        <Box
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
+          backgroundColor="primary"
+          marginBottom="s"
+        ></Box>
         <Box
           flexDirection="row"
           justifyContent="space-around"
           alignItems="center"
-          style={{ width: width - 30, height: height / 3, borderRadius: 10 }}
-          backgroundColor="primary"
+          style={styles.boxStyle}
+          backgroundColor="lightgray"
         >
           <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
             <Text variant="title1" color="white" margin="s">
@@ -83,11 +96,12 @@ const EngagementsScreen = () => {
           </TouchableOpacity>
         </Box>
         <Box
-          marginTop="xl"
+          alignItems="center"
+          marginTop="m"
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={styles.boxCommitment}
           justifyContent="center"
-          backgroundColor="info"
+          backgroundColor="white"
         >
           <Text variant="title3" color="white" margin="s">
             Engagements :
@@ -101,4 +115,45 @@ const EngagementsScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  viewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  mainView: {
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#39D697',
+  },
+  boxStyle: {
+    marginBottom: hp('2.5%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: wp('90%'),
+    height: 120,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxContainer: {
+    width: width,
+    height: 50,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxCommitment: {
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+});
 export default EngagementsScreen;

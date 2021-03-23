@@ -1,49 +1,49 @@
 import React from 'react';
 import { Box, Text } from './Theme';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { Dimensions, Image, View, StyleSheet } from 'react-native';
+
 const { width } = Dimensions.get('window');
 
-const Trajet = () => {
+const BusJourney = () => {
   return (
     <Box
-      style={s.boxContainer}
+      style={styles.boxContainer}
       justifyContent="center"
       backgroundColor="lightgray"
       borderBottomColor="white"
     >
-      <View style={s.viewContainer}>
-        <View style={s.viewImg}>
-          <Image source={require('../../assets/images/van.png')} style={s.imgStyle} />
+      <View style={styles.viewContainer}>
+        <View style={styles.viewImg}>
+          <Image source={require('../../assets/images/autobus.png')} style={styles.imgStyle} />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">Car Travel</Text>
+          <Text variant="body">Bus Travel</Text>
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ 16kg Co2</Text>
+          <Text variant="header">+ 10 Co2</Text>
         </View>
       </View>
     </Box>
   );
 };
 
-const s = StyleSheet.create({
+const styles = StyleSheet.create({
   boxContainer: {
     width: wp('90%'),
     height: 60,
     borderBottomWidth: 2,
     borderRadius: 20,
   },
-  viewContainer: {
-    marginLeft: wp('10%'),
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+  viewContainer: { marginLeft: wp('10%'), flexDirection: 'row', alignItems: 'center' },
   viewImg: {
-    backgroundColor: '#39D697',
+    backgroundColor: '#FF0058',
     padding: 5,
     borderRadius: 10,
   },
   imgStyle: { height: 24, width: 24, tintColor: 'white' },
 });
-export default Trajet;
+export default BusJourney;

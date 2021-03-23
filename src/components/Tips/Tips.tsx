@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Dimensions, Switch } from 'react-native';
 import { Box, Text } from '../Theme';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 const { width } = Dimensions.get('window');
 
 type PropsTips = {
@@ -15,16 +19,13 @@ const Tips = ({ engagement, index, isEnabled }: PropsTips) => {
     <Box
       flexDirection="row"
       alignItems="center"
-      style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+      style={{ width: wp('90%'), height: 70, borderBottomWidth: 2, borderRadius: 20 }}
       justifyContent="space-between"
-      backgroundColor="primary"
+      backgroundColor="lightgray"
       borderBottomColor="white"
       key={index}
     >
-      <Text variant="title3" color="white">
-        {' '}
-        {engagement}
-      </Text>
+      <Text variant="title3"> {engagement}</Text>
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
