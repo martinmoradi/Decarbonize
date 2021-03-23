@@ -27,10 +27,10 @@ export const HomeNavigator = () => {
         fetchEmissions();
       }
     }
-  }, []);
+  }, [user, isEmpty]);
 
   return (
-    <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
+    <HomeTab.Navigator>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />
       <HomeTab.Screen name="Engagements" component={EngagementsScreen} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
