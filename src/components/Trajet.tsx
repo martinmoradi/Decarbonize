@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Text} from '.'
+import {Box, Text} from './Theme'
 import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 

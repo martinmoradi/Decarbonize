@@ -9,7 +9,9 @@ import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideSpending = ({ onPress }: PropsSlide) => {
-  const { spending } = useContext(OnboardingContext);
+  const { spending, energy } = useContext(OnboardingContext);
+  const { woodHeating, fuelHeating, gasHeating } = energy;
+  const has_not_renewable = woodHeating || fuelHeating || gasHeating;
   const { onChangeClothes, onChangeFurniture, onChangeHobbies } = spending;
 
   const { width } = Dimensions.get('window');
@@ -23,8 +25,8 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
   const [hobbiesValue, setHobbiesValue] = useState<number>(0);
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="SPENDING" svgTitle="habit" isReversed={false} />
-      <View style={theme.slideStyle.footer}>
+      <SlideTitle title="SPENDING" svgTitle="habit" isReversed={has_not_renewable ? true : false} />
+      <View style={has_not_renewable ? theme.slideStyle.footerReverse : theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>
           <Text variant="body">{clothValue} € / month</Text>
