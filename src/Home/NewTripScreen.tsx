@@ -48,14 +48,13 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
             NOUVEAU TRAJET
           </Text>
         </Box>
-        <Box
-          marginBottom="s"
-          justifyContent="center"
-          alignItems="center"
-          paddingBottom="m"
+        <View
           style={{
-            width: width - 40,
-            height: 100,
+            marginBottom: hp('2.5%'),
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: wp('90%'),
+            height: 120,
             borderRadius: 20,
             shadowColor: '#000',
             shadowOffset: {
@@ -66,14 +65,12 @@ const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>
             shadowRadius: 12.35,
             elevation: 19,
           }}
-          backgroundColor="white"
         >
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ marginTop: hp('2%') }}>
-              <IconSvg name="traveler" />
-            </View>
-          </View>
-        </Box>
+          <Image
+            source={require('../../assets/images/transportation.jpg')}
+            style={{ height: 120, width: wp('90%'), borderRadius: 15 }}
+          />
+        </View>
         <Box
           paddingTop="m"
           style={{ width: width, borderTopLeftRadius: 30, borderTopRightRadius: 30 }}
