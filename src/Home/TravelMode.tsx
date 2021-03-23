@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ImageSourcePropType } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -8,7 +8,7 @@ import { Text } from '../components';
 
 export type PropsTravel = {
   travelMode: string;
-  imgUrl: string;
+  imgUrl: ImageSourcePropType;
 };
 
 const TravelMode = ({ travelMode, imgUrl }: PropsTravel) => {

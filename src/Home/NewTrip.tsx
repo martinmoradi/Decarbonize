@@ -8,6 +8,7 @@ import { Box, Text, useTheme } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
 import TravelMode from './TravelMode';
+import IconSvg from '../../assets/icons/IconSvg';
 
 const NewTripScreen = ({ navigation }) => {
   const carImg = require('../../assets/images/car.jpg');
@@ -22,7 +23,7 @@ const NewTripScreen = ({ navigation }) => {
           backgroundColor: theme.colors.primary,
         }}
       ></View>
-      <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+      <View style={{ alignItems: 'center', flex: 1 }}>
         <Box
           paddingLeft="m"
           paddingTop="s"
@@ -66,9 +67,11 @@ const NewTripScreen = ({ navigation }) => {
           }}
           backgroundColor="white"
         >
-          <Text variant="title2" color="primary">
-            SVG
-          </Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ marginTop: hp('2%') }}>
+              <IconSvg name="traveler" />
+            </View>
+          </View>
         </Box>
         <Box
           paddingTop="m"
