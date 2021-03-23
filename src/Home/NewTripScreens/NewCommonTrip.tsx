@@ -59,7 +59,7 @@ const NewCommonTripScreen = ({
             textAlign="center"
             marginBottom="l"
           >
-            errorMessage
+            {errorMessage}
           </Text>
         ) : null}
       <Box
