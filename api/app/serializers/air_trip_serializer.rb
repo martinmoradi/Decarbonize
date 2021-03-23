@@ -1,24 +1,25 @@
 class AirTripSerializer
   include JSONAPI::Serializer
+  
 
-  attribute :emmited_carbon do |object|
-    object.air_trip.emmited_carbon
+  attribute :emitted_carbon do |object|
+    object.air_trips.last.emitted_carbon
   end
 
   attribute :created_at do |object|
-    object.air_trip.created_at
+    object.air_trips.last.created_at
   end
 
   attribute :departure do |object|
-    object.air_trip.departure
+    object.air_trips.last.departure
   end
 
   attribute :arrival do |object|
-    object.air_trip.arrival
+    object.air_trips.last.arrival
   end
 
   attribute :round_trip do |object|
-    object.air_trip.round_trip
+    object.air_trips.last.round_trip
   end
 
 end
