@@ -30,6 +30,7 @@ export const postCommonTrip = (tripData: {vehicle_type: string, round_trip: bool
                     type: TripActionType.POST_TRIP_SUCCESS,
                     payload: data,
                   });
+                  alert("Trajet enregistré")
 
             }catch(err){
                 dispatch({
@@ -64,6 +65,7 @@ export const postAirTrips = (tripData: {round_trip: boolean, departure: string, 
             type: TripActionType.POST_TRIP_SUCCESS,
             payload: data,
           });
+          alert("Trajet enregistré")
     }catch(err){
       dispatch({
         type: TripActionType.POST_TRIP_ERROR,
