@@ -48,21 +48,28 @@ export interface OnboardingStateType {
 }
 
 export interface OnboardingDataType {
-  house_surface: number;
-  electricity_consumption: number;
-  gas_consumption: number;
-  wood_type: string;
-  wood_consumption: number;
-  fuel_consumption: number;
-  roommates: number;
-  clothes: number;
-  furnitures: number;
-  others: number;
-  breakfasts_per_week: number;
-  red_meats_per_week: number;
-  vegan_per_week: number;
-  vegetarian_per_week: number;
-  white_meats_per_week: number;
+  house_surface?: number;
+  electricity_consumption?: number;
+  gas_consumption?: number;
+  wood_type?: string;
+  wood_consumption?: number;
+  fuel_consumption?: number;
+  roommates?: number;
+  clothes?: number;
+  furnitures?: number;
+  others?: number;
+  breakfasts_per_week?: number;
+  red_meats_per_week?: number;
+  vegan_per_week?: number;
+  vegetarian_per_week?: number;
+  white_meats_per_week?: number;
+  appliances?: boolean;
+  reduced_heating?: boolean;
+  eco_driving?: boolean;
+  tap_water?: boolean;
+  food_wastes?: boolean;
+  bulk_food?: boolean;
+  zero_wastes?: boolean;
 }
 
 export type PropsSlide = {

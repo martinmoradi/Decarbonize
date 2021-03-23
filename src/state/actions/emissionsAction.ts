@@ -28,6 +28,20 @@ interface FetchEmissionsError {
   payload: string;
 }
 
+interface PutEmissionsAttempt {
+  type: EmissionsActionType.PUT_EMISSIONS_ATTEMPT;
+}
+
+interface PutEmissionsSuccess {
+  type: EmissionsActionType.PUT_EMISSIONS_SUCCESS;
+  payload: EmissionsType;
+}
+
+interface PutEmissionsError {
+  type: EmissionsActionType.PUT_EMISSIONS_ERROR;
+  payload: string;
+}
+
 interface EmissionsReset {
   type: EmissionsActionType.EMISSIONS_RESET;
 }
@@ -39,4 +53,7 @@ export type EmissionsAction =
   | FetchEmissionsAttempt
   | FetchEmissionsSuccess
   | FetchEmissionsError
+  | PutEmissionsAttempt
+  | PutEmissionsSuccess
+  | PutEmissionsError
   | EmissionsReset;

@@ -1,34 +1,33 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { Text, Box, MeteoBar, Trajet } from '../components';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import { Text, Box, MeteoBar, Trajet, useTheme } from '../components';
 import DashboardGraph from '../components/DashboardGraph';
 import { Dimensions } from 'react-native';
+import BusJourney from '../components/BusJourney';
+import TrainJourney from '../components/TrainJourney';
+import AirplaneJourney from '../components/AirplaneJourney';
+import TramJourney from '../components/TramJourney';
+import SubwayJourney from '../components/Subway';
 const { width } = Dimensions.get('window');
 
 const DashboardScreen = () => {
+  const theme = useTheme();
   return (
     <ScrollView>
+      <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.primary,
+        }}
+      ></View>
       <Box style={{ alignItems: 'center' }}>
         <Box
           paddingLeft="m"
           paddingTop="s"
           justifyContent="flex-end"
           paddingBottom="m"
-          style={{
-            width: width,
-            height: 155,
-            borderBottomEndRadius: 20,
-            borderBottomStartRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
-          backgroundColor="primary"
+          style={styles.boxContainer}
+          backgroundColor="primaryLight"
           marginBottom="s"
         >
           <MeteoBar />
@@ -36,19 +35,7 @@ const DashboardScreen = () => {
 
         <Box
           alignItems="center"
-          style={{
-            borderRadius: 20,
-            flex: 1,
-            width: width,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
+          style={styles.boxGraph}
           justifyContent="center"
           backgroundColor="white"
         >
@@ -58,19 +45,7 @@ const DashboardScreen = () => {
           marginTop="s"
           paddingTop="m"
           marginBottom="s"
-          style={{
-            width: width,
-            height: 100,
-            borderRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 9,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius: 12.35,
-            elevation: 19,
-          }}
+          style={[styles.boxInfo, { height: 100 }]}
           justifyContent="center"
           backgroundColor="primary"
         >
@@ -79,19 +54,7 @@ const DashboardScreen = () => {
           </Text>
           <Box
             alignItems="center"
-            style={{
-              width: width,
-              height: 80,
-              borderRadius: 20,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 9,
-              },
-              shadowOpacity: 0.5,
-              shadowRadius: 12.35,
-              elevation: 19,
-            }}
+            style={styles.boxInfo}
             justifyContent="center"
             backgroundColor="white"
           >
@@ -103,23 +66,71 @@ const DashboardScreen = () => {
         <Box
           marginTop="m"
           paddingTop="m"
-          style={{ width: width, borderRadius: 20 }}
+          style={styles.boxTravel}
           justifyContent="center"
-          backgroundColor="primary"
+          backgroundColor="white"
+          alignItems="center"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="title3" margin="s">
             Tes Trajets :
           </Text>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
-          <Trajet/>
+          <Trajet />
+          <BusJourney />
+          <TrainJourney />
+          <AirplaneJourney />
+          <TramJourney />
+          <SubwayJourney />
         </Box>
       </Box>
     </ScrollView>
   );
 };
 
+const styles = StyleSheet.create({
+  boxContainer: {
+    width: width,
+    height: 155,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  boxInfo: {
+    width: width,
+    height: 80,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  boxGraph: {
+    width: width,
+    borderRadius: 20,
+    flex: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
+  },
+  boxTravel: {
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+});
 export default DashboardScreen;

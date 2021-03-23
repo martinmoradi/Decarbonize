@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
 import { Dimensions, Switch } from 'react-native';
 import { Box, Text } from '../Theme';
-const { width, height } = Dimensions.get('window');
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+const { width } = Dimensions.get('window');
 
 type PropsTips = {
-  engagement: { title: string };
+  engagement: string;
   index: number;
+  isEnabled: boolean;
 };
 
-const Tips = ({ engagement, index }: PropsTips) => {
-  const [isEnabled, setIsEnabled] = useState<boolean>(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+const Tips = ({ engagement, index, isEnabled }: PropsTips) => {
+  // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <Box
       flexDirection="row"
       alignItems="center"
-      style={{ width: width - 30, height: 50, borderBottomWidth: 2 }}
+      style={{ width: wp('90%'), height: 70, borderBottomWidth: 2, borderRadius: 20 }}
       justifyContent="space-between"
-      backgroundColor="primary"
+      backgroundColor="lightgray"
       borderBottomColor="white"
       key={index}
     >
-      <Text variant="title3" color="white">
-        {' '}
-        {engagement.title}
-      </Text>
+      <Text variant="title3"> {engagement}</Text>
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
+        // onValueChange={toggleSwitch}
         value={isEnabled}
       />
     </Box>
