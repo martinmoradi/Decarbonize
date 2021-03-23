@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Dimensions, Switch } from 'react-native';
 import { Box, Text } from '../Theme';
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 type PropsTips = {
-  engagement: { title: string };
+  engagement: string;
   index: number;
+  isEnabled: boolean;
 };
 
-const Tips = ({ engagement, index }: PropsTips) => {
-  const [isEnabled, setIsEnabled] = useState<boolean>(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+const Tips = ({ engagement, index, isEnabled }: PropsTips) => {
+  // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <Box
       flexDirection="row"
@@ -23,13 +23,13 @@ const Tips = ({ engagement, index }: PropsTips) => {
     >
       <Text variant="title3" color="white">
         {' '}
-        {engagement.title}
+        {engagement}
       </Text>
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
+        // onValueChange={toggleSwitch}
         value={isEnabled}
       />
     </Box>

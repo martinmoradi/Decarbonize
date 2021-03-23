@@ -22,6 +22,9 @@ const SubwayJourney = () => {
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">Subway Travel</Text>
         </View>
+        <View style={{ marginLeft: wp('5%') }}>
+          <Text variant="header">+ 4kg Co2</Text>
+        </View>
       </View>
     </Box>
   );
@@ -34,7 +37,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderRadius: 20,
   },
-  viewContainer: { marginLeft: wp('10%'), flexDirection: 'row', alignItems: 'center' },
+  viewContainer: {
+    marginLeft: wp('10%'),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   viewImg: {
     backgroundColor: 'orange',
     padding: 5,

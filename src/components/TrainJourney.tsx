@@ -22,6 +22,9 @@ const TrainJourney = () => {
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">Train Travel</Text>
         </View>
+        <View style={{ marginLeft: wp('5%') }}>
+          <Text variant="header">+ 8kg Co2</Text>
+        </View>
       </View>
     </Box>
   );

@@ -7,7 +7,6 @@ import { Dimensions, ScrollView, View, Image, StyleSheet } from 'react-native';
 import { Box, Text, useTheme } from '../components';
 const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
-import TravelMode from './TravelMode';
 import { TripStackNavigationProps } from '../components/Navigation';
 
 const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>) => {

@@ -22,6 +22,9 @@ const TramJourney = () => {
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">Tram Travel</Text>
         </View>
+        <View style={{ marginLeft: wp('5%') }}>
+          <Text variant="header">+ 6kg Co2</Text>
+        </View>
       </View>
     </Box>
   );
