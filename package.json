@@ -46,6 +46,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-reanimated": "~1.13.0",
     "react-native-redash": "14.2.3",
+    "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.2",
     "react-native-snap-carousel": "^3.9.1",

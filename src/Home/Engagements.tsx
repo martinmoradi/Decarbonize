@@ -61,8 +61,6 @@ const EngagementsScreen = () => {
               {'<'}
             </Text>
           </TouchableOpacity>
-          {/* <Button onPress={() => scroll.current?.snapToNext()} title="<" /> */}
-          {/* <Button onPress={() => scroll.current?.snapToNext()} label="<" variant="primary" /> */}
           <View style={{ width: width - 100 }}>
             <Carousel
               data={ecologyFacts}

@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
   },
 });
 
-interface ButtonProps {
+interface TextButtonProps {
   variant: 'default' | 'primary';
   label?: string | JSX.Element;
   onPress: () => void;
   style?: RectButtonProperties['style'];
 }
 
-const Button = ({ label, onPress, variant, style }: ButtonProps) => {
+const Button = ({ label, onPress, variant, style }: TextButtonProps) => {
   const theme = useTheme();
   const backgroundColor = variant === 'primary' ? theme.colors.primary : theme.colors.background2;
   const color = variant === 'primary' ? theme.colors.background : theme.colors.secondary;

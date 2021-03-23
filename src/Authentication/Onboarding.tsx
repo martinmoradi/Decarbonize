@@ -1,87 +1,54 @@
-import React, { useContext, useRef } from 'react';
-import { Dimensions, ScrollView, View } from 'react-native';
-import { Button, Text } from '../components';
+import React, { useContext, useRef, useEffect, useState } from 'react';
+import { Dimensions, FlatList, ScrollView, View, StyleSheet } from 'react-native';
 import { AuthNavigationProps } from '../components/Navigation';
 import SlideEnergy from './Slide/SlideEnergy/SlideEnergy';
 import SlideEnergySecond from './Slide/SlideEnergy/SlideEnergySecond';
 import SlideEnergyThird from './Slide/SlideEnergy/SlideEnergyThird';
 import SlideFood from './Slide/SlideFood/SlideFood';
 import SlideFoodSecond from './Slide/SlideFood/SlideFoodSecond';
-import SlideHousing from './Slide/SlideHousing/SlideHousing';
-import SlideHousingBis from './Slide/SlideHousing/SlideHousingBis';
+import SlideHousing from './Slide/SlideHousing/SlideSpending';
 import OnboardingContext from './onboardingContext/OnboardingContext';
 
 const OnboardingScreen = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { width } = Dimensions.get('window');
-  const scroll = useRef<ScrollView>(null);
+  const scroll = useRef<FlatList>(null);
   const { energy } = useContext(OnboardingContext);
   const { woodHeating, fuelHeating, gasHeating } = energy;
 
+  const styles = StyleSheet.create({
+    slide: {
+      width,
+    },
+  });
+
+  const slides = [
+    <SlideFood onPress={() => scroll.current?.scrollToIndex({ index: 1 })} />,
+    <SlideFoodSecond onPress={() => scroll.current?.scrollToIndex({ index: 2 })} />,
+    <SlideEnergy onPress={() => scroll.current?.scrollToIndex({ index: 3 })} />,
+    <SlideEnergySecond onPress={() => scroll.current?.scrollToIndex({ index: 4 })} />,
+    <SlideEnergyThird onPress={() => scroll.current?.scrollToIndex({ index: 5 })} />,
+    <SlideHousing onPress={() => navigation.navigate('SignUp')} />,
+  ];
+
+  const has_not_renewable = woodHeating || fuelHeating || gasHeating;
+
   return (
-    <ScrollView
-      snapToInterval={width}
-      decelerationRate="fast"
-      bounces={false}
+    <FlatList
+      data={slides}
+      renderItem={({ item, index }) => {
+        if (index === 4 && !has_not_renewable) {
+          return <></>;
+        } else {
+          return <View style={styles.slide}>{item}</View>;
+        }
+      }}
       horizontal
+      removeClippedSubviews
+      pagingEnabled={true}
+      keyExtractor={(item, index) => `key - ${index}${item}`}
       showsHorizontalScrollIndicator={false}
       ref={scroll}
-    >
-      <View style={{ width }}>
-        <SlideFood onPress={() => scroll.current?.scrollTo({ x: width * 1, animated: true })} />
-      </View>
-      <View style={{ width }}>
-        <SlideFoodSecond
-          onPress={() => scroll.current?.scrollTo({ x: width * 2, animated: true })}
-        />
-      </View>
-      <View style={{ width }}>
-        <SlideEnergy onPress={() => scroll.current?.scrollTo({ x: width * 3, animated: true })} />
-      </View>
-      <View style={{ width }}>
-        <SlideEnergySecond
-          onPress={() => scroll.current?.scrollTo({ x: width * 4, animated: true })}
-        />
-      </View>
-      {(woodHeating || fuelHeating || gasHeating) && (
-        <View style={{ width }}>
-          <SlideEnergyThird
-            onPress={() => scroll.current?.scrollTo({ x: width * 5, animated: true })}
-          />
-        </View>
-      )}
-
-      <View style={{ width }}>
-        {woodHeating || fuelHeating || gasHeating ? (
-          <SlideHousingBis
-            onPress={() => scroll.current?.scrollTo({ x: width * 6, animated: true })}
-          />
-        ) : (
-          <SlideHousing
-            onPress={() => scroll.current?.scrollTo({ x: width * 6, animated: true })}
-          />
-        )}
-      </View>
-
-      <View style={{ width, justifyContent: 'center', alignItems: 'center' }}>
-        <Text variant="title1" style={{ marginBottom: 20 }}>
-          Great !
-        </Text>
-        <Text variant="body" textAlign="center" style={{ margin: 30 }}>
-          Your answers will be added to your profile as fixed emissions.
-        </Text>
-        <Text variant="body" textAlign="center" style={{ marginLeft: 30, marginRight: 30 }}>
-          Are you sure you want to create your account with these informations ?
-        </Text>
-        <Text
-          variant="body"
-          textAlign="center"
-          style={{ marginBottom: 30, marginLeft: 30, marginRight: 30 }}
-        >
-          (You can always change them later)
-        </Text>
-        <Button onPress={() => navigation.navigate('SignUp')} label="YES" variant="primary" />
-      </View>
-    </ScrollView>
+    />
   );
 };
 

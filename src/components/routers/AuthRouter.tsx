@@ -2,10 +2,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { AuthenticationNavigator } from '../../Authentication';
 import { useTypedSelector } from '../../hooks';
-import { AppRoutesParamsList } from '../../components/Navigation';
+import { AppRoutesList } from '../../components/Navigation';
 import { HomeNavigator } from '../../Home';
 
-const AppStack = createStackNavigator<AppRoutesParamsList>();
+const AppStack = createStackNavigator<AppRoutesList>();
 
 const AuthRouter = () => {
   const { user } = useTypedSelector(state => state.authentication);

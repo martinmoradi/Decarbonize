@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ButtonGroup } from 'react-native-elements';
 import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import Button from '../../../components/Button';
@@ -55,7 +56,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
 
   const theme = useTheme();
   const styles = StyleSheet.create({
-    content: { maxWidth: width - 0, alignItems: 'center', marginTop: 50 },
+    content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
   const WoodEnergy = () => (
@@ -89,7 +90,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             minimumValue={20}
           />
 
-          <View style={{ padding: 6 }}></View>
+          <View style={{ padding: hp('1%') }}></View>
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup
             buttons={buttonsHeat}
@@ -101,7 +102,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
-          <View style={{ padding: 6 }}></View>
+          <View style={{ padding: hp('1%') }}></View>
           {heat && heat.includes(2) && <WoodEnergy />}
         </View>
         <View
@@ -109,7 +110,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 20,
+            bottom: hp('2.5%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}

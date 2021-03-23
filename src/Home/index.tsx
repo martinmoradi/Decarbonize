@@ -1,16 +1,16 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useContext, useEffect } from 'react';
-import { HomeRoutesParamsList } from '../components/Navigation';
+import { HomeRoutesList } from '../components/Navigation';
 import Tabbar from '../components/Tabs/Tabbar';
 import DashboardScreen from './Dashboard';
 import EngagementsScreen from './Engagements';
 import HistoryScreen from './History';
-import NewTripScreen from './NewTrip';
+import NewTripNavigator from './NewTripNavigator';
 import SettingsScreen from './Settings';
 import { useActions, useTypedSelector } from '../hooks';
 import OnboardingContext from '../Authentication/onboardingContext/OnboardingContext';
 
-const HomeTab = createBottomTabNavigator<HomeRoutesParamsList>();
+const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
 export const HomeNavigator = () => {
   const { onboardingData } = useContext(OnboardingContext);
@@ -33,7 +33,7 @@ export const HomeNavigator = () => {
     <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />
       <HomeTab.Screen name="Engagements" component={EngagementsScreen} />
-      <HomeTab.Screen name="NewTrip" component={NewTripScreen} />
+      <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={HistoryScreen} />
       <HomeTab.Screen name="Settings" component={SettingsScreen} />
     </HomeTab.Navigator>

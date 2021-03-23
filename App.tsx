@@ -6,7 +6,10 @@ import { ThemeProvider } from './src/components/Theme';
 import AuthRouter from './src/components/routers/AuthRouter';
 import { store } from './src/state';
 import { Provider } from 'react-redux';
-import { OnboardingProvider } from './src/Authentication/onboardingContext/OnboardingProvider'
+import { OnboardingProvider } from './src/Authentication/onboardingContext/OnboardingProvider';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 const fonts = {
   'Avenir-Bold': require('./assets/fonts/AvenirNextLTPro-Bold.otf'),
@@ -19,11 +22,11 @@ const App = () => {
     <Provider store={store}>
       <LoadAssets {...{ fonts }}>
         <ThemeProvider>
-            <SafeAreaProvider>
-              <OnboardingProvider>
+          <SafeAreaProvider>
+            <OnboardingProvider>
               <AuthRouter />
-              </OnboardingProvider>
-            </SafeAreaProvider>
+            </OnboardingProvider>
+          </SafeAreaProvider>
         </ThemeProvider>
       </LoadAssets>
     </Provider>

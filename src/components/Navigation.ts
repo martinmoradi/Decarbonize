@@ -2,25 +2,34 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-export interface AuthNavigationProps<RouteName extends keyof AuthRoutesParamsList> {
+export interface AuthNavigationProps<RouteName extends keyof AuthRoutesList> {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<AuthRoutesParamsList, RouteName>,
-    BottomTabNavigationProp<AppRoutesParamsList, 'Home'>
+    StackNavigationProp<AuthRoutesList, RouteName>,
+    BottomTabNavigationProp<AppRoutesList, 'Home'>
   >;
-  route: RouteProp<AuthRoutesParamsList, RouteName>;
+  route: RouteProp<AuthRoutesList, RouteName>;
 }
 
-export interface HomeTabNavigationProps<RouteName extends keyof HomeRoutesParamsList> {
-  navigation: BottomTabNavigationProp<HomeRoutesParamsList, RouteName>;
-  route: RouteProp<HomeRoutesParamsList, RouteName>;
+export interface HomeTabNavigationProps<RouteName extends keyof HomeRoutesList> {
+  navigation: CompositeNavigationProp<
+  BottomTabNavigationProp<HomeRoutesList, RouteName>,
+  StackNavigationProp<HomeRoutesList, 'NewTripNavigator'>
+  >;
+  route: RouteProp<HomeRoutesList, RouteName>;
 }
 
-export type AppRoutesParamsList = {
+
+export interface TripStackNavigationProps<RouteName extends keyof TripRoutesList> {
+  navigation: StackNavigationProp<TripRoutesList, RouteName>;
+  route: RouteProp<TripRoutesList, RouteName>;
+}
+
+export type AppRoutesList = {
   Authentication: undefined;
   Home: undefined;
 };
 
-export type AuthRoutesParamsList = {
+export type AuthRoutesList = {
   Welcome: undefined;
   Onboarding: undefined;
   Login: undefined;
@@ -30,10 +39,19 @@ export type AuthRoutesParamsList = {
   PasswordChanged: undefined;
 };
 
-export type HomeRoutesParamsList = {
+export type HomeRoutesList = {
   Dashboard: undefined;
   History: undefined;
   Engagements: undefined;
   Settings: undefined;
-  NewTrip: undefined
+  NewTripNavigator: undefined
+};
+
+export type TripRoutesList = {
+  NewTripScreen: undefined;
+  NewCarTripScreen: undefined;
+  NewAirTripScreen: undefined;
+  NewCommonTripScreen: undefined;
+  AirPortSearch: undefined;
+  AirPortResults: undefined;
 };
