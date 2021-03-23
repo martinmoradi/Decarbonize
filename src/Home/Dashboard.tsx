@@ -7,6 +7,7 @@ import BusJourney from '../components/BusJourney';
 import TrainJourney from '../components/TrainJourney';
 import AirplaneJourney from '../components/AirplaneJourney';
 import TramJourney from '../components/TramJourney';
+import SubwayJourney from '../components/Subway';
 const { width } = Dimensions.get('window');
 
 const DashboardScreen = () => {
@@ -78,6 +79,7 @@ const DashboardScreen = () => {
           <TrainJourney />
           <AirplaneJourney />
           <TramJourney />
+          <SubwayJourney />
         </Box>
       </Box>
     </ScrollView>
