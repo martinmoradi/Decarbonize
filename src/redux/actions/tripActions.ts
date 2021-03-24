@@ -14,4 +14,18 @@ interface PostTripError {
   payload: string;
 }
 
-export type TripAction = PostTripAttempt | PostTripSuccess | PostTripError;
+interface FetchTripAttempt {
+  type: TripActionType.FETCH_TRIPS_ATTEMPT;
+}
+
+interface FetchTripSuccess {
+  type: TripActionType.FETCH_TRIPS_SUCCESS;
+  payload: TripType;
+}
+
+interface FetchTripError {
+  type: TripActionType.FETCH_TRIPS_ERROR;
+  payload: string;
+}
+
+export type TripAction = PostTripAttempt | PostTripSuccess | PostTripError | FetchTripAttempt| FetchTripSuccess | FetchTripError;
