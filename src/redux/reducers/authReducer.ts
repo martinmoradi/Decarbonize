@@ -31,7 +31,6 @@ const authReducer = (state = initialState, action: AuthAction): AuthStateType =>
         errorMessage: null,
         isLoading: false,
       };
-    case AuthActionType.LOAD_USER_ERROR:
     case AuthActionType.SIGNUP_ERROR:
     case AuthActionType.LOGIN_ERROR:
       return {
@@ -39,6 +38,7 @@ const authReducer = (state = initialState, action: AuthAction): AuthStateType =>
         errorMessage: action.payload,
         isLoading: false,
       };
+    case AuthActionType.LOAD_USER_ERROR:
     case AuthActionType.LOGOUT:
       return {
         user: null,
