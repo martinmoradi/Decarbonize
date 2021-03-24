@@ -11,7 +11,7 @@ import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
 const { width } = Dimensions.get('window');
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ navigation }) => {
   const theme = useTheme();
   return (
     <ScrollView>
@@ -42,28 +42,9 @@ const DashboardScreen = () => {
         >
           <DashboardGraph />
         </Box>
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          marginBottom="s"
-          style={[styles.boxInfo, { height: 100 }]}
-          justifyContent="center"
-          backgroundColor="primary"
-        >
-          <Text variant="title3" color="white" margin="s">
-            Cette semaine :
-          </Text>
-          <Box
-            alignItems="center"
-            style={styles.boxInfo}
-            justifyContent="center"
-            backgroundColor="white"
-          >
-            <Text variant="title2" color="primary">
-              Food Boxes
-            </Text>
-          </Box>
-        </Box>
+        <Text variant="title3" color="white" margin="s">
+          Cette semaine :
+        </Text>
         <Box
           marginTop="m"
           paddingTop="m"

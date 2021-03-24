@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Settings from './../Settings';
+import Settings from './Settings';
 import SettingsEmission from './SettingEmissionScreen';
 import { SettingsRoutesList } from '../../../routers/NavigationTypes';
 import FoodSettingScreen from './FoodSettingScreen';

@@ -27,7 +27,6 @@ export interface SettingsStackNavigationProps<RouteName extends keyof SettingsRo
   navigation: StackNavigationProp<SettingsRoutesList, RouteName>;
   route: RouteProp<SettingsRoutesList, RouteName>;
 }
-
 export type AppRoutesList = {
   Authentication: undefined;
   Home: undefined;
