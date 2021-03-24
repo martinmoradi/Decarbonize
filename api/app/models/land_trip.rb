@@ -8,12 +8,19 @@ class LandTrip < ApplicationRecord
   belongs_to :user
   has_many :regular_trips
   after_create :create_emission
+  scope :cars, -> { where(vehicle_type:  "diesel_car").or(LandTrip.where(vehicle_type:  "petrol_car")).or(LandTrip.where(vehicle_type: "electric_car")) }
+  scope :bus, -> { where(vehicle_type:  "bus") }
+  scope :tramway, -> { where(vehicle_type:  "tramway") }
+  scope :metro, -> { where(vehicle_type:  "metro") }
+  scope :train, -> { where(vehicle_type:  "train") }
+
 
   attribute :amount
 
   def amount
     emission.amount
   end
+
 
   def is_eco_driving?(emissions)
     emissions if vehicle_type != 'diesel_car' || vehicle_type != 'petrol_car'

@@ -11,7 +11,10 @@ import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
 const { width } = Dimensions.get('window');
 
+
+
 const DashboardScreen = () => {
+
   const theme = useTheme();
   return (
     <ScrollView>
@@ -76,11 +79,11 @@ const DashboardScreen = () => {
             Tes Trajets :
           </Text>
           <Trajet />
-          <BusJourney />
-          <TrainJourney />
-          <AirplaneJourney />
+          <BusJourney/>
+          <TrainJourney/>
+          <AirplaneJourney/>
           <TramJourney />
-          <SubwayJourney />
+          <SubwayJourney/>
         </Box>
       </Box>
     </ScrollView>
