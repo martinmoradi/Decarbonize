@@ -114,7 +114,7 @@ const EngagementsScreen = () => {
           justifyContent="center"
           backgroundColor="white"
         >
-          <Text variant="title3" color="white" margin="s">
+          <Text variant="title3" margin="s">
             Engagements :
           </Text>
           {engagementsData.map((item, index) => (

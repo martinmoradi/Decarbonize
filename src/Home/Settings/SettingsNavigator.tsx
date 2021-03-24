@@ -1,17 +1,22 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TripRoutesList } from '../components/Navigation';
 import Settings from './Settings';
-import SettingsScreen from './Settings';
-import SettingsEmission from './SettingsEmission';
+import SettingsEmission from './SettingsEmissionScreen';
+import { SettingsRoutesList } from '../../components/Navigation';
+import FoodSettingScreen from './FoodSettingScreen';
+import EnergySettingScreen from './EnergySettingScreen';
+import SpendingSettingScreen from './SpendingSettingScreen';
 
-const SettingsStack = createStackNavigator<TripRoutesList>();
+const SettingsStack = createStackNavigator<SettingsRoutesList>();
 
 export const SettingNavigator = () => {
   return (
     <SettingsStack.Navigator headerMode="none">
       <SettingsStack.Screen name="Settings" component={Settings} />
       <SettingsStack.Screen name="SettingsEmission" component={SettingsEmission} />
+      <SettingsStack.Screen name="SettingsFood" component={FoodSettingScreen} />
+      <SettingsStack.Screen name="SettingsEnergy" component={EnergySettingScreen} />
+      <SettingsStack.Screen name="SettingsSpending" component={SpendingSettingScreen} />
     </SettingsStack.Navigator>
   );
 };
