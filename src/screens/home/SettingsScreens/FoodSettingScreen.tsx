@@ -22,11 +22,6 @@ const FoodSettingScreen = ({ onPress }: PropsSlide) => {
   const dispatch = useDispatch();
 
   const handlePress = () => {
-    dispatch({ type: OnboardingFoodActionType.SET_BREAKFAST, payload: breakfast });
-    dispatch({ type: OnboardingFoodActionType.SET_RED_MEAT, payload: redMeat });
-    dispatch({ type: OnboardingFoodActionType.SET_WHITE_MEAT, payload: whiteMeat });
-    dispatch({ type: OnboardingFoodActionType.SET_VEGETARIAN, payload: vegetarian });
-    dispatch({ type: OnboardingFoodActionType.SET_VEGAN, payload: vegan });
     onPress();
   };
 
