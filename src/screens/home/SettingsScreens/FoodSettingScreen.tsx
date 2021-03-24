@@ -6,7 +6,6 @@ import { SliderOnboarding } from '../../authentication/components';
 import { PropsSlide } from '../../authentication/types';
 import { Box, Button, Text } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
-import { OnboardingFoodActionType } from '../../../redux/types';
 
 const { width } = Dimensions.get('window');
 
