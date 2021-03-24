@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { HomeRoutesList } from './NavigationTypes';
 import Tabbar from '../screens/home/components/Tabs/Tabbar';
 import DashboardScreen from '../screens/home/Dashboard';
-import EngagementsScreen from '../screens/home/Commitments';
+import Commitments from '../screens/home/Commitments';
 import HistoryScreen from '../screens/home/History';
 import NewTripNavigator from './NewTripNavigator';
 import SettingsScreen from '../screens/home/Settings';
@@ -35,7 +35,7 @@ const HomeNavigator = () => {
   return (
     <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />
-      <HomeTab.Screen name="Engagements" component={EngagementsScreen} />
+      <HomeTab.Screen name="Commitments" component={Commitments} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={HistoryScreen} />
       <HomeTab.Screen name="Settings" component={SettingsScreen} />
