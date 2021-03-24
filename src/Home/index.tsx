@@ -15,17 +15,19 @@ const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 export const HomeNavigator = () => {
   const { onboardingData } = useContext(OnboardingContext);
   const { isEmpty } = useTypedSelector(state => state.emissions);
+  const {isTripsEmpty} = useTypedSelector(state => state.trips);
   const { user } = useTypedSelector(state => state.authentication);
-  const { postForm, fetchEmissions } = useActions();
+  const { postForm, fetchEmissions, fetchTrips } = useActions();
 
   useEffect(() => {
     if (user) {
       const { has_completed_onboarding } = user;
       if (isEmpty && !has_completed_onboarding) {
         postForm(onboardingData);
-      } else if (isEmpty && has_completed_onboarding) {
+      } else if (isEmpty && has_completed_onboarding && isTripsEmpty) {
         fetchEmissions();
-      }
+        fetchTrips();
+      } 
     }
   }, [user, isEmpty]);
 
