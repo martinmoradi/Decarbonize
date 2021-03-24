@@ -43,9 +43,9 @@ export interface OnboardingEnergyStateType {
   wood_type: WoodsType;
   wood_consumption: number;
   fuel_consumption: number;
-  isGasHeating: boolean;
-  isWoodHeating: boolean;
-  isFuelHeating: boolean;
+  isGasHeating?: boolean;
+  isWoodHeating?: boolean;
+  isFuelHeating?: boolean;
 }
 
 export interface OnboardingSpendingStateType {

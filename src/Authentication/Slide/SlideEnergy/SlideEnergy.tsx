@@ -15,16 +15,16 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { energy } = useTypedSelector(state => state.onboarding);
-  const [people, setPeople] = useState(energy.people);
-  const [surface, setSurface] = useState(energy.surface);
+  const [roommates, setRoommates] = useState(energy.roommates);
+  const [houseSurface, setHouseSurface] = useState(energy.house_surface);
 
   const styles = StyleSheet.create({
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
   const handlePress = () => {
-    dispatch({ type: OnboardingEnergyActionType.SET_PEOPLE, payload: people });
-    dispatch({ type: OnboardingEnergyActionType.SET_SURFACE, payload: surface });
+    dispatch({ type: OnboardingEnergyActionType.SET_ROOMMATES, payload: roommates });
+    dispatch({ type: OnboardingEnergyActionType.SET_HOUSE_SURFACE, payload: houseSurface });
     onPress();
   };
 
@@ -35,20 +35,20 @@ const SlideEnergy = ({ onPress }: PropsSlide) => {
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How many people live with you?</Text>
-          <Text variant="body">{people} </Text>
+          <Text variant="body">{roommates} </Text>
           <SliderOnboarding
-            onValueChange={(value: number) => setPeople(value)}
-            value={people}
+            onValueChange={(value: number) => setRoommates(value)}
+            value={roommates}
             step={1}
             maximumValue={10}
             minimumValue={0}
           />
           <View style={{ padding: hp('1%') }}></View>
           <Text variant="body">What is the area of your housing?</Text>
-          <Text variant="body">{surface} m²</Text>
+          <Text variant="body">{houseSurface} m²</Text>
           <SliderOnboarding
-            onValueChange={(value: number) => setSurface(value)}
-            value={surface}
+            onValueChange={(value: number) => setHouseSurface(value)}
+            value={houseSurface}
             step={5}
             maximumValue={300}
             minimumValue={0}

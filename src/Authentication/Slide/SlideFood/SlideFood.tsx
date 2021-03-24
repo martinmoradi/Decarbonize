@@ -13,9 +13,9 @@ import { OnboardingFoodActionType } from '../../../redux/types';
 const SlideFood = ({ onPress }: PropsSlide) => {
   const theme = useTheme();
   const { food } = useTypedSelector(state => state.onboarding);
-  const [breakfast, setBreakfast] = useState(food.breakfast);
-  const [redMeat, setRedMeat] = useState(food.redMeat);
-  const [whiteMeat, setWhiteMeat] = useState(food.whiteMeat);
+  const [breakfast, setBreakfast] = useState(food.breakfasts_per_week);
+  const [redMeat, setRedMeat] = useState(food.red_meats_per_week);
+  const [whiteMeat, setWhiteMeat] = useState(food.white_meats_per_week);
   const dispatch = useDispatch();
 
   const { width } = Dimensions.get('window');

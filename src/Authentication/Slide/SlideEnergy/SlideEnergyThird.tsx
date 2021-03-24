@@ -15,9 +15,9 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   const theme = useTheme();
   const { energy } = useTypedSelector(state => state.onboarding);
   const { isGasHeating, isWoodHeating, isFuelHeating } = energy;
-  const [gas, setGas] = useState(energy.gas);
-  const [fuel, setFuel] = useState(energy.fuel);
-  const [wood, setWood] = useState(energy.wood);
+  const [gas, setGas] = useState(energy.gas_consumption);
+  const [fuel, setFuel] = useState(energy.fuel_consumption);
+  const [wood, setWood] = useState(energy.wood_consumption);
 
   const { width } = Dimensions.get('window');
   const styles = StyleSheet.create({
@@ -25,9 +25,9 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
   });
 
   const handlePress = () => {
-    dispatch({ type: OnboardingEnergyActionType.SET_GAS, payload: gas });
-    dispatch({ type: OnboardingEnergyActionType.SET_FUEL, payload: fuel });
-    dispatch({ type: OnboardingEnergyActionType.SET_WOOD, payload: wood });
+    dispatch({ type: OnboardingEnergyActionType.SET_GAS_CONSUMPTION, payload: gas });
+    dispatch({ type: OnboardingEnergyActionType.SET_FUEL_CONSUMPTION, payload: fuel });
+    dispatch({ type: OnboardingEnergyActionType.SET_WOOD_CONSUMPTION, payload: wood });
     onPress();
   };
 

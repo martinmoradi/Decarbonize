@@ -15,14 +15,14 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { energy } = useTypedSelector(state => state.onboarding);
-  const [electricity, setElectricity] = useState(energy.electricity);
+  const [electricityConsumption, setElectricityConsumption] = useState(energy.electricity_consumption);
   const [isGasHeating, setIsGasHeating] = useState(energy.isGasHeating);
   const [isWoodHeating, setIsWoodHeating] = useState(energy.isWoodHeating);
   const [isFuelHeating, setIsFuelHeating] = useState(energy.isFuelHeating);
-  const [woodType, setWoodType] = useState(energy.woodType);
-  const [wood, setWood] = useState(energy.wood);
-  const [fuel, setFuel] = useState(energy.fuel);
-  const [gas, setGas] = useState(energy.gas);
+  const [woodType, setWoodType] = useState(energy.wood_type);
+  const [woodConsumption, setWoodConsumption] = useState(energy.wood_consumption);
+  const [fuelConsumption, setFuelConsumption] = useState(energy.fuel_consumption);
+  const [gasConsumption, setGasConsumption] = useState(energy.gas_consumption);
   const [woodTypeIndex, setWoodTypeIndex] = useState<number | null>(null);
   const [selectedHeatingIndexes, setSelectedHeatingIndexes] = useState<number[]>();
   const buttonsHeat = ['Fuel', 'Gas', 'Wood'];
@@ -54,11 +54,11 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
     if (selectedHeatingIndexes) {
       checkHeat(selectedHeatingIndexes);
       if (!isWoodHeating) {
-        setWood(0);
+        setWoodConsumption(0);
         setWoodTypeIndex(null);
       }
-      if (!isGasHeating) setGas(0);
-      if (!isFuelHeating) setFuel(0);
+      if (!isGasHeating) setGasConsumption(0);
+      if (!isFuelHeating) setFuelConsumption(0);
     }
   }, [selectedHeatingIndexes]);
 
@@ -79,7 +79,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   });
 
   const handlePress = () => {
-    dispatch({ type: OnboardingEnergyActionType.SET_ELECTRICITY, payload: electricity });
+    dispatch({ type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION, payload: electricityConsumption });
     dispatch({ type: OnboardingEnergyActionType.SET_IS_FUEL_HEATING, payload: isFuelHeating });
     dispatch({ type: OnboardingEnergyActionType.SET_IS_GAS_HEATING, payload: isGasHeating });
     dispatch({ type: OnboardingEnergyActionType.SET_IS_WOOD_HEATING, payload: isWoodHeating });
@@ -94,10 +94,10 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
       <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
           <Text variant="body">What is your electricity consumption ?</Text>
-          <Text variant="body">{electricity} € / month</Text>
+          <Text variant="body">{electricityConsumption} € / month</Text>
           <SliderOnboarding
-            onValueChange={(value: number) => setElectricity(value)}
-            value={electricity}
+            onValueChange={(value: number) => setElectricityConsumption(value)}
+            value={electricityConsumption}
             step={10}
             maximumValue={300}
             minimumValue={20}

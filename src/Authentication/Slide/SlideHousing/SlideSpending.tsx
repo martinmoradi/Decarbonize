@@ -17,7 +17,7 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
   const isFossil = isWoodHeating || isFuelHeating || isGasHeating;
   const [clothes, setClothes] = useState(spending.clothes);
   const [furniture, setFurniture] = useState(spending.furniture);
-  const [hobbies, setHobbies] = useState(spending.hobbies);
+  const [hobbies, setHobbies] = useState(spending.others);
 
   const { width } = Dimensions.get('window');
   const theme = useTheme();
@@ -28,7 +28,7 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
   const handlePress = () => {
     dispatch({ type: OnboardingSpendingActionType.SET_CLOTHES, payload: clothes });
     dispatch({ type: OnboardingSpendingActionType.SET_FURNITURE, payload: furniture });
-    dispatch({ type: OnboardingSpendingActionType.SET_HOBBIES, payload: hobbies });
+    dispatch({ type: OnboardingSpendingActionType.SET_OTHERS, payload: hobbies });
     onPress();
   };
 

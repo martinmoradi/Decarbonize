@@ -3,17 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../tools/api';
 import { EmissionsAction } from '../actions';
 import { EmissionsActionType } from '../types';
-import { OnboardingDataType } from '../../Authentication/onboardingTypes';
+import { OnboardingType } from '../types';
 
-const renameKeys = (energy, food, spending) => {
- const fixed_emissions = {...food, ...energy, ...spending}
-  fixed_emissions.house_surface = fixed_emissions.surface
-  fixed_emissions.wood_type = fixed_emissions.woodType
-  fixed_emissions.
-} 
-
-export const postForm = (energy, food, spending) => {
- 
+export const postForm = (onboardingState: OnboardingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
@@ -21,12 +13,16 @@ export const postForm = (energy, food, spending) => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
+      const fixed_emissions = { ...onboardingState };
+      delete fixed_emissions.isGasHeating;
+      delete fixed_emissions.isWoodHeating;
+      delete fixed_emissions.isFuelHeating;
       const response = await fetch(
         `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
           method: 'POST',
           headers: headers(token),
-          body: JSON.stringify({ fixed_emission: { ...energy, ...food, ...spending } }),
+          body: JSON.stringify(fixed_emissions),
         }
       );
       const { data, error } = await response.json();

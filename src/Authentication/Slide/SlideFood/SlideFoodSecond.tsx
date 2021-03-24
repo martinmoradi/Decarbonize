@@ -12,8 +12,8 @@ import { OnboardingFoodActionType } from '../../../redux/types';
 
 const SlideFoodSecond = ({ onPress }: PropsSlide) => {
   const { food } = useTypedSelector(state => state.onboarding);
-  const [vegan, setVegan] = useState(food.vegan);
-  const [vegetarian, setVegetarian] = useState(food.vegetarian);
+  const [vegan, setVegan] = useState(food.vegan_per_week);
+  const [vegetarian, setVegetarian] = useState(food.vegetarian_per_week);
   const dispatch = useDispatch();
 
   const theme = useTheme();
