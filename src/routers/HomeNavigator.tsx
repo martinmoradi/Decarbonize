@@ -23,8 +23,6 @@ const HomeNavigator = () => {
       const { has_completed_onboarding } = user;
       if (isEmpty && !has_completed_onboarding) {
         postForm({ ...food, ...energy, ...spending });
-      } else if (isEmpty && has_completed_onboarding) {
-        postForm({ ...food, ...energy, ...spending });
       } else if (isEmpty && has_completed_onboarding && isTripsEmpty) {
         fetchEmissions();
         fetchTrips();
