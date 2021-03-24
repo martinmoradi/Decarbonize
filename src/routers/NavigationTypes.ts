@@ -13,7 +13,7 @@ export interface AuthNavigationProps<RouteName extends keyof AuthRoutesList> {
 export interface HomeTabNavigationProps<RouteName extends keyof HomeRoutesList> {
   navigation: CompositeNavigationProp<
     BottomTabNavigationProp<HomeRoutesList, RouteName>,
-    StackNavigationProp<HomeRoutesList, 'NewTripNavigator'>
+    StackNavigationProp<HomeRoutesList, 'New'>
   >;
   route: RouteProp<HomeRoutesList, RouteName>;
 }
@@ -43,11 +43,11 @@ export type AuthRoutesList = {
 };
 
 export type HomeRoutesList = {
-  Dashboard: undefined;
+  Home: undefined;
   History: undefined;
-  Commitments: undefined;
-  Settings: undefined;
-  NewTripNavigator: undefined;
+  Deeds: undefined;
+  Profile: undefined;
+  New: undefined;
 };
 
 export type TripRoutesList = {

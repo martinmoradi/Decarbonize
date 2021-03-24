@@ -3,7 +3,7 @@ import React from 'react';
 import { AuthRoutesList } from './NavigationTypes';
 import ForgotPassword from '../screens/authentication/ForgotPassword';
 import Login from '../screens/authentication/Login';
-import OnboardingScreen from '../screens/authentication/Onboarding';
+import OnboardingScreen from '../screens/authentication/onboarding-slides/Onboarding';
 import PasswordChanged from '../screens/authentication/PasswordChanged';
 import SignUp from '../screens/authentication/SignUp';
 import Welcome from '../screens/authentication/Welcome';
