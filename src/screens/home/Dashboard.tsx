@@ -2,14 +2,13 @@ import React from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { MeteoBar, Trajet } from './components';
-import DashboardGraph from './components/DashboardGraph';
+import { EmissionsPie } from './components/';
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
 import AirplaneJourney from './components/AirplaneJourney';
 import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
-const { width } = Dimensions.get('window');
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -40,7 +39,7 @@ const Dashboard = () => {
           justifyContent="center"
           backgroundColor="white"
         >
-          <DashboardGraph />
+          <EmissionsPie />
         </Box>
         <Box
           marginTop="s"
@@ -86,6 +85,7 @@ const Dashboard = () => {
 
 export default Dashboard;
 
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   boxContainer: {
     width: width,
