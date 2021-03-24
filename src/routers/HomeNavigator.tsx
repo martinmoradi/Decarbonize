@@ -7,6 +7,7 @@ import HistoryScreen from '../screens/home/History';
 import NewTripNavigator from './NewTripNavigator';
 import SettingsScreen from '../screens/home/Settings';
 import { useActions, useTypedSelector } from '../hooks';
+import SettingNavigator from '../screens/home/SettingsScreens/SettingNavigator';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -25,13 +26,13 @@ const HomeNavigator = () => {
       } else if (isEmpty && has_completed_onboarding && isTripsEmpty) {
         fetchEmissions();
         fetchTrips();
-      } 
+      }
     }
-  }, [user, isEmpty ]);
+  }, [user, isEmpty]);
 
-  useEffect(() =>{
+  useEffect(() => {
     fetchEmissions();
-  }, [data])
+  }, [data]);
 
   return (
     <HomeTab.Navigator>
@@ -39,7 +40,7 @@ const HomeNavigator = () => {
       <HomeTab.Screen name="Commitments" component={Commitments} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={HistoryScreen} />
-      <HomeTab.Screen name="Settings" component={SettingsScreen} />
+      <HomeTab.Screen name="Settings" component={SettingNavigator} />
     </HomeTab.Navigator>
   );
 };

@@ -12,7 +12,6 @@ import SubwayJourney from './components/SubwayJourney';
 const { width } = Dimensions.get('window');
 
 const DashboardScreen = () => {
-
   const theme = useTheme();
   return (
     <ScrollView>
@@ -51,7 +50,6 @@ const DashboardScreen = () => {
           justifyContent="center"
           backgroundColor="primary"
         >
-     
           <Box
             alignItems="center"
             style={styles.boxInfo}
@@ -75,11 +73,11 @@ const DashboardScreen = () => {
             Total trips emissions :
           </Text>
           <Trajet />
-          <BusJourney/>
-          <TrainJourney/>
-          <AirplaneJourney/>
+          <BusJourney />
+          <TrainJourney />
+          <AirplaneJourney />
           <TramJourney />
-          <SubwayJourney/>
+          <SubwayJourney />
         </Box>
       </Box>
     </ScrollView>
