@@ -6,7 +6,6 @@ type PropsIcons = {
 };
 
 const IconSvg = ({ name, ...rest }: PropsIcons) => {
-  // @ts-ignore
   const Image = icons[name];
 
   if (!Image) {

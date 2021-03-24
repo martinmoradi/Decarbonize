@@ -117,6 +117,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
         <Button variant="primary" label="Valider" onPress={() => postCommonTrip(tripData)} />
       )}
       <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+
     </Box>
   );
 };

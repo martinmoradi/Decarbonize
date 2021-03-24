@@ -4,19 +4,18 @@ Rails
   .draw do
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
-        resource :fixed_emissions do
+        resources :fixed_emissions do
           resource :emissions, module: :fixed_emissions
         end
-        resource :regular_trips do
+        resources :regular_trips do
           resource :emissions, module: :regular_trips
         end
-        resource :land_trips do
+        resources :land_trips do
           resource :emissions, module: :land_trips
         end
-        resource :air_trips do
+        resources :air_trips do
           resource :emissions, module: :air_trips
         end
-        resource :airports
         resource :users
       end
     end

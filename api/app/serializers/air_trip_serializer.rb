@@ -1,6 +1,6 @@
 class AirTripSerializer
+  # TAKES USER AS ARG
   include JSONAPI::Serializer
-  
 
   attribute :emitted_carbon do |object|
     object.air_trips.last.emitted_carbon

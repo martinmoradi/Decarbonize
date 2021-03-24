@@ -5,7 +5,6 @@ import { Button, Text } from '../../components';
 
 const Settings = () => {
   const { logout } = useActions();
-
   return (
     <View
       style={{

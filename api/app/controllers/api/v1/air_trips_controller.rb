@@ -3,28 +3,42 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # GET /air_trips
   def index
-    @air_trips = AirTrip.all
-
-    render json: @air_trips
+    @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
+    @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
+    render json: {
+      status:{
+        code: 200
+      },
+      data: { land_trips: @land_trips, air_trips: @air_trips } 
+    }
   end
 
   # GET /air_trips/1
   def show
-    render json: @air_trip
+    @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
+    @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
+    render json: {
+      status:{
+        code: 200
+      },
+      data: { land_trips: @land_trips, air_trips: @air_trips } 
+    }
   end
 
   # POST /air_trips
   def create
     @air_trip = AirTrip.new(air_trip_params)
     @air_trip.user_id = current_user.id
+    @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
+    @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
     if @air_trip.save
       render json: {
                status: {
                  code: 200,
                  message: 'Air Trip emission was successfully created',
                },
-               data: AirTripSerializer.new(current_user).serializable_hash[:data][:attributes],
-             }
+               data: { land_trips: @land_trips, air_trips: @air_trips } 
+              }
     else
       render json: @air_trip.errors, status: :unprocessable_entity
     end
@@ -48,7 +62,7 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_air_trip
-    @air_trip = AirTrip.find(params[:id])
+    @air_trip = AirTrip.find_by(user_id: current_user.id)
   end
 
   # Only allow a list of trusted parameters through.

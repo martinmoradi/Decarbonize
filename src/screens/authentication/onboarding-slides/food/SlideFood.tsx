@@ -27,7 +27,7 @@ const SlideFood = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="FOOD" svgTitle="food" isReversed={false} />
+      <SlideTitle title="FOOD" svgTitle="Food" isReversed={false} />
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body" style={{ lineHeight: 32 }}>

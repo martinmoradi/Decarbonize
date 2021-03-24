@@ -78,7 +78,7 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="ENERGY" svgTitle="energy" isReversed={true} />
+      <SlideTitle title="ENERGY" svgTitle="Energy" isReversed={true} />
 
       <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>

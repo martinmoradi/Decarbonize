@@ -25,7 +25,7 @@ const SlideFoodSecond = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="FOOD" svgTitle="food" isReversed={true} />
+      <SlideTitle title="FOOD" svgTitle="Food" isReversed={true} />
 
       <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>

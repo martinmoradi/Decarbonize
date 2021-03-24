@@ -147,6 +147,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
         <Button variant="primary" label="Valider" onPress={() => postAirTrips(tripData)} />
       )}
       <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+
     </Box>
   );
 };

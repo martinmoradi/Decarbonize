@@ -29,7 +29,7 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
 
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="SPENDING" svgTitle="habit" isReversed={isFossil ? true : false} />
+      <SlideTitle title="SPENDING" svgTitle="Habits" isReversed={isFossil ? true : false} />
       <View style={isFossil ? theme.slideStyle.footerReverse : theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>
