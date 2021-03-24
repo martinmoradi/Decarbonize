@@ -92,7 +92,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
             justifyContent: 'center',
           }}
           onChangeText={changeDistance}
-          value={tripData.distance}
+          value={tripData.distance.toString()}
           placeholder={'0'}
           keyboardType="numeric"
         />

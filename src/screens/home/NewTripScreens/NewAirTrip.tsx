@@ -3,13 +3,14 @@ import { Box, Text, Button } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
 import Checkbox from '../../../components/Checkbox';
 import { Dimensions, ActivityIndicator } from 'react-native';
-import { useTypedSelector } from '../../../hooks';
+import { useTypedSelector, useActions } from '../../../hooks';
 
 const { width } = Dimensions.get('window');
 
 const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'>) => {
   const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
-
+  const {postAirTrips } = useActions();
+  
   const [tripData, setTripData] = useState({
     round_trip: false,
     departure: '',
