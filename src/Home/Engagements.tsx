@@ -52,10 +52,21 @@ const EngagementsScreen = () => {
 
   return (
     <ScrollView>
+      <Box
+        paddingLeft="m"
+        paddingTop="s"
+        justifyContent="flex-end"
+        paddingBottom="m"
+        style={styles.boxTitle}
+        backgroundColor="primary"
+      >
+        <Text variant="title2" color="white">
+          ENGAGEMENTS
+        </Text>
+      </Box>
       <View style={styles.mainView}>
         <Box
           paddingLeft="m"
-          paddingTop="s"
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
@@ -70,7 +81,7 @@ const EngagementsScreen = () => {
           backgroundColor="lightgray"
         >
           <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
-            <Text variant="title1" color="white" margin="s">
+            <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
               {'<'}
             </Text>
           </TouchableOpacity>
@@ -90,7 +101,7 @@ const EngagementsScreen = () => {
             />
           </View>
           <TouchableOpacity onPress={() => scroll.current?.snapToNext()}>
-            <Text variant="title1" color="white" margin="s">
+            <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
               {'>'}
             </Text>
           </TouchableOpacity>
@@ -116,6 +127,15 @@ const EngagementsScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  boxTitle: {
+    width: width,
+    height: 100,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
   viewContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -131,7 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: wp('90%'),
-    height: 120,
+    height: 190,
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {
@@ -141,7 +161,6 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     width: width,
-    height: 50,
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
     shadowColor: '#000',

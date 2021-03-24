@@ -49,9 +49,6 @@ const DashboardScreen = () => {
           justifyContent="center"
           backgroundColor="primary"
         >
-          <Text variant="title3" color="white" margin="s">
-            Cette semaine :
-          </Text>
           <Box
             alignItems="center"
             style={styles.boxInfo}
@@ -63,6 +60,9 @@ const DashboardScreen = () => {
             </Text>
           </Box>
         </Box>
+        <Text variant="title3" color="white" margin="s">
+          Cette semaine :
+        </Text>
         <Box
           marginTop="m"
           paddingTop="m"
