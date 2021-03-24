@@ -8,9 +8,10 @@ import TrainJourney from '../components/TrainJourney';
 import AirplaneJourney from '../components/AirplaneJourney';
 import TramJourney from '../components/TramJourney';
 import SubwayJourney from '../components/Subway';
+
 const { width } = Dimensions.get('window');
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ navigation }) => {
   const theme = useTheme();
   return (
     <ScrollView>
@@ -40,25 +41,6 @@ const DashboardScreen = () => {
           backgroundColor="white"
         >
           <DashboardGraph />
-        </Box>
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          marginBottom="s"
-          style={[styles.boxInfo, { height: 100 }]}
-          justifyContent="center"
-          backgroundColor="primary"
-        >
-          <Box
-            alignItems="center"
-            style={styles.boxInfo}
-            justifyContent="center"
-            backgroundColor="white"
-          >
-            <Text variant="title2" color="primary">
-              Food Boxes
-            </Text>
-          </Box>
         </Box>
         <Text variant="title3" color="white" margin="s">
           Cette semaine :

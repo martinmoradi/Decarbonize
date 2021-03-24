@@ -6,7 +6,7 @@ import DashboardScreen from './Dashboard';
 import EngagementsScreen from './Engagements';
 import HistoryScreen from './History';
 import NewTripNavigator from './NewTripNavigator';
-import SettingsScreen from './Settings';
+import SettingsNavigator from './Settings/SettingsNavigator';
 import { useActions, useTypedSelector } from '../hooks';
 import OnboardingContext from '../Authentication/onboardingContext/OnboardingContext';
 
@@ -35,7 +35,7 @@ export const HomeNavigator = () => {
       <HomeTab.Screen name="Engagements" component={EngagementsScreen} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={HistoryScreen} />
-      <HomeTab.Screen name="Settings" component={SettingsScreen} />
+      <HomeTab.Screen name="Settings" component={SettingsNavigator} />
     </HomeTab.Navigator>
   );
 };

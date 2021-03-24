@@ -5,10 +5,10 @@ import {
 } from 'react-native-responsive-screen';
 import { Dimensions, ScrollView, View, Image, StyleSheet } from 'react-native';
 import { Box, Text, useTheme } from '../components';
-const { width } = Dimensions.get('window');
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { TripStackNavigationProps } from '../components/Navigation';
 
+const { width } = Dimensions.get('window');
 const NewTripScreen = ({ navigation }: TripStackNavigationProps<'NewTripScreen'>) => {
   const theme = useTheme();
 
