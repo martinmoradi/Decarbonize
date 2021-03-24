@@ -6,6 +6,7 @@ import Commitments from '../screens/home/Commitments';
 import HistoryScreen from '../screens/home/History';
 import NewTripNavigator from './NewTripNavigator';
 import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 import SettingsScreen from '../screens/home/Settings';
 import { useActions, useTypedSelector } from '../hooks';
@@ -38,76 +39,76 @@ const HomeNavigator = () => {
   const tabs: TabsConfig<BubbleTabBarItemConfig> = {
     Dashboard: {
       labelStyle: {
-        color: 'black',
+        color: 'white',
         fontSize: 12,
       },
       icon: {
-        component: props => <Home {...props} name="home" size={24} color="#616164" />,
+        component: props => <AntDesign {...props} name="home" size={24} color="#616164" />,
         activeColor: '#39D697',
         inactiveColor: 'rgba(0,0,0,1)',
       },
       background: {
-        activeColor: 'rgba(223,215,243,1)',
+        activeColor: '#39D697',
         inactiveColor: 'rgba(223,215,243,0)',
       },
     },
     Commitments: {
       labelStyle: {
-        color: '#1194AA',
-        display: 'none',
+        color: 'white',
+        fontSize: 12,
       },
       icon: {
-        component: props => <Ecology {...props} name="activity" size={24} color="black" />,
-        activeColor: 'rgba(17,148,170,1)',
+        component: props => <Feather {...props} name="check-circle" size={24} color="#616164" />,
+        activeColor: '#39D697',
         inactiveColor: 'rgba(0,0,0,1)',
       },
       background: {
-        activeColor: 'rgba(207,235,239,1)',
+        activeColor: '#39D697',
         inactiveColor: 'rgba(207,235,239,0)',
       },
     },
     NewTripNavigator: {
       labelStyle: {
-        color: '#1194AA',
-        display: 'none',
+        color: 'white',
+        fontSize: 12,
       },
       icon: {
-        component: props => <Plus {...props} name="activity" size={24} color="black" />,
-        activeColor: 'rgba(17,148,170,1)',
+        component: props => <Feather {...props} name="plus-circle" size={24} color="#616164" />,
+        activeColor: '#1194AA',
         inactiveColor: 'rgba(0,0,0,1)',
       },
       background: {
-        activeColor: 'rgba(207,235,239,1)',
+        activeColor: '#39D697',
         inactiveColor: 'rgba(207,235,239,0)',
       },
     },
     History: {
       labelStyle: {
-        color: '#1194AA',
-        display: 'none',
+        color: 'white',
+        fontSize: 12,
       },
       icon: {
-        component: props => <Chart {...props} name="activity" size={24} color="black" />,
-        activeColor: 'rgba(17,148,170,1)',
-        inactiveColor: 'rgba(0,0,0,1)',
+        component: props => <Chart {...props} name="activity" size={24} color="#616164" />,
+        activeColor: '#1194AA',
+        inactiveColor: '#616164',
       },
       background: {
-        activeColor: 'rgba(207,235,239,1)',
+        activeColor: '#39D697',
         inactiveColor: 'rgba(207,235,239,0)',
       },
     },
     Settings: {
       labelStyle: {
-        color: '#1194AA',
-        display: 'none',
+        color: 'white',
+        fontSize: 12,
       },
       icon: {
         component: props => <Settings {...props} name="activity" size={24} color="black" />,
-        activeColor: 'rgba(17,148,170,1)',
-        inactiveColor: 'rgba(0,0,0,1)',
+        activeColor: '#39D697',
+        inactiveColor: '#616164',
       },
       background: {
-        activeColor: 'rgba(207,235,239,1)',
+        activeColor: '#39D697',
         inactiveColor: 'rgba(207,235,239,0)',
       },
     },
