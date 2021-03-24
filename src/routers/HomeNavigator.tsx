@@ -107,11 +107,7 @@ const HomeNavigator = () => {
         fetchTrips();
       }
     }
-  }, [user, isEmpty]);
-
-  useEffect(() => {
-    fetchEmissions();
-  }, [data]);
+  }, [user, isEmpty, data]);
 
   return (
     <HomeTab.Navigator
