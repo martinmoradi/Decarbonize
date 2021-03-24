@@ -13,7 +13,7 @@ const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
 const HomeNavigator = () => {
   const { isEmpty } = useTypedSelector(state => state.emissions);
-  const { isTripsEmpty } = useTypedSelector(state => state.trips);
+  const { isTripsEmpty, data } = useTypedSelector(state => state.trips);
   const { user } = useTypedSelector(state => state.authentication);
   const { food, energy, spending } = useTypedSelector(state => state.onboarding);
   const { postForm, fetchEmissions, fetchTrips } = useActions();
@@ -26,12 +26,16 @@ const HomeNavigator = () => {
       } else if (isEmpty && has_completed_onboarding && isTripsEmpty) {
         fetchEmissions();
         fetchTrips();
-      }
+      } 
     }
-  }, [user, isEmpty]);
+  }, [user, isEmpty ]);
+
+  useEffect(() =>{
+    fetchEmissions();
+  }, [data])
 
   return (
-    <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
+    <HomeTab.Navigator>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />
       <HomeTab.Screen name="Commitments" component={Commitments} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
