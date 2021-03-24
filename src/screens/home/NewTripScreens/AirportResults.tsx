@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Box, Text, Button } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
 import { Dimensions } from 'react-native';
@@ -7,29 +7,47 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 const { width } = Dimensions.get('window');
 
 const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPortResults'>) => {
-  const [results, setResults] = React.useState([{}]);
-  const [selectedResult, setSelectedResult] = React.useState({});
-
-  const fetchAirportResults = useCallback(
-    () => async (query: String) => {
-      try {
-        const response = await fetch(
-          `https://api.aviowiki.com/free/airports/search?query=${query}&size=4`,
-          {
-            method: 'GET',
-          }
-        );
-        const { content, error } = await response.json();
-        if (!response.ok) {
-          throw new Error(error);
-        }
-        setResults(content);
-      } catch (err) {
-        throw new Error(err.message);
-      }
+  const [selectedResult, setSelectedResult] = React.useState({
+    name: '',
+    country: {
+      iso2: '',
+      iso3: '',
+      isoNumeric: 0,
+      name: '',
+      officialName: '',
     },
-    []
-  );
+    timeZone: '',
+    icao: '',
+    iata: '',
+    faa: '',
+    aid: '',
+    coordinates: {
+      latitude: 0,
+      longitude: 0,
+    },
+    servedCity: '',
+    servedCityGoverningDistrict: {},
+  });
+  const [results, setResults] = React.useState([selectedResult]);
+
+
+  const fetchAirportResults = async (query: String) => {
+    try {
+      const response = await fetch(
+        `https://api.aviowiki.com/free/airports/search?query=${query}&size=4`,
+        {
+          method: 'GET',
+        }
+      );
+      const { content, error } = await response.json();
+      if (!response.ok) {
+        throw new Error(error);
+      }
+      setResults(content);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  };
 
   React.useEffect(() => {
     fetchAirportResults(route.params.query);
@@ -95,7 +113,7 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
         variant="primary"
         label="Valider"
         onPress={() =>
-          navigation.navigate('NewAirTripScreen', {
+          navigation.navigate('NewAirTrip', {
             type: route.params.type,
             queryResult: selectedResult,
           })

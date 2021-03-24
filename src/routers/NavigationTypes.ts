@@ -49,8 +49,54 @@ export type HomeRoutesList = {
 export type TripRoutesList = {
   NewTrip: undefined;
   NewCarTrip: undefined;
-  NewAirTrip: undefined;
+  NewAirTrip: {
+    type: string;
+    queryResult: {
+      name: string;
+      country: {
+        iso2: string;
+        iso3: string;
+        isoNumeric: number;
+        name: string;
+        officialName: string;
+      };
+      timeZone: string;
+      icao?: string;
+      iata?: string;
+      faa?: string;
+      aid: string;
+      coordinates: {
+        latitude: number;
+        longitude: number;
+      };
+      servedCity?: string;
+      servedCityGoverningDistrict?: object;
+    } ;
+  };
   NewCommonTrip: { type: string };
-  AirPortSearch: { type: string };
-  AirPortResults: undefined;
+  AirPortSearch: {
+    type: string;
+    queryResult?: {
+      name: string;
+      country: {
+        iso2: string;
+        iso3: string;
+        isoNumeric: number;
+        name: string;
+        officialName: string;
+      };
+      timeZone: string;
+      icao?: string;
+      iata?: string;
+      faa?: string;
+      aid: string;
+      coordinates: {
+        latitude: number;
+        longitude: number;
+      };
+      servedCity?: string;
+      servedCityGoverningDistrict?: object;
+    };
+  };
+  AirPortResults: { type: string; query: string };
 };

@@ -8,8 +8,7 @@ const { width, height } = Dimensions.get('window');
 import { useTypedSelector } from '../../hooks';
 
 interface MixedTripInteface {
-  [x: number]:
-    | {
+  [x: number]: {
         amount: number;
         created_at: string;
         updated_at: string;
@@ -38,9 +37,10 @@ interface MixedTripInteface {
 
 const History = () => {
   const { data } = useTypedSelector(state => state.trips);
-  const trips = { ...data.land_trips, ...data.air_trips };
+  const trips: MixedTripInteface = { ...data.land_trips, ...data.air_trips };
   const theme = useTheme();
-  const renderItem = ({ item }: MixedTripInteface) => (
+  
+  const renderItem = ({ item }) => (
     <TripHistory
       type={trips[item].vehicle_type ? trips[item].vehicle_type : 'plane'}
       distance={trips[item].distance}
