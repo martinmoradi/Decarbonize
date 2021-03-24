@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useActions } from '../../hooks';
-import { Button, Text } from '../../components';
-import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
+import { useActions } from '../../../hooks';
+import { Button, Text } from '../../../components';
+import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 
 const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>) => {
   const { logout } = useActions();

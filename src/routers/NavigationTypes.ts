@@ -23,6 +23,11 @@ export interface TripStackNavigationProps<RouteName extends keyof TripRoutesList
   route: RouteProp<TripRoutesList, RouteName>;
 }
 
+export interface SettingsStackNavigationProps<RouteName extends keyof SettingsRoutesList> {
+  navigation: StackNavigationProp<SettingsRoutesList, RouteName>;
+  route: RouteProp<SettingsRoutesList, RouteName>;
+}
+
 export type AppRoutesList = {
   Authentication: undefined;
   Home: undefined;
@@ -53,4 +58,12 @@ export type TripRoutesList = {
   NewCommonTrip: { type: string };
   AirPortSearch: { type: string };
   AirPortResults: undefined;
+};
+
+export type SettingsRoutesList = {
+  Settings: undefined;
+  SettingsEmission: undefined;
+  SettingsFood: undefined;
+  SettingsEnergy: undefined;
+  SettingsSpending: undefined;
 };
