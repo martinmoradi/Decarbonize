@@ -30,7 +30,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
           marginBottom="s"
         >
           <Text variant="title2" color="white">
-            NOUVEAU TRAJET
+            ADD A NEW TRIP
           </Text>
         </Box>
         <View style={styles.viewContainer}>
@@ -47,7 +47,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
           backgroundColor="white"
         >
           <Text variant="title3" margin="s">
-            Choisis un moyen de transport:
+            Pick your way of transportation:
           </Text>
           <Box
             alignItems="center"
@@ -66,51 +66,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Car Travel</Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip', { type: 'bus' })}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/bus.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Bus Travel</Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip', { type: 'tramway' })}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/tramway.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Tramway Travel</Text>
+                  <Text variant="button">Car (Electric, Diesel, Petrol)</Text>
                 </View>
               </View>
             </BorderlessButton>
@@ -132,11 +88,35 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Subway Travel</Text>
+                  <Text variant="button">Subway</Text>
                 </View>
               </View>
             </BorderlessButton>
           </Box>
+          <Box
+            alignItems="center"
+            style={styles.boxTravelMode}
+            justifyContent="center"
+            backgroundColor="lightgray"
+            borderBottomColor="white"
+          >
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTrip', { type: 'bus' })}
+            >
+              <View style={styles.cardContainer}>
+                <Image
+                  source={require('../../../assets/images/bus.jpg')}
+                  style={styles.iconStyle}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Bus </Text>
+                </View>
+              </View>
+            </BorderlessButton>
+          </Box>
+         
+          
           <Box
             alignItems="center"
             style={styles.boxTravelMode}
@@ -154,7 +134,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Train Travel</Text>
+                  <Text variant="button">Train </Text>
                 </View>
               </View>
             </BorderlessButton>
@@ -176,7 +156,29 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Airplane Travel</Text>
+                  <Text variant="button" textAlign="center">Airplane </Text>
+                </View>
+              </View>
+            </BorderlessButton>
+          </Box>
+          <Box
+            alignItems="center"
+            style={styles.boxTravelMode}
+            justifyContent="center"
+            backgroundColor="lightgray"
+            borderBottomColor="white"
+          >
+            <BorderlessButton
+              style={{ width: width }}
+              onPress={() => navigation.navigate('NewCommonTrip', { type: 'tramway' })}
+            >
+              <View style={styles.cardContainer}>
+                <Image
+                  source={require('../../../assets/images/tramway.jpg')}
+                  style={styles.iconStyle}
+                />
+                <View style={{ marginLeft: wp('5%') }}>
+                  <Text variant="button">Tramway </Text>
                 </View>
               </View>
             </BorderlessButton>

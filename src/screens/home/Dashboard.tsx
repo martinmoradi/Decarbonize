@@ -42,9 +42,25 @@ const DashboardScreen = () => {
         >
           <DashboardGraph />
         </Box>
-        <Text variant="title3" color="white" margin="s">
-          Cette semaine :
-        </Text>
+        <Box
+          marginTop="s"
+          paddingTop="m"
+          marginBottom="s"
+          style={[styles.boxInfo, { height: 100 }]}
+          justifyContent="center"
+          backgroundColor="primary"
+        >
+          <Box
+            alignItems="center"
+            style={styles.boxInfo}
+            justifyContent="center"
+            backgroundColor="white"
+          >
+            <Text variant="title2" color="primary">
+              Food Boxes
+            </Text>
+          </Box>
+        </Box>
         <Box
           marginTop="m"
           paddingTop="m"
@@ -54,7 +70,7 @@ const DashboardScreen = () => {
           alignItems="center"
         >
           <Text variant="title3" margin="s">
-            Tes Trajets :
+            Total trips emissions :
           </Text>
           <Trajet />
           <BusJourney />
