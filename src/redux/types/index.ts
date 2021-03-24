@@ -10,3 +10,4 @@ export {
   OnboardingEnergyStateType,
   OnboardingSpendingStateType,
 } from './onboardingTypes';
+export { UserCommitmentsActionType, UserCommitmentsType } from './userCommitmentsTypes';
