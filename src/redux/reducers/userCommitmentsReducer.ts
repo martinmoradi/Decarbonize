@@ -24,6 +24,7 @@ const initialState: UserCommitmentsStateType = {
 const userCommitmentsReducer = (state = initialState, action: UserCommitmentsAction): UserCommitmentsStateType => {
   switch (action.type) {
     case UserCommitmentsActionType.POST_USER_COMMITMENTS_ATTEMPT:
+      case UserCommitmentsActionType.DEL_USER_COMMITMENTS_ATTEMPT:
       return { 
         data: initialState.data,
         errorMessage: null,
@@ -31,6 +32,7 @@ const userCommitmentsReducer = (state = initialState, action: UserCommitmentsAct
       }
 
       case UserCommitmentsActionType.POST_USER_COMMITMENTS_SUCCESS:
+        case UserCommitmentsActionType.DEL_USER_COMMITMENTS_SUCCESS:
         return {
           data: action.payload,
           errorMessage: null,
@@ -38,6 +40,7 @@ const userCommitmentsReducer = (state = initialState, action: UserCommitmentsAct
         }
 
         case UserCommitmentsActionType.POST_USER_COMMITMENTS_ERROR:
+          case UserCommitmentsActionType.DEL_USER_COMMITMENTS_ERROR:
           return {
             data: initialState.data,
             errorMessage: action.payload,
