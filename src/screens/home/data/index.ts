@@ -1,0 +1,1 @@
+export { ecologyFacts } from './ecologyFacts';

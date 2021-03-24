@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, G, Path, Defs, LinearGradient, Stop, ClipPath } from 'react-native-svg';
 
-function SvgComponent(props: SvgProps) {
+const EcoCar = (props: SvgProps) => {
   return (
-    <Svg width={29} height={18} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Svg width={29} height={18} fill="none" {...props}>
       <G clipPath="url(#prefix__clip0)">
         <Path
           opacity={0.25}
@@ -586,6 +586,6 @@ function SvgComponent(props: SvgProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
-export default SvgComponent;
+export default EcoCar;
