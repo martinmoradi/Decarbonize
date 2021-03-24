@@ -106,7 +106,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
             >
               <View style={styles.cardContainer}>
                 <Image
-                  source={require('../../../assets/images/tramway.png')}
+                  source={require('../../../assets/images/tramway.jpg')}
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
@@ -128,7 +128,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
             >
               <View style={styles.cardContainer}>
                 <Image
-                  source={require('../../../assets/images/tramway.jpg')}
+                  source={require('../../../assets/images/subway.jpg')}
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
@@ -150,7 +150,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
             >
               <View style={styles.cardContainer}>
                 <Image
-                  source={require('../../../assets/images/train.png')}
+                  source={require('../../../assets/images/train.jpg')}
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>

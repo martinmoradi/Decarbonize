@@ -26,16 +26,16 @@ const HomeNavigator = () => {
       } else if (isEmpty && has_completed_onboarding && isTripsEmpty) {
         fetchEmissions();
         fetchTrips();
-      } else {
-        fetchEmissions();
-      }
+      } 
     }
-  }, [user, isEmpty, data ]);
+  }, [user, isEmpty ]);
 
-
+  useEffect(() =>{
+    fetchEmissions();
+  }, [data])
 
   return (
-    <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
+    <HomeTab.Navigator>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />
       <HomeTab.Screen name="Commitments" component={Commitments} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />
