@@ -17,10 +17,11 @@ const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>
       }}
     >
       <Text variant="title2">Settings</Text>
-      <Button label="logout" variant="primary" onPress={() => logout()} />
+      <Button label="logout" variant="primary" onPress={() => logout()} style={{ margin: 5 }} />
       <Button
         label="Change fixed emissions"
         variant="primary"
+        style={{ margin: 5 }}
         onPress={() => navigation.navigate('SettingsEmission')}
       />
     </View>

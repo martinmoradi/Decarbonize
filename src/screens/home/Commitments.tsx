@@ -70,7 +70,7 @@ const Commitments = () => {
           backgroundColor="lightgray"
         >
           <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
-            <Text variant="title1" color="white" margin="s">
+            <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
               {'<'}
             </Text>
           </TouchableOpacity>
@@ -90,7 +90,7 @@ const Commitments = () => {
             />
           </View>
           <TouchableOpacity onPress={() => scroll.current?.snapToNext()}>
-            <Text variant="title1" color="white" margin="s">
+            <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
               {'>'}
             </Text>
           </TouchableOpacity>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: wp('90%'),
-    height: 120,
+    height: 190,
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {

@@ -10,8 +10,6 @@ import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 import { useTypedSelector } from '../../../hooks';
 
 const SettingEmission = ({ navigation }: SettingsStackNavigationProps<'SettingsEmission'>) => {
-  const { food } = useTypedSelector(state => state.onboarding);
-  const [breakfast, setBreakfast] = useState(food.breakfasts_per_week);
   return (
     <ScrollView>
       <View style={{ alignItems: 'center', flex: 1 }}>
@@ -28,7 +26,6 @@ const SettingEmission = ({ navigation }: SettingsStackNavigationProps<'SettingsE
             EMISSIONS SETTINGS
           </Text>
         </Box>
-        <Button title="Go back" onPress={() => navigation.goBack()} />
         <Box
           alignItems="center"
           marginTop="m"
@@ -41,7 +38,7 @@ const SettingEmission = ({ navigation }: SettingsStackNavigationProps<'SettingsE
             flexDirection="row"
             alignItems="center"
             style={{ width: wp('90%'), height: 70, borderBottomWidth: 2, borderRadius: 20 }}
-            justifyContent="space-between"
+            justifyContent="center"
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
@@ -53,7 +50,7 @@ const SettingEmission = ({ navigation }: SettingsStackNavigationProps<'SettingsE
             flexDirection="row"
             alignItems="center"
             style={{ width: wp('90%'), height: 70, borderBottomWidth: 2, borderRadius: 20 }}
-            justifyContent="space-between"
+            justifyContent="center"
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
@@ -65,7 +62,7 @@ const SettingEmission = ({ navigation }: SettingsStackNavigationProps<'SettingsE
             flexDirection="row"
             alignItems="center"
             style={{ width: wp('90%'), height: 70, borderBottomWidth: 2, borderRadius: 20 }}
-            justifyContent="space-between"
+            justifyContent="center"
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
