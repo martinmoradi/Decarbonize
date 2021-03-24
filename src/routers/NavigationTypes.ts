@@ -45,7 +45,7 @@ export type AuthRoutesList = {
 export type HomeRoutesList = {
   Dashboard: undefined;
   History: undefined;
-  Engagements: undefined;
+  Commitments: undefined;
   Settings: undefined;
   NewTripNavigator: undefined;
 };

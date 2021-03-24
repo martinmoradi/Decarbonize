@@ -11,7 +11,7 @@ import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
 const { width } = Dimensions.get('window');
 
-const DashboardScreen = ({ navigation }) => {
+const DashboardScreen = () => {
   const theme = useTheme();
   return (
     <ScrollView>

@@ -2,8 +2,11 @@ import React from 'react';
 import { Box, Text } from '../../../components/Theme';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image, View, StyleSheet } from 'react-native';
+import { useTypedSelector } from '../../../hooks';
 
 const BusJourney = () => {
+  const { data } = useTypedSelector(state => state.emissions);
+
   return (
     <Box
       style={styles.boxContainer}
@@ -13,13 +16,13 @@ const BusJourney = () => {
     >
       <View style={styles.viewContainer}>
         <View style={styles.viewImg}>
-          <Image source={require('../../../../assets/images/bus.jpg')} style={styles.imgStyle} />
+          <Image source={require('../../../../assets/images/autobus.png')} style={styles.imgStyle} />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">Bus Travel</Text>
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ 10 Co2</Text>
+          <Text variant="header">+ {data.total_bus_emissions}kg Co2</Text>
         </View>
       </View>
     </Box>
