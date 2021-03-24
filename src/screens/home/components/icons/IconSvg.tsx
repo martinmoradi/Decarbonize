@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as icons from '../icons';
+import * as icons from '../icons/icons';
 
 type PropsIcons = {
   name: string;
