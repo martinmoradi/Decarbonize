@@ -62,12 +62,12 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          Aéroport de départ
+          Departure Airport
         </Text>
         {tripData.departure !== '' ? <Text>{tripData.departure}</Text> : null}
         <Button
           variant="default"
-          label="Selectionner"
+          label="Search"
           onPress={() => navigation.navigate('AirPortSearch', { type: 'departure' })}
         />
       </Box>
@@ -92,12 +92,12 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          Aéroport d'arrivée
+          Arrival Airport
         </Text>
         {tripData.arrival !== '' ? <Text>{tripData.arrival}</Text> : null}
         <Button
           variant="default"
-          label="Selectionner"
+          label="Search"
           onPress={() => navigation.navigate('AirPortSearch', { type: 'arrival' })}
         />
       </Box>
@@ -122,7 +122,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
         backgroundColor="primary"
       >
         <Checkbox
-          label="Aller Retour ?"
+          label="Round Trip ?"
           checked={tripData.round_trip}
           onChange={() => setTripData({ ...tripData, round_trip: !tripData.round_trip })}
         />
@@ -144,9 +144,9 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
           onPress={() => postAirTrips(tripData)}
         />
       ) : (
-        <Button variant="primary" label="Valider" onPress={() => postAirTrips(tripData)} />
+        <Button variant="primary" label="Add" onPress={() => postAirTrips(tripData)} />
       )}
-      <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+      <Button variant="default" label="Go Back" onPress={() => navigation.goBack()} />
 
     </Box>
   );

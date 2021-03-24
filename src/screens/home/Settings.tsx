@@ -2,9 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import { useActions } from '../../hooks';
 import { Button, Text } from '../../components';
+import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
 
-const Settings = () => {
+const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>) => {
   const { logout } = useActions();
+
   return (
     <View
       style={{
@@ -15,9 +17,15 @@ const Settings = () => {
       }}
     >
       <Text variant="title2">Settings</Text>
-      <Button label="logout" variant="primary" onPress={() => logout()} />
+      <Button label="logout" variant="primary" onPress={() => logout()} style={{ margin: 5 }} />
+      <Button
+        label="Change fixed emissions"
+        variant="primary"
+        style={{ margin: 5 }}
+        onPress={() => navigation.navigate('SettingsEmission')}
+      />
     </View>
   );
 };
 
-export default Settings;
+export default SettingsScreen;

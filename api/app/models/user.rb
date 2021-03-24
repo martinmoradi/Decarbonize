@@ -49,6 +49,26 @@ class User < ApplicationRecord
     (land_trips.reduce(0) { |sum, land_trip| sum + land_trip.emission.amount }).round(2)
   end
 
+  def total_car_emissions
+    (land_trips.cars.includes(:emission).reduce(0) { |sum,e| sum + e.emission.amount} ).round(2)
+  end
+
+  def total_bus_emissions
+    (land_trips.bus.includes(:emission).reduce(0) { |sum,e| sum + e.emission.amount} ).round(2)
+  end
+
+  def total_tramway_emissions
+    (land_trips.tramway.includes(:emission).reduce(0) { |sum,e| sum + e.emission.amount} ).round(2)
+  end
+
+  def total_metro_emissions
+    (land_trips.metro.includes(:emission).reduce(0) { |sum,e| sum + e.emission.amount} ).round(2)
+  end
+
+  def total_train_emissions
+    (land_trips.train.includes(:emission).reduce(0) { |sum,e| sum + e.emission.amount} ).round(2)
+  end
+
   def yearly_landtrip_emissions
     (
       land_trips
@@ -88,7 +108,7 @@ class User < ApplicationRecord
   # AIR TRIPS EMISSIONS
 
   def total_airtrip_emissions
-    (air_trips.includes(:emission).reduce(0) { |sum, land_trip| sum + land_trip.emission.amount })
+    (air_trips.includes(:emission).reduce(0) { |sum, e| sum + e.emission.amount })
       .round(2)
   end
 

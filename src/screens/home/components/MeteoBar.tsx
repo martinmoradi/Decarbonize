@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Text, Box } from '../../../components/Theme';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
@@ -12,8 +12,7 @@ const MeteoBar = () => {
   const [meteo, setMeteo] = React.useState(0);
   const [city, setCity] = React.useState('');
 
-  const permissionFlow = useCallback(
-    () => () => async () => {
+  const permissionFlow = async () => {
       const { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         throw new Error('Location permission not granted');
@@ -23,21 +22,17 @@ const MeteoBar = () => {
         throw new Error('Location not found');
       }
       setLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-    },
-    [setLocation]
-  );
+    };
 
-  const fetchWeather = useCallback(
-    () => async () => {
+
+    const fetchWeather = async () => {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=c469f11dbd61f2b3429aeefed47dc1b6`
       );
       const meteo = await response.json();
       setMeteo(meteo.main.temp);
       setCity(`in ${meteo.name}`);
-    },
-    [setMeteo, setCity]
-  );
+    };
 
   React.useEffect(() => {
     if (currentHour < 12) {

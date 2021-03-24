@@ -2,8 +2,13 @@ import React from 'react';
 import { Box, Text } from '../../../components/Theme';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image, View, StyleSheet } from 'react-native';
+import { useTypedSelector } from '../../../hooks';
+
+
 
 const TramJourney = () => {
+  const {data}= useTypedSelector(state => state.emissions)
+
   return (
     <Box
       style={styles.boxContainer}
@@ -22,7 +27,7 @@ const TramJourney = () => {
           <Text variant="body">Tram Travel</Text>
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ 6kg Co2</Text>
+          <Text variant="header">+ {data.total_tramway_emissions}kg Co2</Text>
         </View>
       </View>
     </Box>

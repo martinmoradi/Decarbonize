@@ -1,91 +1,79 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { Text, Box } from '../../components';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
-import HistoryGraph from './components/HistoryGraph';
-
+import { TripHistory } from './components';
 const { width, height } = Dimensions.get('window');
+import { useTypedSelector } from '../../hooks';
+
+interface MixedTripInteface {
+  [x: number]:
+    | {
+        amount: number;
+        created_at: string;
+        updated_at: string;
+        distance: number;
+        id: number;
+        user_id: number;
+        round_trip: boolean;
+        vehicle_type: string;
+      }
+    | {
+        amount: number;
+        created_at: string;
+        updated_at: string;
+        distance: number;
+        id: number;
+        user_id: number;
+        round_trip: boolean;
+        departure: string;
+        arrival: string;
+        arrival_latitude: number;
+        arrival_longitude: number;
+        departure_latitude: number;
+        departure_longitude: number;
+      };
+}
 
 const History = () => {
+  const { data } = useTypedSelector(state => state.trips);
+  const trips = { ...data.land_trips, ...data.air_trips };
+  const theme = useTheme();
+  const renderItem = ({ item }: MixedTripInteface) => (
+    <TripHistory
+      type={trips[item].vehicle_type ? trips[item].vehicle_type : 'plane'}
+      distance={trips[item].distance}
+      amount={trips[item].amount}
+      date={trips[item].created_at}
+    />
+  );
+
   return (
-    <ScrollView>
-      <View style={styles.viewContainer}>
+    
+      <View>
+        <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.background2,
+        }}
+      ></View>
         <Box
-          alignItems="center"
-          style={styles.boxGraph}
-          justifyContent="center"
-          backgroundColor="lightgray"
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
+          backgroundColor="primary"
+          marginBottom="s"
         >
-          <HistoryGraph />
-        </Box>
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          style={{ width: width, borderRadius: 10 }}
-          justifyContent="center"
-          backgroundColor="white"
-        >
-          <Text variant="title3" margin="s">
-            Ton historique :
+          <Text variant="title2" color="white">
+            HISTORY
           </Text>
-          <Box
-            alignItems="center"
-            style={styles.boxStyle}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <Text variant="title3">Semaine 1 - CO2 - Score</Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxStyle}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <Text variant="title3">Semaine 2 - CO2 - Score</Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxStyle}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <Text variant="title3">Semaine 3 - CO2 - Score</Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxStyle}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <Text variant="title3">Semaine 4 - CO2 - Score</Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxStyle}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <Text variant="title3">Semaine 5 - CO2 - Score</Text>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxStyle}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <Text variant="title3">Semaine 6 - CO2 - Score</Text>
-          </Box>
         </Box>
+        <FlatList data={Object.keys(trips)} renderItem={renderItem} keyExtractor={item => item} />
+
       </View>
-    </ScrollView>
   );
 };
 
@@ -102,9 +90,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 30,
   },
-  boxStyle: {
+  boxContainer: {
     width: width,
-    height: 50,
-    borderBottomWidth: 2,
+    height: 100,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
   },
 });

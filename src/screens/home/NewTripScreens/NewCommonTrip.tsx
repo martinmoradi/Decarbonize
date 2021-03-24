@@ -46,8 +46,9 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          SVG du {route.params.type}
+          SVG  {route.params.type}
         </Text>
+        <Text>Faire une fonction en fonction du type</Text>
       </Box>
       {errorMessage ? (
         <Text
@@ -80,7 +81,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          Distance en Km
+          Distance in Km
         </Text>
         <TextInput
           style={{
@@ -96,7 +97,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
           keyboardType="numeric"
         />
         <Checkbox
-          label="Aller Retour ?"
+          label="Round Trip ?"
           checked={tripData.round_trip}
           onChange={() =>
             setTripData({
@@ -114,9 +115,9 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
           onPress={() => postCommonTrip(tripData)}
         />
       ) : (
-        <Button variant="primary" label="Valider" onPress={() => postCommonTrip(tripData)} />
+        <Button variant="primary" label="Add" onPress={() => postCommonTrip(tripData)} />
       )}
-      <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+      <Button variant="default" label="Go Back" onPress={() => navigation.goBack()} />
 
     </Box>
   );

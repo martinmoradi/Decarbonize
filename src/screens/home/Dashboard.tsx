@@ -50,9 +50,6 @@ const Dashboard = () => {
           justifyContent="center"
           backgroundColor="primary"
         >
-          <Text variant="title3" color="white" margin="s">
-            Cette semaine :
-          </Text>
           <Box
             alignItems="center"
             style={styles.boxInfo}
@@ -73,7 +70,7 @@ const Dashboard = () => {
           alignItems="center"
         >
           <Text variant="title3" margin="s">
-            Tes Trajets :
+            Total trips emissions :
           </Text>
           <Trajet />
           <BusJourney />
