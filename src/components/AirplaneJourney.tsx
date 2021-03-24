@@ -5,9 +5,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { Dimensions, Image, View, StyleSheet } from 'react-native';
+
 const { width } = Dimensions.get('window');
 
+
+
 const AirplaneJourney = () => {
+  
   return (
     <Box
       style={styles.boxContainer}
@@ -26,7 +30,7 @@ const AirplaneJourney = () => {
           <Text variant="body">Airplane Travel</Text>
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ 22 Co2</Text>
+          <Text variant="header">+ 0kg Co2</Text>
         </View>
       </View>
     </Box>

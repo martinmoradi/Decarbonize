@@ -5,11 +5,12 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
   def index
     @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
     @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
+
     render json: {
       status:{
         code: 200
       },
-      data: { land_trips: @land_trips, air_trips: @air_trips } 
+      data: {land_trips: @land_trips, air_trips: @air_trips} 
     }
   end
   

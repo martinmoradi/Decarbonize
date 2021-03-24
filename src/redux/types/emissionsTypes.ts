@@ -40,4 +40,9 @@ export interface EmissionsType {
     food_wastes: boolean;
     bulk_food: boolean;
     zero_wastes: boolean;
+    total_car_emissions: number;
+    total_bus_emissions: number;
+    total_tramway_emissions: number;
+    total_metro_emissions: number;
+    total_train_emissions: number;
 }

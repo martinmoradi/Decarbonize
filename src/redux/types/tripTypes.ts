@@ -8,8 +8,32 @@ export enum TripActionType {
   }
 
 export interface TripType{
-  land_trips: object[];
-  air_trips: object[];
+  land_trips: {
+    amount: number;
+    created_at: string;
+    updated_at: string;
+    distance: number;
+    id: number;
+    user_id: number;
+    round_trip: boolean;
+    vehicle_type: string;
+
+  }[],
+  air_trips: {
+    amount: number;
+    created_at: string;
+    updated_at: string;
+    distance: number;
+    id: number;
+    user_id: number;
+    round_trip: boolean;
+    departure: string;
+    arrival: string;
+    arrival_latitude: number;
+    arrival_longitude: number;
+    departure_latitude: number;
+    departure_longitude: number;
+  }[];
 }
 
 

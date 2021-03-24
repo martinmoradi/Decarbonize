@@ -7,7 +7,10 @@ import {
 import { Dimensions, Image, View, StyleSheet } from 'react-native';
 const { width } = Dimensions.get('window');
 
+
+
 const TrainJourney = () => {
+
   return (
     <Box
       style={styles.boxContainer}
@@ -23,7 +26,7 @@ const TrainJourney = () => {
           <Text variant="body">Train Travel</Text>
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ 8kg Co2</Text>
+          <Text variant="header">+ 0kg Co2</Text>
         </View>
       </View>
     </Box>
