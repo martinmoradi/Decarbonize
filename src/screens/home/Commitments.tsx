@@ -83,6 +83,7 @@ const Commitments = () => {
               inactiveSlideShift={0}
               sliderHeight={height / 3}
               itemHeight={height / 3}
+              keyExtractor={(item, index) => `key - ${index}${item}`}
               useScrollView={true}
               autoplay={false}
               loop={true}
@@ -107,7 +108,7 @@ const Commitments = () => {
             Engagements :
           </Text>
           {engagementsData.map((item, index) => (
-            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} />
+            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} key={index} />
           ))}
         </Box>
       </View>
