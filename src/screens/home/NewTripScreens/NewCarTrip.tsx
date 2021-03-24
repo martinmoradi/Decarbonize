@@ -68,13 +68,13 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          SVG Voiture
+          SVG CAR
         </Text>
       </Box>
       <Box style={{ flexDirection: 'row', justifyContent: 'center' }}>
         <Button
           variant={tripData.vehicle_type === 'petrol_car' ? 'primary' : 'default'}
-          label="Essence"
+          label="Petrol"
           onPress={switchPetrol}
           style={styles.Button}
         />
@@ -86,7 +86,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
         />
         <Button
           variant={tripData.vehicle_type === 'electric_car' ? 'primary' : 'default'}
-          label="Electrique"
+          label="Electric"
           onPress={switchElectric}
           style={styles.Button}
         />
@@ -122,7 +122,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          Distance en Km
+          Distance in Km
         </Text>
         <TextInput
           style={{
@@ -138,7 +138,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           keyboardType="numeric"
         />
         <Checkbox
-          label="Aller Retour ?"
+          label="Round Trip ?"
           checked={tripData.round_trip}
           onChange={() =>
             setTripData({
@@ -156,9 +156,9 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           onPress={() => postCommonTrip(tripData)}
         />
       ) : (
-        <Button variant="primary" label="Valider" onPress={() => postCommonTrip(tripData)} />
+        <Button variant="primary" label="Add Trip" onPress={() => postCommonTrip(tripData)} />
       )}
-      <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+      <Button variant="default" label="Go Back" onPress={() => navigation.goBack()} />
     </Box>
   );
 };

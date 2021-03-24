@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, FlatList } from 'react-native';
-import { Text, Box } from '../../components';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
-import { HistoryGraph, TripHistory } from './components';
+import { TripHistory } from './components';
 const { width, height } = Dimensions.get('window');
 import { useTypedSelector } from '../../hooks';
 
@@ -39,6 +39,7 @@ interface MixedTripInteface {
 const History = () => {
   const { data } = useTypedSelector(state => state.trips);
   const trips = { ...data.land_trips, ...data.air_trips };
+  const theme = useTheme();
   const renderItem = ({ item }: MixedTripInteface) => (
     <TripHistory
       type={trips[item].vehicle_type ? trips[item].vehicle_type : 'plane'}
@@ -49,30 +50,30 @@ const History = () => {
   );
 
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View style={styles.viewContainer}>
+    
+      <View>
+        <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.background2,
+        }}
+      ></View>
         <Box
-          alignItems="center"
-          style={styles.boxGraph}
-          justifyContent="center"
-          backgroundColor="lightgray"
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
+          backgroundColor="primary"
+          marginBottom="s"
         >
-          <HistoryGraph />
-        </Box>
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          style={{ width: width, borderRadius: 20 }}
-          justifyContent="center"
-          backgroundColor="white"
-        >
-          <Text variant="title3" margin="s">
-            Ton historique :
+          <Text variant="title2" color="white">
+            HISTORY
           </Text>
-          <FlatList data={Object.keys(trips)} renderItem={renderItem} keyExtractor={item => item} />
         </Box>
+        <FlatList data={Object.keys(trips)} renderItem={renderItem} keyExtractor={item => item} />
+
       </View>
-    </ScrollView>
   );
 };
 
@@ -88,5 +89,16 @@ const styles = StyleSheet.create({
     width: wp('95%'),
     borderRadius: 10,
     paddingLeft: 30,
+  },
+  boxContainer: {
+    width: width,
+    height: 100,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
   },
 });
