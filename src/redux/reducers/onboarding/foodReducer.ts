@@ -3,11 +3,11 @@ import { OnboardingAction } from '../../actions';
 import { OnboardingFoodActionType } from '../../types';
 
 const initialState: OnboardingFoodStateType = {
-  breakfast: 0,
-  redMeat: 0,
-  whiteMeat: 0,
-  vegan: 0,
-  vegetarian: 0,
+  breakfasts_per_week: 0,
+  red_meats_per_week: 0,
+  white_meats_per_week: 0,
+  vegan_per_week: 0,
+  vegetarian_per_week: 0,
 };
 
 const foodReducer = (state = initialState, action: OnboardingAction): OnboardingFoodStateType => {
@@ -15,27 +15,27 @@ const foodReducer = (state = initialState, action: OnboardingAction): Onboarding
     case OnboardingFoodActionType.SET_BREAKFAST:
       return {
         ...state,
-        breakfast: action.payload,
+        breakfasts_per_week: action.payload,
       };
       case OnboardingFoodActionType.SET_RED_MEAT:
       return {
         ...state,
-        redMeat: action.payload,
+        red_meats_per_week: action.payload,
       };
       case OnboardingFoodActionType.SET_WHITE_MEAT:
       return {
         ...state,
-        whiteMeat: action.payload,
+        white_meats_per_week: action.payload,
       };
       case OnboardingFoodActionType.SET_VEGAN:
       return {
         ...state,
-        vegan: action.payload,
+        vegan_per_week: action.payload,
       };
       case OnboardingFoodActionType.SET_VEGETARIAN:
       return {
         ...state,
-        vegetarian: action.payload,
+        vegetarian_per_week: action.payload,
       };
     default:
       return state;

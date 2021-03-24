@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HomeRoutesList } from '../components/Navigation';
 import Tabbar from '../components/Tabs/Tabbar';
 import DashboardScreen from './Dashboard';
@@ -8,21 +8,20 @@ import HistoryScreen from './History';
 import NewTripNavigator from './NewTripNavigator';
 import SettingsScreen from './Settings';
 import { useActions, useTypedSelector } from '../hooks';
-import OnboardingContext from '../Authentication/onboardingContext/OnboardingContext';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
 export const HomeNavigator = () => {
-  const { onboardingData } = useContext(OnboardingContext);
   const { isEmpty } = useTypedSelector(state => state.emissions);
   const { user } = useTypedSelector(state => state.authentication);
+  const { energy, food, spending } = useTypedSelector(state => state.onboarding);
   const { postForm, fetchEmissions } = useActions();
 
   useEffect(() => {
     if (user) {
       const { has_completed_onboarding } = user;
       if (isEmpty && !has_completed_onboarding) {
-        postForm(onboardingData);
+        postForm(energy, food, spending);
       } else if (isEmpty && has_completed_onboarding) {
         fetchEmissions();
       }
@@ -30,7 +29,7 @@ export const HomeNavigator = () => {
   }, [user, isEmpty]);
 
   return (
-    <HomeTab.Navigator>
+    <HomeTab.Navigator tabBar={props => <Tabbar {...props} />}>
       <HomeTab.Screen name="Dashboard" component={DashboardScreen} />
       <HomeTab.Screen name="Engagements" component={EngagementsScreen} />
       <HomeTab.Screen name="NewTripNavigator" component={NewTripNavigator} />

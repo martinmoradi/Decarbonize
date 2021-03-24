@@ -5,7 +5,15 @@ import { EmissionsAction } from '../actions';
 import { EmissionsActionType } from '../types';
 import { OnboardingDataType } from '../../Authentication/onboardingTypes';
 
-export const postForm = (onboardingData: OnboardingDataType) => {
+const renameKeys = (energy, food, spending) => {
+ const fixed_emissions = {...food, ...energy, ...spending}
+  fixed_emissions.house_surface = fixed_emissions.surface
+  fixed_emissions.wood_type = fixed_emissions.woodType
+  fixed_emissions.
+} 
+
+export const postForm = (energy, food, spending) => {
+ 
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
@@ -18,7 +26,7 @@ export const postForm = (onboardingData: OnboardingDataType) => {
         {
           method: 'POST',
           headers: headers(token),
-          body: JSON.stringify({ fixed_emission: { ...onboardingData } }),
+          body: JSON.stringify({ fixed_emission: { ...energy, ...food, ...spending } }),
         }
       );
       const { data, error } = await response.json();
@@ -62,7 +70,7 @@ export const fetchEmissions = () => {
         payload: data,
       });
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
 
       dispatch({
         type: EmissionsActionType.FETCH_EMISSIONS_ERROR,

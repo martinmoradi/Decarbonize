@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { block, onChange, set, useCode, Value } from 'react-native-reanimated';
 import { timing, withTransition } from 'react-native-redash';
@@ -8,41 +8,29 @@ import Ecology from './icons/Ecology';
 import Home from './icons/Home';
 import Plus from './icons/Plus';
 import Settings from './icons/Settings';
-import Particules from './Particules';
+
 import Tab from './Tab';
 import Weave from './Weave';
 
-const tabs = [
-  { icon: <Home /> },
-  { icon: <Ecology /> },
-  { icon: <Plus /> },
-  { icon: <Chart /> },
-  { icon: <Settings /> },
-];
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    borderRadius: 100,
-  },
-  tabs: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  tab: {
-    width: SEGMENT,
-    height: ICON_SIZE + PADDING * 2,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
 const Tabbar = (props: any) => {
-  let currentIndex = props.state.index;
-  const { navigation } = props;
 
-  const navigationRoute = ['Dashboard', 'Engagements', 'NewTripNavigator', 'History', 'Settings'];
+  const tabs = useMemo(
+    () => [
+      { icon: <Home /> },
+      { icon: <Ecology /> },
+      { icon: <Plus /> },
+      { icon: <Chart /> },
+      { icon: <Settings /> },
+    ],
+    []
+  );
+  const navigationRoute = useMemo(
+    () => ['Dashboard', 'Engagements', 'NewTripNavigator', 'History', 'Settings'],
+    []
+  );
+
+  const currentIndex = props.state.index;
+  const { navigation } = props;
 
   const active = new Value<number>(currentIndex);
   const transition = withTransition(active, { duration: DURATION });
@@ -58,8 +46,8 @@ const Tabbar = (props: any) => {
   );
 
   const handlePress = (index: number) => {
-    active.setValue(index);
     navigation.navigate(navigationRoute[index]);
+    active.setValue(index);
   };
 
   return (
@@ -73,7 +61,6 @@ const Tabbar = (props: any) => {
             </Tab>
           </View>
         ))}
-        {/* <Particules {...{ transition, activeTransition }} /> */}
       </View>
     </SafeAreaView>
   );
@@ -96,3 +83,21 @@ export default Tabbar;
               {icon}
             </Tab> */
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+  },
+  tabs: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  tab: {
+    width: SEGMENT,
+    height: ICON_SIZE + PADDING * 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
