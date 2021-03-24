@@ -59,7 +59,7 @@ const SettingsEmission = ({ navigation }: SettingsStackNavigationProps<'Settings
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <BorderlessButton onPress={() => navigation.navigate('SettingsFood')}>
+            <BorderlessButton onPress={() => navigation.navigate('SettingsEnergy')}>
               <Text variant="body">Change energy</Text>
             </BorderlessButton>
           </Box>
@@ -71,7 +71,7 @@ const SettingsEmission = ({ navigation }: SettingsStackNavigationProps<'Settings
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <BorderlessButton onPress={() => navigation.navigate('SettingsFood')}>
+            <BorderlessButton onPress={() => navigation.navigate('SettingsSpending')}>
               <Text variant="body">Change spending</Text>
             </BorderlessButton>
           </Box>
