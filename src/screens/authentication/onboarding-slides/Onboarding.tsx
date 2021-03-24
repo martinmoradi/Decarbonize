@@ -1,13 +1,13 @@
 import React, { useRef, useMemo, useCallback } from 'react';
 import { Dimensions, FlatList, View, StyleSheet } from 'react-native';
-import { AuthNavigationProps } from '../../routers/NavigationTypes';
-import SlideEnergy from './onboarding-slides/energy/SlideEnergy';
-import SlideEnergySecond from './onboarding-slides/energy/SlideEnergySecond';
-import SlideEnergyThird from './onboarding-slides/energy/SlideEnergyThird';
-import SlideFood from './onboarding-slides/food/SlideFood';
-import SlideFoodSecond from './onboarding-slides/food/SlideFoodSecond';
-import SlideHousing from './onboarding-slides/spending/SlideSpending';
-import { useTypedSelector } from '../../hooks';
+import { AuthNavigationProps } from '../../../routers/NavigationTypes';
+import SlideEnergy from './energy/SlideEnergy';
+import SlideEnergySecond from './energy/SlideEnergySecond';
+import SlideEnergyThird from './energy/SlideEnergyThird';
+import SlideFood from './food/SlideFood';
+import SlideFoodSecond from './food/SlideFoodSecond';
+import SlideHousing from './spending/SlideSpending';
+import { useTypedSelector } from '../../../hooks';
 
 const Onboarding = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { energy } = useTypedSelector(state => state.onboarding);

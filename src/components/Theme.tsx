@@ -27,6 +27,7 @@ const theme = {
     danger: '#FF0058',
     info: '#808080',
     lightgray: '#F3F4F6',
+    gray: '#616164',
     text: 'rgba(12, 13, 52, 0.7)',
     textContrast: palette.white,
     background: palette.white,
