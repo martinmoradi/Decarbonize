@@ -11,7 +11,7 @@ const NewCommonTripScreen = ({
   navigation,
 }: TripStackNavigationProps<'NewCommonTripScreen'>) => {
   const { postCommonTrip } = useActions();
-  const { data, errorMessage, isLoading } = useTypedSelector(state => state.trips);
+  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
   const [tripData, setTripData] = React.useState({
     vehicle_type: route.params.type,
     round_trip: false,
