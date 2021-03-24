@@ -19,7 +19,6 @@ class LandTrip < ApplicationRecord
     emissions if vehicle_type != 'diesel_car' || vehicle_type != 'petrol_car'
     user.user_commitments.where(commitment_id: 3).exists? ? (emissions * 0.85) : emissions
   end
-
   # Per trip in kgs
 
   def emitted_carbon

@@ -2,13 +2,13 @@ import { TripActionType } from '../types';
 import { TripAction } from '../actions';
 
 interface TripStateType {
-  data: object[];
+  data: object;
   errorMessage: string | null;
   isLoading: boolean;
 }
 
 const initialState: TripStateType = {
-  data: [{}],
+  data: {},
   errorMessage: null,
   isLoading: false,
 };
@@ -24,7 +24,7 @@ const tripsReducer = (state = initialState, action: TripAction): TripStateType =
       };
     case TripActionType.POST_TRIP_SUCCESS:
       return {
-        data: [...initialState.data, action.payload ],
+        data:  action.payload ,
         errorMessage: null,
         isLoading: false,
       };

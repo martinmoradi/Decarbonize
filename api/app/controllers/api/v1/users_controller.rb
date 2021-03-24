@@ -7,6 +7,14 @@ class Api::V1::UsersController < Api::V1::ApiBaseController
     render json: { data: { land_trips: @land_trips, road_trips: @air_trips } }
   end
 
+  # def show
+  #   @land_trips = LandTrip.all.where(user_id: current_user.id)
+  #   @air_trips = AirTrip.all.where(user_id: current_user.id)
+  #   render json: current_user.to_json(
+  #     include: :air_trips
+  #   )
+  # end
+
   def update
     if @user.update(user_params)
       render json: @user

@@ -9,6 +9,12 @@ class AirTrip < ApplicationRecord
   before_create :calc_distance
   after_create :create_emission
 
+  attribute :amount
+
+  def amount
+    emission.amount
+  end
+  
   def calc_distance
     p = 0.017453292519943295 # PI / 180
     a =

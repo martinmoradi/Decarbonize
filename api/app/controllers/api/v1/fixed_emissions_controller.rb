@@ -1,11 +1,15 @@
 class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
-  before_action :set_fixed_emission, only: %i[show update destroy]
+  before_action :set_fixed_emission, only: %i[index show update destroy]
 
   # GET /fixed_emissions
   def index
-    @fixed_emissions = FixedEmission.all
-
-    render json: @fixed_emissions
+    
+    render json: {
+             status: {
+               code: 200,
+             },
+             data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+           }
   end
 
   # GET /fixed_emissions/1
