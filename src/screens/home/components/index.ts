@@ -9,3 +9,4 @@ export { default as Trajet } from './Trajet';
 export { default as TramJourney } from './TramJourney';
 export { default as Tips } from './Tips';
 export { default as Tabbar } from './Tabs/Tabbar';
+export { IconSvg } from './icons';

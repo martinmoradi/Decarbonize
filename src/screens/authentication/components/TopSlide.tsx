@@ -7,7 +7,7 @@ import { Dimensions } from 'react-native';
 import { Platform } from 'react-native';
 import { View, StyleSheet } from 'react-native';
 import { Text, useTheme } from '../../../components/Theme';
-import IconSvg from '../../../../assets/icons/IconSvg';
+import { IconSvg } from '../../home/components';
 import { PropsSlideTop } from '../types';
 
 const SlideTitle = ({ title, svgTitle, isReversed }: PropsSlideTop) => {
