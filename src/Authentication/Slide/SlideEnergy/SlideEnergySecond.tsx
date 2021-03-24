@@ -15,7 +15,9 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { energy } = useTypedSelector(state => state.onboarding);
-  const [electricityConsumption, setElectricityConsumption] = useState(energy.electricity_consumption);
+  const [electricityConsumption, setElectricityConsumption] = useState(
+    energy.electricity_consumption
+  );
   const [isGasHeating, setIsGasHeating] = useState(energy.isGasHeating);
   const [isWoodHeating, setIsWoodHeating] = useState(energy.isWoodHeating);
   const [isFuelHeating, setIsFuelHeating] = useState(energy.isFuelHeating);
@@ -79,7 +81,10 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
   });
 
   const handlePress = () => {
-    dispatch({ type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION, payload: electricityConsumption });
+    dispatch({
+      type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION,
+      payload: electricityConsumption,
+    });
     dispatch({ type: OnboardingEnergyActionType.SET_IS_FUEL_HEATING, payload: isFuelHeating });
     dispatch({ type: OnboardingEnergyActionType.SET_IS_GAS_HEATING, payload: isGasHeating });
     dispatch({ type: OnboardingEnergyActionType.SET_IS_WOOD_HEATING, payload: isWoodHeating });
