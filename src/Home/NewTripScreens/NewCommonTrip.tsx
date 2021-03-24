@@ -11,7 +11,7 @@ const NewCommonTripScreen = ({
   navigation,
 }: TripStackNavigationProps<'NewCommonTripScreen'>) => {
   const { postCommonTrip } = useActions();
-  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
+  const { data, errorMessage, isLoading } = useTypedSelector(state => state.trips);
   const [tripData, setTripData] = React.useState({
     vehicle_type: route.params.type,
     round_trip: false,
@@ -120,6 +120,7 @@ const NewCommonTripScreen = ({
         <Button variant="primary" label="Valider" onPress={() => postCommonTrip(tripData)} />
       )}
       <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+
     </Box>
   );
 };

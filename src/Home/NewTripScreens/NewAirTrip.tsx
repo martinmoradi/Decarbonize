@@ -9,7 +9,7 @@ const { width } = Dimensions.get('window');
 
 const NewAirTripScreen = ({ route, navigation }: TripStackNavigationProps<'NewAirTripScreen'>) => {
   const { postAirTrips } = useActions();
-  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
+  const { data, errorMessage, isLoading } = useTypedSelector(state => state.trips);
   const [tripData, setTripData] = React.useState({round_trip: false, departure: "", arrival: "", departure_latitude: 0, departure_longitude: 0, arrival_latitude: 0, arrival_longitude: 0})
   React.useEffect(() => {
     if (route.params ) {
@@ -129,6 +129,8 @@ const NewAirTripScreen = ({ route, navigation }: TripStackNavigationProps<'NewAi
         <Button variant="primary" label="Valider" onPress={() => postAirTrips(tripData)} />
       )}
       <Button variant="default" label="Retour" onPress={() => navigation.goBack()} />
+      <Button variant="primary" label="Valider" onPress={() => console.log(data)} />
+
     </Box>
   );
 };

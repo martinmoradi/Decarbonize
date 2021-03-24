@@ -16,7 +16,7 @@ Rails
         resources :air_trips do
           resource :emissions, module: :air_trips
         end
-        resources :users
+        resource :users
       end
     end
 

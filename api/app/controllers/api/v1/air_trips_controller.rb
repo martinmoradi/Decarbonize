@@ -3,26 +3,25 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # GET /air_trips
   def index
-    @land_trips = LandTrip.includes(:emission).where('emission.id = ?', current_user.id)
-
-    @air_trips = AirTrip.includes(:emission).where('emission.id = ?', current_user.id)
+    @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
+    @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
     render json: {
       status:{
         code: 200
       },
-      data: {
-        "land_trips": @land_trips , "air_trips": @air_trips
-      }
+      data: { land_trips: @land_trips, air_trips: @air_trips } 
     }
   end
 
   # GET /air_trips/1
   def show
+    @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
+    @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
     render json: {
       status:{
         code: 200
       },
-      data: TripsSerializer.new(current_user).serializable_hash
+      data: { land_trips: @land_trips, air_trips: @air_trips } 
     }
   end
 
@@ -30,14 +29,16 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
   def create
     @air_trip = AirTrip.new(air_trip_params)
     @air_trip.user_id = current_user.id
+    @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
+    @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
     if @air_trip.save
       render json: {
                status: {
                  code: 200,
                  message: 'Air Trip emission was successfully created',
                },
-               data: AirTripSerializer.new(current_user).serializable_hash[:data][:attributes],
-             }
+               data: { land_trips: @land_trips, air_trips: @air_trips } 
+              }
     else
       render json: @air_trip.errors, status: :unprocessable_entity
     end
