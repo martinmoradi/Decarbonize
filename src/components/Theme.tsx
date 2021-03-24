@@ -19,7 +19,6 @@ export const palette = {
 };
 
 const theme = {
-
   colors: {
     white: palette.white,
     primary: palette.green,
@@ -27,6 +26,7 @@ const theme = {
     secondary: '#0C0D34',
     danger: '#FF0058',
     info: '#808080',
+    lightgray: '#F3F4F6',
     text: 'rgba(12, 13, 52, 0.7)',
     textContrast: palette.white,
     background: palette.white,
@@ -188,5 +188,3 @@ export const makeStyles = <T extends NamedStyles<T>>(styles: (theme: Theme) => T
   const currentTheme = useTheme();
   return styles(currentTheme);
 };
-
-

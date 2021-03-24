@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ButtonGroup } from 'react-native-elements';
-import OnboardingContext from '../../onboardingContext/OnboardingContext';
+import { useTypedSelector } from '../../../hooks';
+import { useDispatch } from 'react-redux';
+import { OnboardingEnergyActionType, WoodsType } from '../../../redux/types/onboardingTypes';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
@@ -10,69 +12,81 @@ import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
 
 const SlideEnergySecond = ({ onPress }: PropsSlide) => {
-  const { energy } = useContext(OnboardingContext);
-  const [woodTypeIndex, setWoodTypeIndex] = useState<number | undefined>();
-  const {
-    woodHeating,
-    fuelHeating,
-    gasHeating,
-    onChangeElectricity,
-    onChangeWoodType,
-    onChangeWoodHeating,
-    onChangeFuelHeating,
-    onChangeGasHeating,
-    onChangeFuel,
-    onChangeGas,
-    onChangeWood,
-  } = energy;
+  const theme = useTheme();
+  const dispatch = useDispatch();
+  const { energy } = useTypedSelector(state => state.onboarding);
+  const [electricity, setElectricity] = useState(energy.electricity);
+  const [isGasHeating, setIsGasHeating] = useState(energy.isGasHeating);
+  const [isWoodHeating, setIsWoodHeating] = useState(energy.isWoodHeating);
+  const [isFuelHeating, setIsFuelHeating] = useState(energy.isFuelHeating);
+  const [woodType, setWoodType] = useState(energy.woodType);
+  const [wood, setWood] = useState(energy.wood);
+  const [fuel, setFuel] = useState(energy.fuel);
+  const [gas, setGas] = useState(energy.gas);
+  const [woodTypeIndex, setWoodTypeIndex] = useState<number | null>(null);
+  const [selectedHeatingIndexes, setSelectedHeatingIndexes] = useState<number[]>();
   const buttonsHeat = ['Fuel', 'Gas', 'Wood'];
   const buttonsWood = ['Wood logs', 'Wood pellets'];
-  const handleWoodType = (e: number, woodType: string[]) => {
-    onChangeWoodType(woodType[e]);
-    setWoodTypeIndex(e);
-  };
-  const [heat, setHeat] = useState<number[]>();
-  const [electricityValue, setElectricityValue] = useState<number>(0);
-  const { width } = Dimensions.get('window');
 
-  const checkHeat = (heat: number[] | undefined) => {
-    heat?.includes(0) ? onChangeFuelHeating(true) : onChangeFuelHeating(false);
-    heat?.includes(1) ? onChangeGasHeating(true) : onChangeGasHeating(false);
-    heat?.includes(2) ? onChangeWoodHeating(true) : onChangeWoodHeating(false);
-  };
+  const handleWoodType = useCallback((index: number) => {
+    const woodTypes: WoodsType[] = ['wood_logs', 'wood_pellets'];
+    setWoodType(woodTypes[index]);
+    setWoodTypeIndex(index);
+  }, []);
+
+  const checkHeat = useCallback(
+    (selectedHeatingIndexes: number[]) => {
+      selectedHeatingIndexes?.includes(0) ? setIsFuelHeating(true) : setIsFuelHeating(false);
+      selectedHeatingIndexes?.includes(1) ? setIsGasHeating(true) : setIsGasHeating(false);
+      selectedHeatingIndexes?.includes(2) ? setIsWoodHeating(true) : setIsWoodHeating(false);
+    },
+    [selectedHeatingIndexes]
+  );
 
   useEffect(() => {
-    checkHeat(heat);
+    const selectedIndexes = [];
+    if (isFuelHeating) selectedIndexes.push(0);
+    if (isGasHeating) selectedIndexes.push(1);
+    if (isWoodHeating) selectedIndexes.push(2);
+  }, [isGasHeating, isWoodHeating, isGasHeating]);
 
-    if (!woodHeating) {
-      onChangeWood(0);
-      onChangeWoodType('');
-      setWoodTypeIndex(undefined);
+  useEffect(() => {
+    if (selectedHeatingIndexes) {
+      checkHeat(selectedHeatingIndexes);
+      if (!isWoodHeating) {
+        setWood(0);
+        setWoodTypeIndex(null);
+      }
+      if (!isGasHeating) setGas(0);
+      if (!isFuelHeating) setFuel(0);
     }
+  }, [selectedHeatingIndexes]);
 
-    !fuelHeating ? onChangeFuel(0) : null;
-    !gasHeating ? onChangeGas(0) : null;
-  }, [heat]);
-
-  const theme = useTheme();
+  const { width } = Dimensions.get('window');
   const styles = StyleSheet.create({
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
+    container: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: hp('2.5%'),
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    paddingBoxes: {
+      padding: hp('1%'),
+    },
   });
 
-  const WoodEnergy = () => (
-    <>
-      <Text variant="body">Which type of wood ?</Text>
-      <ButtonGroup
-        buttons={buttonsWood}
-        onPress={e => handleWoodType(e, buttonsWood)}
-        selectedIndex={woodTypeIndex}
-        selectedButtonStyle={theme.slideStyle.buttonStyle}
-        textStyle={{ textAlign: 'center' }}
-        containerStyle={{ borderWidth: 0 }}
-        innerBorderStyle={{ width: 0 }}
-      />
-    </>
-  );
+  const handlePress = () => {
+    dispatch({ type: OnboardingEnergyActionType.SET_ELECTRICITY, payload: electricity });
+    dispatch({ type: OnboardingEnergyActionType.SET_IS_FUEL_HEATING, payload: isFuelHeating });
+    dispatch({ type: OnboardingEnergyActionType.SET_IS_GAS_HEATING, payload: isGasHeating });
+    dispatch({ type: OnboardingEnergyActionType.SET_IS_WOOD_HEATING, payload: isWoodHeating });
+    dispatch({ type: OnboardingEnergyActionType.SET_WOOD_TYPE, payload: woodType });
+    onPress();
+  };
+
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="ENERGY" svgTitle="energy" isReversed={true} />
@@ -80,42 +94,45 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
       <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
           <Text variant="body">What is your electricity consumption ?</Text>
-          <Text variant="body">{electricityValue} € / month</Text>
+          <Text variant="body">{electricity} € / month</Text>
           <SliderOnboarding
-            onValueChange={setElectricityValue}
-            onSlidingComplete={onChangeElectricity}
-            value={electricityValue}
+            onValueChange={(value: number) => setElectricity(value)}
+            value={electricity}
             step={10}
             maximumValue={300}
             minimumValue={20}
           />
 
-          <View style={{ padding: hp('1%') }}></View>
+          <View style={styles.paddingBoxes}></View>
           <Text variant="body">How do you heat your housing?</Text>
           <ButtonGroup
             buttons={buttonsHeat}
             selectMultiple={true}
-            onPress={setHeat}
-            selectedIndexes={heat}
+            onPress={setSelectedHeatingIndexes}
+            selectedIndexes={selectedHeatingIndexes}
             selectedButtonStyle={theme.slideStyle.buttonStyle}
             textStyle={{ textAlign: 'center' }}
             containerStyle={{ borderWidth: 0 }}
             innerBorderStyle={{ width: 0 }}
           />
-          <View style={{ padding: hp('1%') }}></View>
-          {heat && heat.includes(2) && <WoodEnergy />}
+          <View style={styles.paddingBoxes}></View>
+          {selectedHeatingIndexes?.includes(2) ? (
+            <>
+              <Text variant="body">Which type of wood ?</Text>
+              <ButtonGroup
+                buttons={buttonsWood}
+                onPress={(index: number) => handleWoodType(index)}
+                selectedIndex={woodTypeIndex}
+                selectedButtonStyle={theme.slideStyle.buttonStyle}
+                textStyle={{ textAlign: 'center' }}
+                containerStyle={{ borderWidth: 0 }}
+                innerBorderStyle={{ width: 0 }}
+              />
+            </>
+          ) : null}
         </View>
-        <View
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: hp('2.5%'),
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Button variant="default" onPress={onPress} label="Next" />
+        <View style={styles.container}>
+          <Button variant="default" onPress={handlePress} label="Next" />
         </View>
       </View>
     </View>

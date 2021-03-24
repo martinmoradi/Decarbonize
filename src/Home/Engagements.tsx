@@ -1,92 +1,113 @@
-import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import React, { useRef } from 'react';
+import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Box } from '../components';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 import Tips from '../components/Tips/Tips';
 import { ecologyFacts } from '../data/ecologyFacts';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 const { width, height } = Dimensions.get('window');
 
 const EngagementsScreen = () => {
-  const [dotPag, setDotPag] = useState<number>(1);
+  const emissions = useTypedSelector(state => state.emissions.data);
+  const {
+    appliances,
+    reduced_heating,
+    eco_driving,
+    tap_water,
+    food_wastes,
+    bulk_food,
+    zero_wastes,
+  } = emissions;
 
-  const tipsData = [
-    { title: 'Item1' },
-    { title: 'Item2' },
-    { title: 'Item3' },
-    { title: 'Item4' },
-    { title: 'Item5' },
-    { title: 'Item6' },
-    { title: 'Item7' },
-    { title: 'Item8' },
-  ];
+  const scroll = useRef<Carousel<string>>(null);
 
   const engagementsData = [
-    { title: 'Item1' },
-    { title: 'Item2' },
-    { title: 'Item3' },
-    { title: 'Item4' },
-    { title: 'Item5' },
-    { title: 'Item6' },
-    { title: 'Item7' },
-    { title: 'Item8' },
+    { title: 'Switch off my devices in standby', isCommitted: appliances },
+    { title: 'Reduce heating 1 degree', isCommitted: reduced_heating },
+    { title: 'Adopt eco-driving', isCommitted: eco_driving },
+    { title: 'I drink tap water instead of bottles', isCommitted: tap_water },
+    { title: 'Reduce my food waste', isCommitted: food_wastes },
+    { title: 'Do your shopping in bulk', isCommitted: bulk_food },
+    { title: 'A zero waste approach', isCommitted: zero_wastes },
   ];
 
   type PropsRenderItem = {
     item: string;
+    index: number;
   };
-  const renderItem = ({ item }: PropsRenderItem) => {
+  const renderItem = ({ item, index }: PropsRenderItem) => {
     return (
-      <Text variant="body" color="white" style={{ textAlign: 'center' }}>
-        {item}
-      </Text>
+      <View style={styles.viewContainer}>
+        <Text key={index} variant="body" style={{ textAlign: 'center' }}>
+          {item}
+        </Text>
+      </View>
     );
   };
 
   return (
     <ScrollView>
-      <View style={{ alignItems: 'center', marginTop: height / 15 }}>
+      <View style={styles.mainView}>
         <Box
-          alignItems="center"
-          style={{ width: width - 30, height: height / 3, borderRadius: 10 }}
-          justifyContent="center"
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
           backgroundColor="primary"
+          marginBottom="s"
+        ></Box>
+        <Box
+          flexDirection="row"
+          justifyContent="space-around"
+          alignItems="center"
+          style={styles.boxStyle}
+          backgroundColor="lightgray"
         >
-          <Carousel
-            data={ecologyFacts}
-            renderItem={renderItem}
-            sliderWidth={width}
-            itemWidth={height / 3}
-            inactiveSlideShift={0}
-            useScrollView={true}
-            onSnapToItem={(index: number) => setDotPag(index)}
-            autoplay={false}
-          />
-          <Pagination
-            dotsLength={tipsData.length}
-            activeDotIndex={dotPag}
-            dotStyle={{
-              width: 10,
-              height: 10,
-              borderRadius: 5,
-              backgroundColor: 'rgba(255, 255, 255, 0.92)',
-            }}
-            inactiveDotOpacity={0.4}
-            inactiveDotScale={0.6}
-          />
+          <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
+            <Text variant="title1" color="white" margin="s">
+              {'<'}
+            </Text>
+          </TouchableOpacity>
+          <View style={{ width: width - 100 }}>
+            <Carousel
+              data={ecologyFacts}
+              renderItem={renderItem}
+              sliderWidth={width - 100}
+              itemWidth={width - 100}
+              inactiveSlideShift={0}
+              sliderHeight={height / 3}
+              itemHeight={height / 3}
+              useScrollView={true}
+              autoplay={false}
+              loop={true}
+              ref={scroll}
+            />
+          </View>
+          <TouchableOpacity onPress={() => scroll.current?.snapToNext()}>
+            <Text variant="title1" color="white" margin="s">
+              {'>'}
+            </Text>
+          </TouchableOpacity>
         </Box>
         <Box
-          marginTop="xl"
+          alignItems="center"
+          marginTop="m"
           paddingTop="m"
-          style={{ width: width - 30, borderRadius: 10 }}
+          style={styles.boxCommitment}
           justifyContent="center"
-          backgroundColor="info"
+          backgroundColor="white"
         >
           <Text variant="title3" color="white" margin="s">
-            Engagements :{' '}
+            Engagements :
           </Text>
           {engagementsData.map((item, index) => (
-            <Tips engagement={item} index={index} />
+            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} />
           ))}
         </Box>
       </View>
@@ -94,4 +115,45 @@ const EngagementsScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  viewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  mainView: {
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#39D697',
+  },
+  boxStyle: {
+    marginBottom: hp('2.5%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: wp('90%'),
+    height: 120,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxContainer: {
+    width: width,
+    height: 50,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxCommitment: {
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+});
 export default EngagementsScreen;

@@ -3,15 +3,17 @@ import { Slider } from 'react-native-elements';
 import { useTheme } from '../../components/Theme';
 import { PropsSliderOnboarding } from '../onboardingTypes';
 
+
 const SliderOnboarding = ({
   onValueChange,
-  onSlidingComplete,
   value,
   step,
   maximumValue,
   minimumValue,
 }: PropsSliderOnboarding) => {
   const theme = useTheme();
+
+
   return (
     <Slider
       animateTransitions
@@ -21,7 +23,6 @@ const SliderOnboarding = ({
       minimumTrackTintColor={theme.colors.primary}
       minimumValue={minimumValue}
       onValueChange={onValueChange}
-      onSlidingComplete={onSlidingComplete}
       orientation="horizontal"
       step={step}
       style={{ width: '80%', height: 40 }}

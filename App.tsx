@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoadAssets from './src/components/LoadAssets';
 import { ThemeProvider } from './src/components/Theme';
 import AuthRouter from './src/components/routers/AuthRouter';
-import { store } from './src/state';
+import { store } from './src/redux';
 import { Provider } from 'react-redux';
 import { OnboardingProvider } from './src/Authentication/onboardingContext/OnboardingProvider';
 import { enableScreens } from 'react-native-screens';

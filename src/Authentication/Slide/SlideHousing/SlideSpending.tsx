@@ -1,18 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import OnboardingContext from '../../onboardingContext/OnboardingContext';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from '../../../components/Button';
 import { Text, useTheme } from '../../../components/Theme';
 import { PropsSlide } from '../../onboardingTypes';
 import SlideTitle from '../SlideTop/SlideTitle';
 import SliderOnboarding from '../../components/SliderOnboarding';
+import { useTypedSelector } from '../../../hooks';
+import { useDispatch } from 'react-redux';
+import { OnboardingSpendingActionType } from '../../../redux/types';
 
 const SlideSpending = ({ onPress }: PropsSlide) => {
-  const { spending, energy } = useContext(OnboardingContext);
-  const { woodHeating, fuelHeating, gasHeating } = energy;
-  const has_not_renewable = woodHeating || fuelHeating || gasHeating;
-  const { onChangeClothes, onChangeFurniture, onChangeHobbies } = spending;
+  const dispatch = useDispatch();
+  const { spending, energy } = useTypedSelector(state => state.onboarding);
+  const { isWoodHeating, isFuelHeating, isGasHeating } = energy;
+  const isFossil = isWoodHeating || isFuelHeating || isGasHeating;
+  const [clothes, setClothes] = useState(spending.clothes);
+  const [furniture, setFurniture] = useState(spending.furniture);
+  const [hobbies, setHobbies] = useState(spending.hobbies);
 
   const { width } = Dimensions.get('window');
   const theme = useTheme();
@@ -20,20 +25,23 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
     content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
   });
 
-  const [clothValue, setClothValue] = useState<number>(0);
-  const [furnitureValue, setFurnitureValue] = useState<number>(0);
-  const [hobbiesValue, setHobbiesValue] = useState<number>(0);
+  const handlePress = () => {
+    dispatch({ type: OnboardingSpendingActionType.SET_CLOTHES, payload: clothes });
+    dispatch({ type: OnboardingSpendingActionType.SET_FURNITURE, payload: furniture });
+    dispatch({ type: OnboardingSpendingActionType.SET_HOBBIES, payload: hobbies });
+    onPress();
+  };
+
   return (
     <View style={theme.slideStyle.container}>
-      <SlideTitle title="SPENDING" svgTitle="habit" isReversed={has_not_renewable ? true : false} />
-      <View style={has_not_renewable ? theme.slideStyle.footerReverse : theme.slideStyle.footer}>
+      <SlideTitle title="SPENDING" svgTitle="habit" isReversed={isFossil ? true : false} />
+      <View style={isFossil ? theme.slideStyle.footerReverse : theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="body">How much do you spend for clothes ?</Text>
-          <Text variant="body">{clothValue} € / month</Text>
+          <Text variant="body">{clothes} € / month</Text>
           <SliderOnboarding
-            onValueChange={setClothValue}
-            onSlidingComplete={onChangeClothes}
-            value={clothValue}
+            onValueChange={(value: number) => setClothes(value)}
+            value={clothes}
             step={10}
             maximumValue={1000}
             minimumValue={0}
@@ -41,11 +49,10 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
 
           <View style={{ padding: hp('2%') }}></View>
           <Text variant="body">How much do you spend for furniture ?</Text>
-          <Text variant="body">{furnitureValue} € / month</Text>
+          <Text variant="body">{furniture} € / month</Text>
           <SliderOnboarding
-            onValueChange={setFurnitureValue}
-            onSlidingComplete={onChangeFurniture}
-            value={furnitureValue}
+            onValueChange={(value: number) => setFurniture(value)}
+            value={furniture}
             step={10}
             maximumValue={1000}
             minimumValue={0}
@@ -53,11 +60,10 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
 
           <View style={{ padding: hp('2%') }}></View>
           <Text variant="body">How much do you spend for hobbies ?</Text>
-          <Text variant="body">{hobbiesValue} € / month</Text>
+          <Text variant="body">{hobbies} € / month</Text>
           <SliderOnboarding
-            onValueChange={setHobbiesValue}
-            onSlidingComplete={onChangeHobbies}
-            value={hobbiesValue}
+            onValueChange={(value: number) => setHobbies(value)}
+            value={hobbies}
             step={10}
             maximumValue={1000}
             minimumValue={0}
@@ -74,7 +80,7 @@ const SlideSpending = ({ onPress }: PropsSlide) => {
             alignItems: 'center',
           }}
         >
-          <Button variant="default" onPress={onPress} label="Next" />
+          <Button variant="primary" onPress={handlePress} label="Sign up !" />
         </View>
       </View>
     </View>
