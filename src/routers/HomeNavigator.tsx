@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useEffect } from 'react';
 import { HomeRoutesList } from './NavigationTypes';
-import Tabbar from '../screens/home/components/Tabs/Tabbar';
 import DashboardScreen from '../screens/home/Dashboard';
 import Commitments from '../screens/home/Commitments';
 import HistoryScreen from '../screens/home/History';

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Text, Box } from '../../../components/Theme';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
