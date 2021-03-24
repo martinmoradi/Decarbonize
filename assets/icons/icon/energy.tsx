@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Defs, G, LinearGradient, Path, Stop, SvgProps } from 'react-native-svg';
 
-function SvgEnergy(props: SvgProps) {
+const Energy = (props: SvgProps) => {
   return (
     <Svg width={241} height={234} fill="none" {...props}>
       <Path
@@ -3029,6 +3029,6 @@ function SvgEnergy(props: SvgProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
-export default SvgEnergy;
+export default Energy;

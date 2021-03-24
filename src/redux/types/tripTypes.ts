@@ -11,6 +11,3 @@ export interface TripType{
   land_trips: object[];
   air_trips: object[];
 }
-
-
-  

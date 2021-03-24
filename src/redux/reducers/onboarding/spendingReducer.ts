@@ -5,7 +5,7 @@ import { OnboardingSpendingActionType } from '../../types';
 const initialState: OnboardingSpendingStateType = {
   clothes: 0,
   furniture: 0,
-  hobbies: 0,
+  others: 0,
 };
 
 const spendingReducer = (
@@ -17,20 +17,20 @@ const spendingReducer = (
       return {
         ...state,
         clothes: action.payload,
-      }
-      case OnboardingSpendingActionType.SET_FURNITURE:
+      };
+    case OnboardingSpendingActionType.SET_FURNITURE:
       return {
         ...state,
         furniture: action.payload,
-      }
-      case OnboardingSpendingActionType.SET_HOBBIES:
+      };
+    case OnboardingSpendingActionType.SET_OTHERS:
       return {
         ...state,
-        hobbies: action.payload,
-      }
+        others: action.payload,
+      };
     default:
-    return state;
-  } 
+      return state;
+  }
 };
 
 export default spendingReducer;

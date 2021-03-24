@@ -3,13 +3,13 @@ import { OnboardingAction } from '../../actions';
 import { OnboardingEnergyActionType } from '../../types';
 
 const initialState: OnboardingEnergyStateType = {
-  people: 1,
-  surface: 10,
-  electricity: 0,
-  gas: 0,
-  woodType: 'wood_logs',
-  wood: 0,
-  fuel: 0,
+  roommates: 1,
+  house_surface: 10,
+  electricity_consumption: 0,
+  gas_consumption: 0,
+  wood_type: 'wood_logs',
+  wood_consumption: 0,
+  fuel_consumption: 0,
   isGasHeating: false,
   isWoodHeating: false,
   isFuelHeating: false,
@@ -20,40 +20,40 @@ const energyReducer = (
   action: OnboardingAction
 ): OnboardingEnergyStateType => {
 switch (action.type) {
-  case OnboardingEnergyActionType.SET_PEOPLE:
+  case OnboardingEnergyActionType.SET_ROOMMATES:
   return {
     ...state,
-    people: action.payload,
+    roommates: action.payload,
   }
-  case OnboardingEnergyActionType.SET_SURFACE:
+  case OnboardingEnergyActionType.SET_HOUSE_SURFACE:
   return {
     ...state,
-    surface: action.payload,
+    house_surface: action.payload,
   }
-  case OnboardingEnergyActionType.SET_ELECTRICITY:
+  case OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION:
   return {
     ...state,
-    electricity: action.payload,
+    electricity_consumption: action.payload,
   }
-  case OnboardingEnergyActionType.SET_GAS:
+  case OnboardingEnergyActionType.SET_GAS_CONSUMPTION:
   return {
     ...state,
-    gas: action.payload,
+    gas_consumption: action.payload,
   }
   case OnboardingEnergyActionType.SET_WOOD_TYPE:
   return {
     ...state,
-    woodType: action.payload,
+    wood_type: action.payload,
   }
-  case OnboardingEnergyActionType.SET_WOOD:
+  case OnboardingEnergyActionType.SET_WOOD_CONSUMPTION:
   return {
     ...state,
-    wood: action.payload,
+    wood_consumption: action.payload,
   }
-  case OnboardingEnergyActionType.SET_FUEL:
+  case OnboardingEnergyActionType.SET_FUEL_CONSUMPTION:
   return {
     ...state,
-    fuel: action.payload,
+    fuel_consumption: action.payload,
   }
   case OnboardingEnergyActionType.SET_IS_WOOD_HEATING:
   return {

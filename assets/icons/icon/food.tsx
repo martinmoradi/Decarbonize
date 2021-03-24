@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Defs, LinearGradient, Path, Stop, SvgProps } from 'react-native-svg';
 
-function SvgFood(props: SvgProps) {
+const Food = (props: SvgProps) => {
   return (
     <Svg width={241} height={237} fill="none" {...props}>
       <Path
@@ -1199,6 +1199,6 @@ function SvgFood(props: SvgProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
-export default SvgFood;
+export default Food;

@@ -4,28 +4,28 @@ import {
   OnboardingEnergyActionType,
 } from '../types';
 
-interface SetPeople {
-  type: OnboardingEnergyActionType.SET_PEOPLE;
+interface SetRoommates {
+  type: OnboardingEnergyActionType.SET_ROOMMATES;
   payload: number;
 }
 
-interface SetSurface {
-  type: OnboardingEnergyActionType.SET_SURFACE;
+interface SetHouseSurface {
+  type: OnboardingEnergyActionType.SET_HOUSE_SURFACE;
   payload: number;
 }
 
-interface SetElectricity {
-  type: OnboardingEnergyActionType.SET_ELECTRICITY;
+interface SetElectricityConsumption {
+  type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION;
   payload: number;
 }
 
-interface SetGas {
-  type: OnboardingEnergyActionType.SET_GAS;
+interface SetGasConsumption {
+  type: OnboardingEnergyActionType.SET_GAS_CONSUMPTION;
   payload: number;
 }
 
-interface SetWood {
-  type: OnboardingEnergyActionType.SET_WOOD;
+interface SetWoodConsumption {
+  type: OnboardingEnergyActionType.SET_WOOD_CONSUMPTION;
   payload: number;
 }
 
@@ -34,8 +34,8 @@ interface SetWoodType {
   payload: 'wood_logs' | 'wood_pellets';
 }
 
-interface SetFuel {
-  type: OnboardingEnergyActionType.SET_FUEL;
+interface SetFuelConsumption {
+  type: OnboardingEnergyActionType.SET_FUEL_CONSUMPTION;
   payload: number;
 }
 
@@ -89,19 +89,19 @@ interface SetFurniture {
   payload: number;
 }
 
-interface SetHobbies {
-  type: OnboardingSpendingActionType.SET_HOBBIES;
+interface SetOthers {
+  type: OnboardingSpendingActionType.SET_OTHERS;
   payload: number;
 }
 
 export type OnboardingAction =
-  | SetPeople
-  | SetSurface
-  | SetElectricity
-  | SetGas
+  | SetRoommates
+  | SetHouseSurface
+  | SetElectricityConsumption
+  | SetGasConsumption
   | SetWoodType
-  | SetWood
-  | SetFuel
+  | SetWoodConsumption
+  | SetFuelConsumption
   | SetIsGasHeating
   | SetIsWoodHeating
   | SetIsFuelHeating
@@ -112,4 +112,4 @@ export type OnboardingAction =
   | SetVegetarian
   | SetClothes
   | SetFurniture
-  | SetHobbies;
+  | SetOthers;

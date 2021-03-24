@@ -3,9 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../tools/api';
 import { EmissionsAction } from '../actions';
 import { EmissionsActionType } from '../types';
-import { OnboardingDataType } from '../../Authentication/onboardingTypes';
+import { OnboardingType } from '../types';
 
-export const postForm = (onboardingData: OnboardingDataType) => {
+export const postForm = (onboardingState: OnboardingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
@@ -13,12 +13,13 @@ export const postForm = (onboardingData: OnboardingDataType) => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
+      const fixed_emissions = setupPayload(onboardingState);
       const response = await fetch(
         `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
           method: 'POST',
           headers: headers(token),
-          body: JSON.stringify({ fixed_emission: { ...onboardingData } }),
+          body: JSON.stringify(fixed_emissions),
         }
       );
       const { data, error } = await response.json();
@@ -36,6 +37,14 @@ export const postForm = (onboardingData: OnboardingDataType) => {
       });
     }
   };
+};
+
+const setupPayload = (onboardingState: OnboardingType) => {
+  const fixed_emissions = { ...onboardingState };
+  delete fixed_emissions.isGasHeating;
+  delete fixed_emissions.isWoodHeating;
+  delete fixed_emissions.isFuelHeating;
+  return fixed_emissions;
 };
 
 export const fetchEmissions = () => {
@@ -70,7 +79,7 @@ export const fetchEmissions = () => {
   };
 };
 
-export const putEmissions = (onboardingData: OnboardingDataType) => {
+export const putEmissions = (onboardingData: OnboardingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
@@ -78,12 +87,13 @@ export const putEmissions = (onboardingData: OnboardingDataType) => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
+      const fixed_emissions = setupPayload(onboardingData);
       const response = await fetch(
         `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
           method: 'POST',
           headers: headers(token),
-          body: JSON.stringify({ fixed_emission: { ...onboardingData } }),
+          body: JSON.stringify(fixed_emissions),
         }
       );
       const { data, error } = await response.json();

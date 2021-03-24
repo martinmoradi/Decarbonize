@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Svg, { SvgProps, G, Path, Defs, ClipPath } from 'react-native-svg';
 
-function SvgComponent(props: SvgProps) {
+const Traveler = (props: SvgProps) => {
   return (
-    <Svg width={141} height={90} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Svg width={141} height={90} fill="none" {...props}>
       <G clipPath="url(#prefix__clip0)">
         <Path
           d="M33.98 89c18.766 0 33.98-.713 33.98-1.593s-15.214-1.592-33.98-1.592c-18.767 0-33.98.713-33.98 1.592C0 88.287 15.213 89 33.98 89zM69.915 0c-.353 0-.691.142-.94.393-.25.251-.39.592-.391.947v49.667c0 .355.14.696.39.947.25.25.588.392.941.393h69.754c.353 0 .691-.142.941-.393.249-.252.39-.592.39-.947V1.34c0-.355-.141-.696-.39-.947a1.33 1.33 0 00-.941-.393H69.915z"
@@ -111,6 +111,6 @@ function SvgComponent(props: SvgProps) {
       </Defs>
     </Svg>
   );
-}
+};
 
-export default SvgComponent;
+export default Traveler;
