@@ -7,9 +7,16 @@ type PropsTips = {
   engagement: string;
   index: number;
   isEnabled: boolean;
+  commitmentId: number;
+  onChangeToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Tips = ({ engagement, index, isEnabled }: PropsTips) => {
+const Tips = ({ engagement, index, isEnabled, commitmentId, onChangeToggle }: PropsTips) => {
+  const toggleSwitch = () => {
+    // isEnabled ? removeCommitment(commitmentId) : addCommitment(commitmentId);
+    onChangeToggle(!isEnabled);
+  };
+
   return (
     <Box
       flexDirection="row"
@@ -25,6 +32,7 @@ const Tips = ({ engagement, index, isEnabled }: PropsTips) => {
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
         value={isEnabled}
       />
     </Box>

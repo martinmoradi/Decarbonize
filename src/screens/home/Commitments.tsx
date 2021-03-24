@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Box } from '../../components';
 import {
@@ -26,14 +26,57 @@ const Commitments = () => {
 
   const scroll = useRef<Carousel<string>>(null);
 
+  const [appliancesCommitment, setAppliancesCommitment] = useState(appliances);
+  const [reducedHeatingCommitment, setReducedHeatingCommitment] = useState(reduced_heating);
+  const [ecoDrivingCommitment, setEcoDrivingCommitment] = useState(eco_driving);
+  const [tapWaterCommitment, setTapWaterCommitment] = useState(tap_water);
+  const [foodWastesCommitment, setFoodWastesCommitment] = useState(food_wastes);
+  const [bulkFoodCommitment, setBulkFoodCommitment] = useState(bulk_food);
+  const [zeroWastesCommitment, setZeroWastesCommitment] = useState(zero_wastes);
+
   const engagementsData = [
-    { title: 'Switch off my devices in standby', isCommitted: appliances },
-    { title: 'Reduce heating 1 degree', isCommitted: reduced_heating },
-    { title: 'Adopt eco-driving', isCommitted: eco_driving },
-    { title: 'I drink tap water instead of bottles', isCommitted: tap_water },
-    { title: 'Reduce my food waste', isCommitted: food_wastes },
-    { title: 'Do your shopping in bulk', isCommitted: bulk_food },
-    { title: 'A zero waste approach', isCommitted: zero_wastes },
+    {
+      title: 'Switch off my devices in standby',
+      isCommitted: appliancesCommitment,
+      commitmentId: 1,
+      onChangeToggle: setAppliancesCommitment,
+    },
+    {
+      title: 'Reduce heating 1 degree',
+      isCommitted: reducedHeatingCommitment,
+      commitmentId: 2,
+      onChangeToggle: setReducedHeatingCommitment,
+    },
+    {
+      title: 'Adopt eco-driving',
+      isCommitted: ecoDrivingCommitment,
+      commitmentId: 3,
+      onChangeToggle: setEcoDrivingCommitment,
+    },
+    {
+      title: 'I drink tap water instead of bottles',
+      isCommitted: tapWaterCommitment,
+      commitmentId: 4,
+      onChangeToggle: setTapWaterCommitment,
+    },
+    {
+      title: 'Reduce my food waste',
+      isCommitted: foodWastesCommitment,
+      commitmentId: 5,
+      onChangeToggle: setFoodWastesCommitment,
+    },
+    {
+      title: 'Do your shopping in bulk',
+      isCommitted: bulkFoodCommitment,
+      commitmentId: 6,
+      onChangeToggle: setBulkFoodCommitment,
+    },
+    {
+      title: 'A zero waste approach',
+      isCommitted: zeroWastesCommitment,
+      commitmentId: 7,
+      onChangeToggle: setZeroWastesCommitment,
+    },
   ];
 
   type PropsRenderItem = {
@@ -85,6 +128,7 @@ const Commitments = () => {
               itemHeight={height / 3}
               useScrollView={true}
               autoplay={false}
+              keyExtractor={(item, index) => `key - ${index}${item}`}
               loop={true}
               ref={scroll}
             />
@@ -107,7 +151,14 @@ const Commitments = () => {
             Engagements :
           </Text>
           {engagementsData.map((item, index) => (
-            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} />
+            <Tips
+              engagement={item.title}
+              index={index}
+              isEnabled={item.isCommitted}
+              commitmentId={item.commitmentId}
+              onChangeToggle={item.onChangeToggle}
+              key={index}
+            />
           ))}
         </Box>
       </View>
