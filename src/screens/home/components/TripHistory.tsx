@@ -39,6 +39,7 @@ const TripHistory = (props: TripHistoryProps) => {
   React.useEffect(() => {
     setImage(props.type);
   }, []);
+  
   return (
     <Box
       style={styles.boxContainer}

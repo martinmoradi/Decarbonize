@@ -44,7 +44,6 @@ const Dashboard = () => {
           justifyContent="center"
           backgroundColor="white"
         >
-          <DashboardGraph />
         </Box>
         <Box
           marginTop="s"
@@ -60,6 +59,7 @@ const Dashboard = () => {
             justifyContent="center"
             backgroundColor="white"
           >
+            
             <Meals />
           </Box>
         </Box>
