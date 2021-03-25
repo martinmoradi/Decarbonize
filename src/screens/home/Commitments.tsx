@@ -126,6 +126,7 @@ const Commitments = () => {
               inactiveSlideShift={0}
               sliderHeight={height / 3}
               itemHeight={height / 3}
+              keyExtractor={(item, index) => `key - ${index}${item}`}
               useScrollView={true}
               autoplay={false}
               keyExtractor={(item, index) => `key - ${index}${item}`}

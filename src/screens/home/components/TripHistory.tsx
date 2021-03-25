@@ -39,6 +39,7 @@ const TripHistory = (props: TripHistoryProps) => {
   React.useEffect(() => {
     setImage(props.type);
   }, []);
+  
   return (
     <Box
       style={styles.boxContainer}
@@ -54,11 +55,11 @@ const TripHistory = (props: TripHistoryProps) => {
           <Image source={version.image} style={[styles.imgStyle, {backgroundColor: version.color}]} />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">{Math.round(props.distance)}km</Text>
+          <Text variant="body">{props.distance}km</Text>
         </View>
 
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ {Math.round(props.amount)}kg Co2</Text>
+          <Text variant="header">+ {props.amount}kg Co2</Text>
         </View>
       </View>
     </Box>

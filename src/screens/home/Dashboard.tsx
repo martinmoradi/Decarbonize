@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import { Text, Box, useTheme } from '../../components';
+import { Text, Box, useTheme, Button } from '../../components';
 import { MeteoBar, Trajet } from './components';
 import DashboardGraph from './components/DashboardGraph';
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
+import Meals from './components/Meals';
 import AirplaneJourney from './components/AirplaneJourney';
 import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
 const { width } = Dimensions.get('window');
 
+
+
 const Dashboard = () => {
   const theme = useTheme();
+
   return (
-    <ScrollView>
+    <ScrollView >
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
@@ -40,13 +44,12 @@ const Dashboard = () => {
           justifyContent="center"
           backgroundColor="white"
         >
-          <DashboardGraph />
         </Box>
         <Box
           marginTop="s"
           paddingTop="m"
           marginBottom="s"
-          style={[styles.boxInfo, { height: 100 }]}
+          style={[styles.boxInfo]}
           justifyContent="center"
           backgroundColor="primary"
         >
@@ -56,9 +59,8 @@ const Dashboard = () => {
             justifyContent="center"
             backgroundColor="white"
           >
-            <Text variant="title2" color="primary">
-              Food Boxes
-            </Text>
+            
+            <Meals />
           </Box>
         </Box>
         <Box
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   },
   boxInfo: {
     width: width,
-    height: 80,
+    height: 240,
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {
