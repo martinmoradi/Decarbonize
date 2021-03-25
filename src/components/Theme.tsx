@@ -7,6 +7,7 @@ import {
 import React, { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import { colors } from 'react-native-elements';
 
 const { width, height } = Dimensions.get('window');
 
@@ -160,6 +161,8 @@ const theme = {
     buttonStyle: {
       backgroundColor: palette.green,
       borderRadius: 20,
+      borderWidth: 1,
+      borderColor: 'lightgray',
     },
     title: {
       height: 100,

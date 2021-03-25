@@ -1,11 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import { VictoryPie } from 'victory-native';
 import { useTheme, Text, Box } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
-import PieLabels from './PieLabels';
-
 const EmissionsPie = () => {
   const theme = useTheme();
   const { height, width } = theme.dimensions;
@@ -20,9 +18,6 @@ const EmissionsPie = () => {
     weekly_airtrip_emissions,
     monthly_airtrip_emissions,
     yearly_airtrip_emissions,
-    weekly_travel_emissions,
-    monthly_travel_emissions,
-    yearly_travel_emissions,
     weekly_alimentation,
     monthly_alimentation,
     yearly_alimentation,
@@ -127,7 +122,7 @@ const EmissionsPie = () => {
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
       return (
-        <View style={{ position: 'absolute', top: '45%', left: '41%' }}>
+        <View style={{ position: 'absolute', top: '45%', left: '38%' }}>
           <Text variant="pieChart">{weekly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -164,7 +159,11 @@ const EmissionsPie = () => {
   };
 
   const generateLabels = () => {
-    const renderItem = ({ item }) => {
+    interface Item {
+      item: DataType;
+    }
+
+    const renderItem = ({ item }: Item) => {
       return (
         <TouchableOpacity
           style={{
@@ -217,7 +216,7 @@ const EmissionsPie = () => {
       );
     };
     return (
-      <Box>
+      <Box style={{ maxHeight: '30%' }}>
         <FlatList data={data} renderItem={renderItem} keyExtractor={item => item.name} />
       </Box>
     );
@@ -233,9 +232,11 @@ const EmissionsPie = () => {
           borderRadius: 50,
         }}
       >
-        <Text variant="title2" marginTop="m" marginBottom="m" style={styles.h2}>
-          Your <Text color="primary">carbon</Text> emissions tracker
-        </Text>
+        <View style={{ alignItems: 'center' }}>
+          <Text variant="title2" marginTop="m" marginBottom="m" style={styles.h2}>
+            Your <Text color="primary">carbon</Text> emissions tracker
+          </Text>
+        </View>
         <ButtonGroup
           onPress={(index: number) => setSelectedRange(index)}
           selectedIndex={selectedRange}
@@ -273,7 +274,7 @@ const EmissionsPie = () => {
               },
             ]}
             height={height * 0.5}
-            labelRadius={(width * 0.4 + 70) / 2.5}
+            labelRadius={(width * 0.45 + 70) / 2.5}
             style={{
               labels: { fill: 'white', ...styles.label },
             }}

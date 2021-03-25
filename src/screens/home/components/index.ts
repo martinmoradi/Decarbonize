@@ -10,4 +10,5 @@ export { default as TramJourney } from './TramJourney';
 export { default as Tips } from './Tips';
 export { IconSvg } from './icons';
 export { default as TripHistory } from './TripHistory';
-export { default as EmissionsPie } from './EmissionsPie';
+export { default as EmissionsPieIOS } from './EmissionsPieIOS';
+export { default as EmissionsPieAndroid } from './EmissionsPieAndroid';

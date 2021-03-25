@@ -1,8 +1,8 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, SafeAreaView } from 'react-native';
+import { ScrollView, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
-import { MeteoBar, Trajet } from './components';
-import { EmissionsPie } from './components/';
+import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
+
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
@@ -33,8 +33,7 @@ const Dashboard = () => {
           >
             <MeteoBar />
           </Box>
-
-          <EmissionsPie />
+          {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
 
           <Box
             marginTop="s"
