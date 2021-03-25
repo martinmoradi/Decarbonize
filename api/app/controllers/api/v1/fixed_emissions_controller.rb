@@ -43,6 +43,7 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
   def update
     if @fixed_emission.update(fixed_emission_params)
       render json: @fixed_emission
+
     else
       render json: @fixed_emission.errors, status: :unprocessable_entity
     end
