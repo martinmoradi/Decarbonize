@@ -3,13 +3,15 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
 
   # GET /meals
   def index
-    @meals = Meal.where(user_id: current_user.id).order(created_at: :desc)
-
+    @red_meat_meals = Meal.red_meat.where(user_id: current_user.id).order(created_at: :desc)
+    @white_meat_meals = Meal.white_meat.where(user_id: current_user.id).order(created_at: :desc)
+    @vegetarian_meals = Meal.vegetarian.where(user_id: current_user.id).order(created_at: :desc)
+    @vegan_meals = Meal.vegan.where(user_id: current_user.id).order(created_at: :desc)
     render json: {
       status:{
         code: 200
       },
-      data: {meals: @meals}
+      data: {red_meat_meals: @red_meat_meals, white_meat_meals: @white_meat_meals, vegetarian_meals: @vegetarian_meals, vegan_meals: @vegan_meals}
     }
   end
 
@@ -22,15 +24,18 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
   def create
     @meal = Meal.new(meal_params)
     @meal.user_id = current_user.id
-    @meals = Meal.where(user_id: current_user.id).order(created_at: :desc)
+    @red_meat_meals = Meal.red_meat.where(user_id: current_user.id).order(created_at: :desc)
+    @white_meat_meals = Meal.white_meat.where(user_id: current_user.id).order(created_at: :desc)
+    @vegetarian_meals = Meal.vegetarian.where(user_id: current_user.id).order(created_at: :desc)
+    @vegan_meals = Meal.vegan.where(user_id: current_user.id).order(created_at: :desc)
     if @meal.save
       render json: {
         status: {
           code: 200,
           message: 'Meal emission was successfully created',
         },
-        data: {meals: @meals}
-       }
+        data: {red_meat_meals: @red_meat_meals, white_meat_meals: @white_meat_meals, vegetarian_meals: @vegetarian_meals, vegan_meals: @vegan_meals}
+      }
     else
       render json: @meal.errors, status: :unprocessable_entity
     end
