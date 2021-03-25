@@ -26,7 +26,6 @@ const History = () => {
 
   const switchMeals = () => {
     setSeleted('Meals');
-    console.log(allMeals)
   };
   const renderItemLand = ({ item }) => (
     <TripHistory
@@ -47,7 +46,7 @@ const History = () => {
 
   const renderItemMeals = ({index})=>(
     <MealHistory
-    type={allMeals[index].type}
+    type={allMeals[index].meal_type}
     amount={allMeals[index].amount}
     date={allMeals[index].created_at}
     />
