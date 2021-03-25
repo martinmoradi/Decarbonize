@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import { Text, Box, useTheme } from '../../components';
+import { Text, Box, useTheme, Button } from '../../components';
 import { MeteoBar, Trajet } from './components';
 import DashboardGraph from './components/DashboardGraph';
 import { Dimensions } from 'react-native';
@@ -13,6 +13,38 @@ const { width } = Dimensions.get('window');
 
 const Dashboard = () => {
   const theme = useTheme();
+
+  const [redMeatCount, setRedMeatCount] = useState(0);
+  const [whiteMeatCount, setWhiteMeatCount] = useState(0);
+  const [vegetarianMeatCount, setVegetarianMeatCount] = useState(0);
+  const [veganMeatCount, setVeganMeatCount] = useState(0);
+
+  const handleIncrementRed = () => {
+    setRedMeatCount(prevCount => prevCount + 1);
+  };
+  const handleIncrementWhite = () => {
+    setWhiteMeatCount(prevCount => prevCount + 1);
+  };
+  const handleIncrementVege = () => {
+    setVegetarianMeatCount(prevCount => prevCount + 1);
+  };
+  const handleIncrementVegan = () => {
+    setVeganMeatCount(prevCount => prevCount + 1);
+  };
+
+  const handleDecrementRed = () => {
+    setRedMeatCount(prevCount => prevCount - 1);
+  };
+  const handleDecrementWhite = () => {
+    setRedMeatCount(prevCount => prevCount - 1);
+  };
+  const handleDecrementVege = () => {
+    setRedMeatCount(prevCount => prevCount - 1);
+  };
+  const handleDecrementVegan = () => {
+    setRedMeatCount(prevCount => prevCount - 1);
+  };
+
   return (
     <ScrollView>
       <View
@@ -56,9 +88,72 @@ const Dashboard = () => {
             justifyContent="center"
             backgroundColor="white"
           >
-            <Text variant="title2" color="primary">
-              Food Boxes
-            </Text>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ backgroundColor: '#A9EFD2' }}>
+                <Text>Red meat</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Button
+                    onPress={handleIncrementRed}
+                    label="+"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <Text>{redMeatCount}</Text>
+                  <Button
+                    onPress={handleDecrementRed}
+                    label="-"
+                    style={{ width: 20, height: 20 }}
+                  />
+                </View>
+              </View>
+              <View style={{ backgroundColor: '#A9EFD2' }}>
+                <Text>White meat</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Button
+                    onPress={handleIncrementWhite}
+                    label="+"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <Text>{whiteMeatCount}</Text>
+                  <Button
+                    onPress={handleDecrementWhite}
+                    label="-"
+                    style={{ width: 20, height: 20 }}
+                  />
+                </View>
+              </View>
+              <View style={{ backgroundColor: '#A9EFD2' }}>
+                <Text>Vegetarian meat</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Button
+                    onPress={handleIncrementVege}
+                    label="+"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <Text>{vegetarianMeatCount}</Text>
+                  <Button
+                    onPress={handleDecrementVege}
+                    label="-"
+                    style={{ width: 20, height: 20 }}
+                  />
+                </View>
+              </View>
+              <View style={{ backgroundColor: '#A9EFD2' }}>
+                <Text>Vegan meat</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Button
+                    onPress={handleIncrementVegan}
+                    label="+"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <Text>{veganMeatCount}</Text>
+                  <Button
+                    onPress={handleDecrementVegan}
+                    label="-"
+                    style={{ width: 20, height: 20 }}
+                  />
+                </View>
+              </View>
+            </View>
           </Box>
         </Box>
         <Box
