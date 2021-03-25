@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :air_trips, dependent: :destroy
   has_many :land_trips, dependent: :destroy
   has_many :user_commitments, dependent: :destroy
+  has_many :meals, dependent: :destroy
   has_many :commitments
 
   # TOTALS
@@ -43,6 +44,26 @@ class User < ApplicationRecord
       .round(2)
   end
 
+  #Meals EMISSIONS
+  def total_meals_emissions
+    (meals.reduce(0){ |sum, meals| sum + meals.emission.amount }).round(2)
+  end
+
+  def total_red_meat_emissions
+    (meals.red_meat.reduce(0){ |sum, e| sum + e.emission.amount }).round(2)
+  end
+
+  def total_white_meat_emissions
+    (meals.white_meat.reduce(0){ |sum, e| sum + e.emission.amount }).round(2)
+  end
+
+  def total_vegetarian_emissions
+    (meals.vegetarian.reduce(0){ |sum, e| sum + e.emission.amount }).round(2)
+  end
+
+  def total_vegan_emissions
+    (meals.vegan.reduce(0){ |sum, e| sum + e.emission.amount }).round(2)
+  end
   # LAND TRIPS EMISSIONS
 
   def total_landtrip_emissions
