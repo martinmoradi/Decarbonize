@@ -28,7 +28,7 @@ const initialState: FixedEmissionsStateType = {
   isLoading: false,
 }
 
-const emissionReducer = (state = initialState, action: EmissionsAction): EmissionsStateType => {
+const fixedEmissionsReducer = (state = initialState, action: EmissionsAction): FixedEmissionsStateType => {
   switch (action.type) {
     case EmissionsActionType.FETCH_FIXED_EMISSIONS_ATTEMPT:
       return {
@@ -47,9 +47,10 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
             data: initialState.data,
             errorMessage: action.payload,
             isLoading: false,
-            isEmpty: true,
           };
           default:
       return state;
         }
       };
+
+      export default fixedEmissionsReducer;

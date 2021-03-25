@@ -52,7 +52,6 @@ const initialState: EmissionsStateType = {
 const emissionReducer = (state = initialState, action: EmissionsAction): EmissionsStateType => {
   switch (action.type) {
     case EmissionsActionType.FETCH_EMISSIONS_ATTEMPT:
-      case EmissionsActionType.FETCH_FIXED_EMISSIONS_ATTEMPT:
     case EmissionsActionType.POST_EMISSIONS_ATTEMPT:
       case EmissionsActionType.PUT_EMISSIONS_ATTEMPT:
       return {
@@ -62,7 +61,6 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
         isEmpty: true,
       };
     case EmissionsActionType.FETCH_EMISSIONS_SUCCESS:
-      case EmissionsActionType.FETCH_FIXED_EMISSIONS_SUCCESS:
     case EmissionsActionType.POST_EMISSIONS_SUCCESS:
       case EmissionsActionType.PUT_EMISSIONS_SUCCESS:
       return {
@@ -72,7 +70,6 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
         isEmpty: false,
       };
     case EmissionsActionType.FETCH_EMISSIONS_ERROR:
-      case EmissionsActionType.FETCH_FIXED_EMISSIONS_ERROR:
     case EmissionsActionType.POST_EMISSIONS_ERROR:
       case EmissionsActionType.PUT_EMISSIONS_ERROR:
       return {

@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { useActions } from '../../hooks';
 import { Button, Text } from '../../components';
 import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
 
 const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>) => {
-  const { logout, fetchFixedEmissions } = useActions();
-
-  useEffect(() => {
-    const fixedEmissions = fetchFixedEmissions();
-    console.log('test', fixedEmissions);
-  }, []);
+  const { logout } = useActions();
 
   return (
     <View
