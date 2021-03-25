@@ -6,91 +6,95 @@ import { Dimensions } from 'react-native';
 import { TripHistory } from './components';
 const { width, height } = Dimensions.get('window');
 import { useTypedSelector, useActions } from '../../hooks';
+import TextButton from '../../components/TextButton';
 
-interface MixedTripInteface {
-  [x: number]: {
-        amount: number;
-        created_at: string;
-        updated_at: string;
-        distance: number;
-        id: number;
-        user_id: number;
-        round_trip: boolean;
-        vehicle_type: string;
-      }
-    | {
-        amount: number;
-        created_at: string;
-        updated_at: string;
-        distance: number;
-        id: number;
-        user_id: number;
-        round_trip: boolean;
-        departure: string;
-        arrival: string;
-        arrival_latitude: number;
-        arrival_longitude: number;
-        departure_latitude: number;
-        departure_longitude: number;
-      };
-}
-const wait = (timeout) => {
+const wait = (timeout: number) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
-}
+};
 
 const History = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const { fetchTrips } = useActions();
-
+  const [selected, setSeleted] = React.useState('Land');
   const { data } = useTypedSelector(state => state.trips);
-  const trips: MixedTripInteface = { ...data.land_trips, ...data.air_trips };
   const theme = useTheme();
 
-    const onRefresh = React.useCallback(() => {
-      fetchTrips()
+  const onRefresh = React.useCallback(() => {
+    fetchTrips();
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  const switchLand = () => {
+    setSeleted('Land');
+  };
 
-  const renderItem = ({ item }) => (
+  const switchAir = () => {
+    setSeleted('Air');
+  };
+
+  const renderItemLand = ({ item }) => (
     <TripHistory
-      type={trips[item].vehicle_type ? trips[item].vehicle_type : 'plane'}
-      distance={trips[item].distance}
-      amount={trips[item].amount}
-      date={trips[item].created_at}
+      type={item.vehicle_type}
+      distance={item.distance}
+      amount={item.amount}
+      date={item.created_at}
+    />
+  );
+  const renderItemAir = ({ item }) => (
+    <TripHistory
+      type="plane"
+      distance={item.distance}
+      amount={item.amount}
+      date={item.created_at}
     />
   );
 
   return (
-    
-      <View>
-        <View
+    <View>
+      <View
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.background2,
         }}
       ></View>
-        <Box
-          paddingLeft="m"
-          paddingTop="s"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={styles.boxContainer}
-          backgroundColor="primary"
-          marginBottom="s"
-        >
+      <Box
+        paddingLeft="m"
+        paddingTop="s"
+        justifyContent="flex-end"
+        paddingBottom="m"
+        style={styles.boxContainer}
+        backgroundColor="primary"
+        marginBottom="s"
+      >
+        <Box flexDirection="row" justifyContent="space-between">
           <Text variant="title2" color="white">
             HISTORY
           </Text>
+          <Box style={styles.boxButton}>
+            <TextButton label="Land" onPress={switchLand} style={styles.textButton} />
+            <TextButton label="Air" onPress={switchAir} style={styles.textButton} />
+          </Box>
         </Box>
-        <FlatList data={Object.keys(trips)} style={{marginBottom: 100}} renderItem={renderItem} keyExtractor={item => item.id}  refreshControl={        <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />}/>
-
-
-      </View>
+      </Box>
+      {selected === 'Land' ? (
+        <FlatList
+          data={data.land_trips}
+          style={{ marginBottom: 100 }}
+          renderItem={renderItemLand}
+          keyExtractor={item => item.id}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        />
+      ) : (
+        <FlatList
+          data={data.air_trips}
+          style={{ marginBottom: 100 }}
+          renderItem={renderItemAir}
+          keyExtractor={item => item.id}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        />
+      )}
+    </View>
   );
 };
 
@@ -118,4 +122,6 @@ const styles = StyleSheet.create({
       height: 9,
     },
   },
+  textButton: { width: 60, margin: 5 },
+  boxButton: { flexDirection: 'row', justifyContent: 'flex-end', marginRight: 10 },
 });
