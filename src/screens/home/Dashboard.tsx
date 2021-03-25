@@ -17,61 +17,50 @@ const Dashboard = () => {
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.primaryLight,
         }}
       ></View>
       <SafeAreaView>
-        <Box style={{ alignItems: 'center' }}>
-          <Box
-            paddingLeft="m"
-            paddingTop="s"
-            justifyContent="flex-end"
-            paddingBottom="m"
-            style={styles.boxContainer}
-            backgroundColor="primaryLight"
-            marginBottom="s"
-          >
-            <MeteoBar />
-          </Box>
-          {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
+        <MeteoBar />
 
+        {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
+
+        <Box
+          marginTop="s"
+          paddingTop="m"
+          marginBottom="s"
+          style={[styles.boxInfo, { height: 100 }]}
+          justifyContent="center"
+          backgroundColor="primary"
+        >
           <Box
-            marginTop="s"
-            paddingTop="m"
-            marginBottom="s"
-            style={[styles.boxInfo, { height: 100 }]}
-            justifyContent="center"
-            backgroundColor="primary"
-          >
-            <Box
-              alignItems="center"
-              style={styles.boxInfo}
-              justifyContent="center"
-              backgroundColor="white"
-            >
-              <Text variant="title2" color="primary">
-                Food Boxes
-              </Text>
-            </Box>
-          </Box>
-          <Box
-            marginTop="m"
-            paddingTop="m"
-            style={styles.boxTravel}
+            alignItems="center"
+            style={styles.boxInfo}
             justifyContent="center"
             backgroundColor="white"
-            alignItems="center"
           >
-            <Text variant="title3" margin="s">
-              Total trips emissions :
+            <Text variant="title2" color="primary">
+              Food Boxes
             </Text>
-            <Trajet />
-            <BusJourney />
-            <TrainJourney />
-            <AirplaneJourney />
-            <TramJourney />
-            <SubwayJourney />
           </Box>
+        </Box>
+        <Box
+          marginTop="m"
+          paddingTop="m"
+          style={styles.boxTravel}
+          justifyContent="center"
+          backgroundColor="white"
+          alignItems="center"
+        >
+          <Text variant="title3" margin="s">
+            Total trips emissions :
+          </Text>
+          <Trajet />
+          <BusJourney />
+          <TrainJourney />
+          <AirplaneJourney />
+          <TramJourney />
+          <SubwayJourney />
         </Box>
       </SafeAreaView>
     </ScrollView>

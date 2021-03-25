@@ -234,7 +234,7 @@ const EmissionsPie = () => {
       >
         <View style={{ alignItems: 'center' }}>
           <Text variant="title2" marginTop="m" marginBottom="m" style={styles.h2}>
-            Your <Text color="primary">carbon</Text> emissions tracker
+            Your <Text color="primary">carbon</Text> emissions
           </Text>
         </View>
         <ButtonGroup
