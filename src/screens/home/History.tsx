@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
@@ -34,12 +34,20 @@ interface MixedTripInteface {
         departure_longitude: number;
       };
 }
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 const History = () => {
+  const [refreshing, setRefreshing] = React.useState(false);
+
   const { data } = useTypedSelector(state => state.trips);
   const trips: MixedTripInteface = { ...data.land_trips, ...data.air_trips };
   const theme = useTheme();
-  
+    const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const renderItem = ({ item }) => (
     <TripHistory
       type={trips[item].vehicle_type ? trips[item].vehicle_type : 'plane'}
@@ -71,7 +79,11 @@ const History = () => {
             HISTORY
           </Text>
         </Box>
-        <FlatList data={Object.keys(trips)} renderItem={renderItem} keyExtractor={item => item} />
+        <FlatList data={Object.keys(trips)} renderItem={renderItem} keyExtractor={item => item.id}  refreshControl={        <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />}/>
+
 
       </View>
   );
