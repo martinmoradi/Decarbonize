@@ -9,7 +9,7 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
       status:{
         code: 200
       },
-      data: @meals
+      data: {meals: @meals}
     }
   end
 
@@ -29,7 +29,7 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
           code: 200,
           message: 'Meal emission was successfully created',
         },
-        data: @meals
+        data: {meals: @meals}
        }
     else
       render json: @meal.errors, status: :unprocessable_entity
