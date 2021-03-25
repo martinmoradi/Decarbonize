@@ -1,29 +1,20 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, RefreshControl } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
-import { TripHistory } from './components';
+import { TripHistory, MealHistory } from './components';
 const { width, height } = Dimensions.get('window');
-import { useTypedSelector, useActions } from '../../hooks';
+import { useTypedSelector } from '../../hooks';
 import TextButton from '../../components/TextButton';
 
-const wait = (timeout: number) => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-};
-
 const History = () => {
-  const [refreshing, setRefreshing] = React.useState(false);
-  const { fetchTrips } = useActions();
   const [selected, setSeleted] = React.useState('Land');
   const { data } = useTypedSelector(state => state.trips);
+  const { data: meals } = useTypedSelector(state => state.meals);
   const theme = useTheme();
+  const allMeals = {...meals.red_meat_meals, ...meals.white_meat_meals, ...meals.vegetarian_meals, ...meals.vegan_meals}
 
-  const onRefresh = React.useCallback(() => {
-    fetchTrips();
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
 
   const switchLand = () => {
     setSeleted('Land');
@@ -33,6 +24,10 @@ const History = () => {
     setSeleted('Air');
   };
 
+  const switchMeals = () => {
+    setSeleted('Meals');
+    console.log(allMeals)
+  };
   const renderItemLand = ({ item }) => (
     <TripHistory
       type={item.vehicle_type}
@@ -49,6 +44,45 @@ const History = () => {
       date={item.created_at}
     />
   );
+
+  const renderItemMeals = ({index})=>(
+    <MealHistory
+    type={allMeals[index].type}
+    amount={allMeals[index].amount}
+    date={allMeals[index].created_at}
+    />
+  )
+
+
+  let choice;
+  if (selected === 'Land') {
+    choice = (
+      <FlatList
+        data={data.land_trips}
+        style={{ marginBottom: 100 }}
+        renderItem={renderItemLand}
+        keyExtractor={item => item.id}
+      />
+    );
+  } else if (selected === 'Air') {
+    choice = (
+      <FlatList
+        data={data.air_trips}
+        style={{ marginBottom: 100 }}
+        renderItem={renderItemAir}
+        keyExtractor={item => item.id}
+      />
+    );
+  } else if (selected === 'Meals') {
+    choice = (
+    <FlatList
+      data={Object.keys(allMeals)}
+      style={{ marginBottom: 100 }}
+      renderItem={renderItemMeals}
+      keyExtractor={item => item.id}
+    />);
+  }
+
 
   return (
     <View>
@@ -74,26 +108,11 @@ const History = () => {
           <Box style={styles.boxButton}>
             <TextButton label="Land" onPress={switchLand} style={styles.textButton} />
             <TextButton label="Air" onPress={switchAir} style={styles.textButton} />
+            <TextButton label="Meals" onPress={switchMeals} style={styles.textButton} />
           </Box>
         </Box>
       </Box>
-      {selected === 'Land' ? (
-        <FlatList
-          data={data.land_trips}
-          style={{ marginBottom: 100 }}
-          renderItem={renderItemLand}
-          keyExtractor={item => item.id}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        />
-      ) : (
-        <FlatList
-          data={data.air_trips}
-          style={{ marginBottom: 100 }}
-          renderItem={renderItemAir}
-          keyExtractor={item => item.id}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        />
-      )}
+      {choice}
     </View>
   );
 };
