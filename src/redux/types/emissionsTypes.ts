@@ -51,7 +51,7 @@ export interface EmissionsType {
 }
 
 type WoodsType = 'wood_logs' | 'wood_pellets';
-export interface EmissionsFixedType {
+export interface FixedEmissionsType {
   breakfasts_per_week: number;
   red_meats_per_week: number;
   white_meats_per_week: number;
@@ -61,12 +61,8 @@ export interface EmissionsFixedType {
   house_surface: number;
   electricity_consumption: number;
   gas_consumption: number;
-  wood_type?: WoodsType;
-  wood_consumption?: number;
-  fuel_consumption?: number;
-  isGasHeating?: boolean;
-  isWoodHeating?: boolean;
-  isFuelHeating?: boolean;
+  wood_consumption: number;
+  fuel_consumption: number;
   clothes: number;
   furniture: number;
   others: number;

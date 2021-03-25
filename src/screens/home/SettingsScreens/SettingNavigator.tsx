@@ -6,6 +6,7 @@ import { SettingsRoutesList } from '../../../routers/NavigationTypes';
 import FoodSettingScreen from './FoodSettingScreen';
 import EnergySettingScreen from './EnergySettingScreen';
 import SpendingSettingScreen from './SpendingSettingScreen';
+import { useActions } from '../../../hooks';
 
 const SettingsStack = createStackNavigator<SettingsRoutesList>();
 

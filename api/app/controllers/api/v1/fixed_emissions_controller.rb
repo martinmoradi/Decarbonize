@@ -3,7 +3,6 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
 
   # GET /fixed_emissions
   def index
-    
     render json: {
              status: {
                code: 200,
@@ -14,17 +13,9 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
 
   # GET /fixed_emissions/1
   def show
-    render json: {
-             status: {
-               code: 200,
-             },
-             data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
-           }
+    render json: { status: { code: 200 }, data: @fixed_emission }
   end
 
-  def edit_fixed_emission
-    @fixed_emissions = FixedEmission.all
-  end
   # POST /fixed_emissions
   def create
     @fixed_emission = FixedEmission.new(fixed_emission_params)

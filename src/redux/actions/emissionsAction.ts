@@ -1,4 +1,4 @@
-import { EmissionsActionType, EmissionsType } from '../types';
+import { EmissionsActionType, EmissionsType, FixedEmissionsType } from '../types';
 
 interface PostEmissionsAttempt {
   type: EmissionsActionType.POST_EMISSIONS_ATTEMPT;
@@ -34,7 +34,7 @@ interface FetchFixedEmissionsAttempt {
 
 interface FetchFixedEmissionsSuccess {
   type: EmissionsActionType.FETCH_FIXED_EMISSIONS_SUCCESS;
-  payload: EmissionsType;
+  payload: FixedEmissionsType;
 }
 
 interface FetchFixedEmissionsError {

@@ -88,13 +88,14 @@ export const fetchFixedEmissions = () => {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
       const response = await fetch(
-        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
+        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions/1`,
         {
           method: 'GET',
           headers: headers(token),
         }
       );
       const { data, error } = await response.json();
+      console.log('data:', data)
       if (!response.ok) {
         throw new Error(error);
       }
