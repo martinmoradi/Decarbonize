@@ -17,7 +17,7 @@ export const postMeal = (mealType: string) => {
         {
           method: 'POST',
           headers: headers(token),
-          body: JSON.stringify(mealType),
+          body: JSON.stringify({"meal_type" : mealType}),
         }
       );
       const { data, error } = await response.json();
