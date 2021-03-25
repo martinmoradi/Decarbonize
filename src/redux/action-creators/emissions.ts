@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../tools/api';
 import { EmissionsAction } from '../actions';
 import { EmissionsActionType } from '../types';
-import { OnboardingType } from '../types';
+import { OnboardingType, SettingType } from '../types';
 
 export const postForm = (onboardingState: OnboardingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
@@ -79,19 +79,19 @@ export const fetchEmissions = () => {
   };
 };
 
-export const putEmissions = (onboardingData: OnboardingType) => {
+export const putEmissions = (settingData: SettingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
-      type: EmissionsActionType.POST_EMISSIONS_ATTEMPT,
+      type: EmissionsActionType.PUT_EMISSIONS_ATTEMPT,
     });
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
-      const fixed_emissions = setupPayload(onboardingData);
+      const fixed_emissions = {... settingData};
       const response = await fetch(
         `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
         {
-          method: 'POST',
+          method: 'PUT',
           headers: headers(token),
           body: JSON.stringify(fixed_emissions),
         }
@@ -101,12 +101,12 @@ export const putEmissions = (onboardingData: OnboardingType) => {
         throw new Error(error);
       }
       dispatch({
-        type: EmissionsActionType.POST_EMISSIONS_SUCCESS,
+        type: EmissionsActionType.PUT_EMISSIONS_SUCCESS,
         payload: data,
       });
     } catch (err) {
       dispatch({
-        type: EmissionsActionType.POST_EMISSIONS_ERROR,
+        type: EmissionsActionType.PUT_EMISSIONS_ERROR,
         payload: err.message,
       });
     }

@@ -1,27 +1,42 @@
 import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { useDispatch } from 'react-redux';
 import { SliderOnboarding } from '../../authentication/components';
-import { PropsSlide } from '../../authentication/types';
 import { Box, Button, Text } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
+import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
+import { useActions } from '../../../hooks';
+import { SettingFoodType } from '../../../redux/types';
 
 const { width } = Dimensions.get('window');
 
-const FoodSettingScreen = ({ onPress }: PropsSlide) => {
+const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsFood'>) => {
   const { food } = useTypedSelector(state => state.onboarding);
+  console.log('food:', food);
+
   const [breakfast, setBreakfast] = useState(food.breakfasts_per_week);
   const [redMeat, setRedMeat] = useState(food.red_meats_per_week);
   const [whiteMeat, setWhiteMeat] = useState(food.white_meats_per_week);
+  const [vegetarianMeat, setVegetarianMeat] = useState(food.vegetarian_per_week);
+  const [veganMeat, setVeganMeat] = useState(food.vegan_per_week);
+  const { putEmissions } = useActions();
 
-  const [vegetarian, setVegetarian] = useState(food.vegetarian_per_week);
-  const [vegan, setVegan] = useState(food.vegan_per_week);
+  const editFood: SettingFoodType = {
+    breakfasts_per_week: breakfast,
+    red_meats_per_week: redMeat,
+    white_meats_per_week: whiteMeat,
+    vegan_per_week: veganMeat,
+    vegetarian_per_week: vegetarianMeat,
+  };
 
-  const dispatch = useDispatch();
+  const { data } = useTypedSelector(state => state.emissions);
+  const { weekly_alimentation, weekly_housing } = data;
+  console.log('weekly_housing:', weekly_housing);
+  console.log('weekly_alimentation:', weekly_alimentation);
 
   const handlePress = () => {
-    onPress();
+    putEmissions(editFood);
+    // navigation.navigate('Settings');
   };
 
   return (
@@ -104,10 +119,10 @@ const FoodSettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{vegetarian} vegetarian meal(s) / week</Text>
+            <Text variant="body">{vegetarianMeat} vegetarian meal(s) / week</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setVegetarian(value)}
-              value={vegetarian}
+              onValueChange={(value: number) => setVegetarianMeat(value)}
+              value={vegetarianMeat}
               step={1}
               maximumValue={14}
               minimumValue={0}
@@ -120,17 +135,17 @@ const FoodSettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{vegan} vegan meal(s) / week</Text>
+            <Text variant="body">{veganMeat} vegan meal(s) / week</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setVegan(value)}
-              value={vegan}
+              onValueChange={(value: number) => setVeganMeat(value)}
+              value={veganMeat}
               step={1}
               maximumValue={14}
               minimumValue={0}
             />
           </Box>
         </Box>
-        <Button variant="default" onPress={() => handlePress} label="Edit" style={{ margin: 10 }} />
+        <Button variant="default" onPress={handlePress} label="Edit" style={{ margin: 10 }} />
       </View>
     </ScrollView>
   );

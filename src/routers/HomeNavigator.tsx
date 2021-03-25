@@ -10,6 +10,7 @@ import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
+import SettingNavigator from '../screens/home/SettingsScreens/SettingNavigator';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -117,7 +118,7 @@ const HomeNavigator = () => {
       <HomeTab.Screen name="Deeds" component={Commitments} />
       <HomeTab.Screen name="New" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={History} />
-      <HomeTab.Screen name="Profile" component={Settings} />
+      <HomeTab.Screen name="Profile" component={SettingNavigator} />
     </HomeTab.Navigator>
   );
 };
