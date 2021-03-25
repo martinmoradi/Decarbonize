@@ -3,7 +3,7 @@ export { default as Container } from './Container';
 export { default as LoadAssets } from './LoadAssets';
 export { default as RoundedIcon } from './RoundedIcon';
 export { default as RoundedIconButton } from './RoundedIconButton';
-export { Box, makeStyles, Text, useTheme } from './Theme';
+export { Box, makeStyles, Text, useTheme, palette, chartPalette } from './Theme';
 export { default as VictoryCustomTheme } from './VictoryCustomTheme';
 export { default as TextButton } from './TextButton';
 export { default as Checkbox } from './Checkbox';

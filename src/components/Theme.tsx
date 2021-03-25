@@ -34,6 +34,13 @@ const theme = {
     background2: '#F6F6F6',
   },
 
+  chartPalette: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
+
+  dimensions: {
+    height,
+    width,
+  },
+
   spacing: {
     s: 8,
     m: 16,
@@ -66,6 +73,12 @@ const theme = {
       lineHeight: 26,
       fontFamily: 'Avenir-Semibold',
       color: 'background',
+      textAlign: 'center',
+    },
+    pieChart: {
+      fontSize: 26,
+      lineHeight: 26,
+      fontFamily: 'Avenir-Semibold',
       textAlign: 'center',
     },
     title1: {
