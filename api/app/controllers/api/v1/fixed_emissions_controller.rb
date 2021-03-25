@@ -42,13 +42,8 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
   # PATCH/PUT /fixed_emissions/1
   def update
     if @fixed_emission.update(fixed_emission_params)
-      render json: {
-               status: {
-                 code: 200,
-                 message: 'Fixed emission was successfully updated',
-               },
-               data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
-             }
+      render json: @fixed_emission
+
     else
       render json: @fixed_emission.errors, status: :unprocessable_entity
     end

@@ -50,7 +50,7 @@ class FixedEmission < ApplicationRecord
 
   #MEALS RATIO
   def user_medium_meals_emission_per_month
-     user.meals.exists? ? ((((user.total_meals_emissions) / user.meals.length) * 14)* 4.33): 1
+     user.meals.exists? ? ((((user.total_meals_emissions) / user.meals.length) * 14)* 4.33): 0
   end
 
   # HOUSING & HEATING
@@ -135,7 +135,7 @@ class FixedEmission < ApplicationRecord
 
   def alimentation
     (
-      breakfast + (((red_meat + white_meat + vegeterian + vegan))) + drinks_and_garbage + tap_water +
+      breakfast + ((red_meat + white_meat + vegeterian + vegan + user_medium_meals_emission_per_month) / 2) + drinks_and_garbage + tap_water +
         food_wastes + bulk_food
     ).round(2)
   end
