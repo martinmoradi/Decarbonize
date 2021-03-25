@@ -5,12 +5,14 @@ import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './compon
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
+import Meals from './components/Meals';
 import AirplaneJourney from './components/AirplaneJourney';
 import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
 
 const Dashboard = () => {
   const theme = useTheme();
+
   return (
     <ScrollView>
       <View
@@ -28,7 +30,7 @@ const Dashboard = () => {
           marginTop="s"
           paddingTop="m"
           marginBottom="s"
-          style={[styles.boxInfo, { height: 100 }]}
+          style={[styles.boxInfo]}
           justifyContent="center"
           backgroundColor="primary"
         >
@@ -38,9 +40,7 @@ const Dashboard = () => {
             justifyContent="center"
             backgroundColor="white"
           >
-            <Text variant="title2" color="primary">
-              Food Boxes
-            </Text>
+            <Meals />
           </Box>
         </Box>
         <Box
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   boxInfo: {
     width: width,
-    height: 80,
+    height: 240,
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {

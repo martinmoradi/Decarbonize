@@ -12,3 +12,5 @@ export { IconSvg } from './icons';
 export { default as TripHistory } from './TripHistory';
 export { default as EmissionsPieIOS } from './EmissionsPieIOS';
 export { default as EmissionsPieAndroid } from './EmissionsPieAndroid';
+export { default as Meals } from './Meals';
+export { default as MealHistory } from './MealHistory';

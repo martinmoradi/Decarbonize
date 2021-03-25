@@ -13,12 +13,17 @@ class EmissionSerializer
              :yearly_airtrip_emissions,
              :weekly_travel_emissions,
              :monthly_travel_emissions,
-             :yearly_travel_emissions, 
+             :yearly_travel_emissions,
              :total_car_emissions,
              :total_bus_emissions,
              :total_tramway_emissions,
              :total_metro_emissions,
-             :total_train_emissions
+             :total_train_emissions,
+             :total_meals_emissions,
+             :total_red_meat_emissions,
+             :total_white_meat_emissions,
+             :total_vegetarian_emissions,
+             :total_vegan_emissions
 
   attribute :weekly_alimentation do |object|
     object.fixed_emission.weekly_alimentation

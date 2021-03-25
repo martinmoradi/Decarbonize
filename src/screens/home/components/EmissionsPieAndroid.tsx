@@ -122,7 +122,7 @@ const EmissionsPie = () => {
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
       return (
-        <View style={{ position: 'absolute', top: '45%', left: '38%' }}>
+        <View style={{ position: 'absolute', top: '40%', left: '39%' }}>
           <Text variant="pieChart">{weekly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -132,7 +132,7 @@ const EmissionsPie = () => {
     }
     if (selectedRange === 1) {
       return (
-        <View style={{ position: 'absolute', top: '45%', left: '36%' }}>
+        <View style={{ position: 'absolute', top: '40%', left: '37%' }}>
           <Text variant="pieChart">{monthly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -142,7 +142,7 @@ const EmissionsPie = () => {
     }
     if (selectedRange === 2) {
       return (
-        <View style={{ position: 'absolute', top: '45%', left: '35%' }}>
+        <View style={{ position: 'absolute', top: '40%', left: '35%' }}>
           <Text variant="pieChart">{yearly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg

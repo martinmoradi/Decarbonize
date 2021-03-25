@@ -5,39 +5,38 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const { width } = Dimensions.get('window');
 
-interface TripHistoryProps {
+interface MealHistoryProps {
   type: string;
-  distance: number;
   amount: number;
   date: string;
 }
 
-const TripHistory = (props: TripHistoryProps) => {
+const MealHistory = (props: MealHistoryProps) => {
   const [version, setVersion] = React.useState({
-    image: require('../../../../assets/images/van.png'),
-    color: 'lightgray',
+    image: require(`../../../../assets/images/red_meat.png`),
+    name: 'Red Meat',
   });
-  const setImage = (name: string) => {
-    if (name === 'electric_car' || name === 'petrol_car' || name === 'diesel_car') {
-      setVersion({ image: require('../../../../assets/images/van.png'), color: '#39D697' });
-    } else if (name === 'bus') {
-      setVersion({ image: require('../../../../assets/images/autobus.png'), color: '#FF0058' });
-    } else if (name === 'metro') {
-      setVersion({ image: require('../../../../assets/images/metro.png'), color: 'orange' });
-    } else if (name === 'train') {
-      setVersion({ image: require('../../../../assets/images/train.png'), color: 'blue' });
-    } else if (name === 'tramway') {
-      setVersion({ image: require('../../../../assets/images/tramway.png'), color: '#808080' });
-    } else {
+
+  const imageSource = (type: string) => {
+    if (type === 'red_meat') {
+      setVersion({ image: require(`../../../../assets/images/red_meat.png`), name: 'Red Meat' });
+    } else if (type === 'white_meat') {
       setVersion({
-        image: require('../../../../assets/images/airplanejourney.png'),
-        color: '#FFC641',
+        image: require(`../../../../assets/images/white_meat.png`),
+        name: 'White Meat',
       });
+    } else if (type === 'vegetarian') {
+      setVersion({
+        image: require(`../../../../assets/images/Vegetarian.png`),
+        name: 'Vegetarian',
+      });
+    } else if (type === 'vegan') {
+      setVersion({ image: require(`../../../../assets/images/Vegan.png`), name: 'Vegan' });
     }
   };
 
   React.useEffect(() => {
-    setImage(props.type);
+    imageSource(props.type);
   }, []);
 
   return (
@@ -51,16 +50,12 @@ const TripHistory = (props: TripHistoryProps) => {
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">{new Date(Date.parse(props.date)).toLocaleDateString()}</Text>
         </View>
-        <View style={[styles.viewImg, { backgroundColor: version.color }]}>
-          <Image
-            source={version.image}
-            style={[styles.imgStyle, { backgroundColor: version.color }]}
-          />
+        <View style={styles.viewImg}>
+          <Image source={version.image} style={styles.imgStyle} />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">{props.distance}km</Text>
+          <Text variant="header">{version.name}</Text>
         </View>
-
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="header">+ {props.amount}kg Co2</Text>
         </View>
@@ -69,7 +64,7 @@ const TripHistory = (props: TripHistoryProps) => {
   );
 };
 
-export default TripHistory;
+export default MealHistory;
 
 const styles = StyleSheet.create({
   boxStyle: {
@@ -88,6 +83,7 @@ const styles = StyleSheet.create({
     marginLeft: wp('5%'),
     padding: 5,
     borderRadius: 10,
+    backgroundColor: '#39D697',
   },
-  imgStyle: { height: 24, width: 24, tintColor: 'white' },
+  imgStyle: { height: 24, width: 24, tintColor: 'white', backgroundColor: '#A9EFD2' },
 });

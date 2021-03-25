@@ -46,7 +46,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
         backgroundColor="primary"
       >
         <Text variant="title2" color="white">
-          SVG  {route.params.type}
+          SVG {route.params.type}
         </Text>
         <Text>Faire une fonction en fonction du type</Text>
       </Box>
@@ -92,7 +92,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
             justifyContent: 'center',
           }}
           onChangeText={changeDistance}
-          value={tripData.distance.toString()}
+          value={tripData.distance}
           placeholder={'0'}
           keyboardType="numeric"
         />
@@ -118,7 +118,6 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
         <Button variant="primary" label="Add" onPress={() => postCommonTrip(tripData)} />
       )}
       <Button variant="default" label="Go Back" onPress={() => navigation.goBack()} />
-
     </Box>
   );
 };
