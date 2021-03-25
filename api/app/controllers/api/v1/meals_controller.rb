@@ -34,7 +34,7 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
           code: 200,
           message: 'Meal emission was successfully created',
         },
-        data: {red_meat_meals: @red_meat_meals, white_meat_meals: @white_meat_meals, vegetarian_meals: @vegetarian_meals, vegan_meals: @vegan_meals}
+        data: {meals: {red_meat_meals: @red_meat_meals, white_meat_meals: @white_meat_meals, vegetarian_meals: @vegetarian_meals, vegan_meals: @vegan_meals}, emissions: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes] }
       }
     else
       render json: @meal.errors, status: :unprocessable_entity

@@ -50,7 +50,7 @@ class FixedEmission < ApplicationRecord
 
   #MEALS RATIO
   def user_medium_meals_emission_per_month
-     user.meals.exists? ? ((((user.total_meals_emissions) / user.meals.length) * 14)* 4.33): 0
+     user.meals.exists? ? ((((user.total_meals_emissions) / user.meals.length) * 14)* 4.33): (red_meat + white_meat + vegeterian + vegan)
   end
 
   # HOUSING & HEATING
