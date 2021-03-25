@@ -5,7 +5,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import { TripHistory } from './components';
 const { width, height } = Dimensions.get('window');
-import { useTypedSelector } from '../../hooks';
+import { useTypedSelector, useActions } from '../../hooks';
 
 interface MixedTripInteface {
   [x: number]: {
@@ -40,14 +40,19 @@ const wait = (timeout) => {
 
 const History = () => {
   const [refreshing, setRefreshing] = React.useState(false);
+  const { fetchTrips } = useActions();
 
   const { data } = useTypedSelector(state => state.trips);
   const trips: MixedTripInteface = { ...data.land_trips, ...data.air_trips };
   const theme = useTheme();
+
     const onRefresh = React.useCallback(() => {
+      fetchTrips()
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+
+
   const renderItem = ({ item }) => (
     <TripHistory
       type={trips[item].vehicle_type ? trips[item].vehicle_type : 'plane'}
@@ -79,7 +84,7 @@ const History = () => {
             HISTORY
           </Text>
         </Box>
-        <FlatList data={Object.keys(trips)} renderItem={renderItem} keyExtractor={item => item.id}  refreshControl={        <RefreshControl
+        <FlatList data={Object.keys(trips)} style={{marginBottom: 100}} renderItem={renderItem} keyExtractor={item => item.id}  refreshControl={        <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
           />}/>
