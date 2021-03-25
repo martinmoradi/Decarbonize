@@ -34,7 +34,7 @@ const theme = {
     background2: '#F6F6F6',
   },
 
-  chartPalette: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'],
+  chartPalette: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600', '#9d02d7', '#0000ff'],
 
   dimensions: {
     height,

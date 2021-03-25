@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, SafeAreaView } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { MeteoBar, Trajet } from './components';
 import { EmissionsPie } from './components/';
@@ -20,65 +20,61 @@ const Dashboard = () => {
           backgroundColor: theme.colors.primary,
         }}
       ></View>
-      <Box style={{ alignItems: 'center' }}>
-        <Box
-          paddingLeft="m"
-          paddingTop="s"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={styles.boxContainer}
-          backgroundColor="primaryLight"
-          marginBottom="s"
-        >
-          <MeteoBar />
-        </Box>
-
-        <Box
-          alignItems="center"
-          style={styles.boxGraph}
-          justifyContent="center"
-          backgroundColor="white"
-        >
-          <EmissionsPie />
-        </Box>
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          marginBottom="s"
-          style={[styles.boxInfo, { height: 100 }]}
-          justifyContent="center"
-          backgroundColor="primary"
-        >
+      <SafeAreaView>
+        <Box style={{ alignItems: 'center' }}>
           <Box
-            alignItems="center"
-            style={styles.boxInfo}
+            paddingLeft="m"
+            paddingTop="s"
+            justifyContent="flex-end"
+            paddingBottom="m"
+            style={styles.boxContainer}
+            backgroundColor="primaryLight"
+            marginBottom="s"
+          >
+            <MeteoBar />
+          </Box>
+
+          <EmissionsPie />
+
+          <Box
+            marginTop="s"
+            paddingTop="m"
+            marginBottom="s"
+            style={[styles.boxInfo, { height: 100 }]}
+            justifyContent="center"
+            backgroundColor="primary"
+          >
+            <Box
+              alignItems="center"
+              style={styles.boxInfo}
+              justifyContent="center"
+              backgroundColor="white"
+            >
+              <Text variant="title2" color="primary">
+                Food Boxes
+              </Text>
+            </Box>
+          </Box>
+          <Box
+            marginTop="m"
+            paddingTop="m"
+            style={styles.boxTravel}
             justifyContent="center"
             backgroundColor="white"
+            alignItems="center"
           >
-            <Text variant="title2" color="primary">
-              Food Boxes
+            <Text variant="title3" margin="s">
+              Total trips emissions :
             </Text>
+            <Trajet />
+            <BusJourney />
+            <TrainJourney />
+            <AirplaneJourney />
+            <TramJourney />
+            <SubwayJourney />
           </Box>
         </Box>
-        <Box
-          marginTop="m"
-          paddingTop="m"
-          style={styles.boxTravel}
-          justifyContent="center"
-          backgroundColor="white"
-          alignItems="center"
-        >
-          <Text variant="title3" margin="s">
-            Total trips emissions :
-          </Text>
-          <Trajet />
-          <BusJourney />
-          <TrainJourney />
-          <AirplaneJourney />
-          <TramJourney />
-          <SubwayJourney />
-        </Box>
-      </Box>
+      </SafeAreaView>
     </ScrollView>
   );
 };

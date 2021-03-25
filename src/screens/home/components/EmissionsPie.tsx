@@ -1,9 +1,10 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import { VictoryPie } from 'victory-native';
 import { useTheme, Text, Box } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
+import PieLabels from './PieLabels';
 
 const EmissionsPie = () => {
   const theme = useTheme();
@@ -34,24 +35,24 @@ const EmissionsPie = () => {
   } = useTypedSelector(state => state.emissions.data);
 
   const yearlyData = {
-    yearly_landtrip_emissions,
-    yearly_airtrip_emissions,
+    yearly_trips: yearly_landtrip_emissions,
+    'yearly_air trips': yearly_airtrip_emissions,
     yearly_alimentation,
     yearly_housing,
     yearly_spendings,
   };
 
-  const monthlyData = [
-    monthly_landtrip_emissions,
-    monthly_airtrip_emissions,
+  const monthlyData = {
+    monthly_trips: monthly_landtrip_emissions,
+    'monthly_air trips': monthly_airtrip_emissions,
     monthly_alimentation,
     monthly_housing,
     monthly_spendings,
-  ];
+  };
 
   const weeklyData = {
-    weekly_landtrip_emissions,
-    weekly_airtrip_emissions,
+    monthly_trips: weekly_landtrip_emissions,
+    'monthly_air trips': weekly_airtrip_emissions,
     weekly_alimentation,
     weekly_housing,
     weekly_spendings,
@@ -157,6 +158,11 @@ const EmissionsPie = () => {
     return null;
   };
 
+  const formatLabelName = (name: string) => {
+    const formatted = name.substring(name.indexOf('_') + 1);
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+  };
+
   const generateLabels = () => {
     const renderItem = ({ item }) => {
       return (
@@ -164,16 +170,48 @@ const EmissionsPie = () => {
           style={{
             flexDirection: 'row',
             height: 40,
+            marginBottom: 4,
             paddingHorizontal: 12,
             borderRadius: 10,
-            backgroundColor: item.color,
+            marginHorizontal: 12,
+            backgroundColor:
+              selectedCategory && selectedCategory === item.id ? item.color : 'transparent',
           }}
+          onPress={() => setSelectedCategory(item.id)}
         >
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <View
-              style={{ width: 20, height: 20, backgroundColor: item.color, borderRadius: 5 }}
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 5,
+                backgroundColor:
+                  selectedCategory && selectedCategory === item.id ? 'white' : item.color,
+              }}
             ></View>
-            <Text>{item.name}</Text>
+            <Text
+              style={{
+                color: selectedCategory && selectedCategory === item.id ? 'white' : 'black',
+                marginLeft: 8,
+                fontSize: 16,
+                lineHeight: 16,
+              }}
+            >
+              {formatLabelName(item.name)}
+            </Text>
+          </View>
+
+          <View style={{ justifyContent: 'center' }}>
+            <Text
+              style={{
+                color: selectedCategory && selectedCategory === item.id ? 'white' : 'black',
+                marginRight: 8,
+                fontSize: 16,
+                lineHeight: 16,
+              }}
+            >
+              {item.y} kg - {item.label}
+            </Text>
           </View>
         </TouchableOpacity>
       );
@@ -188,11 +226,9 @@ const EmissionsPie = () => {
   const buttons = ['This week', 'This month', 'This year'];
 
   return (
-    <>
+    <View>
       <View
         style={{
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: '#F3F4F6',
           borderRadius: 50,
         }}
@@ -205,8 +241,8 @@ const EmissionsPie = () => {
           selectedIndex={selectedRange}
           buttons={buttons}
           selectedButtonStyle={theme.slideStyle.buttonStyle}
-          textStyle={{ textAlign: 'center' }}
-          containerStyle={{ borderWidth: 0 }}
+          textStyle={{ textAlign: 'center', fontSize: 16 }}
+          containerStyle={{ borderWidth: 0, backgroundColor: 'transparent' }}
           innerBorderStyle={{ width: 0 }}
         />
         <View>
@@ -244,9 +280,9 @@ const EmissionsPie = () => {
           />
           {generateTotalEmissions()}
         </View>
+        {generateLabels()}
       </View>
-      {generateLabels()}
-    </>
+    </View>
   );
 };
 
