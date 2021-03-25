@@ -63,6 +63,9 @@ const EmissionsPie = () => {
     id: number;
   }
 
+  console.log('render');
+
+  // Prepare data for chart
   const weeklyChartData = useMemo(() => {
     const data: DataType[] = Object.entries(weeklyData)
       .filter(item => item[1] !== 0)
@@ -114,6 +117,7 @@ const EmissionsPie = () => {
   const [selectedRange, setSelectedRange] = useState(0);
   const [data, setData] = useState<DataType[]>(weeklyChartData);
   const [selectedCategory, setSelectedCategory] = useState<number>();
+  const buttons = ['This week', 'This month', 'This year'];
 
   useEffect(() => {
     if (selectedRange === 0) setData(weeklyChartData);
@@ -121,10 +125,11 @@ const EmissionsPie = () => {
     if (selectedRange === 2) setData(yearlyChartData);
   }, [setData, selectedRange]);
 
+  // Generate Emissions Inside Chart
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
       return (
-        <View style={{ position: 'absolute', top: '40%', left: '38%' }}>
+        <View style={{ position: 'absolute', top: '45%', left: '38%' }}>
           <Text variant="pieChart">{weekly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -134,7 +139,7 @@ const EmissionsPie = () => {
     }
     if (selectedRange === 1) {
       return (
-        <View style={{ position: 'absolute', top: '40%', left: '36%' }}>
+        <View style={{ position: 'absolute', top: '45%', left: '36%' }}>
           <Text variant="pieChart">{monthly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -144,7 +149,7 @@ const EmissionsPie = () => {
     }
     if (selectedRange === 2) {
       return (
-        <View style={{ position: 'absolute', top: '40%', left: '35%' }}>
+        <View style={{ position: 'absolute', top: '45%', left: '35%' }}>
           <Text variant="pieChart">{yearly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -164,7 +169,6 @@ const EmissionsPie = () => {
     interface Item {
       item: DataType;
     }
-
     const renderItem = ({ item }: Item) => {
       return (
         <TouchableOpacity
@@ -218,13 +222,11 @@ const EmissionsPie = () => {
       );
     };
     return (
-      <Box style={{ maxHeight: '30%' }}>
+      <Box style={{ maxHeight: '40%' }}>
         <FlatList data={data} renderItem={renderItem} keyExtractor={item => item.name} />
       </Box>
     );
   };
-
-  const buttons = ['This week', 'This month', 'This year'];
 
   return (
     <View>
@@ -236,7 +238,7 @@ const EmissionsPie = () => {
       >
         <View style={{ alignItems: 'center' }}>
           <Text variant="title2" marginTop="m" marginBottom="m" style={styles.h2}>
-            Your <Text color="primary">carbon</Text> emissions tracker
+            Your <Text color="primary">carbon</Text> emissions
           </Text>
         </View>
         <ButtonGroup
@@ -249,9 +251,9 @@ const EmissionsPie = () => {
           innerBorderStyle={{ width: 0 }}
         />
         <View>
-          <Svg width={width} height={width} style={{ width: '100%', height: 'auto' }}>
+          {selectedRange === 0 && (
             <VictoryPie
-              data={data}
+              data={weeklyChartData}
               innerRadius={70}
               radius={({ datum }) =>
                 selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
@@ -277,12 +279,81 @@ const EmissionsPie = () => {
                 },
               ]}
               height={height * 0.5}
-              labelRadius={(width * 0.4 + 70) / 2.5}
+              labelRadius={(width * 0.45 + 70) / 2.5}
               style={{
                 labels: { fill: 'white', ...styles.label },
               }}
             />
-          </Svg>
+          )}
+          {selectedRange === 1 && (
+            <VictoryPie
+              data={monthlyChartData}
+              innerRadius={70}
+              radius={({ datum }) =>
+                selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
+              }
+              labels={datum => `${datum.y}`}
+              colorScale={theme.chartPalette}
+              width={width}
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onPress: () => {
+                      return [
+                        {
+                          target: 'labels',
+                          mutation: props => {
+                            setSelectedCategory(data[props.index].id);
+                          },
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              height={height * 0.5}
+              labelRadius={(width * 0.45 + 70) / 2.5}
+              style={{
+                labels: { fill: 'white', ...styles.label },
+              }}
+            />
+          )}
+          {selectedRange === 2 && (
+            <VictoryPie
+              data={yearlyChartData}
+              innerRadius={70}
+              radius={({ datum }) =>
+                selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
+              }
+              labels={datum => `${datum.y}`}
+              colorScale={theme.chartPalette}
+              width={width}
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onPress: () => {
+                      return [
+                        {
+                          target: 'labels',
+                          mutation: props => {
+                            setSelectedCategory(data[props.index].id);
+                          },
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              height={height * 0.5}
+              labelRadius={(width * 0.45 + 70) / 2.5}
+              style={{
+                labels: { fill: 'white', ...styles.label },
+              }}
+            />
+          )}
+
           {generateTotalEmissions()}
         </View>
         {generateLabels()}

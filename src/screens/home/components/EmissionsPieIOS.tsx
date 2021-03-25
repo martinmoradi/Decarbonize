@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import { VictoryPie } from 'victory-native';
@@ -109,15 +109,16 @@ const EmissionsPie = () => {
     return data;
   }, [yearlyData, yearly_total]);
 
-  const [selectedRange, setSelectedRange] = useState(0);
+  const [selectedRange, setSelectedRange] = useState<number>(0);
   const [data, setData] = useState<DataType[]>(weeklyChartData);
   const [selectedCategory, setSelectedCategory] = useState<number>();
+  const buttons = ['This week', 'This month', 'This year'];
 
   useEffect(() => {
     if (selectedRange === 0) setData(weeklyChartData);
     if (selectedRange === 1) setData(monthlyChartData);
     if (selectedRange === 2) setData(yearlyChartData);
-  }, [setData, selectedRange]);
+  }, [selectedRange]);
 
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
@@ -222,8 +223,6 @@ const EmissionsPie = () => {
     );
   };
 
-  const buttons = ['This week', 'This month', 'This year'];
-
   return (
     <View>
       <View
@@ -247,38 +246,109 @@ const EmissionsPie = () => {
           innerBorderStyle={{ width: 0 }}
         />
         <View>
-          <VictoryPie
-            data={data}
-            innerRadius={70}
-            radius={({ datum }) =>
-              selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
-            }
-            labels={datum => `${datum.y}`}
-            colorScale={theme.chartPalette}
-            width={width}
-            events={[
-              {
-                target: 'data',
-                eventHandlers: {
-                  onPress: () => {
-                    return [
-                      {
-                        target: 'labels',
-                        mutation: props => {
-                          setSelectedCategory(data[props.index].id);
+          {selectedRange === 0 && (
+            <VictoryPie
+              data={weeklyChartData}
+              innerRadius={70}
+              radius={({ datum }) =>
+                selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
+              }
+              labels={datum => `${datum.y}`}
+              colorScale={theme.chartPalette}
+              width={width}
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onPress: () => {
+                      return [
+                        {
+                          target: 'labels',
+                          mutation: props => {
+                            setSelectedCategory(data[props.index].id);
+                          },
                         },
-                      },
-                    ];
+                      ];
+                    },
                   },
                 },
-              },
-            ]}
-            height={height * 0.5}
-            labelRadius={(width * 0.45 + 70) / 2.5}
-            style={{
-              labels: { fill: 'white', ...styles.label },
-            }}
-          />
+              ]}
+              height={height * 0.5}
+              labelRadius={(width * 0.45 + 70) / 2.5}
+              style={{
+                labels: { fill: 'white', ...styles.label },
+              }}
+            />
+          )}
+          {selectedRange === 1 && (
+            <VictoryPie
+              data={monthlyChartData}
+              innerRadius={70}
+              radius={({ datum }) =>
+                selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
+              }
+              labels={datum => `${datum.y}`}
+              colorScale={theme.chartPalette}
+              width={width}
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onPress: () => {
+                      return [
+                        {
+                          target: 'labels',
+                          mutation: props => {
+                            setSelectedCategory(data[props.index].id);
+                          },
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              height={height * 0.5}
+              labelRadius={(width * 0.45 + 70) / 2.5}
+              style={{
+                labels: { fill: 'white', ...styles.label },
+              }}
+            />
+          )}
+          {selectedRange === 2 && (
+            <VictoryPie
+              data={yearlyChartData}
+              innerRadius={70}
+              radius={({ datum }) =>
+                selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
+              }
+              labels={datum => `${datum.y}`}
+              colorScale={theme.chartPalette}
+              width={width}
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onPress: () => {
+                      return [
+                        {
+                          target: 'labels',
+                          mutation: props => {
+                            setSelectedCategory(data[props.index].id);
+                          },
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+              height={height * 0.5}
+              labelRadius={(width * 0.45 + 70) / 2.5}
+              style={{
+                labels: { fill: 'white', ...styles.label },
+              }}
+            />
+          )}
+
           {generateTotalEmissions()}
         </View>
         {generateLabels()}

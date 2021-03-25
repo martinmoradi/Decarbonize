@@ -2,7 +2,6 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
-
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
