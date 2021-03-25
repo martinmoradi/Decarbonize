@@ -11,14 +11,8 @@ interface PropTypes {
 const FoodBox = (props: PropTypes) => {
   const { data } = useTypedSelector(state => state.meals);
   const { postMeal,fetchMeals , deleteMeal } = useActions();
-  const [mealCount, setMealCount] = React.useState(0);
-  const findLastMeal = data.meals.find(element => {
-    if (element.meal_type === props.type) {
-      return element;
-    } else {
-        "oups"
-    }
-  });
+  const mealCount = Object.keys(data[`${props.type}` + '_meals']).length;
+  const last_meal = data[`${props.type}` + '_meals'][0];
   let name;
 
   React.useEffect(()=>{
@@ -42,18 +36,13 @@ const FoodBox = (props: PropTypes) => {
   };
 
   const handleMinus = () => {
-    setMealCount(prevCount => {
-      if (prevCount > 0) {
-        console.log(data);
-        return prevCount - 1;
-      } else {
-        return 0;
-      }
-    });
+    if(!(mealCount > 0)){
+      return;
+    }
+      deleteMeal(last_meal.id);
   };
 
   const handlePlus = () => {
-    setMealCount(prevCount => prevCount + 1);
     postMeal(props.type);
   };
 
