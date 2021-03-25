@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_110130) do
+ActiveRecord::Schema.define(version: 2021_03_25_103739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 2021_03_21_110130) do
     t.index ["user_id"], name: "index_land_trips_on_user_id"
   end
 
+  create_table "meals", force: :cascade do |t|
+    t.string "meal_type", default: "vegetarian", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
+  end
+
   create_table "regular_trips", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "land_trip_id", null: false
@@ -123,6 +131,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_110130) do
   add_foreign_key "emissions", "users"
   add_foreign_key "fixed_emissions", "users"
   add_foreign_key "land_trips", "users"
+  add_foreign_key "meals", "users"
   add_foreign_key "regular_trips", "land_trips"
   add_foreign_key "regular_trips", "users"
   add_foreign_key "user_commitments", "commitments"

@@ -48,6 +48,11 @@ class FixedEmission < ApplicationRecord
     user.user_commitments.where(commitment_id: 7).exists? ? -707.67 : 0
   end
 
+  #MEALS RATIO
+  def user_medium_meals_emission_per_month
+     user.meals.exists? ? ((((user.total_meals_emissions) / user.meals.length) * 14)* 4.33): 1
+  end
+
   # HOUSING & HEATING
 
   def wood_emissions
@@ -130,7 +135,7 @@ class FixedEmission < ApplicationRecord
 
   def alimentation
     (
-      breakfast + red_meat + white_meat + vegeterian + vegan + drinks_and_garbage + tap_water +
+      breakfast + (((red_meat + white_meat + vegeterian + vegan))) + drinks_and_garbage + tap_water +
         food_wastes + bulk_food
     ).round(2)
   end
