@@ -22,6 +22,9 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
            }
   end
 
+  def edit_fixed_emission
+    @fixed_emissions = FixedEmission.all
+  end
   # POST /fixed_emissions
   def create
     @fixed_emission = FixedEmission.new(fixed_emission_params)

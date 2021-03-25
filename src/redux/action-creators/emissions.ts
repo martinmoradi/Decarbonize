@@ -79,7 +79,39 @@ export const fetchEmissions = () => {
   };
 };
 
-export const putEmissions = (settingData: SettingType) => {
+export const fetchFixedEmissions = () => {
+  return async (dispatch: Dispatch<EmissionsAction>) => {
+    dispatch({
+      type: EmissionsActionType.FETCH_FIXED_EMISSIONS_ATTEMPT,
+    });
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token) throw new Error('No token found');
+      const response = await fetch(
+        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
+        {
+          method: 'GET',
+          headers: headers(token),
+        }
+      );
+      const { data, error } = await response.json();
+      if (!response.ok) {
+        throw new Error(error);
+      }
+      dispatch({
+        type: EmissionsActionType.FETCH_FIXED_EMISSIONS_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: EmissionsActionType.FETCH_FIXED_EMISSIONS_ERROR,
+        payload: err.message,
+      });
+    }
+  };
+};
+
+export const putFixedEmissions = (settingData: SettingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.PUT_EMISSIONS_ATTEMPT,

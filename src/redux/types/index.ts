@@ -1,5 +1,5 @@
 export { AuthActionType, UserParamsType, UserType } from './authTypes';
-export { EmissionsActionType, EmissionsType } from './emissionsTypes';
+export { EmissionsActionType, EmissionsType, EmissionsFixedType } from './emissionsTypes';
 export { TripActionType, TripType } from './tripTypes';
 export {
   OnboardingFoodActionType,
