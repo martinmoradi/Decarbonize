@@ -4,6 +4,7 @@ class Api::V1::UserCommitmentsController < Api::V1::ApiBaseController
   # POST /user_commitments
   def create
     @user_commitment = UserCommitment.new(user_commitment_params)
+    puts user_commitment_params
     @user_commitment.user_id = current_user.id
 
     if @commitment.save
@@ -28,6 +29,6 @@ class Api::V1::UserCommitmentsController < Api::V1::ApiBaseController
 
   # Only allow a list of trusted parameters through.
   def user_commitment_params
-    params.require(:user_commitment).permit(:user_id, :commitment_id)
+    params.require(:user_commitment).permit(:commitment_id)
   end
 end

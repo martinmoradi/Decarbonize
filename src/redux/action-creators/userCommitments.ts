@@ -5,7 +5,7 @@ import { UserCommitmentsActionType } from '../types';
 import { UserCommitmentsAction } from '../actions';
 
 
-export const postUserCommitments = (commitment) => {
+export const postUserCommitments = (commitment: number) => {
   return async (dispatch: Dispatch<UserCommitmentsAction>) => {
     dispatch({ 
       type: UserCommitmentsActionType.POST_USER_COMMITMENTS_ATTEMPT,
@@ -14,11 +14,11 @@ export const postUserCommitments = (commitment) => {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
       const response = await fetch(
-        `https://perruches-decarbonize.herokuapp.com/api/v1/`,
+        `https://perruches-decarbonize.herokuapp.com/api/v1/user_commitments`,
         {
           method: 'POST',
           headers: headers(token),
-          body: JSON.stringify(commitment),
+          body: JSON.stringify({'commitment_id': commitment}),
         }
       );
       const { data, error } = await response.json();
@@ -38,7 +38,7 @@ export const postUserCommitments = (commitment) => {
   }
 }
 
-export const delUserCommitments = (commitment) => {
+export const delUserCommitments = (commitment: number) => {
   return async (dispatch: Dispatch<UserCommitmentsAction>) => {
     dispatch({ 
       type: UserCommitmentsActionType.DEL_USER_COMMITMENTS_ATTEMPT,
@@ -47,11 +47,11 @@ export const delUserCommitments = (commitment) => {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
       const response = await fetch(
-        `https://perruches-decarbonize.herokuapp.com/api/v1/`,
+        `https://perruches-decarbonize.herokuapp.com/api/v1/user_commitments/1`,
         {
           method: 'DEL',
           headers: headers(token),
-          body: JSON.stringify(commitment),
+          body: JSON.stringify({'commitment_id': commitment}),
         }
       );
       const { data, error } = await response.json();

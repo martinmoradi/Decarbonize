@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch } from 'react-native';
 import { Box, Text } from '../../../components/Theme';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { useActions } from '../../../hooks';
 
 type PropsTips = {
   engagement: string;
@@ -12,8 +13,10 @@ type PropsTips = {
 };
 
 const Tips = ({ engagement, index, isEnabled, commitmentId, onChangeToggle }: PropsTips) => {
+  const { postUserCommitments, delUserCommitments } = useActions();
+
   const toggleSwitch = () => {
-    // isEnabled ? removeCommitment(commitmentId) : addCommitment(commitmentId);
+    isEnabled ? delUserCommitments(commitmentId) : postUserCommitments(commitmentId);
     onChangeToggle(!isEnabled);
   };
 

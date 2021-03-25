@@ -129,7 +129,6 @@ const Commitments = () => {
               keyExtractor={(item, index) => `key - ${index}${item}`}
               useScrollView={true}
               autoplay={false}
-              keyExtractor={(item, index) => `key - ${index}${item}`}
               loop={true}
               ref={scroll}
             />
