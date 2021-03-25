@@ -53,11 +53,16 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
   # DELETE /meals/1
   def destroy
     @meal= Meal.where(user_id: current_user.id, id: params[:id])
+    @red_meat_meals = Meal.red_meat.where(user_id: current_user.id).order(created_at: :desc)
+    @white_meat_meals = Meal.white_meat.where(user_id: current_user.id).order(created_at: :desc)
+    @vegetarian_meals = Meal.vegetarian.where(user_id: current_user.id).order(created_at: :desc)
+    @vegan_meals = Meal.vegan.where(user_id: current_user.id).order(created_at: :desc)
     if @meal.destroy(params[:id])
       render json: {status: {
         code: 200,
         message: 'Meal was successfully destroyed',
-      }}
+      },
+      data: {red_meat_meals: @red_meat_meals, white_meat_meals: @white_meat_meals, vegetarian_meals: @vegetarian_meals, vegan_meals: @vegan_meals}}
     else
       render json: @meal.errors, status: :unprocessable_entity
     end
