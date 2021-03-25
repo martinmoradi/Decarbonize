@@ -3,6 +3,7 @@ import authReducer from './authReducer';
 import tripsReducer from './tripsReducer';
 import emissionsReducer from './emissionsReducer';
 import onboardingReducer from './onboarding';
+import mealReducer from './mealsReducer';
 import fixedEmissionsReducer from './fixedEmissionsReducer';
 
 const reducers = combineReducers({
@@ -11,7 +12,9 @@ const reducers = combineReducers({
   emissions: emissionsReducer,
   onboarding: onboardingReducer,
   fixedEmissions: fixedEmissionsReducer,
+  meals: mealReducer
 });
+
 
 export default reducers;
 

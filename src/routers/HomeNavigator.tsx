@@ -105,10 +105,13 @@ const HomeNavigator = () => {
         postForm({ ...food, ...energy, ...spending });
       } else if (isEmpty && has_completed_onboarding && isTripsEmpty) {
         fetchEmissions();
-        fetchTrips();
       }
     }
-  }, [user, isEmpty, data]);
+  }, [user, isEmpty]);
+
+  useEffect(()=>{
+    fetchTrips();
+  }, [])
 
   return (
     <HomeTab.Navigator
