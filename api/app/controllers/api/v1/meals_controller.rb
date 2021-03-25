@@ -1,5 +1,5 @@
 class Api::V1::MealsController < Api::V1::ApiBaseController
-  before_action :set_meal, only: %i[show update destroy]
+  before_action :set_meal, only: %i[show update]
 
   # GET /meals
   def index
@@ -47,7 +47,15 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
 
   # DELETE /meals/1
   def destroy
-    @meal.destroy
+    @meal= Meal.where(user_id: current_user.id, id: params[:id])
+    if @meal.destroy(params[:id])
+      render json: {status: {
+        code: 200,
+        message: 'Meal was successfully destroyed',
+      }}
+    else
+      render json: @meal.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -58,6 +66,6 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:meal_type)
+      params.require(:meal).permit(:meal_type, :id)
     end
 end

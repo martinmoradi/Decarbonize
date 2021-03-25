@@ -22,6 +22,7 @@ const initialState: MealStateType ={
 
 const mealReducer = (state = initialState, action: MealsAction): MealStateType => {
     switch(action.type) {
+      case MealActionType.DELETE_MEAL_ATTEMPT:
       case MealActionType.FETCH_MEALS_ATTEMPT:
       case MealActionType.POST_MEAL_ATTEMPT:
         return {
@@ -29,6 +30,7 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
           errorMessage: null,
           isLoading: true,
         };
+      case MealActionType.DELETE_MEAL_SUCCESS:
       case MealActionType.FETCH_MEALS_SUCCESS:
       case MealActionType.POST_MEAL_SUCCESS:
         return {
@@ -37,6 +39,7 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
           isLoading: false,
   
         };
+      case MealActionType.DELETE_MEAL_ERROR:
       case MealActionType.FETCH_MEALS_ERROR:
       case MealActionType.POST_MEAL_ERROR:
         return {
