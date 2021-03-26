@@ -98,6 +98,12 @@ const theme = {
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
+    titleCard: {
+      fontSize: 30,
+      lineHeight: 30,
+      fontFamily: 'Avenir-Semibold',
+      color: 'secondary',
+    },
     title3: {
       fontSize: 16,
       fontFamily: 'Avenir-Semibold',

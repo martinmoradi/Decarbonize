@@ -5,6 +5,10 @@ import { VictoryPie } from 'victory-native';
 import { useTheme, Text, Box } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
 import { Svg } from 'react-native-svg';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const EmissionsPie = () => {
   const theme = useTheme();
@@ -187,7 +191,8 @@ const EmissionsPie = () => {
             ></View>
             <Text
               style={{
-                color: selectedCategory && selectedCategory === item.id ? 'white' : 'black',
+                color:
+                  selectedCategory && selectedCategory === item.id ? 'white' : theme.colors.text,
                 marginLeft: 8,
                 fontSize: 16,
                 lineHeight: 16,
@@ -200,7 +205,8 @@ const EmissionsPie = () => {
           <View style={{ justifyContent: 'center' }}>
             <Text
               style={{
-                color: selectedCategory && selectedCategory === item.id ? 'white' : 'black',
+                color:
+                  selectedCategory && selectedCategory === item.id ? 'white' : theme.colors.text,
                 marginRight: 8,
                 fontSize: 16,
                 lineHeight: 16,
@@ -214,7 +220,7 @@ const EmissionsPie = () => {
     };
     if (selectedRange === 0) {
       return (
-        <Box style={{ maxHeight: '40%' }}>
+        <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
           <FlatList
             data={weeklyChartData}
             renderItem={renderItem}
@@ -225,7 +231,7 @@ const EmissionsPie = () => {
     }
     if (selectedRange === 1) {
       return (
-        <Box style={{ maxHeight: '40%' }}>
+        <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
           <FlatList
             data={monthlyChartData}
             renderItem={renderItem}
@@ -236,7 +242,7 @@ const EmissionsPie = () => {
     }
     if (selectedRange === 2) {
       return (
-        <Box style={{ maxHeight: '40%' }}>
+        <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
           <FlatList
             data={yearlyChartData}
             renderItem={renderItem}
@@ -279,7 +285,7 @@ const EmissionsPie = () => {
         }}
       >
         <View style={{ alignItems: 'center' }}>
-          <Text variant="title2" marginTop="m" marginBottom="m" style={styles.h2}>
+          <Text variant="titleCard" marginTop="m" marginBottom="m" style={styles.h2}>
             Your <Text color="primary">carbon</Text> emissions
           </Text>
         </View>

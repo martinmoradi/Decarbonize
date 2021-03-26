@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, Text, Button } from '../../../components';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import { Image, View, StyleSheet } from 'react-native';
 import { useTypedSelector, useActions } from '../../../hooks';
 import { AntDesign } from '@expo/vector-icons';
@@ -79,7 +82,7 @@ export default FoodBox;
 const s = StyleSheet.create({
   boxContainer: {
     width: wp('40%'),
-    height: 150,
+    height: hp('22%'),
     borderRadius: 20,
     backgroundColor: '#F6F6F6',
     marginHorizontal: wp('5%'),
