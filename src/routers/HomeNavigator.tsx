@@ -28,6 +28,7 @@ const tabs: TabsConfig<BubbleTabBarItemConfig> = {
       activeColor: '#A9EFD2',
       inactiveColor: 'rgba(223,215,243,0)',
     },
+    
   },
   Deeds: {
     labelStyle: {
@@ -115,7 +116,7 @@ const HomeNavigator = () => {
 
   return (
     <HomeTab.Navigator
-      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />}
+      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />} 
     >
       <HomeTab.Screen name="Home" component={Dashboard} />
       <HomeTab.Screen name="Deeds" component={Commitments} />
@@ -130,6 +131,7 @@ export default HomeNavigator;
 
 const styles = StyleSheet.create({
   tabContainer: {
+    alignItems: "center",
     height: 80,
   },
 });
