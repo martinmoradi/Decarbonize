@@ -16,7 +16,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.secondary,
         }}
       ></View>
       <View style={{ alignItems: 'center', flex: 1 }}>
@@ -26,11 +26,14 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         >
           <Text variant="title2" color="white">
-            ADD A NEW TRIP
+            ADD A NEW{' '}
+            <Text variant="title2" style={{ color: '#39D697' }}>
+              TRIP
+            </Text>
           </Text>
         </Box>
         <View style={styles.viewContainer}>
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
     elevation: 19,
   },
   imgStyle: {
-    height: 120,
+    height: 130,
     width: wp('90%'),
     borderRadius: 15,
   },

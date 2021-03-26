@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import Tips from './components/Tips';
+import Deeds from './components/Deeds';
 import { ecologyFacts } from './data/ecologyFacts';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { AntDesign } from '@expo/vector-icons';
@@ -178,7 +178,7 @@ const Commitments = () => {
           </View>
 
           {engagementsData.map((item, index) => (
-            <Tips
+            <Deeds
               engagement={item.title}
               index={index}
               isEnabled={item.isCommitted}

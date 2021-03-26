@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text } from '../../../components/Theme';
 import { StyleSheet, Dimensions, View, Image } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -12,7 +12,7 @@ interface MealHistoryProps {
 }
 
 const MealHistory = (props: MealHistoryProps) => {
-  const [version, setVersion] = React.useState({
+  const [version, setVersion] = useState({
     image: require(`../../../../assets/images/red_meat.png`),
     name: 'Red Meat',
   });
@@ -35,7 +35,7 @@ const MealHistory = (props: MealHistoryProps) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     imageSource(props.type);
   }, []);
 

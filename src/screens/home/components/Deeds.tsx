@@ -8,7 +8,7 @@ import {
 import { AntDesign } from '@expo/vector-icons';
 import { useActions } from '../../../hooks';
 
-type PropsTips = {
+type PropsDeeds = {
   engagement: string;
   index: number;
   isEnabled: boolean;
@@ -17,14 +17,14 @@ type PropsTips = {
   onChangeToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Tips = ({
+const Deeds = ({
   engagement,
   index,
   isEnabled,
+  description,
   commitmentId,
   onChangeToggle,
-  description,
-}: PropsTips) => {
+}: PropsDeeds) => {
   const { postUserCommitments, delUserCommitments } = useActions();
   const [toggleInfo, setToggleInfo] = useState(false);
 
@@ -39,14 +39,27 @@ const Tips = ({
       alignItems="center"
       flexDirection="row"
       marginBottom="s"
-      style={{ width: wp('90%'), height: hp('8%'), borderBottomWidth: 2, borderRadius: 20 }}
+      style={{
+        width: wp('90%'),
+        height: hp('8%'),
+
+        borderRadius: 20,
+        shadowColor: '#616164',
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.0,
+
+        elevation: 1,
+      }}
       justifyContent="space-between"
       backgroundColor="lightgray"
-      borderBottomColor="white"
       key={index}
     >
       <TouchableOpacity
-        style={{ position: 'absolute', left: wp('-1'), top: 1 }}
+        style={{ position: 'absolute', top: 1, left: 1 }}
         onPress={() => setToggleInfo(!toggleInfo)}
       >
         {!toggleInfo ? (
@@ -55,7 +68,7 @@ const Tips = ({
           <AntDesign name="closecircleo" size={20} color="#808080" />
         )}
       </TouchableOpacity>
-      <Text variant="body" style={{ marginLeft: 20, fontSize: 15 }}>
+      <Text variant="body" style={{ marginLeft: wp('8%'), fontSize: 15 }}>
         {!toggleInfo ? engagement : description}
       </Text>
 
@@ -70,4 +83,4 @@ const Tips = ({
   );
 };
 
-export default Tips;
+export default Deeds;

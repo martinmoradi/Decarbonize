@@ -75,7 +75,7 @@ export type TripRoutesList = {
       };
       servedCity?: string;
       servedCityGoverningDistrict?: object;
-    } ;
+    };
   };
   NewCommonTrip: { type: string };
   AirPortSearch: {

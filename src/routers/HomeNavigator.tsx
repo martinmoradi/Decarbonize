@@ -5,7 +5,6 @@ import { HomeRoutesList } from './NavigationTypes';
 import Dashboard from '../screens/home/Dashboard';
 import Commitments from '../screens/home/Commitments';
 import History from '../screens/home/History';
-import Settings from '../screens/home/Settings';
 import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
@@ -133,5 +132,6 @@ const styles = StyleSheet.create({
   tabContainer: {
     alignItems: "center",
     height: 80,
+    alignSelf: 'center',
   },
 });

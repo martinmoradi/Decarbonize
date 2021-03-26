@@ -30,14 +30,14 @@ const SlideEnergy = ({ onPress, goBack }: PropsSlide) => {
 
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
-          <Text variant="body">How many people live with you?</Text>
+          <Text variant="body">How many people live in your household?</Text>
           <Text variant="body">{roommates} </Text>
           <SliderOnboarding
             onValueChange={(value: number) => setRoommates(value)}
             value={roommates}
             step={1}
             maximumValue={10}
-            minimumValue={0}
+            minimumValue={1}
           />
           <View style={{ padding: hp('1%') }}></View>
           <Text variant="body">What is the area of your housing?</Text>
