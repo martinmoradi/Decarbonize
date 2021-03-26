@@ -120,6 +120,21 @@ const EmissionsPie = () => {
   const [selectedCategory, setSelectedCategory] = useState<number>();
   const buttons = ['This week', 'This month', 'This year'];
 
+  const selectData = () => {
+    switch (selectedRange) {
+      case 0:
+        return weeklyChartData;
+      case 1:
+        return monthlyChartData;
+      case 2:
+        return yearlyChartData;
+      default:
+        return weeklyChartData;
+    }
+  };
+
+  const data = selectData();
+
   // Generate Emissions Inside Chart
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
@@ -218,53 +233,12 @@ const EmissionsPie = () => {
         </TouchableOpacity>
       );
     };
-    if (selectedRange === 0) {
-      return (
-        <Box style={{ maxHeight: hp('40%') }}>
-          <FlatList
-            data={weeklyChartData}
-            renderItem={renderItem}
-            keyExtractor={item => item.name}
-          />
-        </Box>
-      );
-    }
-    if (selectedRange === 1) {
-      return (
-        <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
-          <FlatList
-            data={monthlyChartData}
-            renderItem={renderItem}
-            keyExtractor={item => item.name}
-          />
-        </Box>
-      );
-    }
-    if (selectedRange === 2) {
-      return (
-        <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
-          <FlatList
-            data={yearlyChartData}
-            renderItem={renderItem}
-            keyExtractor={item => item.name}
-          />
-        </Box>
-      );
-    }
-    return null;
-  };
 
-  const selectData = () => {
-    switch (selectedRange) {
-      case 0:
-        return weeklyChartData;
-      case 1:
-        return monthlyChartData;
-      case 2:
-        return yearlyChartData;
-      default:
-        return weeklyChartData;
-    }
+    return (
+      <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
+        <FlatList data={data} renderItem={renderItem} keyExtractor={item => item.name} />
+      </Box>
+    );
   };
 
   // Main Return
@@ -303,7 +277,7 @@ const EmissionsPie = () => {
           <Svg width={width} height={width} style={{ width: '100%', height: 'auto' }}>
             <VictoryPie
               standalone={false} // Android workaround
-              data={selectData()}
+              data={data}
               innerRadius={70}
               radius={({ datum }) =>
                 selectedCategory && selectedCategory === datum.id ? width * 0.4 : width * 0.4 - 10
@@ -320,7 +294,7 @@ const EmissionsPie = () => {
                         {
                           target: 'labels',
                           mutation: props => {
-                            setSelectedCategory(weeklyChartData[props.index].id);
+                            setSelectedCategory(data[props.index].id);
                           },
                         },
                       ];
