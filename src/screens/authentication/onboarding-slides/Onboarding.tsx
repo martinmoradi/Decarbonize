@@ -31,12 +31,12 @@ const Onboarding = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   );
   const slides = useMemo(
     () => [
-      <SlideFood onPress={() => slidePress(1)} />,
-      <SlideFoodSecond onPress={() => slidePress(2)} />,
-      <SlideEnergy onPress={() => slidePress(3)} />,
-      <SlideEnergySecond onPress={() => slidePress(4)} />,
-      <SlideEnergyThird onPress={() => slidePress(5)} />,
-      <SlideHousing onPress={() => navigation.navigate('SignUp')} />,
+      <SlideFood onPress={() => slidePress(1)} goBack={()=> navigation.goBack()} />,
+      <SlideFoodSecond onPress={() => slidePress(2)} goBack={()=> slidePress(0)}/>,
+      <SlideEnergy onPress={() => slidePress(3)} goBack={()=> slidePress(1)}/>,
+      <SlideEnergySecond onPress={() => slidePress(4)} goBack={()=> slidePress(2)}/>,
+      <SlideEnergyThird onPress={() => slidePress(5)} goBack={()=> slidePress(3)}/>,
+      <SlideHousing onPress={() => navigation.navigate('SignUp')} goBack={()=> slidePress(3)}/>,
     ],
     [navigation, slidePress]
   );
