@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, Box } from '../../components';
+import { View, ScrollView, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, Box, useTheme } from '../../components';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -10,9 +10,14 @@ import Carousel from 'react-native-snap-carousel';
 import Tips from './components/Tips';
 import { ecologyFacts } from './data/ecologyFacts';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 const { width, height } = Dimensions.get('window');
 
 const Commitments = () => {
+  const theme = useTheme();
+
   const emissions = useTypedSelector(state => state.emissions.data);
   const {
     appliances,
@@ -27,13 +32,13 @@ const Commitments = () => {
   const scroll = useRef<Carousel<string>>(null);
 
   const engagementsData = [
-    { title: 'Switch off my devices in standby', isCommitted: appliances },
-    { title: 'Reduce heating 1 degree', isCommitted: reduced_heating },
-    { title: 'Adopt eco-driving', isCommitted: eco_driving },
+    { title: 'I switch off my devices in standby', isCommitted: appliances },
+    { title: 'I reduce heating 1 degree', isCommitted: reduced_heating },
+    { title: 'I adopt eco-driving', isCommitted: eco_driving },
     { title: 'I drink tap water instead of bottles', isCommitted: tap_water },
-    { title: 'Reduce my food waste', isCommitted: food_wastes },
-    { title: 'Do your shopping in bulk', isCommitted: bulk_food },
-    { title: 'A zero waste approach', isCommitted: zero_wastes },
+    { title: 'I reduce my food waste', isCommitted: food_wastes },
+    { title: 'I do my shopping in bulk', isCommitted: bulk_food },
+    { title: 'I have a zero waste approach', isCommitted: zero_wastes },
   ];
 
   type PropsRenderItem = {
@@ -59,7 +64,7 @@ const Commitments = () => {
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         ></Box>
         <Box
@@ -71,10 +76,16 @@ const Commitments = () => {
         >
           <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
             <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
-              {'<'}
+              <AntDesign name="doubleleft" size={24} color="black" />
             </Text>
           </TouchableOpacity>
           <View style={{ width: width - 100 }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Text variant="subHeroHome" style={{ position: 'absolute', top: hp('-5%') }}>
+                Did you <Text style={{ color: theme.colors.primary }}>know</Text> ?{' '}
+                <MaterialCommunityIcons name="head-question-outline" size={24} color="#F6F6F6" />
+              </Text>
+            </View>
             <Carousel
               data={ecologyFacts}
               renderItem={renderItem}
@@ -92,7 +103,7 @@ const Commitments = () => {
           </View>
           <TouchableOpacity onPress={() => scroll.current?.snapToNext()}>
             <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
-              {'>'}
+              <AntDesign name="doubleright" size={24} color="black" />
             </Text>
           </TouchableOpacity>
         </Box>
@@ -127,7 +138,7 @@ const styles = StyleSheet.create({
   mainView: {
     alignItems: 'center',
     flex: 1,
-    backgroundColor: '#39D697',
+    backgroundColor: '#0C0D34',
   },
   boxStyle: {
     marginBottom: hp('2.5%'),
@@ -145,6 +156,7 @@ const styles = StyleSheet.create({
   boxContainer: {
     width: width,
     height: 50,
+    marginBottom: '20%',
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
     shadowColor: '#000',

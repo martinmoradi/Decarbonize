@@ -220,7 +220,7 @@ const EmissionsPie = () => {
     };
     if (selectedRange === 0) {
       return (
-        <Box style={{ maxHeight: hp('40%'), marginTop: hp('-5%') }}>
+        <Box style={{ maxHeight: hp('40%') }}>
           <FlatList
             data={weeklyChartData}
             renderItem={renderItem}
@@ -262,6 +262,8 @@ const EmissionsPie = () => {
         return monthlyChartData;
       case 2:
         return yearlyChartData;
+      default:
+        return weeklyChartData;
     }
   };
 
@@ -270,7 +272,7 @@ const EmissionsPie = () => {
     <View>
       <View
         style={{
-          backgroundColor: '#F3F4F6',
+          backgroundColor: theme.colors.background2,
           borderRadius: 50,
           marginTop: '8%',
           shadowColor: '#000',
@@ -280,7 +282,6 @@ const EmissionsPie = () => {
           },
           shadowOpacity: 0.25,
           shadowRadius: 3.84,
-
           elevation: 5,
         }}
       >
@@ -298,7 +299,7 @@ const EmissionsPie = () => {
           containerStyle={{ borderWidth: 0, backgroundColor: 'transparent' }}
           innerBorderStyle={{ width: 0 }}
         />
-        <View>
+        <View style={{ marginBottom: hp('-5%') }}>
           <Svg width={width} height={width} style={{ width: '100%', height: 'auto' }}>
             <VictoryPie
               standalone={false} // Android workaround
@@ -364,11 +365,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   h2: {
-    color: '#0C0D34',
+    color: 'rgba(54, 54, 83, 0.7)',
   },
   title1: {
     fontSize: 28,
-    color: '#0C0D34',
+    color: 'rgba(54, 54, 83, 0.7)',
   },
   pieChart: {
     fontSize: 26,

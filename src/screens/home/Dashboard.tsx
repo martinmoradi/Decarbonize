@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   return (
     <ScrollView>
-      <StatusBar translucent backgroundColor="transparent" color="white" barStyle="light-content" />
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
