@@ -17,7 +17,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommonTrip'>) => {
+const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'NewCommonTrip'>) => {
   const { postCommonTrip } = useActions();
   const { width } = Dimensions.get('window');
   const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
@@ -50,11 +50,18 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
     },
   ];
 
-  const [imgValue, setImgValue] = useState();
-
-  const getImg = () => {
+  const getImg = (url: undefined) => {
     if (tripData.vehicle_type === 'train') {
-      setImgValue(require('../../../../assets/images/train.jpg'));
+      return (url = require('../../../../assets/images/train.jpg'));
+    }
+    if (tripData.vehicle_type === 'tramway') {
+      return (url = require('../../../../assets/images/tramway.jpg'));
+    }
+    if (tripData.vehicle_type === 'metro') {
+      return (url = require('../../../../assets/images/subway.jpg'));
+    }
+    if (tripData.vehicle_type === 'bus') {
+      return (url = require('../../../../assets/images/bus.jpg'));
     }
   };
 
@@ -77,10 +84,7 @@ const NewCommonTrip = ({ route, navigation }: TripStackNavigationProps<'NewCommo
           style={styles.boxStyle}
           backgroundColor="lightgray"
         >
-          <Image
-            source={require('../../../../assets/images/transportation.jpg')}
-            style={styles.imgStyle}
-          />
+          <Image source={getImg(url)} style={styles.imgStyle} />
         </Box>
         {errorMessage ? (
           <Text
