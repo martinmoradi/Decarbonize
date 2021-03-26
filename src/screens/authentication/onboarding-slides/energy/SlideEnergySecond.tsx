@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { ButtonGroup } from 'react-native-elements';
 import { useTypedSelector } from '../../../../hooks';
@@ -10,8 +10,9 @@ import { Text, useTheme } from '../../../../components/Theme';
 import { PropsSlide } from '../../types';
 import SlideTitle from '../../components/TopSlide';
 import { SliderOnboarding } from '../../components';
+import { Ionicons } from '@expo/vector-icons';
 
-const SlideEnergySecond = ({ onPress }: PropsSlide) => {
+const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { energy } = useTypedSelector(state => state.onboarding);
@@ -121,7 +122,10 @@ const SlideEnergySecond = ({ onPress }: PropsSlide) => {
           ) : null}
         </View>
         <View style={styles.container}>
-          <Button variant="default" onPress={handlePress} label="Next" />
+        <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
+          <TouchableOpacity onPress={goBack}>
+            <Ionicons name="md-return-down-back" size={24} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -144,4 +148,6 @@ const styles = StyleSheet.create({
   paddingBoxes: {
     padding: hp('1%'),
   },
+  button: {marginBottom: 10}, 
+
 });

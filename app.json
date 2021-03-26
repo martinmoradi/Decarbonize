@@ -1,15 +1,15 @@
 {
   "expo": {
     "name": "Decarbonize",
-    "icon": "./path/to/your/app-icon.png",
-    "version": "1.0.0",
-    "slug": "your-app-slug",
+    "icon": "./assets/decarbonize-app-icon.png",
+    "version": "0.1",
+    "slug": "decarbonize",
     "ios": {
-      "bundleIdentifier": "com.yourcompany.yourappname",
+      "bundleIdentifier": "com.thp.decarbonize",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.yourcompany.yourappname",
+      "package": "com.thp.decarbonize",
       "versionCode": 1
     }
   }

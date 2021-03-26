@@ -117,7 +117,7 @@ const Login = ({ navigation }: AuthNavigationProps<'Login'>) => {
             <Button
               variant="primary"
               onPress={handleSubmit}
-              label={<ActivityIndicator color="white" />}
+              label={<ActivityIndicator color="#ffffff" />}
             />
           ) : (
             <Button variant="primary" onPress={handleSubmit} label="Log into your account" />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
 import Button from '../../../../components/Button';
 import { Text, useTheme } from '../../../../components/Theme';
 import { PropsSlide } from '../../types';
@@ -9,13 +9,15 @@ import { SliderOnboarding } from '../../components';
 import { useTypedSelector } from '../../../../hooks';
 import { useDispatch } from 'react-redux';
 import { OnboardingFoodActionType } from '../../../../redux/types';
+import { Ionicons } from '@expo/vector-icons';
 
-const SlideFood = ({ onPress }: PropsSlide) => {
+const SlideFood = ({ onPress, goBack }: PropsSlide) => {
   const theme = useTheme();
   const { food } = useTypedSelector(state => state.onboarding);
   const [breakfast, setBreakfast] = useState(food.breakfasts_per_week);
   const [redMeat, setRedMeat] = useState(food.red_meats_per_week);
   const [whiteMeat, setWhiteMeat] = useState(food.white_meats_per_week);
+
   const dispatch = useDispatch();
 
   const handlePress = () => {
@@ -78,7 +80,10 @@ const SlideFood = ({ onPress }: PropsSlide) => {
             alignItems: 'center',
           }}
         >
-          <Button variant="default" onPress={handlePress} label="Next" />
+          <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
+          <TouchableOpacity onPress={goBack}>
+            <Ionicons name="md-return-down-back" size={24} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -89,8 +94,6 @@ export default SlideFood;
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  btnContainer: {
-    borderWidth: 0,
-  },
+  button: {marginBottom: 10}, 
   content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
 });
