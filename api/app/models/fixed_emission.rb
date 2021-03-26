@@ -134,7 +134,7 @@ class FixedEmission < ApplicationRecord
   end
 
   def alimentation
-    unless user_medium_meals_emission_per_month.zero? (
+     (
       breakfast +
         ((red_meat + white_meat + vegeterian + vegan + user_medium_meals_emission_per_month) / 2) +
         drinks_and_garbage + tap_water + food_wastes + bulk_food
