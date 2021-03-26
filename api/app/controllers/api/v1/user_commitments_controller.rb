@@ -8,7 +8,12 @@ class Api::V1::UserCommitmentsController < Api::V1::ApiBaseController
     @user_commitment.user_id = current_user.id
 
     if @commitment.save
-      render json: @user_commitment, status: :created, location: @user_commitment
+      render json: {
+               status: {
+                 code: 200,
+               },
+               data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+             }
     else
       render json: @user_commitment.errors, status: :unprocessable_entity
     end
@@ -17,6 +22,12 @@ class Api::V1::UserCommitmentsController < Api::V1::ApiBaseController
   # DELETE /user_commitments/1
   def destroy
     @user_commitment.destroy
+    render json: {
+             status: {
+               code: 200,
+             },
+             data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+           }
   end
 
   private

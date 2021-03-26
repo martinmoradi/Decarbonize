@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../tools/api';
-import { UserCommitmentsActionType } from '../types';
-import { UserCommitmentsAction } from '../actions';
+import { EmissionsActionType, UserCommitmentsActionType } from '../types';
+import { EmissionsAction, UserCommitmentsAction } from '../actions';
 
 
 export const postUserCommitments = (commitment: number) => {
-  return async (dispatch: Dispatch<UserCommitmentsAction>) => {
+  return async (dispatch: Dispatch<UserCommitmentsAction | EmissionsAction>) => {
     dispatch({ 
       type: UserCommitmentsActionType.POST_USER_COMMITMENTS_ATTEMPT,
     });
@@ -26,7 +26,7 @@ export const postUserCommitments = (commitment: number) => {
         throw new Error(error);
       }
       dispatch({
-        type: UserCommitmentsActionType.POST_USER_COMMITMENTS_SUCCESS,
+        type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
         payload: data,
       });
     } catch (err) {
@@ -39,7 +39,7 @@ export const postUserCommitments = (commitment: number) => {
 }
 
 export const delUserCommitments = (commitment: number) => {
-  return async (dispatch: Dispatch<UserCommitmentsAction>) => {
+  return async (dispatch: Dispatch<UserCommitmentsAction | EmissionsAction>) => {
     dispatch({ 
       type: UserCommitmentsActionType.DEL_USER_COMMITMENTS_ATTEMPT,
     });
@@ -59,7 +59,7 @@ export const delUserCommitments = (commitment: number) => {
         throw new Error(error);
       }
       dispatch({
-        type: UserCommitmentsActionType.DEL_USER_COMMITMENTS_SUCCESS,
+        type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
         payload: data,
       });
     } catch (err) {
