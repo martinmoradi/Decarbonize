@@ -1,6 +1,13 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
-import { Text, Box, useTheme } from '../../components';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Platform,
+  ImageBackground,
+} from 'react-native';
+import { Text, Box, useTheme, Container } from '../../components';
 import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
@@ -11,64 +18,58 @@ import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
 
 const Dashboard = () => {
+  const image = [require('../../components/assets/patterns/1.png')] as const;
   const theme = useTheme();
 
   return (
     <ScrollView>
-      <View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primaryLight,
-        }}
-      ></View>
-      <SafeAreaView>
-        <MeteoBar />
+      <ImageBackground
+        source={require('../../components/assets/patterns/3.png')}
+        style={styles.image}
+      >
+        <SafeAreaView>
+          {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
 
-        {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
-
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          marginBottom="s"
-          style={[styles.boxInfo]}
-          justifyContent="center"
-          backgroundColor="primary"
-        >
           <Box
             alignItems="center"
             style={styles.boxInfo}
             justifyContent="center"
-            backgroundColor="white"
+            backgroundColor="lightgray"
+            paddingTop="xl"
+            marginTop="m"
           >
             <Meals />
           </Box>
-        </Box>
-        <Box
-          marginTop="m"
-          paddingTop="m"
-          style={styles.boxTravel}
-          justifyContent="center"
-          backgroundColor="white"
-          alignItems="center"
-        >
-          <Text variant="title3" margin="s">
-            Total trips emissions :
-          </Text>
-          <Trajet />
-          <BusJourney />
-          <TrainJourney />
-          <AirplaneJourney />
-          <TramJourney />
-          <SubwayJourney />
-        </Box>
-      </SafeAreaView>
+
+          <Box
+            marginTop="m"
+            paddingVertical="m"
+            style={styles.boxTravel}
+            justifyContent="center"
+            backgroundColor="white"
+            alignItems="center"
+          >
+            <Text variant="title3" margin="s">
+              Total trips emissions :
+            </Text>
+            <Trajet />
+            <BusJourney />
+            <TrainJourney />
+            <AirplaneJourney />
+            <TramJourney />
+            <SubwayJourney />
+          </Box>
+        </SafeAreaView>
+      </ImageBackground>
     </ScrollView>
   );
 };
 
 export default Dashboard;
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
+const aspectRatio = 750 / 1125;
+
 const styles = StyleSheet.create({
   boxContainer: {
     width: width,
@@ -114,5 +115,9 @@ const styles = StyleSheet.create({
     width: width,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+  },
+  image: {
+    resizeMode: 'repeat',
+    width,
   },
 });

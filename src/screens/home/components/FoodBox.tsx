@@ -3,6 +3,7 @@ import { Box, Text, Button } from '../../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Image, View, StyleSheet } from 'react-native';
 import { useTypedSelector, useActions } from '../../../hooks';
+import { AntDesign } from '@expo/vector-icons';
 
 interface PropTypes {
   type: string;
@@ -51,11 +52,24 @@ const FoodBox = (props: PropTypes) => {
       <View style={s.viewImg}>
         <Image source={imageSource(props.type)} style={s.imgStyle} />
       </View>
-      <Text style={s.text}>{name}</Text>
+      <View style={{ alignItems: 'center', marginTop: 20 }}>
+        <Text variant="title3">{name}</Text>
+      </View>
+      <Text style={s.text}></Text>
       <View style={s.buttonContainer}>
-        <Button onPress={handlePlus} label="+" style={{ width: 20, height: 20 }} />
-        <Text>{mealCount}</Text>
-        <Button onPress={handleMinus} label="-" style={{ width: 20, height: 20 }} />
+        <Button
+          onPress={handleMinus}
+          label={<AntDesign name="minus" size={24} color="black" />}
+          style={{ width: 40, height: 40 }}
+        />
+        <View style={{ alignItems: 'center' }}>
+          <Text variant="title2">{mealCount}</Text>
+        </View>
+        <Button
+          onPress={handlePlus}
+          label={<AntDesign name="plus" size={24} color="black" />}
+          style={{ width: 40, height: 40 }}
+        />
       </View>
     </View>
   );
@@ -65,14 +79,30 @@ export default FoodBox;
 const s = StyleSheet.create({
   boxContainer: {
     width: wp('40%'),
-    height: 100,
+    height: 150,
     borderRadius: 20,
-    backgroundColor: '#A9EFD2',
+    backgroundColor: '#F6F6F6',
     marginHorizontal: wp('5%'),
     justifyContent: 'space-between',
     padding: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
   },
-  buttonContainer: { flexDirection: 'row', justifyContent: 'space-between' },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#39D697',
+    borderRadius: 75,
+  },
   viewImg: {
     backgroundColor: '#39D697',
     alignItems: 'center',

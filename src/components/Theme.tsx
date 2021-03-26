@@ -29,7 +29,7 @@ const theme = {
     info: '#808080',
     lightgray: '#F3F4F6',
     gray: '#616164',
-    text: 'rgba(12, 13, 52, 0.7)',
+    text: 'rgba(54, 54, 83, 0.7)',
     textContrast: palette.white,
     background: palette.white,
     background2: '#F6F6F6',
