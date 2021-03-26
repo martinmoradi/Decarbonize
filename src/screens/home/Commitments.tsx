@@ -35,12 +35,12 @@ const Commitments = () => {
     {
       title: 'I switch off my devices in standby.',
       isCommitted: appliances,
-      description: 'Save 6.2kg of carbon emissions per year.',
+      description: 'And save 6.2kg of carbon emissions.',
     },
     {
       title: 'I reduce heating 1 degree.',
       isCommitted: reduced_heating,
-      description: 'Save 201.6kg of carbon emissions per year.',
+      description: 'Save 201.6kg of carbon emissions.',
     },
     {
       title: 'I adopt eco-driving.',
@@ -50,11 +50,23 @@ const Commitments = () => {
     {
       title: 'I drink tap water instead of bottles.',
       isCommitted: tap_water,
-      description: 'Save 215kg of carbon emissions per year.',
+      description: 'Save 215kg of carbon emissions.',
     },
-    { title: 'I reduce my food waste', isCommitted: food_wastes, description: 'Save 31kg ' },
-    { title: 'I do my shopping in bulk', isCommitted: bulk_food },
-    { title: 'I have a zero waste approach', isCommitted: zero_wastes },
+    {
+      title: 'I reduce my food waste',
+      isCommitted: food_wastes,
+      description: 'Save 31kg of carbon emissions.',
+    },
+    {
+      title: 'I do my shopping in bulk',
+      isCommitted: bulk_food,
+      description: 'Save 35kg of carbon emissions.',
+    },
+    {
+      title: 'I have a zero waste approach',
+      isCommitted: zero_wastes,
+      description: 'Save 707.67kg of carbon emissions.',
+    },
   ];
 
   type PropsRenderItem = {
@@ -132,7 +144,7 @@ const Commitments = () => {
           backgroundColor="white"
         >
           <View>
-            <Text variant="title2" color="text">
+            <Text variant="subHeroDark" color="text">
               Take a <Text color="primary">pledge</Text>
             </Text>
           </View>
@@ -144,7 +156,13 @@ const Commitments = () => {
           </View>
 
           {engagementsData.map((item, index) => (
-            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} key={index} />
+            <Tips
+              engagement={item.title}
+              index={index}
+              isEnabled={item.isCommitted}
+              key={index}
+              description={item.description}
+            />
           ))}
         </Box>
       </View>

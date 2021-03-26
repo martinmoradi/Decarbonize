@@ -8,7 +8,6 @@ import React, { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-
 const { width, height } = Dimensions.get('window');
 
 export const aspectRatio = width / 375;
@@ -74,6 +73,13 @@ const theme = {
       lineHeight: 26,
       fontFamily: 'Avenir-Semibold',
       color: 'background',
+      textAlign: 'center',
+    },
+    subHeroDark: {
+      fontSize: 26,
+      lineHeight: 26,
+      fontFamily: 'Avenir-Semibold',
+      color: 'text',
       textAlign: 'center',
     },
     pieChart: {
