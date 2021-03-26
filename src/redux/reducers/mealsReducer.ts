@@ -62,7 +62,7 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
     case MealActionType.FETCH_MEALS_ATTEMPT:
     case MealActionType.POST_MEAL_ATTEMPT:
       return {
-        data: initialState.data,
+        ...state,
         errorMessage: null,
         isLoading: true,
       };
@@ -79,7 +79,7 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
     case MealActionType.FETCH_MEALS_ERROR:
     case MealActionType.POST_MEAL_ERROR:
       return {
-        data: initialState.data,
+        ...state,
         errorMessage: action.payload,
         isLoading: false,
       };
