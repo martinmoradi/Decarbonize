@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Text, Button } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
-import { Dimensions } from 'react-native';
+import { Dimensions, ScrollView, View, StyleSheet } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 const { width } = Dimensions.get('window');
 
@@ -53,74 +57,127 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
   }, []);
 
   return (
-    <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Box
-        marginBottom="s"
-        justifyContent="center"
-        alignItems="center"
-        paddingBottom="m"
-        style={{
-          width: width - 40,
-          height: 100,
-          borderRadius: 20,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 9,
-          },
-          shadowOpacity: 0.5,
-          shadowRadius: 12.35,
-          elevation: 19,
-        }}
-        backgroundColor="primary"
-      >
-        <Text variant="title2" color="white">
-          Query for {route.params.type}: {route.params.query}
-        </Text>
-      </Box>
-      {results[0].name ? (
-        <Box>
-          {results.map(element => {
-            return (
-              <Box
-                alignItems="center"
-                style={{ width: width, height: 80, borderBottomWidth: 2 }}
-                justifyContent="center"
-                backgroundColor="primary"
-                borderBottomColor="white"
-              >
-                <BorderlessButton
-                  style={{ width: width }}
-                  onPress={() => setSelectedResult(element)}
-                >
-                  <Text
-                    variant="button"
-                    color={selectedResult.name === element.name ? 'info' : 'white'}
-                  >
-                    {element.name}
-                  </Text>
-                </BorderlessButton>
-              </Box>
-            );
-          })}
+    <ScrollView style={{ backgroundColor: '#0C0D34' }}>
+      <View style={styles.mainView}>
+        <Box
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
+          backgroundColor="secondary"
+          marginBottom="s"
+        />
+        <Box
+          paddingLeft="m"
+          paddingTop="s"
+          justifyContent="flex-end"
+          paddingBottom="m"
+          style={styles.boxContainer}
+          backgroundColor="secondary"
+          marginBottom="s"
+        >
+          <Text variant="title2" color="white">
+            Results for {route.params.type}: {route.params.query}
+          </Text>
         </Box>
-      ) : (
-        <Text>Chargement...</Text>
-      )}
-
-      <Button
-        variant="primary"
-        label="Valider"
-        onPress={() =>
-          navigation.navigate('NewAirTrip', {
-            type: route.params.type,
-            queryResult: selectedResult,
-          })
-        }
-      />
-      <Button variant="primary" label="Retour" onPress={() => navigation.goBack()} />
-    </Box>
+        <Box
+          alignItems="center"
+          style={styles.boxTravelMode}
+          backgroundColor="lightgray"
+          borderBottomColor="white"
+        >
+          <View
+            style={{
+              borderBottomWidth: 2,
+              borderBottomColor: 'black',
+              width: wp('90%'),
+              alignItems: 'center',
+            }}
+          >
+            <Text variant="title3" margin="s">
+              Pick your choice:
+            </Text>
+          </View>
+          {results[0].name ? (
+            <Box>
+              {results.map(element => {
+                return (
+                  <Box
+                    alignItems="center"
+                    style={{ width: wp('90%'), height: 80, borderBottomWidth: 2 }}
+                    justifyContent="center"
+                    backgroundColor="lightgray"
+                    borderBottomColor="white"
+                  >
+                    <BorderlessButton
+                      style={{ width: width }}
+                      onPress={() => setSelectedResult(element)}
+                    >
+                      <Text
+                        variant="button"
+                        color={selectedResult.name === element.name ? 'primary' : 'black'}
+                      >
+                        {element.name}
+                      </Text>
+                    </BorderlessButton>
+                  </Box>
+                );
+              })}
+            </Box>
+          ) : (
+            <Text>Chargement...</Text>
+          )}
+          <View style={{ flexDirection: 'row' }}>
+            <Button
+              variant="default"
+              style={styles.btnStyle}
+              label="Retour"
+              onPress={() => navigation.goBack()}
+            />
+            <Button
+              variant="primary"
+              style={[styles.btnStyle, { marginLeft: wp('1%') }]}
+              label="Valider"
+              onPress={() =>
+                navigation.navigate('NewAirTrip', {
+                  type: route.params.type,
+                  queryResult: selectedResult,
+                })
+              }
+            />
+          </View>
+        </Box>
+      </View>
+    </ScrollView>
   );
 };
 
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#0C0D34',
+  },
+  boxContainer: {
+    width: width,
+    height: 50,
+    borderBottomEndRadius: 20,
+    borderBottomStartRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxTravelMode: {
+    width: wp('90%'),
+    height: hp('80%'),
+    borderRadius: 20,
+  },
+  btnStyle: {
+    width: 140,
+  },
+});
 export default AirPortResults;

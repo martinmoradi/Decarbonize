@@ -5,6 +5,9 @@ export enum EmissionsActionType {
   FETCH_EMISSIONS_ATTEMPT = 'fetch_emissions_attempt',
   FETCH_EMISSIONS_SUCCESS = 'fetch_emissions_success',
   FETCH_EMISSIONS_ERROR = 'fetch_emissions_error',
+  FETCH_FIXED_EMISSIONS_ATTEMPT = 'fetch_fixed_emissions_attempt',
+  FETCH_FIXED_EMISSIONS_SUCCESS = 'fetch_fixed_emissions_success',
+  FETCH_FIXED_EMISSIONS_ERROR = 'fetch_fixed_emissions_error',
   PUT_EMISSIONS_ATTEMPT = 'put_emissions_attempt',
   PUT_EMISSIONS_SUCCESS = 'put_emissions_success',
   PUT_EMISSIONS_ERROR = 'put_emissions_error',
@@ -50,4 +53,27 @@ export interface EmissionsType {
   total_white_meat_emissions: number;
   total_vegetarian_emissions: number;
   total_vegan_emissions: number;
+}
+
+type WoodsType = 'wood_logs' | 'wood_pellets';
+export interface FixedEmissionsType {
+  breakfasts_per_week: number;
+  red_meats_per_week: number;
+  white_meats_per_week: number;
+  vegan_per_week: number;
+  vegetarian_per_week: number;
+  roommates: number;
+  house_surface: number;
+  electricity_consumption: number;
+  gas_consumption: number;
+  wood_consumption: number;
+  fuel_consumption: number;
+  clothes: number;
+  furnitures: number;
+  others: number;
+  wood_type: WoodsType;
+  id: number;
+  created_at: string;
+  updated_at: string;
+  user_id: number;
 }

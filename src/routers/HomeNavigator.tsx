@@ -5,11 +5,11 @@ import { HomeRoutesList } from './NavigationTypes';
 import Dashboard from '../screens/home/Dashboard';
 import Commitments from '../screens/home/Commitments';
 import History from '../screens/home/History';
-import Settings from '../screens/home/Settings';
 import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
+import SettingNavigator from '../screens/home/SettingsScreens/SettingNavigator';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -27,6 +27,7 @@ const tabs: TabsConfig<BubbleTabBarItemConfig> = {
       activeColor: '#A9EFD2',
       inactiveColor: 'rgba(223,215,243,0)',
     },
+    
   },
   Deeds: {
     labelStyle: {
@@ -114,13 +115,13 @@ const HomeNavigator = () => {
 
   return (
     <HomeTab.Navigator
-      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />}
+      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />} 
     >
       <HomeTab.Screen name="Home" component={Dashboard} />
       <HomeTab.Screen name="Deeds" component={Commitments} />
       <HomeTab.Screen name="New" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={History} />
-      <HomeTab.Screen name="Profile" component={Settings} />
+      <HomeTab.Screen name="Profile" component={SettingNavigator} />
     </HomeTab.Navigator>
   );
 };
@@ -129,6 +130,7 @@ export default HomeNavigator;
 
 const styles = StyleSheet.create({
   tabContainer: {
+    alignItems: "center",
     height: 80,
     alignSelf: 'center',
   },

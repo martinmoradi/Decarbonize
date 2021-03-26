@@ -8,8 +8,8 @@ import {
   ImageBackground,
   StatusBar,
 } from 'react-native';
-import { Text, Box, useTheme, Container } from '../../components';
-import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
+import { Text, Box, useTheme } from '../../components';
+import { EmissionsPieIOS, Trajet, EmissionsPieAndroid } from './components';
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
@@ -38,7 +38,7 @@ const Dashboard = () => {
         source={require('../../components/assets/patterns/3.png')}
         style={styles.image}
       > */}
-      <SafeAreaView>
+      <SafeAreaView style={{paddingTop: hp("2%")}}>
         {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
 
         <Meals />

@@ -4,11 +4,7 @@ import { ButtonGroup } from 'react-native-elements';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {
-  SingleLandTrip,
-  SingleMealType,
-  SingleAirTrip,
-} from '../../redux/types';
+import { SingleLandTrip, SingleMealType, SingleAirTrip } from '../../redux/types';
 import { Dimensions } from 'react-native';
 import { TripHistory, MealHistory } from './components';
 const { width, height } = Dimensions.get('window');
