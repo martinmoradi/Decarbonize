@@ -10,7 +10,7 @@
     "api": "cd api && rails s",
     "postinstall": "npx patch-package" ,
     "railsdb": "cd api && rails db:drop db:create db:migrate db:seed && cd ..",
-    "railsc": "cd api && rails c",
+    "railsc": "cd api && rails c"
 
   },
   "dependencies": {
