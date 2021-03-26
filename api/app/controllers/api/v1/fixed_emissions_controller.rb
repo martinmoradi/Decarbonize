@@ -35,22 +35,20 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
 
   # PATCH/PUT /fixed_emissions/1
   def update
-    @user_emissions =
-      EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
-      if @fixed_emission.update(fixed_emission_params)
-        render json: {
-                 status: {
-                   code: 200,
-                 },
-                 data: {
-                   fixed_emission: @fixed_emission,
-                   user_emissions:
-                     EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
-                 },
-               }
-      else
-        render json: @fixed_emission.errors, status: :unprocessable_entity
-      end
+    if @fixed_emission.update(fixed_emission_params)
+      render json: {
+               status: {
+                 code: 200,
+               },
+               data: {
+                 fixed_emission: @fixed_emission,
+                 user_emissions:
+                   EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+               },
+             }
+    else
+      render json: @fixed_emission.errors, status: :unprocessable_entity
+    end
   end
 
   # DELETE /fixed_emissions/1
