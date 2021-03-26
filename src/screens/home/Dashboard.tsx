@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Platform,
   ImageBackground,
+  StatusBar,
 } from 'react-native';
 import { Text, Box, useTheme, Container } from '../../components';
 import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
@@ -23,6 +24,7 @@ const Dashboard = () => {
 
   return (
     <ScrollView>
+      <StatusBar translucent backgroundColor="transparent" color="white" barStyle="light-content" />
       <ImageBackground
         source={require('../../components/assets/patterns/3.png')}
         style={styles.image}
@@ -33,11 +35,13 @@ const Dashboard = () => {
           <Box
             alignItems="center"
             style={styles.boxInfo}
-            justifyContent="center"
             backgroundColor="lightgray"
             paddingTop="xl"
             marginTop="m"
           >
+            <Text variant="title2" marginBottom="m" style={{ color: theme.colors.secondary }}>
+              Your monthly <Text color="primary">alimentation</Text>
+            </Text>
             <Meals />
           </Box>
 
@@ -87,8 +91,8 @@ const styles = StyleSheet.create({
   },
   boxInfo: {
     width: width,
-    height: 240,
-    borderRadius: 20,
+    height: '30%',
+    borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

@@ -22,10 +22,10 @@ const FoodBox = (props: PropTypes) => {
 
   const imageSource = (type: string) => {
     if (type === 'red_meat') {
-      name = 'Red Meat';
+      name = 'Red meat';
       return require(`../../../../assets/images/red_meat.png`);
     } else if (type === 'white_meat') {
-      name = 'White Meat';
+      name = 'White meat';
       return require(`../../../../assets/images/white_meat.png`);
     } else if (type === 'vegetarian') {
       name = 'Vegetarian';
@@ -60,7 +60,7 @@ const FoodBox = (props: PropTypes) => {
         <Button
           onPress={handleMinus}
           label={<AntDesign name="minus" size={24} color="black" />}
-          style={{ width: 40, height: 40 }}
+          style={s.buttons}
         />
         <View style={{ alignItems: 'center' }}>
           <Text variant="title2">{mealCount}</Text>
@@ -68,7 +68,7 @@ const FoodBox = (props: PropTypes) => {
         <Button
           onPress={handlePlus}
           label={<AntDesign name="plus" size={24} color="black" />}
-          style={{ width: 40, height: 40 }}
+          style={s.buttons}
         />
       </View>
     </View>
@@ -88,19 +88,17 @@ const s = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 2,
     },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
 
-    elevation: 12,
+    elevation: 4,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#39D697',
     borderRadius: 75,
   },
   viewImg: {
@@ -109,6 +107,11 @@ const s = StyleSheet.create({
     padding: 5,
     borderRadius: 10,
   },
+  buttons: {
+    width: 40,
+    height: 40,
+  },
+
   imgStyle: { height: 30, width: 30, tintColor: 'white' },
   text: { marginLeft: wp('7%') },
 });
