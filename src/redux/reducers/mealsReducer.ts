@@ -1,8 +1,6 @@
-import { MealActionType, MealType, EmissionsActionType } from '../types';
+import { MealActionType, MealType } from '../types';
 import { MealsAction } from '../actions';
-import { useDispatch } from 'react-redux';
 
-const dispatch= useDispatch();
 
 interface MealStateType {
   data: MealType;
@@ -58,6 +56,7 @@ const initialState: MealStateType = {
 };
 
 const mealReducer = (state = initialState, action: MealsAction): MealStateType => {
+
   switch (action.type) {
     case MealActionType.DELETE_MEAL_ATTEMPT:
     case MealActionType.FETCH_MEALS_ATTEMPT:
@@ -69,18 +68,10 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
       };
     case MealActionType.DELETE_MEAL_SUCCESS:
     case MealActionType.FETCH_MEALS_SUCCESS:
+    case MealActionType.POST_MEAL_SUCCESS:
+
       return {
         data: action.payload,
-        errorMessage: null,
-        isLoading: false,
-      };
-    case MealActionType.POST_MEAL_SUCCESS:
-      dispatch({
-        type: EmissionsActionType.POST_EMISSIONS_SUCCESS,
-        payload: action.payload.emissions,
-      });
-      return {
-        data: action.payload.meals,
         errorMessage: null,
         isLoading: false,
       };
