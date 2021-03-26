@@ -38,7 +38,7 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
                  code: 200,
                  message: 'Land Trip emission was successfully created',
                },
-               data: { land_trips: @land_trips, air_trips: @air_trips } 
+               data: { trips: {land_trips: @land_trips, air_trips: @air_trips }, emissions: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes]  }
              }
     else
       render json: @land_trip.errors, status: :unprocessable_entity

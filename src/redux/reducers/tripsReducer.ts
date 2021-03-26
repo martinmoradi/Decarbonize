@@ -1,5 +1,8 @@
-import { TripActionType, TripType } from '../types';
+import { TripActionType, TripType, EmissionsActionType } from '../types';
 import { TripAction } from '../actions';
+import { useDispatch } from 'react-redux';
+
+const dispatch = useDispatch();
 
 interface TripStateType {
   data: TripType;
@@ -56,9 +59,19 @@ const tripsReducer = (state = initialState, action: TripAction): TripStateType =
         isTripsEmpty: true,
       };
     case TripActionType.FETCH_TRIPS_SUCCESS:
-    case TripActionType.POST_TRIP_SUCCESS:
       return {
         data: action.payload,
+        errorMessage: null,
+        isLoading: false,
+        isTripsEmpty: false,
+      };
+    case TripActionType.POST_TRIP_SUCCESS:
+      dispatch({
+        type: EmissionsActionType.POST_EMISSIONS_SUCCESS,
+        payload: action.payload.emissions,
+      });
+      return {
+        data: action.payload.trips,
         errorMessage: null,
         isLoading: false,
         isTripsEmpty: false,

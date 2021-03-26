@@ -85,5 +85,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#39D697',
   },
-  imgStyle: { height: 24, width: 24, tintColor: 'white', backgroundColor: '#A9EFD2' },
+  imgStyle: { height: 24, width: 24, tintColor: 'white', backgroundColor: '#39D697' },
 });

@@ -40,10 +40,14 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
                  message: 'Meal emission was successfully created',
                },
                data: {
-                 red_meat_meals: @red_meat_meals,
-                 white_meat_meals: @white_meat_meals,
-                 vegetarian_meals: @vegetarian_meals,
-                 vegan_meals: @vegan_meals,
+                 meals: {
+                   red_meat_meals: @red_meat_meals,
+                   white_meat_meals: @white_meat_meals,
+                   vegetarian_meals: @vegetarian_meals,
+                   vegan_meals: @vegan_meals,
+                 },
+                 emissions:
+                   EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
                },
              }
     else

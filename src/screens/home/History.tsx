@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { Dimensions } from 'react-native';
 import { TripHistory, MealHistory } from './components';
 const { width, height } = Dimensions.get('window');
@@ -25,6 +27,7 @@ const History = () => {
   };
 
   const switchAir = () => {
+    console.log(allMeals);
     setSeleted('Air');
   };
 
@@ -63,7 +66,7 @@ const History = () => {
         data={data.land_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemLand}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `Land${item.id}`}
       />
     );
   } else if (selected === 'Air') {
@@ -72,7 +75,7 @@ const History = () => {
         data={data.air_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemAir}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `Air${item.id}`}
       />
     );
   } else if (selected === 'Meals') {
@@ -81,7 +84,7 @@ const History = () => {
         data={Object.keys(allMeals)}
         style={{ marginBottom: 100 }}
         renderItem={renderItemMeals}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `Meal${item}`}
       />
     );
   }
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     width: width,
-    height: 100,
+    height: hp('18%'),
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
     shadowColor: '#000',
