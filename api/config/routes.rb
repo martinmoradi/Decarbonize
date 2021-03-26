@@ -18,6 +18,7 @@ Rails
         end
         resources :meals
         resource :users
+        resource :user_commitments, only: %i[create destroy]
       end
     end
 

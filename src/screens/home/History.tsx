@@ -15,12 +15,12 @@ const History = () => {
   const { data } = useTypedSelector(state => state.trips);
   const { data: meals } = useTypedSelector(state => state.meals);
   const theme = useTheme();
-  const allMeals = {
-    ...meals.red_meat_meals,
-    ...meals.white_meat_meals,
-    ...meals.vegetarian_meals,
-    ...meals.vegan_meals,
-  };
+  const allMeals = Object.assign({},
+    meals.red_meat_meals,
+    meals.white_meat_meals,
+    meals.vegetarian_meals,
+    meals.vegan_meals,
+  );
 
   const switchLand = () => {
     setSeleted('Land');
