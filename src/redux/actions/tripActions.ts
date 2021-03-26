@@ -28,4 +28,10 @@ interface FetchTripError {
   payload: string;
 }
 
-export type TripAction = PostTripAttempt | PostTripSuccess | PostTripError | FetchTripAttempt| FetchTripSuccess | FetchTripError;
+export type TripAction =
+  | PostTripAttempt
+  | PostTripSuccess
+  | PostTripError
+  | FetchTripAttempt
+  | FetchTripSuccess
+  | FetchTripError;

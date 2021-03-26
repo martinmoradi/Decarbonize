@@ -109,9 +109,9 @@ const HomeNavigator = () => {
     }
   }, [user, isEmpty]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchTrips();
-  }, [])
+  }, []);
 
   return (
     <HomeTab.Navigator

@@ -12,25 +12,32 @@ interface MealHistoryProps {
 }
 
 const MealHistory = (props: MealHistoryProps) => {
-    const [version, setVersion] = React.useState({ image: require(`../../../../assets/images/red_meat.png`), name: 'Red Meat'});
+  const [version, setVersion] = React.useState({
+    image: require(`../../../../assets/images/red_meat.png`),
+    name: 'Red Meat',
+  });
 
   const imageSource = (type: string) => {
     if (type === 'red_meat') {
-      setVersion({image: require(`../../../../assets/images/red_meat.png`), name: 'Red Meat'});
+      setVersion({ image: require(`../../../../assets/images/red_meat.png`), name: 'Red Meat' });
     } else if (type === 'white_meat') {
-      setVersion({image: require(`../../../../assets/images/white_meat.png`), name: 'White Meat'});
+      setVersion({
+        image: require(`../../../../assets/images/white_meat.png`),
+        name: 'White Meat',
+      });
     } else if (type === 'vegetarian') {
-      setVersion({image: require(`../../../../assets/images/Vegetarian.png`), name: 'Vegetarian'});
+      setVersion({
+        image: require(`../../../../assets/images/Vegetarian.png`),
+        name: 'Vegetarian',
+      });
     } else if (type === 'vegan') {
-      setVersion({image: require(`../../../../assets/images/Vegan.png`), name: 'Vegan'});
+      setVersion({ image: require(`../../../../assets/images/Vegan.png`), name: 'Vegan' });
     }
   };
 
   React.useEffect(() => {
-      imageSource(props.type)
-  }, [])
-
-
+    imageSource(props.type);
+  }, []);
 
   return (
     <Box
@@ -76,7 +83,7 @@ const styles = StyleSheet.create({
     marginLeft: wp('5%'),
     padding: 5,
     borderRadius: 10,
-    backgroundColor:'#39D697'
+    backgroundColor: '#39D697',
   },
-  imgStyle: { height: 24, width: 24, tintColor: 'white',  backgroundColor: '#A9EFD2', },
+  imgStyle: { height: 24, width: 24, tintColor: 'white', backgroundColor: '#39D697' },
 });
