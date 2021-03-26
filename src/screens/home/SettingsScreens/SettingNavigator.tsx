@@ -17,9 +17,6 @@ export const SettingNavigator = () => {
     fetchFixedEmissions();
   }, []);
 
-  const { data } = useTypedSelector(state => state.fixedEmissions);
-  console.log('data:', data);
-
   return (
     <SettingsStack.Navigator headerMode="none">
       <SettingsStack.Screen name="Settings" component={Settings} />

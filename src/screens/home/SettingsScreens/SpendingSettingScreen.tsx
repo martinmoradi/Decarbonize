@@ -2,25 +2,34 @@ import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Dimensions } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { useDispatch } from 'react-redux';
 import { SliderOnboarding } from '../../authentication/components';
-import { PropsSlide } from '../../authentication/types';
 import { Box, Button, Text } from '../../../components';
-import { useTypedSelector } from '../../../hooks';
-import { OnboardingFoodActionType } from '../../../redux/types';
-
+import { useActions, useTypedSelector } from '../../../hooks';
+import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 const { width } = Dimensions.get('window');
 
-const SpendingSettingScreen = ({ onPress }: PropsSlide) => {
-  const { spending, energy } = useTypedSelector(state => state.onboarding);
-  const [clothes, setClothes] = useState(spending.clothes);
-  const [furniture, setFurniture] = useState(spending.furniture);
-  const [hobbies, setHobbies] = useState(spending.others);
+const SpendingSettingScreen = ({
+  navigation,
+}: SettingsStackNavigationProps<'SettingsSpending'>) => {
+  const { putFixedEmissions } = useActions();
+  const { data } = useTypedSelector(state => state.fixedEmissions);
 
-  const dispatch = useDispatch();
+  const { clothes, furnitures, others, id } = data;
+
+  const [clothesSetting, setClothesSetting] = useState(clothes);
+  const [furnituresSetting, setFurnituresSetting] = useState(furnitures);
+  const [hobbiesSetting, setHobbiesSetting] = useState(others);
+
+  const editSpending = {
+    ...data,
+    clothes: clothesSetting,
+    furnitures: furnituresSetting,
+    others: hobbiesSetting,
+  };
 
   const handlePress = () => {
-    onPress();
+    putFixedEmissions(editSpending, id);
+    navigation.navigate('Settings');
   };
 
   return (
@@ -55,10 +64,10 @@ const SpendingSettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{clothes} € / month (clothes)</Text>
+            <Text variant="body">{clothesSetting} € / month (clothes)</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setClothes(value)}
-              value={clothes}
+              onValueChange={(value: number) => setClothesSetting(value)}
+              value={clothesSetting}
               step={10}
               maximumValue={1000}
               minimumValue={0}
@@ -71,10 +80,10 @@ const SpendingSettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{furniture} € / month (furnitures)</Text>
+            <Text variant="body">{furnituresSetting} € / month (furnitures)</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setFurniture(value)}
-              value={furniture}
+              onValueChange={(value: number) => setFurnituresSetting(value)}
+              value={furnituresSetting}
               step={10}
               maximumValue={1000}
               minimumValue={0}
@@ -87,17 +96,17 @@ const SpendingSettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{hobbies} € / month (hobbies)</Text>
+            <Text variant="body">{hobbiesSetting} € / month (hobbies)</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setHobbies(value)}
-              value={hobbies}
+              onValueChange={(value: number) => setHobbiesSetting(value)}
+              value={hobbiesSetting}
               step={10}
               maximumValue={1000}
               minimumValue={0}
             />
           </Box>
         </Box>
-        <Button variant="default" onPress={() => handlePress} label="Edit" style={{ margin: 10 }} />
+        <Button variant="default" onPress={handlePress} label="Edit" style={{ margin: 10 }} />
       </View>
     </ScrollView>
   );

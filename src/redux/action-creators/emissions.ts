@@ -112,7 +112,7 @@ export const fetchFixedEmissions = () => {
   };
 };
 
-export const putFixedEmissions = (settingData: SettingType) => {
+export const putFixedEmissions = (settingData: SettingType, id: number) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
     dispatch({
       type: EmissionsActionType.PUT_EMISSIONS_ATTEMPT,
@@ -122,7 +122,7 @@ export const putFixedEmissions = (settingData: SettingType) => {
       if (!token) throw new Error('No token found');
       const fixed_emissions = {... settingData};
       const response = await fetch(
-        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions`,
+        `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions/${id}`,
         {
           method: 'PUT',
           headers: headers(token),
@@ -134,8 +134,12 @@ export const putFixedEmissions = (settingData: SettingType) => {
         throw new Error(error);
       }
       dispatch({
-        type: EmissionsActionType.PUT_EMISSIONS_SUCCESS,
-        payload: data,
+        type: EmissionsActionType.FETCH_FIXED_EMISSIONS_SUCCESS,
+        payload: data.fixed_emission,
+      });
+      dispatch({
+        type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
+        payload: data.user_emissions,
       });
     } catch (err) {
       dispatch({

@@ -69,6 +69,11 @@ export interface FixedEmissionsType {
   wood_consumption: number;
   fuel_consumption: number;
   clothes: number;
-  furniture: number;
+  furnitures: number;
   others: number;
+  wood_type: WoodsType;
+  id: number;
+  created_at: string;
+  updated_at: string;
+  user_id: number;
 }

@@ -1,30 +1,46 @@
 import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Dimensions } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { useDispatch } from 'react-redux';
 import { SliderOnboarding } from '../../authentication/components';
-import { PropsSlide } from '../../authentication/types';
-import { Box, Button, Text, useTheme } from '../../../components';
-import { useTypedSelector } from '../../../hooks';
-import { OnboardingEnergyActionType } from '../../../redux/types';
+import { Box, Button, Text } from '../../../components';
+import { useActions, useTypedSelector } from '../../../hooks';
+import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 
 const { width } = Dimensions.get('window');
 
-const EnergySettingScreen = ({ onPress }: PropsSlide) => {
-  const theme = useTheme();
-  const dispatch = useDispatch();
-  const { energy } = useTypedSelector(state => state.onboarding);
-  const [roommates, setRoommates] = useState(energy.roommates);
-  const [electricityConsumption, setElectricityConsumption] = useState(
-    energy.electricity_consumption
+const EnergySettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsEnergy'>) => {
+  const { putFixedEmissions } = useActions();
+  const { data } = useTypedSelector(state => state.fixedEmissions);
+
+  const {
+    roommates,
+    electricity_consumption,
+    house_surface,
+    fuel_consumption,
+    gas_consumption,
+    id,
+  } = data;
+
+  const [roommatesSetting, setRoommatesSetting] = useState(roommates);
+  const [electricityConsumptionSetting, setElectricityConsumptionSetting] = useState(
+    electricity_consumption
   );
-  const [houseSurface, setHouseSurface] = useState(energy.house_surface);
-  const [isFuelHeating, setIsFuelHeating] = useState(energy.isFuelHeating);
-  const [fuel, setFuel] = useState(energy.fuel_consumption);
-  const [gas, setGas] = useState(energy.gas_consumption);
+  const [houseSurfaceSetting, setHouseSurfaceSetting] = useState(house_surface);
+  const [fuelSetting, setFuelSetting] = useState(fuel_consumption);
+  const [gasSetting, setGasSetting] = useState(gas_consumption);
+
+  const editEnergy = {
+    ...data,
+    roommates: roommatesSetting,
+    electricity_consumption: electricityConsumptionSetting,
+    house_surface: houseSurfaceSetting,
+    fuel_consumption: fuelSetting,
+    gas_consumption: gasSetting,
+  };
 
   const handlePress = () => {
-    onPress();
+    putFixedEmissions(editEnergy, id);
+    navigation.navigate('Settings');
   };
 
   return (
@@ -59,10 +75,10 @@ const EnergySettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{roommates} roommates </Text>
+            <Text variant="body">{roommatesSetting} roommates </Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setRoommates(value)}
-              value={roommates}
+              onValueChange={(value: number) => setRoommatesSetting(value)}
+              value={roommatesSetting}
               step={1}
               maximumValue={10}
               minimumValue={0}
@@ -75,10 +91,10 @@ const EnergySettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{houseSurface} m²</Text>
+            <Text variant="body">{houseSurfaceSetting} m²</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setHouseSurface(value)}
-              value={houseSurface}
+              onValueChange={(value: number) => setHouseSurfaceSetting(value)}
+              value={houseSurfaceSetting}
               step={5}
               maximumValue={300}
               minimumValue={0}
@@ -91,10 +107,10 @@ const EnergySettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{electricityConsumption} € / month (electricity)</Text>
+            <Text variant="body">{electricityConsumptionSetting} € / month (electricity)</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setElectricityConsumption(value)}
-              value={electricityConsumption}
+              onValueChange={(value: number) => setElectricityConsumptionSetting(value)}
+              value={electricityConsumptionSetting}
               step={10}
               maximumValue={300}
               minimumValue={20}
@@ -107,10 +123,10 @@ const EnergySettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{fuel} € / month (fuel)</Text>
+            <Text variant="body">{fuelSetting} € / month (fuel)</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setFuel(value)}
-              value={fuel}
+              onValueChange={(value: number) => setFuelSetting(value)}
+              value={fuelSetting}
               step={10}
               maximumValue={300}
               minimumValue={0}
@@ -123,17 +139,17 @@ const EnergySettingScreen = ({ onPress }: PropsSlide) => {
             backgroundColor="lightgray"
             borderBottomColor="white"
           >
-            <Text variant="body">{gas} € / month (gas)</Text>
+            <Text variant="body">{gasSetting} € / month (gas)</Text>
             <SliderOnboarding
-              onValueChange={(value: number) => setGas(value)}
-              value={gas}
+              onValueChange={(value: number) => setGasSetting(value)}
+              value={gasSetting}
               step={10}
               maximumValue={300}
               minimumValue={0}
             />
           </Box>
         </Box>
-        <Button variant="default" onPress={() => handlePress} label="Edit" style={{ margin: 10 }} />
+        <Button variant="default" onPress={handlePress} label="Edit" style={{ margin: 10 }} />
       </View>
     </ScrollView>
   );
