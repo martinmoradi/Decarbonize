@@ -46,7 +46,8 @@ export const fetchMeals = () => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
-      const response = await fetch(`https://perruches-decarbonize.herokuapp.com/api/v1/meals`, {
+
+      const response = await fetch('https://perruches-decarbonize.herokuapp.com/api/v1/meals', {
         method: 'GET',
         headers: headers(token),
       });
@@ -68,7 +69,9 @@ export const fetchMeals = () => {
 };
 
 export const deleteMeal = (id: number) => {
+
   return async (dispatch: Dispatch<MealsAction  | EmissionsAction>) => {
+
     dispatch({
       type: MealActionType.DELETE_MEAL_ATTEMPT,
     });
@@ -93,6 +96,7 @@ export const deleteMeal = (id: number) => {
       dispatch({
         type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
         payload: data.emissions,
+
       });
     } catch (err) {
       dispatch({

@@ -15,15 +15,19 @@ const History = () => {
   const { data } = useTypedSelector(state => state.trips);
   const { data: meals } = useTypedSelector(state => state.meals);
   const theme = useTheme();
-  const allMeals = {...meals.red_meat_meals, ...meals.white_meat_meals, ...meals.vegetarian_meals, ...meals.vegan_meals}
-
+  const allMeals = {
+    ...meals.red_meat_meals,
+    ...meals.white_meat_meals,
+    ...meals.vegetarian_meals,
+    ...meals.vegan_meals,
+  };
 
   const switchLand = () => {
     setSeleted('Land');
   };
 
   const switchAir = () => {
-    console.log(allMeals)
+    console.log(allMeals);
     setSeleted('Air');
   };
 
@@ -47,14 +51,13 @@ const History = () => {
     />
   );
 
-  const renderItemMeals = ({index})=>(
+  const renderItemMeals = ({ index }) => (
     <MealHistory
-    type={allMeals[index].meal_type}
-    amount={allMeals[index].amount}
-    date={allMeals[index].created_at}
+      type={allMeals[index].meal_type}
+      amount={allMeals[index].amount}
+      date={allMeals[index].created_at}
     />
-  )
-
+  );
 
   let choice;
   if (selected === 'Land') {
@@ -77,14 +80,14 @@ const History = () => {
     );
   } else if (selected === 'Meals') {
     choice = (
-    <FlatList
-      data={Object.keys(allMeals)}
-      style={{ marginBottom: 100 }}
-      renderItem={renderItemMeals}
-      keyExtractor={item => `Meal${item}`}
-    />);
+      <FlatList
+        data={Object.keys(allMeals)}
+        style={{ marginBottom: 100 }}
+        renderItem={renderItemMeals}
+        keyExtractor={item => `Meal${item}`}
+      />
+    );
   }
-
 
   return (
     <View>

@@ -10,14 +10,14 @@ interface PropTypes {
 
 const FoodBox = (props: PropTypes) => {
   const { data } = useTypedSelector(state => state.meals);
-  const { postMeal,fetchMeals , deleteMeal } = useActions();
+  const { postMeal, fetchMeals, deleteMeal } = useActions();
   const mealCount = Object.keys(data[`${props.type}` + '_meals']).length;
   const last_meal = data[`${props.type}` + '_meals'][0];
   let name;
 
-  React.useEffect(()=>{
-    fetchMeals()
-  }, [])
+  React.useEffect(() => {
+    fetchMeals();
+  }, []);
 
   const imageSource = (type: string) => {
     if (type === 'red_meat') {
@@ -36,10 +36,10 @@ const FoodBox = (props: PropTypes) => {
   };
 
   const handleMinus = () => {
-    if(!(mealCount > 0)){
+    if (!(mealCount > 0)) {
       return;
     }
-      deleteMeal(last_meal.id);
+    deleteMeal(last_meal.id);
   };
 
   const handlePlus = () => {

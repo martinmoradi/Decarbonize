@@ -7,7 +7,6 @@ import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
 const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>) => {
   const { logout } = useActions();
 
-
   return (
     <View
       style={{
@@ -25,8 +24,6 @@ const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>
         style={{ margin: 5 }}
         onPress={() => navigation.navigate('SettingsEmission')}
       />
-
-
     </View>
   );
 };

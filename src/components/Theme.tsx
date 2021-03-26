@@ -8,6 +8,7 @@ import React, { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
+
 const { width, height } = Dimensions.get('window');
 
 export const aspectRatio = width / 375;
@@ -32,6 +33,13 @@ const theme = {
     textContrast: palette.white,
     background: palette.white,
     background2: '#F6F6F6',
+  },
+
+  chartPalette: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600', '#9d02d7', '#0000ff'],
+
+  dimensions: {
+    height,
+    width,
   },
 
   spacing: {
@@ -66,6 +74,12 @@ const theme = {
       lineHeight: 26,
       fontFamily: 'Avenir-Semibold',
       color: 'background',
+      textAlign: 'center',
+    },
+    pieChart: {
+      fontSize: 26,
+      lineHeight: 26,
+      fontFamily: 'Avenir-Semibold',
       textAlign: 'center',
     },
     title1: {
@@ -147,6 +161,8 @@ const theme = {
     buttonStyle: {
       backgroundColor: palette.green,
       borderRadius: 20,
+      borderWidth: 1,
+      borderColor: 'lightgray',
     },
     title: {
       height: 100,

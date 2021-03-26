@@ -6,7 +6,7 @@ const Meals = () => {
   return (
     <View>
       <View style={s.lineContainer}>
-        <FoodBox type={'red_meat'}  />
+        <FoodBox type={'red_meat'} />
         <FoodBox type={'white_meat'} />
       </View>
       <View style={s.lineContainer}>
@@ -18,7 +18,5 @@ const Meals = () => {
 };
 export default Meals;
 const s = StyleSheet.create({
-  
-    lineContainer: {flexDirection: 'row', marginBottom: 10}, 
-    
-  });
+  lineContainer: { flexDirection: 'row', marginBottom: 10 },
+});
