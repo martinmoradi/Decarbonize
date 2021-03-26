@@ -72,18 +72,13 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
     @vegetarian_meals = Meal.vegetarian.where(user_id: current_user.id).order(created_at: :desc)
     @vegan_meals = Meal.vegan.where(user_id: current_user.id).order(created_at: :desc)
     if @meal.destroy(params[:id])
-      render json: {
-               status: {
-                 code: 200,
-                 message: 'Meal was successfully destroyed',
-               },
-               data: {
-                 red_meat_meals: @red_meat_meals,
-                 white_meat_meals: @white_meat_meals,
-                 vegetarian_meals: @vegetarian_meals,
-                 vegan_meals: @vegan_meals,
-               },
-             }
+
+      render json: {status: {
+        code: 200,
+        message: 'Meal was successfully destroyed',
+      },
+      data: {meals: {red_meat_meals: @red_meat_meals, white_meat_meals: @white_meat_meals, vegetarian_meals: @vegetarian_meals, vegan_meals: @vegan_meals}, emissions: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes] }}
+
     else
       render json: @meal.errors, status: :unprocessable_entity
     end
