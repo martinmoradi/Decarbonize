@@ -6,7 +6,6 @@ import { ThemeProvider } from './src/components/Theme';
 import AuthRouter from './src/routers/AuthRouter';
 import { store } from './src/redux';
 import { Provider } from 'react-redux';
-
 import { enableScreens } from 'react-native-screens';
 
 enableScreens();

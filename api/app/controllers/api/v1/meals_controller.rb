@@ -29,11 +29,11 @@ class Api::V1::MealsController < Api::V1::ApiBaseController
   def create
     @meal = Meal.new(meal_params)
     @meal.user_id = current_user.id
-    @red_meat_meals = Meal.red_meat.where(user_id: current_user.id).order(created_at: :desc)
-    @white_meat_meals = Meal.white_meat.where(user_id: current_user.id).order(created_at: :desc)
-    @vegetarian_meals = Meal.vegetarian.where(user_id: current_user.id).order(created_at: :desc)
-    @vegan_meals = Meal.vegan.where(user_id: current_user.id).order(created_at: :desc)
     if @meal.save
+      @red_meat_meals = Meal.red_meat.where(user_id: current_user.id).order(created_at: :desc)
+      @white_meat_meals = Meal.white_meat.where(user_id: current_user.id).order(created_at: :desc)
+      @vegetarian_meals = Meal.vegetarian.where(user_id: current_user.id).order(created_at: :desc)
+      @vegan_meals = Meal.vegan.where(user_id: current_user.id).order(created_at: :desc)
       render json: {
                status: {
                  code: 200,

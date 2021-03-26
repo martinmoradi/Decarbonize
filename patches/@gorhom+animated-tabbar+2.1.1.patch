@@ -1,5 +1,5 @@
 diff --git a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts
-index cde2589..d8428d3 100644
+index cde2589..76859a7 100644
 --- a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts
 +++ b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts
 @@ -1,8 +1,12 @@
@@ -18,11 +18,12 @@ index cde2589..d8428d3 100644
      alignSelf: 'flex-start',
      alignItems: 'center',
 diff --git a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts
-index 80e16ec..daea601 100644
+index 7bc88f4..23e8e7b 100644
 --- a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts
 +++ b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts
-@@ -1,9 +1,12 @@
+@@ -1,11 +1,12 @@
  import { StyleSheet } from 'react-native';
+-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 +import { widthPercentageToDP as wp}  from 'react-native-responsive-screen';
 +
  
@@ -31,7 +32,9 @@ index 80e16ec..daea601 100644
      backgroundColor: 'white',
      justifyContent: 'center',
 -    paddingHorizontal: 24,
+-    marginHorizontal: wp('-2%')
 +    marginLeft: 2,
 +    minWidth: wp('100%')
    },
  });
+\ No newline at end of file
