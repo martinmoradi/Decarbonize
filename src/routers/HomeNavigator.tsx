@@ -93,7 +93,7 @@ const tabs: TabsConfig<BubbleTabBarItemConfig> = {
 
 const HomeNavigator = () => {
   const { isEmpty } = useTypedSelector(state => state.emissions);
-  const { isTripsEmpty, data } = useTypedSelector(state => state.trips);
+  const { isTripsEmpty, isLoading } = useTypedSelector(state => state.trips);
   const { user } = useTypedSelector(state => state.authentication);
   const { food, energy, spending } = useTypedSelector(state => state.onboarding);
   const { postForm, fetchEmissions, fetchTrips } = useActions();

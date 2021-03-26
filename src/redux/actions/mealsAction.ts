@@ -42,6 +42,10 @@ interface DeleteMealError {
   payload: string;
 }
 
+interface MealsReset {
+  type: MealActionType.MEALS_RESET;
+}
+
 export type MealsAction =
   | PostMealAttempt
   | PostMealSuccess
@@ -51,4 +55,5 @@ export type MealsAction =
   | FetchMealError
   | DeleteMealAttempt
   | DeleteMealSuccess
-  | DeleteMealError;
+  | DeleteMealError
+  | MealsReset;

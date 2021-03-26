@@ -1,5 +1,6 @@
 export type PropsSlide = {
   onPress: () => void;
+  goBack: ()=> void;
 };
 
 export type PropsSlideTop = {

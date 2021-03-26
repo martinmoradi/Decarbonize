@@ -28,10 +28,15 @@ interface FetchTripError {
   payload: string;
 }
 
+interface TripsReset {
+  type: TripActionType.TRIPS_RESET;
+}
+
 export type TripAction =
   | PostTripAttempt
   | PostTripSuccess
   | PostTripError
   | FetchTripAttempt
   | FetchTripSuccess
-  | FetchTripError;
+  | FetchTripError
+  | TripsReset;
