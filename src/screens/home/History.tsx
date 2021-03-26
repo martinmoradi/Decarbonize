@@ -63,7 +63,7 @@ const History = () => {
         data={data.land_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemLand}
-        keyExtractor={item => `Land${item.created_at}`}
+        keyExtractor={item => `Land${item.created_at}${item.amount}${item.id}`}
       />
     );
   } else if (selected === 1) {
@@ -72,7 +72,7 @@ const History = () => {
         data={data.air_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemAir}
-        keyExtractor={item => `Air${item.created_at}`}
+        keyExtractor={item => `Air$${item.created_at}${item.amount}${item.id}`}
       />
     );
   } else if (selected === 2) {
@@ -81,7 +81,7 @@ const History = () => {
         data={allMeals}
         style={{ marginBottom: 100 }}
         renderItem={renderItemMeals}
-        keyExtractor={item => `Meal${item.created_at}`}
+        keyExtractor={item => `Meal$${item.created_at}${item.amount}${item.id}`}
       />
     );
   }

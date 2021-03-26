@@ -22,7 +22,7 @@ const Meals = () => {
       </Text>
       <Box style={styles.boxStyle}>
         <Text variant="body" style={{ marginBottom: hp('2%') }}>
-          Track your emissions by what you have eaten this month.
+          Every meal added will update your emissions
         </Text>
         <View style={styles.lineContainer}>
           <FoodBox type={'red_meat'} />
