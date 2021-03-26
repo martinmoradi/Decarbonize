@@ -30,7 +30,10 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
           marginBottom="s"
         >
           <Text variant="title2" color="white">
-            ADD A NEW <Text variant="title2" color="primary">TRIP</Text> 
+            ADD A NEW{' '}
+            <Text variant="title2" style={{ color: '#39D697' }}>
+              TRIP
+            </Text>
           </Text>
         </Box>
         <View style={styles.viewContainer}>
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
     elevation: 19,
   },
   imgStyle: {
-    height: 120,
+    height: 130,
     width: wp('90%'),
     borderRadius: 15,
   },
