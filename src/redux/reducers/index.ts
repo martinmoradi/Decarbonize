@@ -10,8 +10,9 @@ const reducers = combineReducers({
   trips: tripsReducer,
   emissions: emissionsReducer,
   onboarding: onboardingReducer,
-  meals: mealReducer,
+  meals: mealReducer
 });
+
 
 export default reducers;
 

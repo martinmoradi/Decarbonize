@@ -7,6 +7,8 @@ import {
 import React, { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const { width, height } = Dimensions.get('window');
 
@@ -30,7 +32,7 @@ const theme = {
     info: '#808080',
     lightgray: '#F3F4F6',
     gray: '#616164',
-    text: 'rgba(12, 13, 52, 0.7)',
+    text: 'rgba(54, 54, 83, 0.7)',
     textContrast: palette.white,
     background: palette.white,
     background2: '#F6F6F6',
@@ -64,7 +66,7 @@ const theme = {
       textAlign: 'center',
     },
     heroHome: {
-      fontSize: 60,
+      fontSize: 50,
       lineHeight: 60,
       fontFamily: 'Avenir-Bold',
       color: 'background',
@@ -75,6 +77,13 @@ const theme = {
       lineHeight: 26,
       fontFamily: 'Avenir-Semibold',
       color: 'background',
+      textAlign: 'center',
+    },
+    subHeroDark: {
+      fontSize: 26,
+      lineHeight: 26,
+      fontFamily: 'Avenir-Semibold',
+      color: 'text',
       textAlign: 'center',
     },
     pieChart: {
@@ -95,6 +104,12 @@ const theme = {
     },
     title2: {
       fontSize: 24,
+      lineHeight: 30,
+      fontFamily: 'Avenir-Semibold',
+      color: 'secondary',
+    },
+    titleCard: {
+      fontSize: 30,
       lineHeight: 30,
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',

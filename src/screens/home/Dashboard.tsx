@@ -1,6 +1,14 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
-import { Text, Box, useTheme } from '../../components';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Platform,
+  ImageBackground,
+  StatusBar,
+} from 'react-native';
+import { Text, Box, useTheme, Container } from '../../components';
 import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
@@ -9,43 +17,34 @@ import Meals from './components/Meals';
 import AirplaneJourney from './components/AirplaneJourney';
 import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const Dashboard = () => {
+  const image = [require('../../components/assets/patterns/1.png')] as const;
   const theme = useTheme();
 
   return (
     <ScrollView>
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primaryLight,
+          backgroundColor: theme.colors.secondary,
         }}
       ></View>
+      {/* <ImageBackground
+        source={require('../../components/assets/patterns/3.png')}
+        style={styles.image}
+      > */}
       <SafeAreaView>
-        <MeteoBar />
-
         {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
 
-        <Box
-          marginTop="s"
-          paddingTop="m"
-          marginBottom="s"
-          style={[styles.boxInfo]}
-          justifyContent="center"
-          backgroundColor="primary"
-        >
-          <Box
-            alignItems="center"
-            style={styles.boxInfo}
-            justifyContent="center"
-            backgroundColor="white"
-          >
-            <Meals />
-          </Box>
-        </Box>
+        <Meals />
         <Box
           marginTop="m"
-          paddingTop="m"
+          paddingVertical="m"
           style={styles.boxTravel}
           justifyContent="center"
           backgroundColor="white"
@@ -62,6 +61,8 @@ const Dashboard = () => {
           <SubwayJourney />
         </Box>
       </SafeAreaView>
+
+      {/* </ImageBackground> */}
     </ScrollView>
   );
 };
@@ -69,25 +70,13 @@ const Dashboard = () => {
 export default Dashboard;
 
 const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   boxContainer: {
     width: width,
-    height: 155,
+    height: hp('30%'),
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 12.35,
-    elevation: 19,
-  },
-  boxInfo: {
-    width: width,
-    height: 240,
-    borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -114,5 +103,9 @@ const styles = StyleSheet.create({
     width: width,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+  },
+  image: {
+    resizeMode: 'repeat',
+    width,
   },
 });

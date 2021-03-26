@@ -83,6 +83,10 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
         errorMessage: action.payload,
         isLoading: false,
       };
+      case MealActionType.MEALS_RESET:
+        return {
+          ...initialState,
+        };
     default:
       return state;
   }

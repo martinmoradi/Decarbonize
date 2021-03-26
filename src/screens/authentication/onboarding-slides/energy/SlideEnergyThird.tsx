@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from '../../../../components/Button';
 import { Text, useTheme } from '../../../../components/Theme';
@@ -9,8 +9,9 @@ import { SliderOnboarding } from '../../components';
 import { useTypedSelector } from '../../../../hooks';
 import { useDispatch } from 'react-redux';
 import { OnboardingEnergyActionType } from '../../../../redux/types';
+import { Ionicons } from '@expo/vector-icons';
 
-const SlideEnergyThird = ({ onPress }: PropsSlide) => {
+const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { energy } = useTypedSelector(state => state.onboarding);
@@ -83,7 +84,10 @@ const SlideEnergyThird = ({ onPress }: PropsSlide) => {
             alignItems: 'center',
           }}
         >
-          <Button variant="default" onPress={handlePress} label="Next" />
+          <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
+          <TouchableOpacity onPress={goBack}>
+            <Ionicons name="md-return-down-back" size={24} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -95,4 +99,5 @@ export default SlideEnergyThird;
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
+  button: { marginBottom: 10 },
 });

@@ -13,7 +13,7 @@ const Footer = ({ onPress, title, action }: FooterProps) => {
   return (
     <>
       <SocialLogin />
-      <Box alignItems="center" marginTop="m">
+      <Box alignItems="center" marginTop="m" marginBottom="m">
         <BorderlessButton {...{ onPress }}>
           <Text variant="button" color="background">
             <Text>{`${title} `}</Text>

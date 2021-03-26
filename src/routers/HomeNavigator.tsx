@@ -10,6 +10,7 @@ import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
+import SettingNavigator from '../screens/home/SettingsScreens/SettingNavigator';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -92,7 +93,7 @@ const tabs: TabsConfig<BubbleTabBarItemConfig> = {
 
 const HomeNavigator = () => {
   const { isEmpty } = useTypedSelector(state => state.emissions);
-  const { isTripsEmpty, data } = useTypedSelector(state => state.trips);
+  const { isTripsEmpty, isLoading } = useTypedSelector(state => state.trips);
   const { user } = useTypedSelector(state => state.authentication);
   const { food, energy, spending } = useTypedSelector(state => state.onboarding);
   const { postForm, fetchEmissions, fetchTrips } = useActions();
@@ -120,7 +121,7 @@ const HomeNavigator = () => {
       <HomeTab.Screen name="Deeds" component={Commitments} />
       <HomeTab.Screen name="New" component={NewTripNavigator} />
       <HomeTab.Screen name="History" component={History} />
-      <HomeTab.Screen name="Profile" component={Settings} />
+      <HomeTab.Screen name="Profile" component={SettingNavigator} />
     </HomeTab.Navigator>
   );
 };
