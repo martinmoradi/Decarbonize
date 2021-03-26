@@ -4,10 +4,9 @@ class Api::V1::UserCommitmentsController < Api::V1::ApiBaseController
   # POST /user_commitments
   def create
     @user_commitment = UserCommitment.new(user_commitment_params)
-    puts user_commitment_params
     @user_commitment.user_id = current_user.id
 
-    if @commitment.save
+    if @user_commitment.save
       render json: {
                status: {
                  code: 200,
@@ -35,7 +34,7 @@ class Api::V1::UserCommitmentsController < Api::V1::ApiBaseController
   # Use callbacks to share common setup or constraints between actions.
   def set_user_commitment
     @user_commitment =
-      UserCommitment.where(user_id: current_user.id).find_by(commitment_id: commitment.id)
+      UserCommitment.where(user_id: current_user.id).find_by(user_commitment_params)
   end
 
   # Only allow a list of trusted parameters through.

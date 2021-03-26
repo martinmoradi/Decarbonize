@@ -11,9 +11,5 @@ export {
   OnboardingEnergyStateType,
   OnboardingSpendingStateType,
 } from './onboardingTypes';
-export {
-  SettingSpendingType,
-  SettingType,
-  SettingFoodType,
-  SettingEnergyType,
-} from './SettingTypes';
+export { UserCommitmentsActionType, UserCommitmentsType } from './userCommitmentsTypes';
+export { SettingSpendingType, SettingType, SettingFoodType, SettingEnergyType } from './SettingTypes';

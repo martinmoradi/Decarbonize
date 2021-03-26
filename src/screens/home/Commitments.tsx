@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, ScrollView, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import {
@@ -31,41 +31,63 @@ const Commitments = () => {
 
   const scroll = useRef<Carousel<string>>(null);
 
+  const [appliancesCommitment, setAppliancesCommitment] = useState(appliances);
+  const [reducedHeatingCommitment, setReducedHeatingCommitment] = useState(reduced_heating);
+  const [ecoDrivingCommitment, setEcoDrivingCommitment] = useState(eco_driving);
+  const [tapWaterCommitment, setTapWaterCommitment] = useState(tap_water);
+  const [foodWastesCommitment, setFoodWastesCommitment] = useState(food_wastes);
+  const [bulkFoodCommitment, setBulkFoodCommitment] = useState(bulk_food);
+  const [zeroWastesCommitment, setZeroWastesCommitment] = useState(zero_wastes);
+
   const engagementsData = [
     {
-      title: 'I switch off my devices in standby',
-      isCommitted: appliances,
-      description: 'Save up to 6.2kg of carbon emissions!',
+      title: 'I switch off my devices in standby.',
+      description: 'And save 6.2kg of carbon emissions.',
+      isCommitted: appliancesCommitment,
+      commitmentId: 1,
+      onChangeToggle: setAppliancesCommitment,
     },
     {
       title: 'I turn down the heating by 1°C',
-      isCommitted: reduced_heating,
-      description: 'Save up to 201.6kg of carbon emissions!',
+      description: 'Save 201.6kg of carbon emissions.',
+      isCommitted: reducedHeatingCommitment,
+      commitmentId: 2,
+      onChangeToggle: setReducedHeatingCommitment,
     },
     {
-      title: 'I adopt eco-driving',
-      isCommitted: eco_driving,
-      description: 'Reduce all cars emissions by 15%!',
+      title: 'I adopt eco-driving.',
+      description: 'Reduce all cars emissions by 15%.',
+      isCommitted: ecoDrivingCommitment,
+      commitmentId: 3,
+      onChangeToggle: setEcoDrivingCommitment,
     },
     {
-      title: 'I drink tap water instead of bottles',
-      isCommitted: tap_water,
-      description: 'Save up to 215kg of carbon emissions!',
+      title: 'I drink tap water instead of bottles.',
+      description: 'Save 215kg of carbon emissions.',
+      isCommitted: tapWaterCommitment,
+      commitmentId: 4,
+      onChangeToggle: setTapWaterCommitment,
     },
     {
       title: 'I reduce my food waste',
-      isCommitted: food_wastes,
-      description: 'Save up to 31kg of carbon emissions!',
+      description: 'Save 31kg of carbon emissions.',
+      isCommitted: foodWastesCommitment,
+      commitmentId: 5,
+      onChangeToggle: setFoodWastesCommitment,
     },
     {
       title: 'I do my shopping in bulk',
-      isCommitted: bulk_food,
-      description: 'Save up to 35kg of carbon emissions!',
+      description: 'Save 35kg of carbon emissions.',
+      isCommitted: bulkFoodCommitment,
+      commitmentId: 6,
+      onChangeToggle: setBulkFoodCommitment,
     },
     {
       title: 'I have a zero waste approach',
-      isCommitted: zero_wastes,
-      description: 'Save up to 707.67kg of carbon emissions!',
+      description: 'Save 707.67kg of carbon emissions.',
+      isCommitted: zeroWastesCommitment,
+      commitmentId: 7,
+      onChangeToggle: setZeroWastesCommitment,
     },
   ];
 
@@ -160,8 +182,10 @@ const Commitments = () => {
               engagement={item.title}
               index={index}
               isEnabled={item.isCommitted}
-              key={index}
+              commitmentId={item.commitmentId}
+              onChangeToggle={item.onChangeToggle}
               description={item.description}
+              key={index}
             />
           ))}
         </Box>

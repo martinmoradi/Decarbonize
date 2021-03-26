@@ -6,16 +6,33 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { AntDesign } from '@expo/vector-icons';
+import { useActions } from '../../../hooks';
 
 type PropsDeeds = {
   engagement: string;
   index: number;
   isEnabled: boolean;
+  commitmentId: number;
   description: string;
+  onChangeToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Deeds = ({ engagement, index, isEnabled, description }: PropsDeeds) => {
+const Deeds = ({
+  engagement,
+  index,
+  isEnabled,
+  description,
+  commitmentId,
+  onChangeToggle,
+}: PropsDeeds) => {
+  const { postUserCommitments, delUserCommitments } = useActions();
   const [toggleInfo, setToggleInfo] = useState(false);
+
+  const toggleSwitch = (isEnabled: boolean, commitmentId: number) => {
+    if (!isEnabled) delUserCommitments(commitmentId);
+    if (isEnabled) postUserCommitments(commitmentId);
+    onChangeToggle(isEnabled);
+  };
 
   return (
     <Box
@@ -59,6 +76,7 @@ const Deeds = ({ engagement, index, isEnabled, description }: PropsDeeds) => {
         trackColor={{ false: '#003f5c', true: '#39D697' }}
         thumbColor="#f4f3f4"
         ios_backgroundColor="#003f5c"
+        onValueChange={() => toggleSwitch(!isEnabled, commitmentId)}
         value={isEnabled}
       />
     </Box>
