@@ -58,6 +58,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
   switch (action.type) {
     case EmissionsActionType.FETCH_EMISSIONS_ATTEMPT:
     case EmissionsActionType.POST_EMISSIONS_ATTEMPT:
+      case EmissionsActionType.PUT_EMISSIONS_ATTEMPT:
       return {
         data: initialState.data,
         errorMessage: null,
@@ -66,6 +67,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
       };
     case EmissionsActionType.FETCH_EMISSIONS_SUCCESS:
     case EmissionsActionType.POST_EMISSIONS_SUCCESS:
+      case EmissionsActionType.PUT_EMISSIONS_SUCCESS:
       return {
         data: action.payload,
         errorMessage: null,
@@ -74,6 +76,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
       };
     case EmissionsActionType.FETCH_EMISSIONS_ERROR:
     case EmissionsActionType.POST_EMISSIONS_ERROR:
+      case EmissionsActionType.PUT_EMISSIONS_ERROR:
       return {
         data: initialState.data,
         errorMessage: action.payload,
