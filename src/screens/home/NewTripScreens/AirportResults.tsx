@@ -128,18 +128,25 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
           ) : (
             <Text>Chargement...</Text>
           )}
-
-          <Button
-            variant="primary"
-            label="Valider"
-            onPress={() =>
-              navigation.navigate('NewAirTrip', {
-                type: route.params.type,
-                queryResult: selectedResult,
-              })
-            }
-          />
-          <Button variant="primary" label="Retour" onPress={() => navigation.goBack()} />
+          <View style={{ flexDirection: 'row' }}>
+            <Button
+              variant="default"
+              style={styles.btnStyle}
+              label="Retour"
+              onPress={() => navigation.goBack()}
+            />
+            <Button
+              variant="primary"
+              style={[styles.btnStyle, { marginLeft: wp('1%') }]}
+              label="Valider"
+              onPress={() =>
+                navigation.navigate('NewAirTrip', {
+                  type: route.params.type,
+                  queryResult: selectedResult,
+                })
+              }
+            />
+          </View>
         </Box>
       </View>
     </ScrollView>
@@ -168,6 +175,9 @@ const styles = StyleSheet.create({
     width: wp('90%'),
     height: hp('80%'),
     borderRadius: 20,
+  },
+  btnStyle: {
+    width: 140,
   },
 });
 export default AirPortResults;

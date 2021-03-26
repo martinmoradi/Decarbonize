@@ -46,7 +46,8 @@ const AirPortSearch = ({ route, navigation }: TripStackNavigationProps<'AirPortS
             backgroundColor="lightgray"
           >
             <Text variant="title2">
-              {route.params.type}{' '}
+              {route.params.type.charAt(0).toUpperCase()}
+              {route.params.type.slice(1)}{' '}
               <Text variant="title2" style={{ color: '#39D697' }}>
                 Airport
               </Text>
