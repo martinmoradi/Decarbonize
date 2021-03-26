@@ -53,7 +53,6 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   );
 
   return (
-    <Box style={{ maxHeight: height }}>
       <Container pattern={0} {...{ footer }}>
         <Text variant="title1" textAlign="center" marginBottom="l">
           Create account
@@ -144,7 +143,6 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
           </Box>
         </Box>
       </Container>
-    </Box>
   );
 };
 
