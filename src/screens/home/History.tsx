@@ -5,8 +5,6 @@ import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import {
-  TripType,
-  MealType,
   SingleLandTrip,
   SingleMealType,
   SingleAirTrip,
@@ -69,7 +67,7 @@ const History = () => {
         data={data.land_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemLand}
-        keyExtractor={item => `Land${item.id}`}
+        keyExtractor={item => `Land${item.created_at}`}
       />
     );
   } else if (selected === 1) {
@@ -78,7 +76,7 @@ const History = () => {
         data={data.air_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemAir}
-        keyExtractor={item => `Air${item.id}`}
+        keyExtractor={item => `Air${item.created_at}`}
       />
     );
   } else if (selected === 2) {
@@ -87,7 +85,7 @@ const History = () => {
         data={allMeals}
         style={{ marginBottom: 100 }}
         renderItem={renderItemMeals}
-        keyExtractor={item => `Meal${item}`}
+        keyExtractor={item => `Meal${item.created_at}`}
       />
     );
   }
