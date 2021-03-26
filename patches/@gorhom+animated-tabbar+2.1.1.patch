@@ -1,0 +1,40 @@
+diff --git a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts
+index cde2589..76859a7 100644
+--- a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts
++++ b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/item/styles.ts
+@@ -1,8 +1,12 @@
+ import { StyleSheet } from 'react-native';
++import { widthPercentageToDP as wp}  from 'react-native-responsive-screen';
+ 
+ export const styles = StyleSheet.create({
+-  container: {},
+-  contentContainer: {},
++  container: {
++    marginHorizontal: (-4)
++  },
++  contentContainer: {
++  },
+   iconContainer: {
+     alignSelf: 'flex-start',
+     alignItems: 'center',
+diff --git a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts
+index 7bc88f4..23e8e7b 100644
+--- a/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts
++++ b/node_modules/@gorhom/animated-tabbar/src/presets/bubble/styles.ts
+@@ -1,11 +1,12 @@
+ import { StyleSheet } from 'react-native';
+-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
++import { widthPercentageToDP as wp}  from 'react-native-responsive-screen';
++
+ 
+ export const styles = StyleSheet.create({
+   container: {
+     backgroundColor: 'white',
+     justifyContent: 'center',
+-    paddingHorizontal: 24,
+-    marginHorizontal: wp('-2%')
++    marginLeft: 2,
++    minWidth: wp('100%')
+   },
+ });
+\ No newline at end of file

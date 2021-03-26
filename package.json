@@ -8,9 +8,10 @@
     "eject": "expo eject",
     "bundle": "cd api && bundle && cd ..",
     "api": "cd api && rails s",
-    "postinstall": "rndebugger-open",
+    "postinstall": "npx patch-package" ,
     "railsdb": "cd api && rails db:drop db:create db:migrate db:seed && cd ..",
-    "railsc": "cd api && rails c"
+    "railsc": "cd api && rails c",
+
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.4",
