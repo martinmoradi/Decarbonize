@@ -38,7 +38,7 @@ const Dashboard = () => {
         source={require('../../components/assets/patterns/3.png')}
         style={styles.image}
       > */}
-      <SafeAreaView>
+      <SafeAreaView style={{paddingTop: StatusBar.currentHeight - hp("3%")}}>
         {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
 
         <Meals />
