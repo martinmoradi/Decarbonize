@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 interface TextButtonProps {
-  variant: 'default' | 'primary';
+  variant: 'default' | 'primary' | 'primaryLight';
   label?: string | JSX.Element;
   onPress: () => void;
   style?: RectButtonProperties['style'];
@@ -36,3 +36,19 @@ const Button = ({ label, onPress, variant, style }: TextButtonProps) => {
 Button.defaultProps = { variant: 'default' };
 
 export default Button;
+
+export const ButtonSecondary = ({ label, onPress, variant, style }: TextButtonProps) => {
+  const theme = useTheme();
+  const backgroundColor =
+    variant === 'primary' ? theme.colors.primaryLight : theme.colors.background2;
+  const color = variant === 'primary' ? theme.colors.black : theme.colors.secondary;
+  return (
+    <RectButton style={[styles.container, style, { backgroundColor }]} {...{ onPress }}>
+      <Text variant="button" style={{ color }}>
+        {label}
+      </Text>
+    </RectButton>
+  );
+};
+
+Button.defaultProps = { variant: 'default' };

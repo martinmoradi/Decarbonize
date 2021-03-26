@@ -8,7 +8,6 @@ import React, { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-
 const { width, height } = Dimensions.get('window');
 
 export const aspectRatio = width / 375;
@@ -17,11 +16,13 @@ export const palette = {
   green: '#39D697',
   white: 'white',
   yellow: '#FFC641',
+  black: '#000',
 };
 
 const theme = {
   colors: {
     white: palette.white,
+    black: palette.black,
     primary: palette.green,
     primaryLight: '#A9EFD2',
     secondary: '#0C0D34',
