@@ -7,7 +7,8 @@ import {
 import React, { ReactNode } from 'react';
 import { Platform } from 'react-native';
 import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
-
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const { width, height } = Dimensions.get('window');
 
@@ -63,7 +64,7 @@ const theme = {
       textAlign: 'center',
     },
     heroHome: {
-      fontSize: 60,
+      fontSize: 50,
       lineHeight: 60,
       fontFamily: 'Avenir-Bold',
       color: 'background',
