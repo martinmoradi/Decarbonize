@@ -53,96 +53,100 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   );
 
   return (
-      <Container pattern={0} {...{ footer }}>
-        <Text variant="title1" textAlign="center" marginBottom="l">
-          Create account
+    <Container pattern={0} {...{ footer }}>
+      <Text variant="title1" textAlign="center" marginBottom="l">
+        Create account
+      </Text>
+      <Text variant="body" textAlign="center" marginBottom="l">
+        Let’s us know what your email and your password
+      </Text>
+      {errorMessage ? (
+        <Text
+          variant="body"
+          style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
+          textAlign="center"
+          marginBottom="l"
+        >
+          errorMessage
         </Text>
-        <Text variant="body" textAlign="center" marginBottom="l">
-          Let’s us know what your email and your password
-        </Text>
-        {errorMessage ? (
-          <Text
-            variant="body"
-            style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
-            textAlign="center"
-            marginBottom="l"
-          >
-            errorMessage
-          </Text>
-        ) : null}
-        <Box>
-          <Box marginBottom="m">
-            <TextInput
-              icon="mail"
-              placeholder="Enter your Email"
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              error={errors.email}
-              touched={touched.email}
-              autoCapitalize="none"
-              autoCompleteType="email"
-              returnKeyType="next"
-              returnKeyLabel="next"
-              onSubmitEditing={() => password.current?.focus()}
-            />
-          </Box>
-
-          <Box marginBottom="m">
-            <TextInput
-              ref={password}
-              icon="lock"
-              placeholder="Enter your Password"
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              error={errors.password}
-              touched={touched.password}
-              autoCompleteType="password"
-              autoCapitalize="none"
-              returnKeyType="go"
-              returnKeyLabel="go"
-              onSubmitEditing={() => passwordConfirmation.current?.focus()}
-              secureTextEntry
-            />
-          </Box>
-
-          <Box marginBottom="m">
-            <TextInput
-              ref={passwordConfirmation}
-              icon="lock"
-              placeholder="Confirm your Password"
-              onChangeText={handleChange('passwordConfirmation')}
-              onBlur={handleBlur('passwordConfirmation')}
-              error={errors.passwordConfirmation}
-              touched={touched.passwordConfirmation}
-              autoCompleteType="password"
-              autoCapitalize="none"
-              returnKeyType="go"
-              returnKeyLabel="go"
-              onSubmitEditing={() => handleSubmit()}
-              secureTextEntry
-            />
-          </Box>
-          <Box
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
-            marginVertical="s"
-          >
-            <Checkbox
-              label="Remember me"
-              checked={values.remember}
-              onChange={() => setFieldValue('remember', !values.remember)}
-            />
-          </Box>
-          <Box alignItems="center" marginTop="m">
-            {isLoading ? (
-              <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator  color="#ffffff"/>} />
-            ) : (
-              <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
-            )}
-          </Box>
+      ) : null}
+      <Box>
+        <Box marginBottom="m">
+          <TextInput
+            icon="mail"
+            placeholder="Enter your Email"
+            onChangeText={handleChange('email')}
+            onBlur={handleBlur('email')}
+            error={errors.email}
+            touched={touched.email}
+            autoCapitalize="none"
+            autoCompleteType="email"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            onSubmitEditing={() => password.current?.focus()}
+          />
         </Box>
-      </Container>
+
+        <Box marginBottom="m">
+          <TextInput
+            ref={password}
+            icon="lock"
+            placeholder="Enter your Password"
+            onChangeText={handleChange('password')}
+            onBlur={handleBlur('password')}
+            error={errors.password}
+            touched={touched.password}
+            autoCompleteType="password"
+            autoCapitalize="none"
+            returnKeyType="go"
+            returnKeyLabel="go"
+            onSubmitEditing={() => passwordConfirmation.current?.focus()}
+            secureTextEntry
+          />
+        </Box>
+
+        <Box marginBottom="m">
+          <TextInput
+            ref={passwordConfirmation}
+            icon="lock"
+            placeholder="Confirm your Password"
+            onChangeText={handleChange('passwordConfirmation')}
+            onBlur={handleBlur('passwordConfirmation')}
+            error={errors.passwordConfirmation}
+            touched={touched.passwordConfirmation}
+            autoCompleteType="password"
+            autoCapitalize="none"
+            returnKeyType="go"
+            returnKeyLabel="go"
+            onSubmitEditing={() => handleSubmit()}
+            secureTextEntry
+          />
+        </Box>
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          marginVertical="s"
+        >
+          <Checkbox
+            label="Remember me"
+            checked={values.remember}
+            onChange={() => setFieldValue('remember', !values.remember)}
+          />
+        </Box>
+        <Box alignItems="center" marginTop="m">
+          {isLoading ? (
+            <Button
+              variant="primary"
+              onPress={handleSubmit}
+              label={<ActivityIndicator color="#ffffff" />}
+            />
+          ) : (
+            <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
+          )}
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
