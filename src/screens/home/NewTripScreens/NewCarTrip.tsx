@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Button, Checkbox, useTheme } from '../../../components';
+import { Box, Text, Button, Checkbox } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers';
 import { useActions, useTypedSelector } from '../../../hooks';
 import {
@@ -76,9 +76,6 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
         >
           <Image source={require('../../../../assets/images/car.jpg')} style={styles.imgStyle} />
         </Box>
-        <Box
-          style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: hp('2%') }}
-        ></Box>
         {errorMessage ? (
           <Text
             variant="body"
