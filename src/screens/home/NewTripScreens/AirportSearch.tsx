@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   boxDistance: {
     width: width - 40,
-    height: 300,
+    height: 250,
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {

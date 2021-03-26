@@ -94,6 +94,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           style={styles.boxDistance}
           backgroundColor="lightgray"
         >
+          <View style={{ padding: 3 }} />
           <Text variant="title3">
             Choose your{' '}
             <Text variant="title3" style={{ color: '#39D697' }}>
