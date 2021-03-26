@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, Box } from '../../components';
+import { View, ScrollView, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, Box, useTheme } from '../../components';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -10,9 +10,14 @@ import Carousel from 'react-native-snap-carousel';
 import Tips from './components/Tips';
 import { ecologyFacts } from './data/ecologyFacts';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 const { width, height } = Dimensions.get('window');
 
 const Commitments = () => {
+  const theme = useTheme();
+
   const emissions = useTypedSelector(state => state.emissions.data);
   const {
     appliances,
@@ -27,13 +32,41 @@ const Commitments = () => {
   const scroll = useRef<Carousel<string>>(null);
 
   const engagementsData = [
-    { title: 'Switch off my devices in standby', isCommitted: appliances },
-    { title: 'Reduce heating 1 degree', isCommitted: reduced_heating },
-    { title: 'Adopt eco-driving', isCommitted: eco_driving },
-    { title: 'I drink tap water instead of bottles', isCommitted: tap_water },
-    { title: 'Reduce my food waste', isCommitted: food_wastes },
-    { title: 'Do your shopping in bulk', isCommitted: bulk_food },
-    { title: 'A zero waste approach', isCommitted: zero_wastes },
+    {
+      title: 'I switch off my devices in standby.',
+      isCommitted: appliances,
+      description: 'And save 6.2kg of carbon emissions.',
+    },
+    {
+      title: 'I turn down the heating by 1°C',
+      isCommitted: reduced_heating,
+      description: 'Save 201.6kg of carbon emissions.',
+    },
+    {
+      title: 'I adopt eco-driving.',
+      isCommitted: eco_driving,
+      description: 'Reduce all cars emissions by 15%.',
+    },
+    {
+      title: 'I drink tap water instead of bottles.',
+      isCommitted: tap_water,
+      description: 'Save 215kg of carbon emissions.',
+    },
+    {
+      title: 'I reduce my food waste',
+      isCommitted: food_wastes,
+      description: 'Save 31kg of carbon emissions.',
+    },
+    {
+      title: 'I do my shopping in bulk',
+      isCommitted: bulk_food,
+      description: 'Save 35kg of carbon emissions.',
+    },
+    {
+      title: 'I have a zero waste approach',
+      isCommitted: zero_wastes,
+      description: 'Save 707.67kg of carbon emissions.',
+    },
   ];
 
   type PropsRenderItem = {
@@ -59,7 +92,7 @@ const Commitments = () => {
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         ></Box>
         <Box
@@ -71,10 +104,16 @@ const Commitments = () => {
         >
           <TouchableOpacity onPress={() => scroll.current?.snapToPrev()}>
             <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
-              {'<'}
+              <AntDesign name="doubleleft" size={24} color="black" />
             </Text>
           </TouchableOpacity>
           <View style={{ width: width - 100 }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Text variant="subHeroHome" style={{ position: 'absolute', top: hp('-5%') }}>
+                Did you <Text style={{ color: theme.colors.primary }}>know</Text> ?{' '}
+                <MaterialCommunityIcons name="head-question-outline" size={24} color="#F6F6F6" />
+              </Text>
+            </View>
             <Carousel
               data={ecologyFacts}
               renderItem={renderItem}
@@ -92,7 +131,7 @@ const Commitments = () => {
           </View>
           <TouchableOpacity onPress={() => scroll.current?.snapToNext()}>
             <Text variant="title1" margin="s" style={{ opacity: 0.4 }}>
-              {'>'}
+              <AntDesign name="doubleright" size={24} color="black" />
             </Text>
           </TouchableOpacity>
         </Box>
@@ -104,11 +143,26 @@ const Commitments = () => {
           justifyContent="center"
           backgroundColor="white"
         >
-          <Text variant="title3" color="white" margin="s">
-            Engagements :
-          </Text>
+          <View>
+            <Text variant="subHeroDark" color="text">
+              Take a <Text color="primary">pledge</Text>
+            </Text>
+          </View>
+          <View style={{ marginBottom: hp('3%') }}>
+            <Text variant="title3" color="text">
+              and reduce your annual emissions{' '}
+              <MaterialCommunityIcons name="tree-outline" size={24} color="#39D697" />
+            </Text>
+          </View>
+
           {engagementsData.map((item, index) => (
-            <Tips engagement={item.title} index={index} isEnabled={item.isCommitted} key={index} />
+            <Tips
+              engagement={item.title}
+              index={index}
+              isEnabled={item.isCommitted}
+              key={index}
+              description={item.description}
+            />
           ))}
         </Box>
       </View>
@@ -127,7 +181,7 @@ const styles = StyleSheet.create({
   mainView: {
     alignItems: 'center',
     flex: 1,
-    backgroundColor: '#39D697',
+    backgroundColor: '#0C0D34',
   },
   boxStyle: {
     marginBottom: hp('2.5%'),
@@ -145,6 +199,7 @@ const styles = StyleSheet.create({
   boxContainer: {
     width: width,
     height: 50,
+    marginBottom: '20%',
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
     shadowColor: '#000',
