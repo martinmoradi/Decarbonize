@@ -18,7 +18,12 @@ class Api::V1::CommitmentsController < Api::V1::ApiBaseController
     @commitment = Commitment.new(commitment_params)
 
     if @commitment.save
-      render json: @commitment, status: :created, location: @commitment
+      render json: {
+               status: {
+                 code: 200,
+               },
+               data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+             }
     else
       render json: @commitment.errors, status: :unprocessable_entity
     end
@@ -36,6 +41,12 @@ class Api::V1::CommitmentsController < Api::V1::ApiBaseController
   # DELETE /commitments/1
   def destroy
     @commitment.destroy
+    render json: {
+             status: {
+               code: 200,
+             },
+             data: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+           }
   end
 
   private
