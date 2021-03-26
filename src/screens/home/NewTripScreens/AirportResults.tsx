@@ -57,7 +57,7 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
   }, []);
 
   return (
-    <ScrollView style={{ backgroundColor: '#39D697' }}>
+    <ScrollView style={{ backgroundColor: '#0C0D34' }}>
       <View style={styles.mainView}>
         <Box
           paddingLeft="m"
@@ -65,7 +65,7 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         />
         <Box
@@ -74,7 +74,7 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         >
           <Text variant="title2" color="white">
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#39D697',
+    backgroundColor: '#0C0D34',
   },
   boxContainer: {
     width: width,

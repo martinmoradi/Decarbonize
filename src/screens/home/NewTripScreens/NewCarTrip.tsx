@@ -17,7 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 import { ButtonSecondary } from '../../../components/Button';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
   const { postCommonTrip } = useActions();
@@ -55,8 +55,9 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
       distance: tripData.distance,
     });
   };
+
   return (
-    <ScrollView style={{ backgroundColor: '#39D697' }}>
+    <ScrollView style={{ backgroundColor: '#0C0D34' }}>
       <View style={styles.mainView}>
         <Box
           paddingLeft="m"
@@ -64,7 +65,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         ></Box>
         <Box
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#39D697',
+    backgroundColor: '#0C0D34',
   },
   boxContainer: {
     width: width,
