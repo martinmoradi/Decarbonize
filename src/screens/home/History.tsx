@@ -27,7 +27,6 @@ const History = () => {
   };
 
   const switchAir = () => {
-    console.log(allMeals);
     setSeleted('Air');
   };
 

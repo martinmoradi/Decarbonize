@@ -12,7 +12,8 @@ const { width } = Dimensions.get('window');
 
 const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsFood'>) => {
   const { putFixedEmissions } = useActions();
-  const { data } = useTypedSelector(state => state.fixedEmissions);
+  const { energy, food, spending } = useTypedSelector(state => state.onboarding);
+  console.log('food:', food);
 
   const {
     breakfasts_per_week,
@@ -20,8 +21,7 @@ const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'Setting
     white_meats_per_week,
     vegetarian_per_week,
     vegan_per_week,
-    id,
-  } = data;
+  } = food;
 
   const [breakfastSetting, setBreakfastSetting] = useState(breakfasts_per_week);
   const [redMeatSetting, setRedMeatSetting] = useState(red_meats_per_week);
@@ -30,7 +30,8 @@ const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'Setting
   const [veganMeatSetting, setVeganMeatSetting] = useState(vegan_per_week);
 
   const editFood: SettingFoodType = {
-    ...data,
+    ...energy,
+    ...spending,
     breakfasts_per_week: breakfastSetting,
     red_meats_per_week: redMeatSetting,
     white_meats_per_week: whiteMeatSetting,
@@ -39,7 +40,7 @@ const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'Setting
   };
 
   const handlePress = () => {
-    putFixedEmissions(editFood, id);
+    putFixedEmissions(editFood);
     navigation.navigate('Settings');
   };
 

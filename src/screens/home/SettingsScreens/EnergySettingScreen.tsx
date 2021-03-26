@@ -10,7 +10,7 @@ const { width } = Dimensions.get('window');
 
 const EnergySettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsEnergy'>) => {
   const { putFixedEmissions } = useActions();
-  const { data } = useTypedSelector(state => state.fixedEmissions);
+  const { energy, food, spending } = useTypedSelector(state => state.onboarding);
 
   const {
     roommates,
@@ -18,8 +18,7 @@ const EnergySettingScreen = ({ navigation }: SettingsStackNavigationProps<'Setti
     house_surface,
     fuel_consumption,
     gas_consumption,
-    id,
-  } = data;
+  } = energy;
 
   const [roommatesSetting, setRoommatesSetting] = useState(roommates);
   const [electricityConsumptionSetting, setElectricityConsumptionSetting] = useState(
@@ -30,7 +29,8 @@ const EnergySettingScreen = ({ navigation }: SettingsStackNavigationProps<'Setti
   const [gasSetting, setGasSetting] = useState(gas_consumption);
 
   const editEnergy = {
-    ...data,
+    ...food,
+    ...spending,
     roommates: roommatesSetting,
     electricity_consumption: electricityConsumptionSetting,
     house_surface: houseSurfaceSetting,
@@ -39,7 +39,7 @@ const EnergySettingScreen = ({ navigation }: SettingsStackNavigationProps<'Setti
   };
 
   const handlePress = () => {
-    putFixedEmissions(editEnergy, id);
+    putFixedEmissions(editEnergy);
     navigation.navigate('Settings');
   };
 

@@ -12,23 +12,24 @@ const SpendingSettingScreen = ({
   navigation,
 }: SettingsStackNavigationProps<'SettingsSpending'>) => {
   const { putFixedEmissions } = useActions();
-  const { data } = useTypedSelector(state => state.fixedEmissions);
+  const { energy, food, spending } = useTypedSelector(state => state.onboarding);
 
-  const { clothes, furnitures, others, id } = data;
+  const { clothes, furniture, others } = spending;
 
   const [clothesSetting, setClothesSetting] = useState(clothes);
-  const [furnituresSetting, setFurnituresSetting] = useState(furnitures);
+  const [furnituresSetting, setFurnituresSetting] = useState(furniture);
   const [hobbiesSetting, setHobbiesSetting] = useState(others);
 
   const editSpending = {
-    ...data,
+    ...food,
+    ...energy,
     clothes: clothesSetting,
     furnitures: furnituresSetting,
     others: hobbiesSetting,
   };
 
   const handlePress = () => {
-    putFixedEmissions(editSpending, id);
+    putFixedEmissions(editSpending);
     navigation.navigate('Settings');
   };
 
