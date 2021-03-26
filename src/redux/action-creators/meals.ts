@@ -1,11 +1,11 @@
 import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../tools/api';
-import { MealsAction } from '../actions';
-import { MealType, MealActionType } from '../types';
+import { MealsAction, EmissionsAction } from '../actions';
+import { MealType, MealActionType, EmissionsActionType } from '../types';
 
 export const postMeal = (mealType: string) => {
-  return async (dispatch: Dispatch<MealsAction>) => {
+  return async (dispatch: Dispatch<MealsAction | EmissionsAction>) => {
     dispatch({
       type: MealActionType.POST_MEAL_ATTEMPT,
     });
@@ -26,7 +26,11 @@ export const postMeal = (mealType: string) => {
       }
       dispatch({
         type: MealActionType.POST_MEAL_SUCCESS,
-        payload: data,
+        payload: data.meals,
+      });
+      dispatch({
+        type: EmissionsActionType.POST_EMISSIONS_SUCCESS,
+        payload: data.emissions,
       });
     } catch (err) {
       dispatch({
@@ -60,6 +64,7 @@ export const fetchMeals = () => {
           type: MealActionType.FETCH_MEALS_SUCCESS,
           payload: data,
         });
+    
       } catch (err) {
         dispatch({
           type: MealActionType.FETCH_MEALS_ERROR,
