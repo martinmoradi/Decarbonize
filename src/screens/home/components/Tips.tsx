@@ -28,9 +28,10 @@ const Tips = ({
   const { postUserCommitments, delUserCommitments } = useActions();
   const [toggleInfo, setToggleInfo] = useState(false);
 
-  const toggleSwitch = () => {
-    isEnabled ? delUserCommitments(commitmentId) : postUserCommitments(commitmentId);
-    onChangeToggle(!isEnabled);
+  const toggleSwitch = (isEnabled: boolean, commitmentId: number) => {
+    if (!isEnabled) delUserCommitments(commitmentId);
+    if (isEnabled) postUserCommitments(commitmentId);
+    onChangeToggle(isEnabled);
   };
 
   return (
@@ -62,7 +63,7 @@ const Tips = ({
         trackColor={{ false: '#003f5c', true: '#39D697' }}
         thumbColor="#f4f3f4"
         ios_backgroundColor="#003f5c"
-        onValueChange={toggleSwitch}
+        onValueChange={() => toggleSwitch(!isEnabled, commitmentId)}
         value={isEnabled}
       />
     </Box>

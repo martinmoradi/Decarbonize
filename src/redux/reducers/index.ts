@@ -3,7 +3,6 @@ import authReducer from './authReducer';
 import tripsReducer from './tripsReducer';
 import emissionsReducer from './emissionsReducer';
 import onboardingReducer from './onboarding';
-import userCommitmentsReducer from './userCommitmentsReducer'
 import mealReducer from './mealsReducer';
 
 const reducers = combineReducers({
@@ -11,7 +10,6 @@ const reducers = combineReducers({
   trips: tripsReducer,
   emissions: emissionsReducer,
   onboarding: onboardingReducer,
-  commitments: userCommitmentsReducer,
   meals: mealReducer,
 });
 

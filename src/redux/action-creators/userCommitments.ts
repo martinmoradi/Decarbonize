@@ -6,6 +6,7 @@ import { EmissionsAction, UserCommitmentsAction } from '../actions';
 
 
 export const postUserCommitments = (commitment: number) => {
+  console.log('commitment:', commitment)
   return async (dispatch: Dispatch<UserCommitmentsAction | EmissionsAction>) => {
     dispatch({ 
       type: UserCommitmentsActionType.POST_USER_COMMITMENTS_ATTEMPT,
@@ -22,6 +23,7 @@ export const postUserCommitments = (commitment: number) => {
         }
       );
       const { data, error } = await response.json();
+      console.log('data post commitments:', data)
       if (!response.ok) {
         throw new Error(error);
       }
