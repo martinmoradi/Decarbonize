@@ -1,39 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
+import { ButtonGroup } from 'react-native-elements';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
+import { SingleLandTrip, SingleMealType, SingleAirTrip } from '../../redux/types';
 import { Dimensions } from 'react-native';
 import { TripHistory, MealHistory } from './components';
 const { width, height } = Dimensions.get('window');
 import { useTypedSelector } from '../../hooks';
-import TextButton from '../../components/TextButton';
 
 const History = () => {
-  const [selected, setSeleted] = React.useState('Land');
+  const [selected, setSelected] = useState<number>(0);
   const { data } = useTypedSelector(state => state.trips);
   const { data: meals } = useTypedSelector(state => state.meals);
+
   const theme = useTheme();
-  const allMeals = Object.assign({},
-    meals.red_meat_meals,
-    meals.white_meat_meals,
-    meals.vegetarian_meals,
-    meals.vegan_meals,
-  );
 
-  const switchLand = () => {
-    setSeleted('Land');
+  const allMeals = [
+    ...meals.red_meat_meals,
+    ...meals.white_meat_meals,
+    ...meals.vegetarian_meals,
+    ...meals.vegan_meals,
+  ];
+
+  type ItemLandTrip = {
+    item: SingleLandTrip;
   };
 
-  const switchAir = () => {
-    setSeleted('Air');
+  type ItemAirTrip = {
+    item: SingleAirTrip;
   };
 
-  const switchMeals = () => {
-    setSeleted('Meals');
+  type ItemMeal = {
+    item: SingleMealType;
   };
-  const renderItemLand = ({ item }) => (
+  const renderItemLand = ({ item }: ItemLandTrip) => (
     <TripHistory
       type={item.vehicle_type}
       distance={item.distance}
@@ -41,7 +43,7 @@ const History = () => {
       date={item.created_at}
     />
   );
-  const renderItemAir = ({ item }) => (
+  const renderItemAir = ({ item }: ItemAirTrip) => (
     <TripHistory
       type="plane"
       distance={item.distance}
@@ -50,73 +52,69 @@ const History = () => {
     />
   );
 
-  const renderItemMeals = ({ index }) => (
-    <MealHistory
-      type={allMeals[index].meal_type}
-      amount={allMeals[index].amount}
-      date={allMeals[index].created_at}
-    />
+  const renderItemMeals = ({ item }: ItemMeal) => (
+    <MealHistory type={item.meal_type} amount={item.amount} date={item.created_at} />
   );
 
   let choice;
-  if (selected === 'Land') {
+  if (selected === 0) {
     choice = (
       <FlatList
         data={data.land_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemLand}
-        keyExtractor={item => `Land${item.id}`}
+        keyExtractor={item => `Land${item.created_at}${item.amount}${item.id}`}
       />
     );
-  } else if (selected === 'Air') {
+  } else if (selected === 1) {
     choice = (
       <FlatList
         data={data.air_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemAir}
-        keyExtractor={item => `Air${item.id}`}
+        keyExtractor={item => `Air$${item.created_at}${item.amount}${item.id}`}
       />
     );
-  } else if (selected === 'Meals') {
+  } else if (selected === 2) {
     choice = (
       <FlatList
-        data={Object.keys(allMeals)}
+        data={allMeals}
         style={{ marginBottom: 100 }}
         renderItem={renderItemMeals}
-        keyExtractor={item => `Meal${item}`}
+        keyExtractor={item => `Meal$${item.created_at}${item.amount}${item.id}`}
       />
     );
   }
 
+  const buttons = ['Trips', 'Air trips', 'Meals'];
   return (
     <View>
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.background2,
+          backgroundColor: theme.colors.secondary,
         }}
       ></View>
-      <Box
-        paddingLeft="m"
-        paddingTop="s"
-        justifyContent="flex-end"
-        paddingBottom="m"
-        style={styles.boxContainer}
-        backgroundColor="primary"
-        marginBottom="s"
-      >
-        <Box flexDirection="row" justifyContent="space-between">
-          <Text variant="title2" color="white">
-            HISTORY
+
+      <Box marginTop="xl" />
+      <View style={{ backgroundColor: '#F6F6F6', borderRadius: 75, marginBottom: 50 }}>
+        <View style={{ alignItems: 'center' }}>
+          <Text variant="titleCard" marginTop="xl" marginBottom="m" style={styles.h2}>
+            Your <Text color="primary">emissions</Text> history
           </Text>
-          <Box style={styles.boxButton}>
-            <TextButton label="Land" onPress={switchLand} style={styles.textButton} />
-            <TextButton label="Air" onPress={switchAir} style={styles.textButton} />
-            <TextButton label="Meals" onPress={switchMeals} style={styles.textButton} />
-          </Box>
-        </Box>
-      </Box>
-      {choice}
+        </View>
+        <ButtonGroup
+          onPress={(index: number) => setSelected(index)}
+          selectedIndex={selected}
+          buttons={buttons}
+          buttonStyle={theme.slideStyle.buttonStyleUnselected}
+          selectedButtonStyle={theme.slideStyle.buttonStyle}
+          textStyle={{ textAlign: 'center', fontSize: 16 }}
+          containerStyle={{ borderWidth: 0, backgroundColor: 'transparent' }}
+          innerBorderStyle={{ width: 0 }}
+        />
+        <Box marginTop="m">{choice}</Box>
+      </View>
     </View>
   );
 };
@@ -126,7 +124,10 @@ export default History;
 const styles = StyleSheet.create({
   viewContainer: {
     alignItems: 'center',
-    backgroundColor: '#39D697',
+    backgroundColor: '#0C0D34',
+  },
+  h2: {
+    color: 'rgba(54, 54, 83, 0.7)',
   },
   boxGraph: {
     marginTop: height / 20,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Text, Button } from '../../../components';
 import {
   widthPercentageToDP as wp,
@@ -7,19 +7,28 @@ import {
 import { Image, View, StyleSheet } from 'react-native';
 import { useTypedSelector, useActions } from '../../../hooks';
 import { AntDesign } from '@expo/vector-icons';
+import { MealType, MealCategoryType } from '../../../redux/types';
 
 interface PropTypes {
-  type: string;
+  type: MealCategoryType;
 }
 
 const FoodBox = (props: PropTypes) => {
   const { data } = useTypedSelector(state => state.meals);
   const { postMeal, fetchMeals, deleteMeal } = useActions();
-  const mealCount = Object.keys(data[`${props.type}` + '_meals']).length;
-  const last_meal = data[`${props.type}` + '_meals'][0];
+
+  const matchTypes: Record<MealCategoryType, keyof MealType> = {
+    red_meat: 'red_meat_meals',
+    white_meat: 'white_meat_meals',
+    vegetarian: 'vegetarian_meals',
+    vegan: 'vegan_meals',
+  };
+
+  const mealCount = Object.keys(data[matchTypes[props.type]]).length;
+  const last_meal = data[matchTypes[props.type]][0];
   let name;
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchMeals();
   }, []);
 
@@ -105,7 +114,7 @@ const s = StyleSheet.create({
     borderRadius: 75,
   },
   viewImg: {
-    backgroundColor: '#39D697',
+    backgroundColor: '#bc5090',
     alignItems: 'center',
     padding: 5,
     borderRadius: 10,

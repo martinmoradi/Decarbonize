@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text, Button } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
 import { Dimensions, ScrollView, View, StyleSheet } from 'react-native';
@@ -11,7 +11,7 @@ import {
 const { width } = Dimensions.get('window');
 
 const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPortResults'>) => {
-  const [selectedResult, setSelectedResult] = React.useState({
+  const [selectedResult, setSelectedResult] = useState({
     name: '',
     country: {
       iso2: '',
@@ -32,7 +32,7 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
     servedCity: '',
     servedCityGoverningDistrict: {},
   });
-  const [results, setResults] = React.useState([selectedResult]);
+  const [results, setResults] = useState([selectedResult]);
 
   const fetchAirportResults = async (query: String) => {
     try {
@@ -52,7 +52,7 @@ const AirPortResults = ({ route, navigation }: TripStackNavigationProps<'AirPort
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchAirportResults(route.params.query);
   }, []);
 

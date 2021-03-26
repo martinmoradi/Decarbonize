@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Text, Button } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
 import { Dimensions, ScrollView, TextInput, View, StyleSheet, Image } from 'react-native';
@@ -10,7 +10,7 @@ import {
 const { width } = Dimensions.get('window');
 
 const AirPortSearch = ({ route, navigation }: TripStackNavigationProps<'AirPortSearch'>) => {
-  const [airport, setAirport] = React.useState('');
+  const [airport, setAirport] = useState('');
 
   return (
     <ScrollView style={{ backgroundColor: '#0C0D34' }}>

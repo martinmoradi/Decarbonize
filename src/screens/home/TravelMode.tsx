@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ImageSourcePropType } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Text } from '../../components';
 
 export type PropsTravel = {
   travelMode: string;
+  imgUrl: ImageSourcePropType;
 };
 
 const TravelMode = ({ travelMode, imgUrl }: PropsTravel) => {

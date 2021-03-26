@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   VictoryBar,
   VictoryChart,
@@ -14,13 +14,13 @@ import TextButton from '../../../components/TextButton';
 
 const DashboardGraph = () => {
   const { data } = useTypedSelector(state => state.emissions);
-  const [userData, setUserData] = React.useState({
+  const [userData, setUserData] = useState({
     userHousing: data.yearly_housing,
     userFood: data.yearly_alimentation,
     userSpendings: data.yearly_spendings,
     userTravel: data.yearly_landtrip_emissions + data.yearly_airtrip_emissions,
   });
-  const [recommendedData, setRecommendedData] = React.useState({
+  const [recommendedData, setRecommendedData] = useState({
     recommendedHousing: 1700,
     recommendedFood: 1700,
     recommendedSpendings: 1700,
@@ -57,7 +57,6 @@ const DashboardGraph = () => {
     });
   };
 
-  //// IL MANQUE WEEKLY_ALIMENTATION DANS LE STATE
   const switchWeekly = () => {
     setUserData({
       userHousing: data.weekly_housing,
@@ -73,7 +72,7 @@ const DashboardGraph = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     switchWeekly();
   }, [data]);
 

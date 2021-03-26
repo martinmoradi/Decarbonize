@@ -17,16 +17,12 @@ const Meals = () => {
       paddingTop="xl"
       marginTop="m"
     >
-      <Text
-        variant="title2"
-        marginBottom="m"
-        style={{ color: theme.colors.secondary, marginTop: hp('-3%') }}
-      >
-        Your monthly <Text color="primary">alimentation</Text>
+      <Text variant="titleCard" marginTop="s" marginBottom="s" style={{ color: theme.colors.text }}>
+        My monthly <Text color="primary">alimentation</Text>
       </Text>
       <Box style={styles.boxStyle}>
         <Text variant="body" style={{ marginBottom: hp('2%') }}>
-          Tell us here what you have eaten this month.
+          Every meal added will update your emissions
         </Text>
         <View style={styles.lineContainer}>
           <FoodBox type={'red_meat'} />

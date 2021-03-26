@@ -21,17 +21,19 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
   const { postCommonTrip } = useActions();
   const { width } = Dimensions.get('window');
   const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
-  const [tripData, setTripData] = React.useState({
+  const [tripData, setTripData] = useState({
     vehicle_type: route.params.type,
     round_trip: false,
     distance: 0,
   });
 
+  const [distance, setDistance] = useState<string>('0');
+
   const changeDistance = (e: string) => {
     setTripData({
       vehicle_type: route.params.type,
       round_trip: tripData.round_trip,
-      distance: parseFloat(e),
+      distance: parseFloat(e || '0'),
     });
   };
 
@@ -109,7 +111,6 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
           <TextInput
             style={styles.inputStyle}
             onChangeText={changeDistance}
-            value={tripData.distance}
             placeholder={'0'}
             keyboardType="numeric"
           />

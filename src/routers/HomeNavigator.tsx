@@ -132,5 +132,6 @@ const styles = StyleSheet.create({
   tabContainer: {
     alignItems: "center",
     height: 80,
+    alignSelf: 'center',
   },
 });
