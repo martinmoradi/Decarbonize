@@ -94,7 +94,7 @@ class User < ApplicationRecord
     (
       land_trips
         .includes(:emission)
-        .where(created_at: Date.today.beginning_of_year..Date.today)
+        .where(created_at: Date.today.beginning_of_year..Date.tomorrow)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
@@ -103,7 +103,7 @@ class User < ApplicationRecord
     (
       land_trips
         .includes(:emission)
-        .where(created_at: Date.today.beginning_of_month..Date.today)
+        .where(created_at: Date.today.beginning_of_month..Date.tomorrow)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
@@ -112,7 +112,7 @@ class User < ApplicationRecord
     (
       land_trips
         .includes(:emission)
-        .where(created_at: Date.today.beginning_of_week..Date.today)
+        .where(created_at: Date.today.beginning_of_week..Date.tomorrow)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
@@ -137,7 +137,7 @@ class User < ApplicationRecord
     (
       air_trips
         .includes(:emission)
-        .where(created_at: Date.today.beginning_of_year..Date.today)
+        .where(created_at: Date.today.beginning_of_year..Date.tomorrow)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
@@ -146,7 +146,7 @@ class User < ApplicationRecord
     (
       air_trips
         .includes(:emission)
-        .where(created_at: Date.today.beginning_of_month..Date.today)
+        .where(created_at: Date.today.beginning_of_month..Date.tomorrow)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
@@ -155,7 +155,7 @@ class User < ApplicationRecord
     (
       air_trips
         .includes(:emission)
-        .where(created_at: Date.today.beginning_of_week..Date.today)
+        .where(created_at: Date.today.beginning_of_week..Date.tomorrow)
         .reduce(0) { |sum, trip| sum + trip.emission.amount }
     ).round(2)
   end
