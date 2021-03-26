@@ -71,6 +71,10 @@ const tripsReducer = (state = initialState, action: TripAction): TripStateType =
         isLoading: false,
         isTripsEmpty: true,
       };
+    case TripActionType.TRIPS_RESET:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

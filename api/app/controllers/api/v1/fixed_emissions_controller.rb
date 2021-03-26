@@ -44,7 +44,8 @@ class Api::V1::FixedEmissionsController < Api::V1::ApiBaseController
                  },
                  data: {
                    fixed_emission: @fixed_emission,
-                   user_emissions: @user_emissions,
+                   user_emissions:
+                     EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
                  },
                }
       else

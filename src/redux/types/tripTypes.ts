@@ -5,6 +5,8 @@ export enum TripActionType {
   FETCH_TRIPS_ATTEMPT = 'fetch_trips_attempt',
   FETCH_TRIPS_SUCCESS = 'fetch_trips_success',
   FETCH_TRIPS_ERROR = 'fetch_trips_error',
+  TRIPS_RESET = 'trips_reset',
+
 }
 
 export interface TripType {

@@ -8,6 +8,7 @@ export enum MealActionType {
   FETCH_MEALS_ATTEMPT = 'fetch_meals_attempt',
   FETCH_MEALS_SUCCESS = 'fetch_meals_success',
   FETCH_MEALS_ERROR = 'fetch_meals_error',
+  MEALS_RESET = 'meals_reset'
 }
 
 export interface MealType {

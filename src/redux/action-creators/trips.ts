@@ -33,7 +33,7 @@ export const postCommonTrip = (tripData: {
         payload: data.trips,
       });
       dispatch({
-        type: EmissionsActionType.POST_EMISSIONS_SUCCESS,
+        type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
         payload: data.emissions,
       });
       alert('Trajet enregistré');
