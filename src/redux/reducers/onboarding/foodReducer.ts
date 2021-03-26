@@ -17,22 +17,22 @@ const foodReducer = (state = initialState, action: OnboardingAction): Onboarding
         ...state,
         breakfasts_per_week: action.payload,
       };
-      case OnboardingFoodActionType.SET_RED_MEAT:
+    case OnboardingFoodActionType.SET_RED_MEAT:
       return {
         ...state,
         red_meats_per_week: action.payload,
       };
-      case OnboardingFoodActionType.SET_WHITE_MEAT:
+    case OnboardingFoodActionType.SET_WHITE_MEAT:
       return {
         ...state,
         white_meats_per_week: action.payload,
       };
-      case OnboardingFoodActionType.SET_VEGAN:
+    case OnboardingFoodActionType.SET_VEGAN:
       return {
         ...state,
         vegan_per_week: action.payload,
       };
-      case OnboardingFoodActionType.SET_VEGETARIAN:
+    case OnboardingFoodActionType.SET_VEGETARIAN:
       return {
         ...state,
         vegetarian_per_week: action.payload,

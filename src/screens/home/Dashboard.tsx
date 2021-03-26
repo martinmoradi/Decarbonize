@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
-import { Text, Box, useTheme, Button } from '../../components';
-import { MeteoBar, Trajet } from './components';
-import DashboardGraph from './components/DashboardGraph';
+import React from 'react';
+import { ScrollView, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
+import { Text, Box, useTheme } from '../../components';
+import { EmissionsPieIOS, Trajet, EmissionsPieAndroid, MeteoBar } from './components';
 import { Dimensions } from 'react-native';
 import BusJourney from './components/BusJourney';
 import TrainJourney from './components/TrainJourney';
@@ -10,41 +9,23 @@ import Meals from './components/Meals';
 import AirplaneJourney from './components/AirplaneJourney';
 import TramJourney from './components/TramJourney';
 import SubwayJourney from './components/SubwayJourney';
-const { width } = Dimensions.get('window');
-
-
 
 const Dashboard = () => {
   const theme = useTheme();
 
   return (
-    <ScrollView >
+    <ScrollView>
       <View
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.colors.primaryLight,
         }}
       ></View>
-      <Box style={{ alignItems: 'center' }}>
-        <Box
-          paddingLeft="m"
-          paddingTop="s"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={styles.boxContainer}
-          backgroundColor="primaryLight"
-          marginBottom="s"
-        >
-          <MeteoBar />
-        </Box>
+      <SafeAreaView>
+        <MeteoBar />
 
-        <Box
-          alignItems="center"
-          style={styles.boxGraph}
-          justifyContent="center"
-          backgroundColor="white"
-        >
-        </Box>
+        {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
+
         <Box
           marginTop="s"
           paddingTop="m"
@@ -59,7 +40,6 @@ const Dashboard = () => {
             justifyContent="center"
             backgroundColor="white"
           >
-            
             <Meals />
           </Box>
         </Box>
@@ -81,13 +61,14 @@ const Dashboard = () => {
           <TramJourney />
           <SubwayJourney />
         </Box>
-      </Box>
+      </SafeAreaView>
     </ScrollView>
   );
 };
 
 export default Dashboard;
 
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   boxContainer: {
     width: width,

@@ -115,8 +115,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
               </View>
             </BorderlessButton>
           </Box>
-         
-          
+
           <Box
             alignItems="center"
             style={styles.boxTravelMode}
@@ -156,7 +155,9 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
                   style={styles.iconStyle}
                 />
                 <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button" textAlign="center">Airplane </Text>
+                  <Text variant="button" textAlign="center">
+                    Airplane{' '}
+                  </Text>
                 </View>
               </View>
             </BorderlessButton>

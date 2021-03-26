@@ -39,7 +39,7 @@ const TripHistory = (props: TripHistoryProps) => {
   React.useEffect(() => {
     setImage(props.type);
   }, []);
-  
+
   return (
     <Box
       style={styles.boxContainer}
@@ -51,8 +51,11 @@ const TripHistory = (props: TripHistoryProps) => {
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">{new Date(Date.parse(props.date)).toLocaleDateString()}</Text>
         </View>
-        <View style={[styles.viewImg, {backgroundColor: version.color}]}>
-          <Image source={version.image} style={[styles.imgStyle, {backgroundColor: version.color}]} />
+        <View style={[styles.viewImg, { backgroundColor: version.color }]}>
+          <Image
+            source={version.image}
+            style={[styles.imgStyle, { backgroundColor: version.color }]}
+          />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">{props.distance}km</Text>

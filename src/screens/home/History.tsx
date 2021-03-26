@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { Dimensions } from 'react-native';
 import { TripHistory, MealHistory } from './components';
 const { width, height } = Dimensions.get('window');
@@ -13,8 +15,12 @@ const History = () => {
   const { data } = useTypedSelector(state => state.trips);
   const { data: meals } = useTypedSelector(state => state.meals);
   const theme = useTheme();
-  const allMeals = {...meals.red_meat_meals, ...meals.white_meat_meals, ...meals.vegetarian_meals, ...meals.vegan_meals}
-
+  const allMeals = {
+    ...meals.red_meat_meals,
+    ...meals.white_meat_meals,
+    ...meals.vegetarian_meals,
+    ...meals.vegan_meals,
+  };
 
   const switchLand = () => {
     setSeleted('Land');
@@ -44,14 +50,13 @@ const History = () => {
     />
   );
 
-  const renderItemMeals = ({index})=>(
+  const renderItemMeals = ({ index }) => (
     <MealHistory
-    type={allMeals[index].meal_type}
-    amount={allMeals[index].amount}
-    date={allMeals[index].created_at}
+      type={allMeals[index].meal_type}
+      amount={allMeals[index].amount}
+      date={allMeals[index].created_at}
     />
-  )
-
+  );
 
   let choice;
   if (selected === 'Land') {
@@ -60,7 +65,7 @@ const History = () => {
         data={data.land_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemLand}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `Land${item.id}`}
       />
     );
   } else if (selected === 'Air') {
@@ -69,19 +74,19 @@ const History = () => {
         data={data.air_trips}
         style={{ marginBottom: 100 }}
         renderItem={renderItemAir}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `Air${item.id}`}
       />
     );
   } else if (selected === 'Meals') {
     choice = (
-    <FlatList
-      data={Object.keys(allMeals)}
-      style={{ marginBottom: 100 }}
-      renderItem={renderItemMeals}
-      keyExtractor={item => item.id}
-    />);
+      <FlatList
+        data={Object.keys(allMeals)}
+        style={{ marginBottom: 100 }}
+        renderItem={renderItemMeals}
+        keyExtractor={item => `Meal${item}`}
+      />
+    );
   }
-
 
   return (
     <View>
@@ -131,7 +136,7 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     width: width,
-    height: 100,
+    height: hp('18%'),
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
     shadowColor: '#000',

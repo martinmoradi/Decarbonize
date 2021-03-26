@@ -1,13 +1,15 @@
 export enum TripActionType {
-    POST_TRIP_ATTEMPT = 'post_trip_attempt',
-    POST_TRIP_SUCCESS = 'post_trip_success',
-    POST_TRIP_ERROR = 'post_trip_error',
-    FETCH_TRIPS_ATTEMPT = 'fetch_trips_attempt',
-    FETCH_TRIPS_SUCCESS = 'fetch_trips_success',
-    FETCH_TRIPS_ERROR = 'fetch_trips_error',
-  }
+  POST_TRIP_ATTEMPT = 'post_trip_attempt',
+  POST_TRIP_SUCCESS = 'post_trip_success',
+  POST_TRIP_ERROR = 'post_trip_error',
+  FETCH_TRIPS_ATTEMPT = 'fetch_trips_attempt',
+  FETCH_TRIPS_SUCCESS = 'fetch_trips_success',
+  FETCH_TRIPS_ERROR = 'fetch_trips_error',
+  TRIPS_RESET = 'trips_reset',
 
-export interface TripType{
+}
+
+export interface TripType {
   land_trips: {
     amount: number;
     created_at: string;
@@ -17,8 +19,7 @@ export interface TripType{
     user_id: number;
     round_trip: boolean;
     vehicle_type: string;
-
-  }[],
+  }[];
   air_trips: {
     amount: number;
     created_at: string;

@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthActionType, UserParamsType, EmissionsActionType } from '../types';
-import { AuthAction, EmissionsAction } from '../actions';
+import { AuthActionType, UserParamsType, EmissionsActionType, MealActionType, TripActionType } from '../types';
+import { AuthAction, EmissionsAction, MealsAction, TripAction } from '../actions';
 import { headers } from '../../tools/api';
 
 export const signup = (signupParams: UserParamsType) => {
@@ -103,10 +103,16 @@ export const loadUser = () => {
 };
 
 export const logout = () => {
-  return async (dispatch: Dispatch<AuthAction | EmissionsAction>) => {
+  return async (dispatch: Dispatch<AuthAction | EmissionsAction | MealsAction | TripAction>) => {
     await AsyncStorage.removeItem('token');
     dispatch({
       type: EmissionsActionType.EMISSIONS_RESET,
+    }),
+    dispatch({
+      type: MealActionType.MEALS_RESET,
+    }),
+    dispatch({
+      type: TripActionType.TRIPS_RESET,
     }),
       dispatch({
         type: AuthActionType.LOGOUT,

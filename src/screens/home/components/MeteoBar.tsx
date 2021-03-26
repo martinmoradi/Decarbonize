@@ -13,26 +13,25 @@ const MeteoBar = () => {
   const [city, setCity] = React.useState('');
 
   const permissionFlow = async () => {
-      const { status } = await Permissions.askAsync(Permissions.LOCATION);
-      if (status !== 'granted') {
-        throw new Error('Location permission not granted');
-      }
-      const position = await Location.getCurrentPositionAsync({});
-      if (!position) {
-        throw new Error('Location not found');
-      }
-      setLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-    };
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      throw new Error('Location permission not granted');
+    }
+    const position = await Location.getCurrentPositionAsync({});
+    if (!position) {
+      throw new Error('Location not found');
+    }
+    setLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude });
+  };
 
-
-    const fetchWeather = async () => {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=c469f11dbd61f2b3429aeefed47dc1b6`
-      );
-      const meteo = await response.json();
-      setMeteo(meteo.main.temp);
-      setCity(`in ${meteo.name}`);
-    };
+  const fetchWeather = async () => {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=c469f11dbd61f2b3429aeefed47dc1b6`
+    );
+    const meteo = await response.json();
+    setMeteo(meteo.main.temp);
+    setCity(`in ${meteo.name}`);
+  };
 
   React.useEffect(() => {
     if (currentHour < 12) {
@@ -50,7 +49,7 @@ const MeteoBar = () => {
   }, [location]);
 
   return (
-    <Box>
+    <Box style={{ marginHorizontal: 20 }}>
       <Text variant="title2" marginBottom="m">
         {timeFrame} ☀️
       </Text>

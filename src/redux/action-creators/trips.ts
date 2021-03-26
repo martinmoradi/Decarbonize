@@ -1,15 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { headers } from '../../tools/api';
 import { Dispatch } from 'redux';
-import { TripAction } from '../actions';
-import { TripActionType } from '../types';
+import { EmissionsAction, TripAction } from '../actions';
+import { TripActionType, EmissionsActionType } from '../types';
 
 export const postCommonTrip = (tripData: {
   vehicle_type: string;
   round_trip: boolean;
   distance: number;
 }) => {
-  return async (dispatch: Dispatch<TripAction>) => {
+  return async (dispatch: Dispatch<TripAction | EmissionsAction>) => {
     dispatch({
       type: TripActionType.POST_TRIP_ATTEMPT,
     });
@@ -30,7 +30,11 @@ export const postCommonTrip = (tripData: {
       }
       dispatch({
         type: TripActionType.POST_TRIP_SUCCESS,
-        payload: data,
+        payload: data.trips,
+      });
+      dispatch({
+        type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
+        payload: data.emissions,
       });
       alert('Trajet enregistré');
     } catch (err) {
