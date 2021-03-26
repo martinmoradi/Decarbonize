@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Text, Button } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
 import { Dimensions, TextInput } from 'react-native';
@@ -6,7 +6,7 @@ import { Dimensions, TextInput } from 'react-native';
 const { width } = Dimensions.get('window');
 
 const AirPortSearch = ({ route, navigation }: TripStackNavigationProps<'AirPortSearch'>) => {
-  const [airport, setAirport] = React.useState('');
+  const [airport, setAirport] = useState('');
 
   return (
     <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

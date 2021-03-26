@@ -130,5 +130,6 @@ export default HomeNavigator;
 const styles = StyleSheet.create({
   tabContainer: {
     height: 80,
+    alignSelf: 'center',
   },
 });

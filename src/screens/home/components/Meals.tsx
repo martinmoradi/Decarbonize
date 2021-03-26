@@ -18,11 +18,11 @@ const Meals = () => {
       marginTop="m"
     >
       <Text variant="titleCard" marginTop="s" marginBottom="s" style={{ color: theme.colors.text }}>
-        Your monthly <Text color="primary">alimentation</Text>
+        My monthly <Text color="primary">alimentation</Text>
       </Text>
       <Box style={styles.boxStyle}>
         <Text variant="body" style={{ marginBottom: hp('2%') }}>
-          Tell us here what you have eaten this month.
+          Track your emissions by what you have eaten this month.
         </Text>
         <View style={styles.lineContainer}>
           <FoodBox type={'red_meat'} />

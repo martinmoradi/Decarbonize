@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as icons from '../icons/icons';
+import icons from './icons';
 
 type PropsIcons = {
-  name: string;
+  name: keyof typeof icons;
 };
 
 const IconSvg = ({ name, ...rest }: PropsIcons) => {

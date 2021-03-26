@@ -268,6 +268,7 @@ const EmissionsPieAndroid = () => {
           onPress={(index: number) => setSelectedRange(index)}
           selectedIndex={selectedRange}
           buttons={buttons}
+          buttonStyle={theme.slideStyle.buttonStyleUnselected}
           selectedButtonStyle={theme.slideStyle.buttonStyle}
           textStyle={{ textAlign: 'center', fontSize: 16 }}
           containerStyle={{ borderWidth: 0, backgroundColor: 'transparent' }}

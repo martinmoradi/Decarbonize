@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, Box } from '../../../components/Theme';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
@@ -7,10 +7,10 @@ const MeteoBar = () => {
   const today = new Date();
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const currentHour = today.getHours();
-  const [timeFrame, setTimeFrame] = React.useState('Good Morning !');
-  const [location, setLocation] = React.useState({ latitude: 0, longitude: 0 });
-  const [meteo, setMeteo] = React.useState(0);
-  const [city, setCity] = React.useState('');
+  const [timeFrame, setTimeFrame] = useState('Good Morning !');
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
+  const [meteo, setMeteo] = useState(0);
+  const [city, setCity] = useState('');
 
   const permissionFlow = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -33,7 +33,7 @@ const MeteoBar = () => {
     setCity(`in ${meteo.name}`);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (currentHour < 12) {
       setTimeFrame('Good Morning !');
     } else if (currentHour < 18) {
@@ -44,7 +44,7 @@ const MeteoBar = () => {
     permissionFlow();
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchWeather();
   }, [location]);
 

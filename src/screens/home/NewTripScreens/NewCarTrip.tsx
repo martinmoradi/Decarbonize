@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Text, Button, Checkbox, TextButton } from '../../../components';
+import React, { useState } from 'react';
+import { Box, Text, Button, Checkbox } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers';
 import { useActions, useTypedSelector } from '../../../hooks';
 import { Dimensions, TextInput, ActivityIndicator, StyleSheet } from 'react-native';
@@ -12,18 +12,24 @@ const styles = StyleSheet.create({
 const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
   const { postCommonTrip } = useActions();
   const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
-  const [tripData, setTripData] = React.useState({
+
+  const [distance, setDistance] = useState<string>('0');
+
+  const [tripData, setTripData] = useState({
     vehicle_type: 'petrol_car',
     round_trip: false,
     distance: 0,
   });
+
   const changeDistance = (e: string) => {
+    setDistance(e);
     setTripData({
       vehicle_type: tripData.vehicle_type,
       round_trip: tripData.round_trip,
-      distance: parseFloat(e),
+      distance: parseFloat(e || '0'),
     });
   };
+
   const switchPetrol = () => {
     setTripData({
       vehicle_type: 'petrol_car',
@@ -31,6 +37,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
       distance: tripData.distance,
     });
   };
+
   const switchDiesel = () => {
     setTripData({
       vehicle_type: 'diesel_car',
@@ -38,6 +45,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
       distance: tripData.distance,
     });
   };
+
   const switchElectric = () => {
     setTripData({
       vehicle_type: 'electric_car',
@@ -45,6 +53,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
       distance: tripData.distance,
     });
   };
+
   return (
     <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Box
@@ -133,7 +142,6 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
             justifyContent: 'center',
           }}
           onChangeText={changeDistance}
-          value={tripData.distance}
           placeholder={'0'}
           keyboardType="numeric"
         />

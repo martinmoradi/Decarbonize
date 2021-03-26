@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Text } from '../../../components/Theme';
 import { StyleSheet, Dimensions, View, Image } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 const { width } = Dimensions.get('window');
 
 interface TripHistoryProps {
@@ -13,10 +15,11 @@ interface TripHistoryProps {
 }
 
 const TripHistory = (props: TripHistoryProps) => {
-  const [version, setVersion] = React.useState({
+  const [version, setVersion] = useState({
     image: require('../../../../assets/images/van.png'),
     color: 'lightgray',
   });
+
   const setImage = (name: string) => {
     if (name === 'electric_car' || name === 'petrol_car' || name === 'diesel_car') {
       setVersion({ image: require('../../../../assets/images/van.png'), color: '#39D697' });
@@ -36,17 +39,19 @@ const TripHistory = (props: TripHistoryProps) => {
     }
   };
 
-  React.useEffect(() => {
+  const setIImage = (name: string) => {
+    switch (name) {
+      case 'electric_car':
+      case 'petrol_car':
+    }
+  };
+
+  useEffect(() => {
     setImage(props.type);
   }, []);
 
   return (
-    <Box
-      style={styles.boxContainer}
-      justifyContent="center"
-      backgroundColor="lightgray"
-      borderBottomColor="white"
-    >
+    <Box style={styles.boxContainer} justifyContent="center" marginBottom="s">
       <View style={styles.viewContainer}>
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">{new Date(Date.parse(props.date)).toLocaleDateString()}</Text>
@@ -78,12 +83,21 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   boxContainer: {
-    width: wp('100%'),
-    height: 60,
-    borderBottomWidth: 2,
+    marginHorizontal: wp('2%'),
+    height: hp('8%'),
     borderRadius: 20,
+    backgroundColor: '#F3F4F6',
+    shadowColor: '#616164',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+
+    elevation: 1,
   },
-  viewContainer: { marginLeft: wp('1%'), flexDirection: 'row', alignItems: 'center' },
+  viewContainer: { flexDirection: 'row', alignItems: 'center' },
   viewImg: {
     marginLeft: wp('5%'),
     padding: 5,

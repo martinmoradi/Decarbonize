@@ -39,7 +39,6 @@ const Deeds = ({ engagement, index, isEnabled, description }: PropsDeeds) => {
       }}
       justifyContent="space-between"
       backgroundColor="lightgray"
-      borderBottomColor="white"
       key={index}
     >
       <TouchableOpacity
