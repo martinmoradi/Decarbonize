@@ -38,7 +38,7 @@ const Commitments = () => {
       description: 'And save 6.2kg of carbon emissions.',
     },
     {
-      title: 'I reduce heating 1 degree.',
+      title: 'I turn down the heating by 1°C',
       isCommitted: reduced_heating,
       description: 'Save 201.6kg of carbon emissions.',
     },
