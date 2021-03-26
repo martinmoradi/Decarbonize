@@ -63,8 +63,6 @@ const EmissionsPie = () => {
     id: number;
   }
 
-  console.log('render');
-
   // Prepare data for chart
   const weeklyChartData = useMemo(() => {
     const data: DataType[] = Object.entries(weeklyData)
