@@ -136,7 +136,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
           </Box>
           <Box alignItems="center" marginTop="m">
             {isLoading ? (
-              <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator />} />
+              <Button variant="primary" onPress={handleSubmit} label={<ActivityIndicator  color="#ffffff"/>} />
             ) : (
               <Button variant="primary" onPress={handleSubmit} label="Log into your account" />
             )}
