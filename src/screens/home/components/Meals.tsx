@@ -17,11 +17,7 @@ const Meals = () => {
       paddingTop="xl"
       marginTop="m"
     >
-      <Text
-        variant="title2"
-        marginBottom="m"
-        style={{ color: theme.colors.secondary, marginTop: hp('-3%') }}
-      >
+      <Text variant="titleCard" marginTop="s" marginBottom="s" style={{ color: theme.colors.text }}>
         Your monthly <Text color="primary">alimentation</Text>
       </Text>
       <Box style={styles.boxStyle}>

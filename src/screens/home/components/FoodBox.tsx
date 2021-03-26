@@ -105,7 +105,7 @@ const s = StyleSheet.create({
     borderRadius: 75,
   },
   viewImg: {
-    backgroundColor: '#39D697',
+    backgroundColor: '#bc5090',
     alignItems: 'center',
     padding: 5,
     borderRadius: 10,

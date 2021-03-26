@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import Tips from './components/Tips';
+import Deeds from './components/Deeds';
 import { ecologyFacts } from './data/ecologyFacts';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { AntDesign } from '@expo/vector-icons';
@@ -33,39 +33,39 @@ const Commitments = () => {
 
   const engagementsData = [
     {
-      title: 'I switch off my devices in standby.',
+      title: 'I switch off my devices in standby',
       isCommitted: appliances,
-      description: 'And save 6.2kg of carbon emissions.',
+      description: 'Save up to 6.2kg of carbon emissions!',
     },
     {
       title: 'I turn down the heating by 1°C',
       isCommitted: reduced_heating,
-      description: 'Save 201.6kg of carbon emissions.',
+      description: 'Save up to 201.6kg of carbon emissions!',
     },
     {
-      title: 'I adopt eco-driving.',
+      title: 'I adopt eco-driving',
       isCommitted: eco_driving,
-      description: 'Reduce all cars emissions by 15%.',
+      description: 'Reduce all cars emissions by 15%!',
     },
     {
-      title: 'I drink tap water instead of bottles.',
+      title: 'I drink tap water instead of bottles',
       isCommitted: tap_water,
-      description: 'Save 215kg of carbon emissions.',
+      description: 'Save up to 215kg of carbon emissions!',
     },
     {
       title: 'I reduce my food waste',
       isCommitted: food_wastes,
-      description: 'Save 31kg of carbon emissions.',
+      description: 'Save up to 31kg of carbon emissions!',
     },
     {
       title: 'I do my shopping in bulk',
       isCommitted: bulk_food,
-      description: 'Save 35kg of carbon emissions.',
+      description: 'Save up to 35kg of carbon emissions!',
     },
     {
       title: 'I have a zero waste approach',
       isCommitted: zero_wastes,
-      description: 'Save 707.67kg of carbon emissions.',
+      description: 'Save up to 707.67kg of carbon emissions!',
     },
   ];
 
@@ -156,7 +156,7 @@ const Commitments = () => {
           </View>
 
           {engagementsData.map((item, index) => (
-            <Tips
+            <Deeds
               engagement={item.title}
               index={index}
               isEnabled={item.isCommitted}

@@ -10,7 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-const EmissionsPie = () => {
+const EmissionsPieAndroid = () => {
   const theme = useTheme();
   const { height, width } = theme.dimensions;
 
@@ -260,7 +260,7 @@ const EmissionsPie = () => {
         }}
       >
         <View style={{ alignItems: 'center' }}>
-          <Text variant="titleCard" marginTop="m" marginBottom="m" style={styles.h2}>
+          <Text variant="titleCard" marginTop="xl" marginBottom="m" style={styles.h2}>
             Your <Text color="primary">carbon</Text> emissions
           </Text>
         </View>
@@ -317,7 +317,7 @@ const EmissionsPie = () => {
   );
 };
 
-export default EmissionsPie;
+export default EmissionsPieAndroid;
 
 const styles = StyleSheet.create({
   shadow: {
