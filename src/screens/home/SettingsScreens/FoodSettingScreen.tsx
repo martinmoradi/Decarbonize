@@ -13,7 +13,6 @@ const { width } = Dimensions.get('window');
 const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsFood'>) => {
   const { putFixedEmissions } = useActions();
   const { energy, food, spending } = useTypedSelector(state => state.onboarding);
-  console.log('food:', food);
 
   const {
     breakfasts_per_week,
