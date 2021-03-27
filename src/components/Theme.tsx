@@ -118,6 +118,13 @@ const theme = {
       fontFamily: 'Avenir-Semibold',
       color: 'secondary',
     },
+    titleFoodCard: {
+      fontSize: 18,
+      lineHeight: 30,
+      letterSpacing: 0.2,
+      fontFamily: 'Avenir-Semibold',
+      color: 'secondary',
+    },
     titleTopSlide: {
       fontSize: 38,
       color: 'white',
@@ -148,11 +155,13 @@ const theme = {
       translateY: (height / 3 - 450) / 2,
       rotate: '90deg',
       translateX: width / 3.5,
-      // transform: [
-      //   { rotate: '90deg' },
-      //   { translateY: (height / 3 - 450) / 2 },
-      //   { translateX: width / 3.5 },
-      // ],
+    },
+    cardInfo: {
+      fontSize: 14,
+      lineHeight: 18,
+      color: 'info',
+      fontFamily: 'Avenir-Regular',
+      textAlign: 'center',
     },
   },
 

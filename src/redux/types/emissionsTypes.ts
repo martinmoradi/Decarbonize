@@ -53,6 +53,21 @@ export interface EmissionsType {
   total_white_meat_emissions: number;
   total_vegetarian_emissions: number;
   total_vegan_emissions: number;
+  yearly_cars_emissions: number;
+  monthly_cars_emissions: number;
+  weekly_cars_emissions: number;
+  yearly_bus_emissions: number;
+  monthly_bus_emissions: number;
+  weekly_bus_emissions: number;
+  yearly_tramway_emissions: number;
+  monthly_tramway_emissions: number;
+  weekly_tramway_emissions: number;
+  yearly_metro_emissions: number;
+  monthly_metro_emissions: number;
+  weekly_metro_emissions: number;
+  yearly_train_emissions: number;
+  monthly_train_emissions: number;
+  weekly_train_emissions: number;
 }
 
 type WoodsType = 'wood_logs' | 'wood_pellets';

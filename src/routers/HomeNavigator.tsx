@@ -9,7 +9,8 @@ import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
-import SettingNavigator from '../screens/home/SettingsScreens/SettingNavigator';
+import SettingsNavigator from './SettingsNavigator';
+import HistoryContainer from '../screens/home/HistoryContainer';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -27,7 +28,6 @@ const tabs: TabsConfig<BubbleTabBarItemConfig> = {
       activeColor: '#A9EFD2',
       inactiveColor: 'rgba(223,215,243,0)',
     },
-    
   },
   Deeds: {
     labelStyle: {
@@ -93,7 +93,7 @@ const tabs: TabsConfig<BubbleTabBarItemConfig> = {
 
 const HomeNavigator = () => {
   const { isEmpty } = useTypedSelector(state => state.emissions);
-  const { isTripsEmpty, isLoading } = useTypedSelector(state => state.trips);
+  const { isTripsEmpty } = useTypedSelector(state => state.trips);
   const { user } = useTypedSelector(state => state.authentication);
   const { food, energy, spending } = useTypedSelector(state => state.onboarding);
   const { postForm, fetchEmissions, fetchTrips } = useActions();
@@ -115,13 +115,13 @@ const HomeNavigator = () => {
 
   return (
     <HomeTab.Navigator
-      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />} 
+      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />}
     >
       <HomeTab.Screen name="Home" component={Dashboard} />
       <HomeTab.Screen name="Deeds" component={Commitments} />
       <HomeTab.Screen name="New" component={NewTripNavigator} />
-      <HomeTab.Screen name="History" component={History} />
-      <HomeTab.Screen name="Profile" component={SettingNavigator} />
+      <HomeTab.Screen name="History" component={HistoryContainer} />
+      <HomeTab.Screen name="Profile" component={SettingsNavigator} />
     </HomeTab.Navigator>
   );
 };
@@ -130,7 +130,7 @@ export default HomeNavigator;
 
 const styles = StyleSheet.create({
   tabContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     height: 80,
     alignSelf: 'center',
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import FoodBox from './FoodBox';
 import { Box, Text, useTheme } from '../../../components/';
 import {
@@ -15,6 +15,7 @@ const Meals = () => {
       style={styles.boxInfo}
       backgroundColor="lightgray"
       paddingTop="xl"
+      paddingBottom="xl"
       marginTop="m"
     >
       <Text variant="titleCard" marginTop="s" marginBottom="s" style={{ color: theme.colors.text }}>
@@ -22,25 +23,24 @@ const Meals = () => {
       </Text>
       <Box style={styles.boxStyle}>
         <Text variant="body" style={{ marginBottom: hp('2%') }}>
-          Every meal added will update your emissions
+          Track here what your alimentation emissions are.
         </Text>
-        <View style={styles.lineContainer}>
+        <Box style={styles.lineContainer}>
           <FoodBox type={'red_meat'} />
           <FoodBox type={'white_meat'} />
-        </View>
-        <View style={styles.lineContainer}>
+        </Box>
+        <Box style={styles.lineContainer}>
           <FoodBox type={'vegetarian'} />
           <FoodBox type={'vegan'} />
-        </View>
+        </Box>
       </Box>
     </Box>
   );
 };
 export default Meals;
 
-const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  lineContainer: { flexDirection: 'row', marginBottom: 10 },
+  lineContainer: { flexDirection: 'row', marginBottom: wp('5%') },
   boxStyle: {
     shadowColor: '#000',
     shadowOffset: {
@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   boxInfo: {
-    width: width,
-    height: hp('65%'),
+    width: wp('100%'),
+    height: hp('70%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Box, Text } from '../../../components/Theme';
 import { StyleSheet, Dimensions, View, Image } from 'react-native';
 import {
@@ -14,62 +14,77 @@ interface TripHistoryProps {
   date: string;
 }
 
-const TripHistory = (props: TripHistoryProps) => {
+const TripHistory = ({ type, distance, amount, date }: TripHistoryProps) => {
   const [version, setVersion] = useState({
     image: require('../../../../assets/images/van.png'),
     color: 'lightgray',
   });
 
-  const setImage = (name: string) => {
-    if (name === 'electric_car' || name === 'petrol_car' || name === 'diesel_car') {
-      setVersion({ image: require('../../../../assets/images/van.png'), color: '#39D697' });
-    } else if (name === 'bus') {
-      setVersion({ image: require('../../../../assets/images/autobus.png'), color: '#FF0058' });
-    } else if (name === 'metro') {
-      setVersion({ image: require('../../../../assets/images/metro.png'), color: 'orange' });
-    } else if (name === 'train') {
-      setVersion({ image: require('../../../../assets/images/train.png'), color: 'blue' });
-    } else if (name === 'tramway') {
-      setVersion({ image: require('../../../../assets/images/tramway.png'), color: '#808080' });
-    } else {
-      setVersion({
-        image: require('../../../../assets/images/airplanejourney.png'),
-        color: '#FFC641',
-      });
-    }
-  };
-
-  const setIImage = (name: string) => {
-    switch (name) {
-      case 'electric_car':
-      case 'petrol_car':
-    }
-  };
+  const setImage = useCallback(
+    (type: string) => {
+      switch (type) {
+        case 'electric_car':
+        case 'petrol_car':
+        case 'diesel_car':
+          setVersion({ image: require('../../../../assets/images/van.png'), color: '#39D697' });
+          return;
+        case 'bus':
+          setVersion({ image: require('../../../../assets/images/autobus.png'), color: '#FF0058' });
+          return;
+        case 'metro':
+          setVersion({
+            image: require('../../../../assets/images/metro.png'),
+            color: 'orange',
+          });
+          return;
+        case 'train':
+          setVersion({
+            image: require('../../../../assets/images/tramway.png'),
+            color: '#808080',
+          });
+          return;
+        case 'tramway':
+          setVersion({
+            image: require('../../../../assets/images/tramway.png'),
+            color: '#808080',
+          });
+          return;
+        default:
+          setVersion({
+            image: require('../../../../assets/images/airplanejourney.png'),
+            color: '#FFC641',
+          });
+          return;
+      }
+    },
+    [type, setVersion]
+  );
 
   useEffect(() => {
-    setImage(props.type);
+    setImage(type);
   }, []);
 
   return (
     <Box style={styles.boxContainer} justifyContent="center" marginBottom="s">
-      <View style={styles.viewContainer}>
-        <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">{new Date(Date.parse(props.date)).toLocaleDateString()}</Text>
-        </View>
-        <View style={[styles.viewImg, { backgroundColor: version.color }]}>
+      <Box style={styles.viewContainer}>
+        <Box style={{ marginLeft: wp('5%') }}>
+          <Text variant="body">{new Date(Date.parse(date)).toLocaleDateString()}</Text>
+        </Box>
+        <Box style={[styles.viewImg, { backgroundColor: version.color }]}>
           <Image
             source={version.image}
             style={[styles.imgStyle, { backgroundColor: version.color }]}
           />
-        </View>
-        <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">{props.distance}km</Text>
-        </View>
+        </Box>
 
-        <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ {props.amount}kg Co2</Text>
-        </View>
-      </View>
+        <Text variant="body" style={{ marginLeft: wp('3%') }}>
+          {distance}km
+        </Text>
+
+        <Text variant="body" style={{ marginLeft: 'auto', marginRight: wp('5%') }}>
+          + {amount}kg
+        </Text>
+      </Box>
     </Box>
   );
 };
@@ -94,9 +109,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
-
     elevation: 1,
   },
+  textContainer: { marginLeft: wp('5%') },
   viewContainer: { flexDirection: 'row', alignItems: 'center' },
   viewImg: {
     marginLeft: wp('5%'),

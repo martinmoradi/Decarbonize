@@ -97,10 +97,17 @@ const History = () => {
       ></View>
 
       <Box marginTop="xl" />
-      <View style={{ backgroundColor: '#F6F6F6', borderRadius: 75, marginBottom: 50 }}>
+      <View
+        style={{
+          backgroundColor: '#F6F6F6',
+          borderRadius: 75,
+          marginBottom: 50,
+          minHeight: hp('100%'),
+        }}
+      >
         <View style={{ alignItems: 'center' }}>
           <Text variant="titleCard" marginTop="xl" marginBottom="m" style={styles.h2}>
-            Your <Text color="primary">emissions</Text> history
+            My <Text color="primary">emissions</Text> history
           </Text>
         </View>
         <ButtonGroup

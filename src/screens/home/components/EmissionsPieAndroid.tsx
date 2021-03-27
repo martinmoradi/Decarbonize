@@ -139,7 +139,7 @@ const EmissionsPieAndroid = () => {
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
       return (
-        <View style={{ position: 'absolute', top: '40%', left: '39%' }}>
+        <View style={{ position: 'absolute', top: hp('22%'), left: wp('41%') }}>
           <Text variant="pieChart">{weekly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -149,7 +149,7 @@ const EmissionsPieAndroid = () => {
     }
     if (selectedRange === 1) {
       return (
-        <View style={{ position: 'absolute', top: '40%', left: '37%' }}>
+        <View style={{ position: 'absolute', top: hp('22%'), left: wp('39%') }}>
           <Text variant="pieChart">{monthly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -159,7 +159,7 @@ const EmissionsPieAndroid = () => {
     }
     if (selectedRange === 2) {
       return (
-        <View style={{ position: 'absolute', top: '40%', left: '35%' }}>
+        <View style={{ position: 'absolute', top: hp('22%'), left: wp('36%') }}>
           <Text variant="pieChart">{yearly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -248,6 +248,7 @@ const EmissionsPieAndroid = () => {
         style={{
           backgroundColor: theme.colors.background2,
           borderRadius: 50,
+          paddingBottom: 25,
           marginTop: '8%',
           shadowColor: '#000',
           shadowOffset: {
@@ -260,8 +261,8 @@ const EmissionsPieAndroid = () => {
         }}
       >
         <View style={{ alignItems: 'center' }}>
-          <Text variant="titleCard" marginTop="xl" marginBottom="m" style={styles.h2}>
-            Your <Text color="primary">carbon</Text> emissions
+          <Text variant="titleCard" marginTop="l" marginBottom="m" style={styles.h2}>
+            My <Text color="primary">carbon</Text> emissions
           </Text>
         </View>
         <ButtonGroup
@@ -312,7 +313,7 @@ const EmissionsPieAndroid = () => {
           </Svg>
           {generateTotalEmissions()}
         </View>
-        {generateLabels()}
+        <View style={{ marginTop: 25 }}>{generateLabels()}</View>
       </View>
     </View>
   );

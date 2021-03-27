@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Settings from '../Settings';
-import SettingsEmission from './SettingEmissionScreen';
-import { SettingsRoutesList } from '../../../routers/NavigationTypes';
-import FoodSettingScreen from './FoodSettingScreen';
-import EnergySettingScreen from './EnergySettingScreen';
-import SpendingSettingScreen from './SpendingSettingScreen';
-import { useActions, useTypedSelector } from '../../../hooks';
+import Settings from '../screens/home/Settings';
+import SettingsEmission from '../screens/home/settings-screens/SettingsEmissions';
+import { SettingsRoutesList } from './NavigationTypes';
+import FoodSettingScreen from '../screens/home/settings-screens/FoodSettings';
+import EnergySettingScreen from '../screens/home/settings-screens/EnergySettings';
+import SpendingSettingScreen from '../screens/home/settings-screens/SpendingsSettings';
+import { useActions } from '../hooks';
 
 const SettingsStack = createStackNavigator<SettingsRoutesList>();
 
-export const SettingNavigator = () => {
+export const SettingsNavigator = () => {
   const { fetchFixedEmissions } = useActions();
 
   useEffect(() => {
@@ -28,4 +28,4 @@ export const SettingNavigator = () => {
   );
 };
 
-export default SettingNavigator;
+export default SettingsNavigator;

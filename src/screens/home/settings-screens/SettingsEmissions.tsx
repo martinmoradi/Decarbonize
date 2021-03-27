@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { Button, ScrollView, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Box, Text } from '../../../components';
 import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
-import { useTypedSelector } from '../../../hooks';
 
-const SettingEmission = ({ navigation }: SettingsStackNavigationProps<'SettingsEmission'>) => {
+const SettingsEmissions = ({ navigation }: SettingsStackNavigationProps<'SettingsEmission'>) => {
   return (
     <ScrollView>
       <View style={{ alignItems: 'center', flex: 1 }}>
@@ -94,4 +90,4 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
   },
 });
-export default SettingEmission;
+export default SettingsEmissions;
