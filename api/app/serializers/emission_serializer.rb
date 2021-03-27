@@ -23,7 +23,25 @@ class EmissionSerializer
              :total_red_meat_emissions,
              :total_white_meat_emissions,
              :total_vegetarian_emissions,
-             :total_vegan_emissions
+             :total_vegan_emissions,
+             :yearly_cars_emissions,
+             :monthly_cars_emissions,
+             :weekly_cars_emissions,
+             :yearly_bus_emissions,
+             :monthly_bus_emissions,
+             :weekly_bus_emissions,
+             :yearly_tramway_emissions,
+             :monthly_tramway_emissions,
+             :weekly_tramway_emissions,
+             :yearly_tramway_emissions,
+             :monthly_tramway_emissions,
+             :weekly_tramway_emissions,
+             :yearly_metro_emissions,
+             :monthly_metro_emissions,
+             :weekly_metro_emissions,
+             :yearly_train_emissions,
+             :monthly_train_emissions,
+             :weekly_train_emissions
 
   attribute :weekly_alimentation do |object|
     object.fixed_emission.weekly_alimentation

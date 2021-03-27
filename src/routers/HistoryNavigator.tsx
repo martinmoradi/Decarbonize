@@ -1,28 +1,17 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { TabBar, Tab, Layout, Text } from '@ui-kitten/components';
+import { TabBar, Tab } from '@ui-kitten/components';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Box, useTheme } from '../components';
+import { Box, useTheme, Text } from '../components';
 import History from '../screens/home/History';
+import TotalsHistory from '../screens/home/TotalsHistory';
 
 const HistoryNavigator = () => {
   const { Navigator, Screen } = createMaterialTopTabNavigator();
   const theme = useTheme();
 
-  const UsersScreen = () => (
-    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text category="h1">Details</Text>
-    </Layout>
-  );
-
-  const OrdersScreen = () => (
-    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text category="h1">Totals</Text>
-    </Layout>
-  );
   const TopTabBar = ({ navigation, state }) => {
-    const colorFirstTab = state.index === 0 ? '#39D697' : 'gray';
-    const colorSecondTab = state.index === 1 ? theme.colors.primary : 'white';
+    const colorFirstTab = state.index === 0 ? '#39D697' : '#F3F4F6';
+    const colorSecondTab = state.index === 1 ? theme.colors.primary : '#F3F4F6';
     return (
       <Box style={{}}>
         <TabBar
@@ -60,21 +49,9 @@ const HistoryNavigator = () => {
   return (
     <Navigator tabBar={props => <TopTabBar {...props} />}>
       <Screen name="Details" component={History} />
-      <Screen name="Totals" component={OrdersScreen} />
+      <Screen name="Totals" component={TotalsHistory} />
     </Navigator>
   );
 };
 
 export default HistoryNavigator;
-
-const styles = StyleSheet.create({
-  tabContainer: {
-    zIndex: 1,
-    height: 64,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tabItem: {
-    color: 'salmon',
-  },
-});
