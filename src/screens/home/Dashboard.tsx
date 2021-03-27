@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Platform,
-  ImageBackground,
-  StatusBar,
-} from 'react-native';
+import { ScrollView, View, StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { EmissionsPieIOS, Trajet, EmissionsPieAndroid } from './components';
 import { Dimensions } from 'react-native';
@@ -22,7 +14,6 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const Dashboard = () => {
-  const image = [require('../../components/assets/patterns/1.png')] as const;
   const theme = useTheme();
 
   return (
@@ -34,11 +25,8 @@ const Dashboard = () => {
           backgroundColor: theme.colors.secondary,
         }}
       ></View>
-      {/* <ImageBackground
-        source={require('../../components/assets/patterns/3.png')}
-        style={styles.image}
-      > */}
-      <SafeAreaView style={{paddingTop: hp("2%")}}>
+
+      <SafeAreaView>
         {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
 
         <Meals />

@@ -11,6 +11,7 @@ import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
 import SettingsNavigator from './SettingsNavigator';
 import HistoryContainer from '../screens/home/HistoryContainer';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -114,15 +115,17 @@ const HomeNavigator = () => {
   }, []);
 
   return (
-    <HomeTab.Navigator
-      tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />}
-    >
-      <HomeTab.Screen name="Home" component={Dashboard} />
-      <HomeTab.Screen name="Deeds" component={Commitments} />
-      <HomeTab.Screen name="New" component={NewTripNavigator} />
-      <HomeTab.Screen name="History" component={HistoryContainer} />
-      <HomeTab.Screen name="Profile" component={SettingsNavigator} />
-    </HomeTab.Navigator>
+    <SafeAreaView style={{ flex: 1, zIndex: -1, backgroundColor: '#0C0D34' }}>
+      <HomeTab.Navigator
+        tabBar={props => <AnimatedTabBar tabs={tabs} {...props} style={styles.tabContainer} />}
+      >
+        <HomeTab.Screen name="Home" component={Dashboard} />
+        <HomeTab.Screen name="Deeds" component={Commitments} />
+        <HomeTab.Screen name="New" component={NewTripNavigator} />
+        <HomeTab.Screen name="History" component={HistoryContainer} />
+        <HomeTab.Screen name="Profile" component={SettingsNavigator} />
+      </HomeTab.Navigator>
+    </SafeAreaView>
   );
 };
 
