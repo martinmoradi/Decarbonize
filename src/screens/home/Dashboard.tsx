@@ -19,7 +19,6 @@ const Dashboard = () => {
       ></View>
       <SafeAreaView>
         {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
-
         <Box marginBottom="xl">
           <Meals />
         </Box>
