@@ -48,6 +48,21 @@ const initialState: EmissionsStateType = {
     total_white_meat_emissions: 0,
     total_vegetarian_emissions: 0,
     total_vegan_emissions: 0,
+    yearly_cars_emissions: 0,
+    monthly_cars_emissions: 0,
+    weekly_cars_emissions: 0,
+    yearly_bus_emissions: 0,
+    monthly_bus_emissions: 0,
+    weekly_bus_emissions: 0,
+    yearly_tramway_emissions: 0,
+    monthly_tramway_emissions: 0,
+    weekly_tramway_emissions: 0,
+    yearly_metro_emissions: 0,
+    monthly_metro_emissions: 0,
+    weekly_metro_emissions: 0,
+    yearly_train_emissions: 0,
+    monthly_train_emissions: 0,
+    weekly_train_emissions: 0,
   },
   errorMessage: null,
   isLoading: false,
@@ -58,7 +73,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
   switch (action.type) {
     case EmissionsActionType.FETCH_EMISSIONS_ATTEMPT:
     case EmissionsActionType.POST_EMISSIONS_ATTEMPT:
-      case EmissionsActionType.PUT_EMISSIONS_ATTEMPT:
+    case EmissionsActionType.PUT_EMISSIONS_ATTEMPT:
       return {
         data: initialState.data,
         errorMessage: null,
@@ -67,7 +82,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
       };
     case EmissionsActionType.FETCH_EMISSIONS_SUCCESS:
     case EmissionsActionType.POST_EMISSIONS_SUCCESS:
-      case EmissionsActionType.PUT_EMISSIONS_SUCCESS:
+    case EmissionsActionType.PUT_EMISSIONS_SUCCESS:
       return {
         data: action.payload,
         errorMessage: null,
@@ -76,7 +91,7 @@ const emissionReducer = (state = initialState, action: EmissionsAction): Emissio
       };
     case EmissionsActionType.FETCH_EMISSIONS_ERROR:
     case EmissionsActionType.POST_EMISSIONS_ERROR:
-      case EmissionsActionType.PUT_EMISSIONS_ERROR:
+    case EmissionsActionType.PUT_EMISSIONS_ERROR:
       return {
         data: initialState.data,
         errorMessage: action.payload,
