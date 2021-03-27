@@ -8,7 +8,7 @@ import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 
 const { width } = Dimensions.get('window');
 
-const EnergySettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsEnergy'>) => {
+const EnergySettings = ({ navigation }: SettingsStackNavigationProps<'SettingsEnergy'>) => {
   const { putFixedEmissions } = useActions();
   const { energy, food, spending } = useTypedSelector(state => state.onboarding);
 
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EnergySettingScreen;
+export default EnergySettings;

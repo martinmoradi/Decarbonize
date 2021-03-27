@@ -10,7 +10,7 @@ import { SettingFoodType } from '../../../redux/types';
 
 const { width } = Dimensions.get('window');
 
-const FoodSettingScreen = ({ navigation }: SettingsStackNavigationProps<'SettingsFood'>) => {
+const FoodSettings = ({ navigation }: SettingsStackNavigationProps<'SettingsFood'>) => {
   const { putFixedEmissions } = useActions();
   const { energy, food, spending } = useTypedSelector(state => state.onboarding);
 
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FoodSettingScreen;
+export default FoodSettings;

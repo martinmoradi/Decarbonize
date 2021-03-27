@@ -8,9 +8,7 @@ import { useActions, useTypedSelector } from '../../../hooks';
 import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 const { width } = Dimensions.get('window');
 
-const SpendingSettingScreen = ({
-  navigation,
-}: SettingsStackNavigationProps<'SettingsSpending'>) => {
+const SpendingsSettings = ({ navigation }: SettingsStackNavigationProps<'SettingsSpending'>) => {
   const { putFixedEmissions } = useActions();
   const { energy, food, spending } = useTypedSelector(state => state.onboarding);
 
@@ -138,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SpendingSettingScreen;
+export default SpendingsSettings;
