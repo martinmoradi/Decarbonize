@@ -2,6 +2,7 @@ import * as React from 'react';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LoadAssets } from './src/components';
+import { StatusBar } from 'react-native';
 import { ThemeProvider } from './src/components/Theme';
 import AuthRouter from './src/routers/AuthRouter';
 import { store } from './src/redux';
@@ -25,6 +26,7 @@ const App = () => {
         <LoadAssets {...{ fonts }}>
           <ThemeProvider>
             <SafeAreaProvider>
+              <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
               <AuthRouter />
             </SafeAreaProvider>
           </ThemeProvider>

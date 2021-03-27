@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import React, { useRef, useState, useMemo } from 'react';
+import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import {
   heightPercentageToDP as hp,
@@ -39,57 +39,67 @@ const Commitments = () => {
   const [bulkFoodCommitment, setBulkFoodCommitment] = useState(bulk_food);
   const [zeroWastesCommitment, setZeroWastesCommitment] = useState(zero_wastes);
 
-  const engagementsData = [
-    {
-      title: 'I switch off my devices in standby.',
-      description: 'And save 6.2kg of carbon emissions.',
-      isCommitted: appliancesCommitment,
-      commitmentId: 1,
-      onChangeToggle: setAppliancesCommitment,
-    },
-    {
-      title: 'I turn down the heating by 1°C',
-      description: 'Save 201.6kg of carbon emissions.',
-      isCommitted: reducedHeatingCommitment,
-      commitmentId: 2,
-      onChangeToggle: setReducedHeatingCommitment,
-    },
-    {
-      title: 'I adopt eco-driving.',
-      description: 'Reduce all cars emissions by 15%.',
-      isCommitted: ecoDrivingCommitment,
-      commitmentId: 3,
-      onChangeToggle: setEcoDrivingCommitment,
-    },
-    {
-      title: 'I drink tap water instead of bottles.',
-      description: 'Save 215kg of carbon emissions.',
-      isCommitted: tapWaterCommitment,
-      commitmentId: 4,
-      onChangeToggle: setTapWaterCommitment,
-    },
-    {
-      title: 'I reduce my food waste',
-      description: 'Save 31kg of carbon emissions.',
-      isCommitted: foodWastesCommitment,
-      commitmentId: 5,
-      onChangeToggle: setFoodWastesCommitment,
-    },
-    {
-      title: 'I do my shopping in bulk',
-      description: 'Save 35kg of carbon emissions.',
-      isCommitted: bulkFoodCommitment,
-      commitmentId: 6,
-      onChangeToggle: setBulkFoodCommitment,
-    },
-    {
-      title: 'I have a zero waste approach',
-      description: 'Save 707.67kg of carbon emissions.',
-      isCommitted: zeroWastesCommitment,
-      commitmentId: 7,
-      onChangeToggle: setZeroWastesCommitment,
-    },
-  ];
+  const engagementsData = useMemo(
+    () => [
+      {
+        title: 'I switch off my devices in standby.',
+        description: 'And save 6.2kg of carbon emissions.',
+        isCommitted: appliancesCommitment,
+        commitmentId: 1,
+        onChangeToggle: setAppliancesCommitment,
+      },
+      {
+        title: 'I turn down the heating by 1°C',
+        description: 'Save 201.6kg of carbon emissions.',
+        isCommitted: reducedHeatingCommitment,
+        commitmentId: 2,
+        onChangeToggle: setReducedHeatingCommitment,
+      },
+      {
+        title: 'I adopt eco-driving.',
+        description: 'Reduce all cars emissions by 15%.',
+        isCommitted: ecoDrivingCommitment,
+        commitmentId: 3,
+        onChangeToggle: setEcoDrivingCommitment,
+      },
+      {
+        title: 'I drink tap water instead of bottles.',
+        description: 'Save 215kg of carbon emissions.',
+        isCommitted: tapWaterCommitment,
+        commitmentId: 4,
+        onChangeToggle: setTapWaterCommitment,
+      },
+      {
+        title: 'I reduce my food waste',
+        description: 'Save 31kg of carbon emissions.',
+        isCommitted: foodWastesCommitment,
+        commitmentId: 5,
+        onChangeToggle: setFoodWastesCommitment,
+      },
+      {
+        title: 'I do my shopping in bulk',
+        description: 'Save 35kg of carbon emissions.',
+        isCommitted: bulkFoodCommitment,
+        commitmentId: 6,
+        onChangeToggle: setBulkFoodCommitment,
+      },
+      {
+        title: 'I have a zero waste approach',
+        description: 'Save 707.67kg of carbon emissions.',
+        isCommitted: zeroWastesCommitment,
+        commitmentId: 7,
+        onChangeToggle: setZeroWastesCommitment,
+      },
+    ],
+    [
+      zeroWastesCommitment,
+      bulkFoodCommitment,
+      foodWastesCommitment,
+      tapWaterCommitment,
+      reducedHeatingCommitment,
+      appliancesCommitment,
+    ]
+  );
 
   type PropsRenderItem = {
     item: string;
@@ -108,15 +118,6 @@ const Commitments = () => {
   return (
     <ScrollView>
       <View style={styles.mainView}>
-        <Box
-          paddingLeft="m"
-          paddingTop="s"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={styles.boxContainer}
-          backgroundColor="secondary"
-          marginBottom="s"
-        ></Box>
         <Box
           flexDirection="row"
           justifyContent="space-around"
@@ -209,6 +210,7 @@ const styles = StyleSheet.create({
   },
   boxStyle: {
     marginBottom: hp('2.5%'),
+    marginTop: hp('12%'),
     justifyContent: 'center',
     alignItems: 'center',
     width: wp('90%'),

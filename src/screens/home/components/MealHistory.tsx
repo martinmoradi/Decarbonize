@@ -15,23 +15,34 @@ const MealHistory = (props: MealHistoryProps) => {
   const [version, setVersion] = useState({
     image: require(`../../../../assets/images/red_meat.png`),
     name: 'Red Meat',
+    color: 'white',
   });
 
   const imageSource = (type: string) => {
     if (type === 'red_meat') {
-      setVersion({ image: require(`../../../../assets/images/red_meat.png`), name: 'Red Meat' });
+      setVersion({
+        image: require(`../../../../assets/images/red_meat.png`),
+        name: 'Red Meat',
+        color: '#ff6361',
+      });
     } else if (type === 'white_meat') {
       setVersion({
         image: require(`../../../../assets/images/white_meat.png`),
         name: 'White Meat',
+        color: '#bc5090',
       });
     } else if (type === 'vegetarian') {
       setVersion({
         image: require(`../../../../assets/images/Vegetarian.png`),
         name: 'Vegetarian',
+        color: '#39D697',
       });
     } else if (type === 'vegan') {
-      setVersion({ image: require(`../../../../assets/images/Vegan.png`), name: 'Vegan' });
+      setVersion({
+        image: require(`../../../../assets/images/Vegan.png`),
+        name: 'Vegan',
+        color: '#58508d',
+      });
     }
   };
 
@@ -50,8 +61,11 @@ const MealHistory = (props: MealHistoryProps) => {
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="body">{new Date(Date.parse(props.date)).toLocaleDateString()}</Text>
         </View>
-        <View style={styles.viewImg}>
-          <Image source={version.image} style={styles.imgStyle} />
+        <View style={[styles.viewImg, { backgroundColor: version.color }]}>
+          <Image
+            source={version.image}
+            style={[styles.imgStyle, { backgroundColor: version.color }]}
+          />
         </View>
         <View style={{ marginLeft: wp('5%') }}>
           <Text variant="header">{version.name}</Text>
@@ -83,7 +97,6 @@ const styles = StyleSheet.create({
     marginLeft: wp('5%'),
     padding: 5,
     borderRadius: 10,
-    backgroundColor: '#39D697',
   },
-  imgStyle: { height: 24, width: 24, tintColor: 'white', backgroundColor: '#39D697' },
+  imgStyle: { height: 24, width: 24, tintColor: 'white' },
 });

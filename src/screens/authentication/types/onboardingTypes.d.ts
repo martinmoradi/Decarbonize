@@ -1,11 +1,13 @@
+import { PropsIcons } from '../../home/components/icons/IconSvg';
+
 export type PropsSlide = {
   onPress: () => void;
-  goBack: ()=> void;
+  goBack: () => void;
 };
 
 export type PropsSlideTop = {
   title: string;
-  svgTitle: string;
+  svgTitle: PropsIcons;
   isReversed: boolean;
 };
 

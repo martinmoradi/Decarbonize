@@ -1,59 +1,65 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useMemo } from 'react';
+import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
-import AirplaneJourney from './components/AirplaneJourney';
-import TramJourney from './components/TramJourney';
-import SubwayJourney from './components/SubwayJourney';
-import BusJourney from './components/BusJourney';
-import TrainJourney from './components/TrainJourney';
-import Trajet from './components/Trajet';
+import PlaneDetails from './components/history-details/PlaneDetails';
+import TramDetails from './components/history-details/TramDetails';
+import MetroDetails from './components/history-details/MetroDetails';
+import BusDetails from './components/history-details/BusDetails';
+import TrainDetails from './components/history-details/TrainDetails';
+import CarDetails from './components/history-details/CarDetails';
 
 const { width, height } = Dimensions.get('window');
 
 const TotalsHistory = () => {
   const theme = useTheme();
   return (
-    <View>
-      <View
+    <Box style={{ flex: 1 }}>
+      <Box
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.secondary,
         }}
-      ></View>
-
-      <Box marginTop="xl" />
-      <View
+      ></Box>
+      <Box
+        marginTop="xl"
         style={{
           backgroundColor: '#F6F6F6',
           borderRadius: 75,
           marginBottom: 50,
           minHeight: hp('100%'),
+          flex: 1,
         }}
       >
-        <View style={{ alignItems: 'center' }}>
+        <Box style={{ alignItems: 'center', flex: 1 }}>
           <Text variant="titleCard" marginTop="xl" marginBottom="m" style={styles.h2}>
-            My <Text color="primary">emissions</Text> history
+            My trips <Text color="primary">summary</Text>
           </Text>
-          <Box
-            marginTop="m"
-            paddingVertical="m"
-            style={styles.boxTravel}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Trajet />
-            <BusJourney />
-            <TrainJourney />
-            <AirplaneJourney />
-            <TramJourney />
-            <SubwayJourney />
-          </Box>
-        </View>
-      </View>
-    </View>
+          <ScrollView>
+            <Box marginTop="m">
+              <CarDetails />
+            </Box>
+            <Box marginTop="m">
+              <TrainDetails />
+            </Box>
+            <Box marginTop="m">
+              <PlaneDetails />
+            </Box>
+            <Box marginTop="m">
+              <BusDetails />
+            </Box>
+            <Box marginTop="m">
+              <MetroDetails />
+            </Box>
+            <Box marginTop="m">
+              <TramDetails />
+            </Box>
+          </ScrollView>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
