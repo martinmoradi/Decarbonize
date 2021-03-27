@@ -1,12 +1,12 @@
-export { default as AirplaneJourney } from './AirplaneJourney';
-export { default as BusJourney } from './BusJourney';
+export { default as AirplaneJourney } from './history-details/PlaneDetails';
+export { default as BusJourney } from './history-details/BusDetails';
 export { default as DashboardGraph } from './DashboardGraph';
 export { default as HistoryGraph } from './HistoryGraph';
 export { default as MeteoBar } from './MeteoBar';
-export { default as SubwayJourney } from './SubwayJourney';
-export { default as TrainJourney } from './TrainJourney';
-export { default as Trajet } from './Trajet';
-export { default as TramJourney } from './TramJourney';
+export { default as SubwayJourney } from './history-details/MetroDetails';
+export { default as TrainJourney } from './history-details/TrainDetails';
+export { default as Trajet } from './history-details/CarDetails.tsx';
+export { default as TramJourney } from './history-details/TramDetails';
 export { default as Deeds } from './Deeds';
 export { IconSvg } from './icons';
 export { default as TripHistory } from './TripHistory';

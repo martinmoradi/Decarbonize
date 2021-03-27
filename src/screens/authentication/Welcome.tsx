@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { Box, Button, Text } from '../../components';
+import { Box, Button, Text, useTheme } from '../../components';
 import { AuthNavigationProps } from '../../routers/NavigationTypes';
-import { useTheme } from '../../components/Theme';
 import { useActions, useTypedSelector } from '../../hooks';
+
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-const { width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const picture = {
   src: require('../../components/assets/images/decarbonize-hero.png'),
   width: 920,
@@ -40,10 +40,7 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
         </Text>
         <Text variant="subHeroHome"> Your carbon emissions manager </Text>
 
-        <Image
-          source={picture.src}
-          style={styles.image}
-        />
+        <Image source={picture.src} style={styles.image} />
       </Box>
       <Box flex={1} borderTopLeftRadius="xl">
         <Box backgroundColor="primary" position="absolute" top={0} left={0} right={0} bottom={0} />
@@ -56,7 +53,9 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
           flex={1}
           padding="xl"
         >
-          <Text variant="title2" style={styles.bottomMargin}>Let’s get started</Text>
+          <Text variant="title2" style={styles.bottomMargin}>
+            Let’s get started
+          </Text>
           <Text variant="body" textAlign="center" style={styles.bottomMargin}>
             Answer a few questions about your carbon emissions to create your account (it's all
             free)
@@ -64,7 +63,8 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
           <Button
             variant="primary"
             label="Let's go !"
-            onPress={() => navigation.navigate('Onboarding')} style={styles.bottomMargin}
+            onPress={() => navigation.navigate('Onboarding')}
+            style={styles.bottomMargin}
           />
 
           <BorderlessButton onPress={() => navigation.navigate('Login')}>
@@ -81,11 +81,12 @@ const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
 export default Welcome;
 const styles = StyleSheet.create({
   title: {
-    marginTop: wp("20%"), marginBottom: wp("2%")
+    marginTop: wp('20%'),
+    marginBottom: wp('2%'),
   },
-  image:{ 
+  image: {
     width: width,
-    height: ((width - 75) * picture.height) / picture.width
+    height: ((width - 75) * picture.height) / picture.width,
   },
-  bottomMargin: { marginBottom: 30}
+  bottomMargin: { marginBottom: 30 },
 });

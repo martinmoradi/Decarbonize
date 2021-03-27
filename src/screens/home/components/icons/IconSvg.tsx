@@ -1,7 +1,7 @@
 import * as React from 'react';
 import icons from './icons';
 
-type PropsIcons = {
+export type PropsIcons = {
   name: keyof typeof icons;
 };
 

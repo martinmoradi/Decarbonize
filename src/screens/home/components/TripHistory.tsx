@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Box, Text } from '../../../components/Theme';
-import { StyleSheet, Dimensions, View, Image } from 'react-native';
+import { StyleSheet, Dimensions, Image } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -26,33 +26,33 @@ const TripHistory = ({ type, distance, amount, date }: TripHistoryProps) => {
         case 'electric_car':
         case 'petrol_car':
         case 'diesel_car':
-          setVersion({ image: require('../../../../assets/images/van.png'), color: '#39D697' });
+          setVersion({ image: require('../../../../assets/images/van.png'), color: '#003f5c' });
           return;
         case 'bus':
-          setVersion({ image: require('../../../../assets/images/autobus.png'), color: '#FF0058' });
+          setVersion({ image: require('../../../../assets/images/autobus.png'), color: '#ff6361' });
           return;
         case 'metro':
           setVersion({
             image: require('../../../../assets/images/metro.png'),
-            color: 'orange',
+            color: '#9d02d7',
           });
           return;
         case 'train':
           setVersion({
             image: require('../../../../assets/images/tramway.png'),
-            color: '#808080',
+            color: '#bc5090',
           });
           return;
         case 'tramway':
           setVersion({
             image: require('../../../../assets/images/tramway.png'),
-            color: '#808080',
+            color: '#0000ff',
           });
           return;
         default:
           setVersion({
             image: require('../../../../assets/images/airplanejourney.png'),
-            color: '#FFC641',
+            color: '#58508d',
           });
           return;
       }
@@ -62,7 +62,7 @@ const TripHistory = ({ type, distance, amount, date }: TripHistoryProps) => {
 
   useEffect(() => {
     setImage(type);
-  }, []);
+  }, [type]);
 
   return (
     <Box style={styles.boxContainer} justifyContent="center" marginBottom="s">
@@ -76,11 +76,9 @@ const TripHistory = ({ type, distance, amount, date }: TripHistoryProps) => {
             style={[styles.imgStyle, { backgroundColor: version.color }]}
           />
         </Box>
-
         <Text variant="body" style={{ marginLeft: wp('3%') }}>
           {distance}km
         </Text>
-
         <Text variant="body" style={{ marginLeft: 'auto', marginRight: wp('5%') }}>
           + {amount}kg
         </Text>

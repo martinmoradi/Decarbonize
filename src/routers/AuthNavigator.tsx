@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import React from 'react';
-
 import { AuthRoutesList } from './NavigationTypes';
 import ForgotPassword from '../screens/authentication/ForgotPassword';
 import Login from '../screens/authentication/Login';
