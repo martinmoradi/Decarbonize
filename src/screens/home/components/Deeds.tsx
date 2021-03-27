@@ -59,13 +59,13 @@ const Deeds = ({
       key={index}
     >
       <TouchableOpacity
-        style={{ position: 'absolute', top: 1, left: 1 }}
+        style={{ position: 'absolute', top: 20, left: 2 }}
         onPress={() => setToggleInfo(!toggleInfo)}
       >
         {!toggleInfo ? (
-          <AntDesign name="infocirlceo" size={20} color="#808080" />
+          <AntDesign name="infocirlceo" size={18} color="#808080" />
         ) : (
-          <AntDesign name="closecircleo" size={20} color="#808080" />
+          <AntDesign name="closecircleo" size={18} color="#808080" />
         )}
       </TouchableOpacity>
       <Text variant="body" style={{ marginLeft: wp('8%'), fontSize: 15 }}>

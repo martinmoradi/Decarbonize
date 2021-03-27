@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Box, Text, Button } from '../../../components';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Text, Button } from '../../../components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useTypedSelector, useActions } from '../../../hooks';
 import { AntDesign } from '@expo/vector-icons';
 import { MealType, MealCategoryType } from '../../../redux/types';
@@ -13,42 +13,52 @@ interface PropTypes {
   type: MealCategoryType;
 }
 
+const matchTypes: Record<MealCategoryType, keyof MealType> = {
+  red_meat: 'red_meat_meals',
+  white_meat: 'white_meat_meals',
+  vegetarian: 'vegetarian_meals',
+  vegan: 'vegan_meals',
+};
+
 const FoodBox = (props: PropTypes) => {
-  const { data } = useTypedSelector(state => state.meals);
+  const { data, isLoading } = useTypedSelector(state => state.meals);
   const { postMeal, fetchMeals, deleteMeal } = useActions();
-
-  const matchTypes: Record<MealCategoryType, keyof MealType> = {
-    red_meat: 'red_meat_meals',
-    white_meat: 'white_meat_meals',
-    vegetarian: 'vegetarian_meals',
-    vegan: 'vegan_meals',
-  };
-
+  const [showDescription, setShowDescription] = useState(false);
   const mealCount = Object.keys(data[matchTypes[props.type]]).length;
   const last_meal = data[matchTypes[props.type]][0];
+
   let name;
+  let description;
 
   useEffect(() => {
     fetchMeals();
   }, []);
 
   const imageSource = (type: string) => {
-    if (type === 'red_meat') {
-      name = 'Red meat';
-      return require(`../../../../assets/images/red_meat.png`);
-    } else if (type === 'white_meat') {
-      name = 'White meat';
-      return require(`../../../../assets/images/white_meat.png`);
-    } else if (type === 'vegetarian') {
-      name = 'Vegetarian';
-      return require(`../../../../assets/images/Vegetarian.png`);
-    } else if (type === 'vegan') {
-      name = 'Vegan';
-      return require(`../../../../assets/images/Vegan.png`);
+    switch (type) {
+      case 'red_meat':
+        name = 'Red meat';
+        description = 'Meal containing beef, veal or lamb.';
+        return require(`../../../../assets/images/red_meat.png`);
+      case 'white_meat':
+        name = 'White meat';
+        description = 'Meal containing poultry or pork.';
+        return require(`../../../../assets/images/white_meat.png`);
+      case 'vegetarian':
+        name = 'Vegetarian';
+        description = 'Meal without animal flesh, but with eggs or cheese.';
+        return require(`../../../../assets/images/Vegetarian.png`);
+      case 'vegan':
+        name = 'Vegan';
+        description = 'Meal without any animal products.';
+        return require(`../../../../assets/images/Vegan.png`);
+      default:
+        throw new Error(`Unknown type ${type}`);
     }
   };
 
   const handleMinus = () => {
+    if (showDescription) setShowDescription(false);
     if (!(mealCount > 0)) {
       return;
     }
@@ -56,31 +66,48 @@ const FoodBox = (props: PropTypes) => {
   };
 
   const handlePlus = () => {
+    if (showDescription) setShowDescription(false);
     postMeal(props.type);
   };
 
   return (
-    <View style={s.boxContainer}>
-      <View style={s.viewImg}>
-        <Image source={imageSource(props.type)} style={s.imgStyle} />
+    <View style={styles.boxContainer}>
+      <TouchableOpacity onPress={() => setShowDescription(!showDescription)}>
+        <View style={{ position: 'absolute', zIndex: 1, left: 2, top: 2 }}>
+          {showDescription ? (
+            <AntDesign name="closecircleo" size={14} color="white" />
+          ) : (
+            <AntDesign name="infocirlceo" size={14} color="white" />
+          )}
+        </View>
+        <View style={styles.viewImg}>
+          <Image source={imageSource(props.type)} style={styles.imgStyle} />
+        </View>
+      </TouchableOpacity>
+      <View style={{ alignItems: 'center', marginTop: 5 }}>
+        {showDescription ? (
+          <Text variant="cardInfo">{description}</Text>
+        ) : (
+          <Text variant="titleFoodCard">{name}</Text>
+        )}
       </View>
-      <View style={{ alignItems: 'center', marginTop: 20 }}>
-        <Text variant="title3">{name}</Text>
-      </View>
-      <Text style={s.text}></Text>
-      <View style={s.buttonContainer}>
+      <View style={styles.buttonContainer}>
         <Button
           onPress={handleMinus}
           label={<AntDesign name="minus" size={24} color="black" />}
-          style={s.buttons}
+          style={styles.buttons}
         />
         <View style={{ alignItems: 'center' }}>
-          <Text variant="title2">{mealCount}</Text>
+          {isLoading ? (
+            <ActivityIndicator color="#bc5090" />
+          ) : (
+            <Text variant="title2">{mealCount}</Text>
+          )}
         </View>
         <Button
           onPress={handlePlus}
           label={<AntDesign name="plus" size={24} color="black" />}
-          style={s.buttons}
+          style={styles.buttons}
         />
       </View>
     </View>
@@ -88,7 +115,8 @@ const FoodBox = (props: PropTypes) => {
 };
 
 export default FoodBox;
-const s = StyleSheet.create({
+
+const styles = StyleSheet.create({
   boxContainer: {
     width: wp('40%'),
     height: hp('22%'),
@@ -104,7 +132,6 @@ const s = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
-
     elevation: 4,
   },
   buttonContainer: {
@@ -123,7 +150,6 @@ const s = StyleSheet.create({
     width: 40,
     height: 40,
   },
-
   imgStyle: { height: 30, width: 30, tintColor: 'white' },
   text: { marginLeft: wp('7%') },
 });
