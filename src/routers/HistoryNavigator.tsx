@@ -23,7 +23,6 @@ const HistoryNavigator = () => {
   const TopTabBar = ({ navigation, state }) => {
     const colorFirstTab = state.index === 0 ? '#39D697' : 'gray';
     const colorSecondTab = state.index === 1 ? theme.colors.primary : 'white';
-    const stylesProps = () => ({ color: colorFirstTab });
     return (
       <Box style={{}}>
         <TabBar
@@ -32,10 +31,12 @@ const HistoryNavigator = () => {
           style={{
             backgroundColor: 'transparent',
             position: 'absolute',
+            top: 3,
             left: 0,
             right: 0,
             zIndex: 1,
           }}
+          indicatorStyle={{ backgroundColor: theme.colors.primary }}
         >
           <Tab
             title={props => (
@@ -57,9 +58,7 @@ const HistoryNavigator = () => {
   };
 
   return (
-    <Navigator
-      tabBar={props => <TopTabBar {...props} tabBarOptions={{ activeTintColor: '#e91e63' }} />}
-    >
+    <Navigator tabBar={props => <TopTabBar {...props} />}>
       <Screen name="Details" component={History} />
       <Screen name="Totals" component={OrdersScreen} />
     </Navigator>
