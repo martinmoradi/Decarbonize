@@ -5,8 +5,8 @@ import {
 } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
 import { Platform } from 'react-native';
-import { View, StyleSheet } from 'react-native';
-import { Text, useTheme } from '../../../components/Theme';
+import { StyleSheet } from 'react-native';
+import { Text, useTheme, Box } from '../../../components/';
 import { IconSvg } from '../../home/components';
 import { PropsSlideTop } from '../types';
 
@@ -15,15 +15,15 @@ const SlideTitle = ({ title, svgTitle, isReversed }: PropsSlideTop) => {
 
   return (
     <>
-      <View
+      <Box
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.primary,
         }}
-      ></View>
-      <View style={theme.slideStyle.slider}>
-        <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></View>
-        <View
+      ></Box>
+      <Box style={theme.slideStyle.slider}>
+        <Box style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}></Box>
+        <Box
           style={[
             {
               backgroundColor: theme.colors.primary,
@@ -38,11 +38,11 @@ const SlideTitle = ({ title, svgTitle, isReversed }: PropsSlideTop) => {
           >
             {title}
           </Text>
-          <View style={{ alignItems: 'center', translateY: hp('-7%') }}>
+          <Box style={{ alignItems: 'center', translateY: hp('-7%') }}>
             <IconSvg name={svgTitle} />
-          </View>
-        </View>
-      </View>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 };

@@ -18,6 +18,6 @@ export default Grid;
 
 const styles = StyleSheet.create({
   gridContainer: {
-    width: wp(50),
+    width: wp(60),
   },
 });

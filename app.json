@@ -4,6 +4,8 @@
     "icon": "./assets/decarbonize-app-icon.png",
     "version": "0.1",
     "slug": "decarbonize",
+    "orientation": "portrait",
+    "githubUrl": "https://github.com/martinmoradi/Decarbonize",
     "ios": {
       "bundleIdentifier": "com.thp.decarbonize",
       "buildNumber": "1.0.0"

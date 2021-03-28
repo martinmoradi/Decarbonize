@@ -135,8 +135,8 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   iconStyle: {
-    height: 62,
-    width: 62,
+    height: 48,
+    width: 48,
     borderRadius: 15,
     tintColor: 'white',
   },

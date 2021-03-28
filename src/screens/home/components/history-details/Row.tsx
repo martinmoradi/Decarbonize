@@ -22,6 +22,6 @@ export default Row;
 const styles = StyleSheet.create({
   rowStyle: {
     flexDirection: 'row',
-    marginLeft: 20,
+    marginLeft: 5,
   },
 });

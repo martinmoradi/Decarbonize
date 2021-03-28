@@ -10,15 +10,13 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Details = () => {
   const theme = useTheme();
-  const { yearly_total, monthly_total } = useTypedSelector(state => state.emissions.data);
+  const { yearly_total } = useTypedSelector(state => state.emissions.data);
 
   const treesCalc = useCallback(() => {
     const excedent = yearly_total - 2000;
     if (excedent < 24) return 0;
     return (excedent / 24).toFixed(0);
   }, [yearly_total]);
-
-  const frenchTreesAvg = () => (11200 / 24).toFixed(0);
 
   const percFrenchAvg = () => ((yearly_total / 11200) * 100).toFixed(0);
 
@@ -46,7 +44,7 @@ const Details = () => {
         <Text variant="body" style={{ textAlign: 'justify' }}>
           The French carbon footprint represents{' '}
           <Text variant="bodyHighlight">11.2 tonnes of CO2 </Text>
-          per inhabitant and per year. Currently, your footprint is{' '}
+          per inhabitant and per year. Currently, your footprint represents{' '}
           <Text variant="bodyHighlight">{percFrenchAvg()}% </Text>
           of this amount.
         </Text>
@@ -85,7 +83,7 @@ const Details = () => {
           </Box>
         </>
       ) : null}
-      <Box marginHorizontal="l" marginTop="l">
+      <Box marginHorizontal="l" marginVertical="l">
         <Text variant="body" style={{ textAlign: 'justify' }}>
           All our formulas are based on French data, primary from the ADEME (agence de la transition
           écologique i.e. agency of ecological transition).
@@ -100,7 +98,7 @@ export default Details;
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('105%'),
+    height: hp('108%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {

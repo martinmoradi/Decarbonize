@@ -3,26 +3,25 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions, ScrollView, View, Image, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, View, StyleSheet } from 'react-native';
 import { Box, Text, useTheme } from '../../components';
 import { TripStackNavigationProps } from '../../routers/NavigationTypes';
-import { BorderlessButton } from 'react-native-gesture-handler';
 import TransportationCard from './components/TransportationCard';
 
 const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
   const theme = useTheme();
 
   return (
-    <View>
-      <View
+    <Box>
+      <Box
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.secondary,
         }}
-      ></View>
+      ></Box>
 
       <Box marginTop="xl" />
-      <View
+      <Box
         style={{
           backgroundColor: '#F6F6F6',
           borderRadius: 75,
@@ -30,7 +29,7 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
           minHeight: hp('100%'),
         }}
       >
-        <View style={{ alignItems: 'center' }}>
+        <Box style={{ alignItems: 'center', flex: 1 }}>
           <Text variant="titleCard" marginTop="xl" marginBottom="m" style={{ textAlign: 'center' }}>
             Select a <Text color="primary">transportation</Text>
           </Text>
@@ -40,13 +39,13 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
             <TransportationCard variant={'train'} navigation={navigation} />
             <TransportationCard variant={'plane'} navigation={navigation} />
             <TransportationCard variant={'tramway'} navigation={navigation} />
-            <Box marginBottom="xl">
+            <Box style={{ marginBottom: 160 }}>
               <TransportationCard variant={'metro'} navigation={navigation} />
             </Box>
           </ScrollView>
-        </View>
-      </View>
-    </View>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
