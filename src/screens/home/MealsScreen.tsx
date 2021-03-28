@@ -23,9 +23,7 @@ const MealsScreen = () => {
       <Box marginBottom="xl" marginTop="xl">
         <Meals />
       </Box>
-      <ScrollView>
-      
-      </ScrollView>
+      <ScrollView></ScrollView>
     </Box>
   );
 };
