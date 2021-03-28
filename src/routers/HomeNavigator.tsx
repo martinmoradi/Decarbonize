@@ -4,14 +4,15 @@ import { StyleSheet } from 'react-native';
 import { HomeRoutesList } from './NavigationTypes';
 import Dashboard from '../screens/home/Dashboard';
 import Commitments from '../screens/home/Commitments';
-import History from '../screens/home/History';
+import HistoryNavigator from './HistoryNavigator';
 import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
 import SettingsNavigator from './SettingsNavigator';
-import HistoryContainer from '../screens/home/HistoryContainer';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import NewNavigator from './NewNavigator';
+import MealsScreen from '../screens/home/MealsScreen';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 
@@ -121,8 +122,8 @@ const HomeNavigator = () => {
       >
         <HomeTab.Screen name="Home" component={Dashboard} />
         <HomeTab.Screen name="Deeds" component={Commitments} />
-        <HomeTab.Screen name="New" component={NewTripNavigator} />
-        <HomeTab.Screen name="History" component={HistoryContainer} />
+        <HomeTab.Screen name="New" component={NewNavigator} />
+        <HomeTab.Screen name="History" component={HistoryNavigator} />
         <HomeTab.Screen name="Profile" component={SettingsNavigator} />
       </HomeTab.Navigator>
     </SafeAreaView>

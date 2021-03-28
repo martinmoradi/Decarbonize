@@ -3,7 +3,7 @@ import { ScrollView, View, StyleSheet, SafeAreaView, Platform, StatusBar } from 
 import { Box, useTheme } from '../../components';
 import { EmissionsPieIOS, EmissionsPieAndroid } from './components';
 
-import Meals from './components/Meals';
+import Details from './components/Details';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -20,7 +20,7 @@ const Dashboard = () => {
       <SafeAreaView>
         {Platform.OS === 'ios' ? <EmissionsPieIOS /> : <EmissionsPieAndroid />}
         <Box marginBottom="xl">
-          <Meals />
+          <Details />
         </Box>
       </SafeAreaView>
     </ScrollView>

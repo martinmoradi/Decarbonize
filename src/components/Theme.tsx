@@ -136,12 +136,19 @@ const theme = {
       fontFamily: 'Avenir-Regular',
       color: 'text',
     },
+    bodyHighlight: {
+      fontSize: 16,
+      lineHeight: 24,
+      fontFamily: 'Avenir-Semibold',
+      color: 'primary',
+    },
     button: {
       fontSize: 15,
       fontFamily: 'Avenir-Regular',
       color: 'text',
       textAlign: 'center',
     },
+
     header: {
       fontSize: 12,
       lineHeight: 24,

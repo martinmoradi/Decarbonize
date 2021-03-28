@@ -139,7 +139,7 @@ const EmissionsPieAndroid = () => {
   const generateTotalEmissions = () => {
     if (selectedRange === 0) {
       return (
-        <View style={{ position: 'absolute', top: hp('22%'), left: wp('41%') }}>
+        <View style={{ position: 'absolute', top: hp('22%'), left: 0, right: 0 }}>
           <Text variant="pieChart">{weekly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -149,7 +149,7 @@ const EmissionsPieAndroid = () => {
     }
     if (selectedRange === 1) {
       return (
-        <View style={{ position: 'absolute', top: hp('22%'), left: wp('39%') }}>
+        <View style={{ position: 'absolute', top: hp('22%'), left: 0, right: 0 }}>
           <Text variant="pieChart">{monthly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -159,7 +159,7 @@ const EmissionsPieAndroid = () => {
     }
     if (selectedRange === 2) {
       return (
-        <View style={{ position: 'absolute', top: hp('22%'), left: wp('36%') }}>
+        <View style={{ position: 'absolute', top: hp('22%'), left: 0, right: 0 }}>
           <Text variant="pieChart">{yearly_total}</Text>
           <Text marginTop="s" style={styles.subPie}>
             kg
@@ -262,7 +262,7 @@ const EmissionsPieAndroid = () => {
       >
         <View style={{ alignItems: 'center' }}>
           <Text variant="titleCard" marginTop="l" marginBottom="m" style={styles.h2}>
-            My <Text color="primary">carbon</Text> emissions
+            My <Text color="primary">carbon</Text> footprint
           </Text>
         </View>
         <ButtonGroup

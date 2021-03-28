@@ -8,7 +8,7 @@ import { Image, View, StyleSheet } from 'react-native';
 import { useTypedSelector } from '../../../../hooks';
 import Grid from './Grid';
 
-const TramwayDetails = () => {
+const TramDetails = () => {
   const { data } = useTypedSelector(state => state.emissions);
   const {
     total_tramway_emissions,
@@ -50,7 +50,7 @@ const TramwayDetails = () => {
   );
 };
 
-export default TramwayDetails;
+export default TramDetails;
 
 const styles = StyleSheet.create({
   boxContainer: {

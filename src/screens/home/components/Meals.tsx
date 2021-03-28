@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import FoodBox from './FoodBox';
 import { Box, Text, useTheme } from '../../../components/';
 import {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   boxInfo: {
     width: wp('100%'),
-    height: hp('70%'),
+    height: hp('75%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
