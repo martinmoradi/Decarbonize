@@ -19,7 +19,6 @@ const SignUpSchema = Yup.object().shape({
 
 const SignUp = ({ navigation }: AuthNavigationProps<'SignUp'>) => {
   const { signup } = useActions();
-  const { height } = Dimensions.get('window');
   const { errorMessage, isLoading } = useTypedSelector(state => state.authentication);
 
   const {

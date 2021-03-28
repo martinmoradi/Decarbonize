@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Box, Text, Button, Checkbox, useTheme } from '../../../components';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Box, Text, Button, Checkbox, useTheme, TextInput } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers';
 import { useActions, useTypedSelector } from '../../../hooks';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { StyleSheet, Image, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  TextInput as RNTextInput,
+} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -15,7 +20,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
 const NewTripSchema = Yup.object().shape({
-  distance: Yup.number().required('Required'),
+  distance: Yup.number().required('Required').positive().integer(),
 });
 
 const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
@@ -34,12 +39,15 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
     validationSchema: NewTripSchema,
     initialValues: {
       distance: 0,
+      vehicle_type: '',
+      round_trip: false,
     },
     onSubmit: () => {
-      console.log(values);
+      postCommonTrip(values);
     },
   });
 
+  const distance = useRef<RNTextInput>(null);
   const radioButtonsData: RadioButtonProps[] = useMemo(
     () => [
       {
@@ -70,8 +78,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
 
   const { postCommonTrip } = useActions();
   const [radioButtons, setRadioButtons] = useState<RadioButtonProps[]>(radioButtonsData);
-  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
-  const [distance, setDistance] = useState<string>('0');
+  const { isLoading } = useTypedSelector(state => state.trips);
   const [people, setPeople] = useState<number>(1);
 
   const onPressRadio = (radioButtonsArray: RadioButtonProps[]) => {
@@ -89,6 +96,19 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
     });
   }, [radioButtons, selectedMotor]);
 
+  useEffect(() => {
+    switch (selectedMotor) {
+      case 0:
+        setFieldValue('vehicle_type', 'diesel_car');
+      case 1:
+        setFieldValue('vehicle_type', 'petrol_car');
+      case 2:
+        setFieldValue('vehicle_type', 'electric_car');
+      default:
+        return;
+    }
+  }, [selectedMotor]);
+
   return (
     <Box>
       <Box
@@ -97,110 +117,135 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           backgroundColor: theme.colors.secondary,
         }}
       ></Box>
-      <Box marginBottom="xl" marginTop="xl">
-        <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView
+        style={{
+          backgroundColor: theme.colors.secondary,
+          marginTop: 50,
+        }}
+      >
+        <Box
+          alignItems="center"
+          style={styles.boxInfo}
+          backgroundColor="lightgray"
+          paddingBottom="xl"
+          paddingTop="m"
+          marginTop="m"
+        >
           <Box
-            alignItems="center"
-            style={styles.boxInfo}
-            backgroundColor="lightgray"
-            paddingTop="l"
-            paddingBottom="xl"
-            marginTop="m"
+            style={{
+              position: 'absolute',
+              left: 20,
+              top: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
           >
-            <Box style={{ position: 'absolute', left: wp(2), top: wp(6) }}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Box style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto' }}>
-                  <Ionicons name="ios-chevron-back-circle-outline" size={24} color="black" />
-                  <Text variant="button" style={{ marginLeft: 1 }}>
-                    Back
-                  </Text>
-                </Box>
-              </TouchableOpacity>
-            </Box>
-            <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
-              New <Text color="primary">car</Text> trip
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Box style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                <Text variant="body" style={{ color: '#ff6361', textDecorationLine: 'underline' }}>
+                  Cancel
+                </Text>
+              </Box>
+            </TouchableOpacity>
+          </Box>
+          <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
+            New <Text color="primary">car</Text> trip
+          </Text>
+          <Box style={styles.imgContainer}>
+            <Image source={require('../../../../assets/images/van.png')} style={styles.imgStyle} />
+          </Box>
+
+          <Box marginTop="l">
+            <RadioGroup layout="row" radioButtons={radioButtons} onPress={id => onPressRadio(id)} />
+          </Box>
+          <Box marginTop="l">
+            <Text variant="body">
+              <Text variant="bodyHighlight">{people}</Text> {people === 1 ? 'person' : 'people'}{' '}
+              will travel in the car
             </Text>
-            <Box style={styles.imgContainer}>
-              <Image
-                source={require('../../../../assets/images/van.png')}
-                style={styles.imgStyle}
+          </Box>
+          <Slider
+            animateTransitions
+            animationType="timing"
+            maximumTrackTintColor="lightgray"
+            maximumValue={5}
+            minimumTrackTintColor={theme.colors.primary}
+            minimumValue={1}
+            onValueChange={(value: number) => setPeople(value)}
+            orientation="horizontal"
+            step={1}
+            style={{ width: wp(70), height: 40 }}
+            thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
+            thumbTintColor={theme.colors.info}
+            thumbTouchSize={{ width: 40, height: 40 }}
+            trackStyle={{ height: 12, borderRadius: 20, backgroundColor: theme.colors.secondary }}
+            value={people}
+          />
+
+          <Box marginTop="m" style={{ alignItems: 'center' }}>
+            <Box style={{ alignItems: 'center' }}>
+              <Text variant="body">What will be the distance of the trip ?</Text>
+            </Box>
+            <Box marginTop="s" style={{ width: wp(70) }}>
+              <TextInput
+                icon="chevrons-right"
+                ref={distance}
+                keyboardType="numeric"
+                error={errors.distance}
+                onChangeText={handleChange('distance')}
+                onBlur={handleBlur('distance')}
+                touched={touched.distance}
+                style={{
+                  borderRadius: 40,
+                  paddingHorizontal: 30,
+                }}
               />
-            </Box>
-            <Box marginTop="m" />
-            <Box>
-              <Text variant="body">How many people will travel in the car ?</Text>
-            </Box>
-            <Slider
-              animateTransitions
-              animationType="timing"
-              maximumTrackTintColor="lightgray"
-              maximumValue={5}
-              minimumTrackTintColor={theme.colors.primary}
-              minimumValue={1}
-              onValueChange={(value: number) => setPeople(value)}
-              orientation="horizontal"
-              step={1}
-              style={{ width: wp(70), height: 40 }}
-              thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
-              thumbTintColor={theme.colors.info}
-              thumbTouchSize={{ width: 40, height: 40 }}
-              trackStyle={{ height: 12, borderRadius: 20, backgroundColor: theme.colors.secondary }}
-              value={people}
-            />
-            <Box>
-              <Text variant="body">
-                {people} {people === 1 ? 'person' : 'people'} will travel in the car.
-              </Text>
-            </Box>
-            <Box marginTop="l" style={{ alignItems: 'center' }}>
-              <Box style={{ alignItems: 'center' }}>
-                <Text variant="body">Distance in km</Text>
+              <Box
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 50,
+                  bottom: 0,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Text variant="button">km</Text>
               </Box>
-              <Box marginTop="s" style={{ width: wp(70) }}>
-                <TextInput
-                  keyboardType="numeric"
-                  style={{
-                    borderRadius: 40,
-                    borderWidth: 1,
-                    borderColor: theme.colors.gray,
-                    paddingHorizontal: 30,
-                  }}
-                />
-                <Box
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    right: 10,
-                    bottom: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text variant="button">km</Text>
-                </Box>
-              </Box>
-            </Box>
-            <Box marginTop="l">
-              <RadioGroup
-                layout="row"
-                radioButtons={radioButtons}
-                onPress={id => onPressRadio(id)}
-              />
-            </Box>
-            <Box alignItems="center" marginTop="m">
-              {isLoading ? (
-                <Button
-                  variant="primary"
-                  onPress={handleSubmit}
-                  label={<ActivityIndicator color="#ffffff" />}
-                />
-              ) : (
-                <Button variant="primary" onPress={handleSubmit} label="Save this trip" />
-              )}
             </Box>
           </Box>
-        </KeyboardAwareScrollView>
-      </Box>
+
+          <Box marginTop="l">
+            <Checkbox
+              label="Is it a round trip?"
+              checked={values.round_trip}
+              onChange={() => setFieldValue('round_trip', !values.round_trip)}
+            />
+          </Box>
+
+          <Box
+            alignItems="center"
+            marginTop="l"
+            style={{ flexDirection: 'row-reverse', justifyContent: 'center' }}
+          >
+            {isLoading ? (
+              <Button
+                variant="primary"
+                style={{ width: 180 }}
+                onPress={() => 'void'}
+                label={<ActivityIndicator color="#ffffff" />}
+              />
+            ) : (
+              <Button
+                variant="primary"
+                onPress={handleSubmit}
+                label="Save this trip"
+                style={{ width: 180 }}
+              />
+            )}
+          </Box>
+        </Box>
+      </KeyboardAwareScrollView>
     </Box>
   );
 };
@@ -208,7 +253,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('120%'),
+    height: hp('80%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
@@ -258,19 +303,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     textAlign: 'center',
-  },
-  boxStyle: {
-    marginBottom: hp('2.5%'),
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp('90%'),
-    height: 130,
-    borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
   },
   Button: { width: 100, margin: 5 },
   imgStyle: {
