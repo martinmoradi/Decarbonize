@@ -3,7 +3,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions, ScrollView, View, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet } from 'react-native';
 import { Box, Text, useTheme } from '../../components';
 import { TripStackNavigationProps } from '../../routers/NavigationTypes';
 import TransportationCard from './components/TransportationCard';
