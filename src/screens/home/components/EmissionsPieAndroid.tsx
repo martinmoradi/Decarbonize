@@ -262,7 +262,7 @@ const EmissionsPieAndroid = () => {
       >
         <View style={{ alignItems: 'center' }}>
           <Text variant="titleCard" marginTop="l" marginBottom="m" style={styles.h2}>
-            My <Text color="primary">carbon</Text> emissions
+            My <Text color="primary">carbon</Text> footprint
           </Text>
         </View>
         <ButtonGroup

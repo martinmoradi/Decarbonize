@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import FoodBox from './FoodBox';
 import { Box, Text, useTheme } from '../../../components/';
 import {
