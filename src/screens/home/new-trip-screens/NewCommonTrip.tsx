@@ -115,7 +115,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
             <Box style={{ alignItems: 'center' }}>
               <Text variant="body">What will be the distance of the trip ?</Text>
             </Box>
-            <Box marginTop="s" marginBottom="xl" style={{ width: wp(70) }}>
+            <Box marginTop="s" marginBottom="m" style={{ width: wp(70) }}>
               <TextInput
                 icon="chevrons-right"
                 ref={distance}
@@ -144,7 +144,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
             </Box>
           </Box>
 
-          <Box marginTop="l">
+          <Box marginTop="m">
             <Checkbox
               label="Is it a round trip?"
               checked={values.round_trip}
@@ -152,7 +152,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
             />
           </Box>
 
-          <Box alignItems="center" marginTop="l" style={{ justifyContent: 'center' }}>
+          <Box alignItems="center" marginTop="m" style={{ justifyContent: 'center' }}>
             {isLoading ? (
               <Button
                 variant="primary"
@@ -189,7 +189,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('78%'),
+    height: hp('82%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {

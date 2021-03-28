@@ -124,10 +124,10 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
             <Image source={require('../../../../assets/images/van.png')} style={styles.imgStyle} />
           </Box>
 
-          <Box marginTop="l">
+          <Box marginTop="m">
             <RadioGroup layout="row" radioButtons={radioButtons} onPress={e => onPressRadio(e)} />
           </Box>
-          <Box marginTop="l">
+          <Box marginTop="m">
             <Text variant="body">
               <Text variant="bodyHighlight">{people}</Text> {people === 1 ? 'person' : 'people'}{' '}
               will travel in the car
@@ -184,7 +184,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
             </Box>
           </Box>
 
-          <Box marginTop="l">
+          <Box marginTop="m">
             <Checkbox
               label="Is it a round trip?"
               checked={values.round_trip}
@@ -208,7 +208,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
                 style={{ width: 180 }}
               />
             )}
-            <Box marginTop="m">
+            <Box marginTop="m" marginBottom="l">
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Box
                   style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
@@ -231,7 +231,7 @@ export default NewCarTrip;
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('78%'),
+    height: hp('82%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
