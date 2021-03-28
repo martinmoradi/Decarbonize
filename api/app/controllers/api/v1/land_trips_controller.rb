@@ -6,24 +6,14 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
     @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
     @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
 
-    render json: {
-      status:{
-        code: 200
-      },
-      data: {land_trips: @land_trips, air_trips: @air_trips} 
-    }
+    render json: { status: { code: 200 }, data: { land_trips: @land_trips, air_trips: @air_trips } }
   end
-  
+
   # GET /land_trip/1
   def show
     @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
     @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
-    render json: {
-      status:{
-        code: 200
-      },
-      data: { land_trips: @land_trips, air_trips: @air_trips } 
-    }
+    render json: { status: { code: 200 }, data: { land_trips: @land_trips, air_trips: @air_trips } }
   end
 
   # POST /land_trip
@@ -38,14 +28,19 @@ class Api::V1::LandTripsController < Api::V1::ApiBaseController
                  code: 200,
                  message: 'Land Trip emission was successfully created',
                },
-               data: { trips: {land_trips: @land_trips, air_trips: @air_trips }, emissions: EmissionSerializer.new(current_user).serializable_hash[:data][:attributes]  }
+               data: {
+                 trips: {
+                   land_trips: @land_trips,
+                   air_trips: @air_trips,
+                 },
+                 emissions:
+                   EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+               },
              }
     else
       render json: @land_trip.errors, status: :unprocessable_entity
     end
   end
-
-  
 
   # PATCH/PUT /land_trip/1
   def update
