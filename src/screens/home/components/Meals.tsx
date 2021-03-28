@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   boxInfo: {
     width: wp('100%'),
-    height: hp('70%'),
+    height: hp('75%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {

@@ -39,7 +39,7 @@ const TripHistory = ({ type, distance, amount, date }: TripHistoryProps) => {
           return;
         case 'train':
           setVersion({
-            image: require('../../../../assets/images/tramway.png'),
+            image: require('../../../../assets/images/train.png'),
             color: '#bc5090',
           });
           return;
@@ -77,10 +77,10 @@ const TripHistory = ({ type, distance, amount, date }: TripHistoryProps) => {
           />
         </Box>
         <Text variant="body" style={{ marginLeft: wp('3%') }}>
-          {distance}km
+          {distance} km
         </Text>
         <Text variant="body" style={{ marginLeft: 'auto', marginRight: wp('5%') }}>
-          + {amount}kg
+          + {amount} kg
         </Text>
       </Box>
     </Box>

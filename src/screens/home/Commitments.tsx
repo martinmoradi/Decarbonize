@@ -43,14 +43,14 @@ const Commitments = () => {
     () => [
       {
         title: 'I switch off my devices in standby.',
-        description: 'And save 6.2kg of carbon emissions.',
+        description: 'Prevent 6.2kg of carbon emissions.',
         isCommitted: appliancesCommitment,
         commitmentId: 1,
         onChangeToggle: setAppliancesCommitment,
       },
       {
         title: 'I turn down the heating by 1°C',
-        description: 'Save 201.6kg of carbon emissions.',
+        description: 'Prevent 201.6kg of carbon emissions.',
         isCommitted: reducedHeatingCommitment,
         commitmentId: 2,
         onChangeToggle: setReducedHeatingCommitment,
@@ -64,14 +64,14 @@ const Commitments = () => {
       },
       {
         title: 'I drink tap water instead of bottles.',
-        description: 'Save 215kg of carbon emissions.',
+        description: 'Prevent 215kg of carbon emissions.',
         isCommitted: tapWaterCommitment,
         commitmentId: 4,
         onChangeToggle: setTapWaterCommitment,
       },
       {
         title: 'I reduce my food waste',
-        description: 'Save 31kg of carbon emissions.',
+        description: 'Prevent 31kg of carbon emissions.',
         isCommitted: foodWastesCommitment,
         commitmentId: 5,
         onChangeToggle: setFoodWastesCommitment,
@@ -85,7 +85,7 @@ const Commitments = () => {
       },
       {
         title: 'I have a zero waste approach',
-        description: 'Save 707.67kg of carbon emissions.',
+        description: 'Prevent 707.67kg of carbon emissions.',
         isCommitted: zeroWastesCommitment,
         commitmentId: 7,
         onChangeToggle: setZeroWastesCommitment,

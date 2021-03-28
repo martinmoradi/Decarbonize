@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
   cellStyle: {
     flex: 1,
     marginVertical: 5,
+
   },
 });

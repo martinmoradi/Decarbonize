@@ -22,7 +22,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
   const theme = useTheme();
   const asset = assets[pattern];
   return (
-    <KeyboardAwareScrollView scrollEnabled={true}>
+    <KeyboardAwareScrollView scrollEnabled={true} style={{ maxHeight: '100%' }}>
       <Box
         height={wHeight + (Platform.OS === 'android' ? Constants.statusBarHeight : 0)}
         backgroundColor="secondary"

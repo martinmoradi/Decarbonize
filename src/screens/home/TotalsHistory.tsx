@@ -4,12 +4,14 @@ import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Dimensions } from 'react-native';
-import PlaneDetails from './components/history-details/PlaneDetails';
-import TramDetails from './components/history-details/TramDetails';
-import MetroDetails from './components/history-details/MetroDetails';
-import BusDetails from './components/history-details/BusDetails';
-import TrainDetails from './components/history-details/TrainDetails';
-import CarDetails from './components/history-details/CarDetails';
+import {
+  BusDetails,
+  PlaneDetails,
+  TramDetails,
+  MetroDetails,
+  TrainDetails,
+  CarDetails,
+} from './components/history-details/';
 
 const { width, height } = Dimensions.get('window');
 
@@ -38,22 +40,22 @@ const TotalsHistory = () => {
             My trips <Text color="primary">summary</Text>
           </Text>
           <ScrollView>
-            <Box marginTop="m">
+            <Box marginBottom="m">
               <CarDetails />
             </Box>
-            <Box marginTop="m">
+            <Box marginBottom="m">
               <TrainDetails />
             </Box>
-            <Box marginTop="m">
+            <Box marginBottom="m">
               <PlaneDetails />
             </Box>
-            <Box marginTop="m">
+            <Box marginBottom="m">
               <BusDetails />
             </Box>
-            <Box marginTop="m">
+            <Box marginBottom="m">
               <MetroDetails />
             </Box>
-            <Box marginTop="m">
+            <Box style={{ marginBottom: 160 }}>
               <TramDetails />
             </Box>
           </ScrollView>

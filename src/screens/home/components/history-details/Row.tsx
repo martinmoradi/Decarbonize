@@ -10,8 +10,8 @@ interface RowProps {
 const Row = ({ column }: RowProps) => {
   return (
     <Box style={styles.rowStyle}>
-      {column.map(data => (
-        <Cell data={data} />
+      {column.map((data, index) => (
+        <Cell data={data} key={index} />
       ))}
     </Box>
   );
@@ -22,5 +22,6 @@ export default Row;
 const styles = StyleSheet.create({
   rowStyle: {
     flexDirection: 'row',
+    marginLeft: 20,
   },
 });

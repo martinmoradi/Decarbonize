@@ -119,7 +119,7 @@ export default FoodBox;
 const styles = StyleSheet.create({
   boxContainer: {
     width: wp('40%'),
-    height: hp('22%'),
+    height: hp('25%'),
     borderRadius: 20,
     backgroundColor: '#F6F6F6',
     marginHorizontal: wp('5%'),
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 75,
+    paddingBottom: 5,
   },
   viewImg: {
     backgroundColor: '#bc5090',
