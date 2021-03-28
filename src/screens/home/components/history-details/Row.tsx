@@ -2,7 +2,7 @@ import React from 'react';
 import Cell from './Cell';
 import { Box } from '../../../../components';
 import { StyleSheet } from 'react-native';
-
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 interface RowProps {
   column: string[];
 }
@@ -22,6 +22,6 @@ export default Row;
 const styles = StyleSheet.create({
   rowStyle: {
     flexDirection: 'row',
-    marginLeft: 5,
+    marginLeft: wp(8),
   },
 });

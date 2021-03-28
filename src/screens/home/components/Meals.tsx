@@ -14,7 +14,7 @@ const Meals = () => {
       alignItems="center"
       style={styles.boxInfo}
       backgroundColor="lightgray"
-      paddingTop="xl"
+      paddingTop="l"
       paddingBottom="xl"
       marginTop="m"
     >
