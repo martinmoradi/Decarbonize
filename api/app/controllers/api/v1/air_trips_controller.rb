@@ -6,26 +6,14 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
     @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
     @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
 
-
-
-    render json: {
-      status:{
-        code: 200
-      },
-      data: {land_trips: @land_trips, air_trips: @air_trips} 
-    }
+    render json: { status: { code: 200 }, data: { land_trips: @land_trips, air_trips: @air_trips } }
   end
 
   # GET /air_trips/1
   def show
     @land_trips = LandTrip.where(user_id: current_user.id).order(created_at: :desc)
     @air_trips = AirTrip.where(user_id: current_user.id).order(created_at: :desc)
-    render json: {
-      status:{
-        code: 200
-      },
-      data: { land_trips: @land_trips, air_trips: @air_trips } 
-    }
+    render json: { status: { code: 200 }, data: { land_trips: @land_trips, air_trips: @air_trips } }
   end
 
   # POST /air_trips
@@ -40,8 +28,15 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
                  code: 200,
                  message: 'Air Trip emission was successfully created',
                },
-               data: { land_trips: @land_trips, air_trips: @air_trips } 
-              }
+               data: {
+                 trips: {
+                   land_trips: @land_trips,
+                   air_trips: @air_trips,
+                 },
+                 emissions:
+                   EmissionSerializer.new(current_user).serializable_hash[:data][:attributes],
+               },
+             }
     else
       render json: @air_trip.errors, status: :unprocessable_entity
     end
@@ -70,6 +65,16 @@ class Api::V1::AirTripsController < Api::V1::ApiBaseController
 
   # Only allow a list of trusted parameters through.
   def air_trip_params
-    params.require(:air_trip).permit(:round_trip, :departure_latitude, :departure_longitude, :arrival_latitude, :arrival_longitude, :departure, :arrival )
+    params
+      .require(:air_trip)
+      .permit(
+        :round_trip,
+        :departure_latitude,
+        :departure_longitude,
+        :arrival_latitude,
+        :arrival_longitude,
+        :departure,
+        :arrival,
+      )
   end
 end

@@ -54,7 +54,7 @@ export const postAirTrips = (tripData: {
   arrival_latitude: number;
   arrival_longitude: number;
 }) => {
-  return async (dispatch: Dispatch<TripAction>) => {
+  return async (dispatch: Dispatch<TripAction | EmissionsAction>) => {
     dispatch({
       type: TripActionType.POST_TRIP_ATTEMPT,
     });
@@ -67,14 +67,19 @@ export const postAirTrips = (tripData: {
         body: JSON.stringify({ air_trip: { ...tripData } }),
       });
       const { data, error } = await response.json();
+      console.log('data:', data)
       if (!response.ok) {
         throw new Error(error);
       }
       dispatch({
         type: TripActionType.POST_TRIP_SUCCESS,
-        payload: data,
+        payload: data.trips,
       });
       alert('Trajet enregistré');
+      dispatch({
+        type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
+        payload: data.emissions,
+      });
     } catch (err) {
       dispatch({
         type: TripActionType.POST_TRIP_ERROR,
