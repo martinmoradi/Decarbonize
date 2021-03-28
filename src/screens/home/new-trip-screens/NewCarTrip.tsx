@@ -117,23 +117,6 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           paddingTop="m"
           marginTop="m"
         >
-          <Box
-            style={{
-              position: 'absolute',
-              left: 20,
-              top: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Box style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <Text variant="body" style={{ color: '#ff6361' }}>
-                  Cancel
-                </Text>
-              </Box>
-            </TouchableOpacity>
-          </Box>
           <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
             New <Text color="primary">car</Text> trip
           </Text>
@@ -209,11 +192,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
             />
           </Box>
 
-          <Box
-            alignItems="center"
-            marginTop="l"
-            style={{ flexDirection: 'row-reverse', justifyContent: 'center' }}
-          >
+          <Box alignItems="center" marginTop="l" style={{ justifyContent: 'center' }}>
             {isLoading ? (
               <Button
                 variant="primary"
@@ -229,6 +208,17 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
                 style={{ width: 180 }}
               />
             )}
+            <Box marginTop="m">
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Box
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Text variant="body" style={{ color: '#ff6361' }}>
+                    Cancel
+                  </Text>
+                </Box>
+              </TouchableOpacity>
+            </Box>
           </Box>
         </Box>
       </KeyboardAwareScrollView>

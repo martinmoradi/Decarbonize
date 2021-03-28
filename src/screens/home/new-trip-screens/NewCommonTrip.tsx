@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box, Text, Button, Checkbox, useTheme, TextInput } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers';
 import { useActions, useTypedSelector } from '../../../hooks';
@@ -14,7 +14,6 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Slider } from 'react-native-elements';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -105,23 +104,6 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
           paddingTop="m"
           marginTop="m"
         >
-          <Box
-            style={{
-              position: 'absolute',
-              left: 20,
-              top: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Box style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <Text variant="body" style={{ color: '#ff6361' }}>
-                  Cancel
-                </Text>
-              </Box>
-            </TouchableOpacity>
-          </Box>
           <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
             New <Text color="primary">{route.params.type}</Text> trip
           </Text>
@@ -170,11 +152,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
             />
           </Box>
 
-          <Box
-            alignItems="center"
-            marginTop="l"
-            style={{ flexDirection: 'row-reverse', justifyContent: 'center' }}
-          >
+          <Box alignItems="center" marginTop="l" style={{ justifyContent: 'center' }}>
             {isLoading ? (
               <Button
                 variant="primary"
@@ -190,6 +168,17 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
                 style={{ width: 180 }}
               />
             )}
+            <Box marginTop="m">
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Box
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Text variant="body" style={{ color: '#ff6361' }}>
+                    Cancel
+                  </Text>
+                </Box>
+              </TouchableOpacity>
+            </Box>
           </Box>
         </Box>
       </KeyboardAwareScrollView>
