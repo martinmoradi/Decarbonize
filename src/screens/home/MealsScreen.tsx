@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import {
   widthPercentageToDP as wp,
@@ -12,7 +12,7 @@ const MealsScreen = () => {
   const theme = useTheme();
 
   return (
-    <Box style={{ backgroundColor: theme.colors.secondary }}>
+    <Box style={{ backgroundColor: theme.colors.secondary, flex: 1 }}>
       <Box
         style={{
           ...StyleSheet.absoluteFillObject,
@@ -23,6 +23,9 @@ const MealsScreen = () => {
       <Box marginBottom="xl" marginTop="xl">
         <Meals />
       </Box>
+      <ScrollView>
+      
+      </ScrollView>
     </Box>
   );
 };

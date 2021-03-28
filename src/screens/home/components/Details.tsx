@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 import { Box, Text, useTheme } from '../../../components/';
 import {
@@ -6,16 +6,21 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTypedSelector } from '../../../hooks';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Details = () => {
   const theme = useTheme();
   const { yearly_total, monthly_total } = useTypedSelector(state => state.emissions.data);
 
-  const treesCalc = () => {
+  const treesCalc = useCallback(() => {
     const excedent = yearly_total - 2000;
     if (excedent < 24) return 0;
     return (excedent / 24).toFixed(0);
-  };
+  }, [yearly_total]);
+
+  const frenchTreesAvg = () => (11200 / 24).toFixed(0);
+
+  const percFrenchAvg = () => ((yearly_total / 11200) * 100).toFixed(0);
 
   return (
     <Box
@@ -27,12 +32,7 @@ const Details = () => {
       marginTop="m"
     >
       <Box marginBottom="m">
-        <Text
-          variant="titleCard"
-          marginTop="s"
-          marginBottom="s"
-          style={{ color: theme.colors.text }}
-        >
+        <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
           Understanding the <Text color="primary">numbers</Text>
         </Text>
       </Box>
@@ -46,7 +46,9 @@ const Details = () => {
         <Text variant="body" style={{ textAlign: 'justify' }}>
           The French carbon footprint represents{' '}
           <Text variant="bodyHighlight">11.2 tonnes of CO2 </Text>
-          per inhabitant and per year.
+          per inhabitant and per year. Currently, your footprint is{' '}
+          <Text variant="bodyHighlight">{percFrenchAvg()}% </Text>
+          of this amount.
         </Text>
       </Box>
       <Box marginHorizontal="l" marginTop="l">
@@ -66,21 +68,24 @@ const Details = () => {
         <>
           <Box marginHorizontal="l" marginTop="l">
             <Text variant="titleCard" color="primary">
-              {treesCalc()} <Text color="text">trees</Text>
+              {treesCalc()}{' '}
+              <Text color="text">
+                trees <MaterialCommunityIcons name="tree-outline" size={30} color="#39D697" />
+              </Text>
             </Text>
           </Box>
           <Box marginTop="m" marginHorizontal="l">
             <Text variant="body" style={{ textAlign: 'justify' }}>
-              Is the number of trees needed to offset{' '}
+              Is the number of trees currently needed to offset{' '}
               <Text variant="bodyHighlight">your annual footprint</Text>. As well as reducing our
-              individual carbon footprints, non-governmental organizations are working
-              <Text color="primary">2 tonnes of CO2 </Text>
-              per inhabitant and per year before 2050.
+              individual carbon footprints, non-governmental organizations can provide carbon
+              offsetting by, for example, planting trees. On average, one tree can absorb up to 24kg
+              of carbon per year.
             </Text>
           </Box>
         </>
       ) : null}
-      <Box marginHorizontal="l" marginTop="m">
+      <Box marginHorizontal="l" marginTop="l">
         <Text variant="body" style={{ textAlign: 'justify' }}>
           All our formulas are based on French data, primary from the ADEME (agence de la transition
           écologique i.e. agency of ecological transition).
@@ -95,7 +100,7 @@ export default Details;
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('100%'),
+    height: hp('105%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
