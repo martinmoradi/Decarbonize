@@ -24,10 +24,8 @@ const NewTripSchema = Yup.object().shape({
 });
 
 const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
+  const [selectedMotor, setSelectedMotor] = useState<number>(1);
   const theme = useTheme();
-  const { postCommonTrip } = useActions();
-  const { isLoading } = useTypedSelector(state => state.trips);
-  const [people, setPeople] = useState<number>(1);
 
   const {
     handleChange,
@@ -75,25 +73,41 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
         size: 20,
       },
     ],
-    []
+    [selectedMotor]
   );
 
+  const { postCommonTrip } = useActions();
   const [radioButtons, setRadioButtons] = useState<RadioButtonProps[]>(radioButtonsData);
+  const { isLoading } = useTypedSelector(state => state.trips);
+  const [people, setPeople] = useState<number>(1);
 
   const onPressRadio = (radioButtonsArray: RadioButtonProps[]) => {
     setRadioButtons(radioButtonsArray);
   };
 
   useEffect(() => {
-    radioButtons.forEach(item => {
+    radioButtons.forEach((item, index) => {
       if (item.selected) {
-        setFieldValue('vehicle_type', item.value);
+        setSelectedMotor(index);
         item.color = '#39D697';
       } else {
         item.color = 'rgba(54, 54, 83, 0.7)';
       }
     });
-  }, [radioButtons]);
+  }, [radioButtons, selectedMotor]);
+
+  useEffect(() => {
+    switch (selectedMotor) {
+      case 0:
+        setFieldValue('vehicle_type', 'diesel_car');
+      case 1:
+        setFieldValue('vehicle_type', 'petrol_car');
+      case 2:
+        setFieldValue('vehicle_type', 'electric_car');
+      default:
+        return;
+    }
+  }, [selectedMotor]);
 
   return (
     <Box>
@@ -106,7 +120,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
       <KeyboardAwareScrollView
         style={{
           backgroundColor: theme.colors.secondary,
-          marginTop: 40,
+          marginTop: 50,
         }}
       >
         <Box
@@ -128,7 +142,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           >
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Box style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <Text variant="body" style={{ color: '#ff6361' }}>
+                <Text variant="body" style={{ color: '#ff6361', textDecorationLine: 'underline' }}>
                   Cancel
                 </Text>
               </Box>
@@ -142,7 +156,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
           </Box>
 
           <Box marginTop="l">
-            <RadioGroup layout="row" radioButtons={radioButtons} onPress={e => onPressRadio(e)} />
+            <RadioGroup layout="row" radioButtons={radioButtons} onPress={id => onPressRadio(id)} />
           </Box>
           <Box marginTop="l">
             <Text variant="body">
@@ -160,7 +174,7 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
             onValueChange={(value: number) => setPeople(value)}
             orientation="horizontal"
             step={1}
-            style={{ width: wp(60), height: 40 }}
+            style={{ width: wp(70), height: 40 }}
             thumbStyle={{ height: 20, width: 10, borderWidth: 2, borderColor: 'black' }}
             thumbTintColor={theme.colors.info}
             thumbTouchSize={{ width: 40, height: 40 }}
@@ -236,12 +250,10 @@ const NewCarTrip = ({ navigation }: TripStackNavigationProps<'NewCarTrip'>) => {
   );
 };
 
-export default NewCarTrip;
-
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('78%'),
+    height: hp('80%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
@@ -307,3 +319,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+export default NewCarTrip;
