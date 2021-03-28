@@ -14,28 +14,48 @@ interface TransportationCardProps {
 }
 
 const TransportationCard = ({ navigation, variant }: TransportationCardProps) => {
-  const [imageUrl, setImageUrl] = useState({
-    image: require('../../../../assets/images/van.png'),
+  const [imageVersion, setImageVersion] = useState({
+    image: require('../../../../assets/images/metro.png'),
+    color: '#003f5c',
   });
 
   const setImage = useCallback(() => {
     switch (variant) {
       case 'car':
-        setImageUrl({ image: require('../../../../assets/images/van.png') });
+        setImageVersion({
+          image: require('../../../../assets/images/van.png'),
+          color: '#003f5c',
+        });
         break;
       case 'metro':
-        setImageUrl({ image: require('../../../../assets/images/metro.png') });
+        setImageVersion({
+          image: require('../../../../assets/images/metro.png'),
+          color: '#9d02d7',
+        });
+        break;
       case 'train':
-        setImageUrl({ image: require('../../../../assets/images/train.png') });
+        setImageVersion({
+          image: require('../../../../assets/images/train.png'),
+          color: '#bc5090',
+        });
         break;
       case 'plane':
-        setImageUrl({ image: require('../../../../assets/images/airplanejourney.png') });
+        setImageVersion({
+          image: require('../../../../assets/images/airplanejourney.png'),
+          color: '#58508d',
+        });
         break;
       case 'tramway':
-        setImageUrl({ image: require('../../../../assets/images/tramway.png') });
+        setImageVersion({
+          image: require('../../../../assets/images/tramway.png'),
+          color: '#0000ff',
+        });
         break;
       case 'bus':
-        setImageUrl({ image: require('../../../../assets/images/autobus.png') });
+        setImageVersion({
+          image: require('../../../../assets/images/autobus.png'),
+          color: '#ff6361',
+        });
         break;
       default:
     }
@@ -77,7 +97,7 @@ const TransportationCard = ({ navigation, variant }: TransportationCardProps) =>
   return (
     <Box
       alignItems="center"
-      marginTop="s"
+      marginBottom="m"
       style={styles.boxTravelMode}
       justifyContent="center"
       backgroundColor="lightgray"
@@ -85,7 +105,9 @@ const TransportationCard = ({ navigation, variant }: TransportationCardProps) =>
     >
       <BorderlessButton style={{ width: wp(100) }} onPress={() => navigate()}>
         <Box style={styles.cardContainer}>
-          <Image source={imageUrl.image} style={styles.iconStyle} />
+          <Box style={[styles.viewImg, { backgroundColor: imageVersion.color }]}>
+            <Image source={imageVersion.image} style={styles.iconStyle} />
+          </Box>
           <Box style={{ marginLeft: wp('5%') }}>
             <Text variant="button">{capitalize(variant)}</Text>
           </Box>
@@ -101,13 +123,27 @@ const styles = StyleSheet.create({
   boxTravelMode: {
     width: wp('90%'),
     height: 80,
-    borderBottomWidth: 2,
     borderRadius: 20,
+    backgroundColor: '#F3F4F6',
+    shadowColor: '#616164',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
   },
   iconStyle: {
-    height: 70,
-    width: 70,
+    height: 62,
+    width: 62,
     borderRadius: 15,
+    tintColor: 'white',
+  },
+  viewImg: {
+    marginLeft: wp('5%'),
+    padding: 5,
+    borderRadius: 10,
   },
   cardContainer: {
     marginLeft: wp('10%'),
