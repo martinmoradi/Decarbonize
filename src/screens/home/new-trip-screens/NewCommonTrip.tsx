@@ -1,21 +1,21 @@
+import { useFormik } from 'formik';
 import React, { useEffect, useRef } from 'react';
-import { Box, Text, Button, Checkbox, useTheme, TextInput } from '../../../components';
-import { TripStackNavigationProps } from '../../../routers';
-import { useActions, useTypedSelector } from '../../../hooks';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
-  StyleSheet,
-  Image,
-  TouchableOpacity,
   ActivityIndicator,
+  Image,
+  StyleSheet,
   TextInput as RNTextInput,
+  TouchableOpacity,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { Box, Button, Checkbox, Text, TextInput, useTheme } from '../../../components';
+import { useActions, useTypedSelector } from '../../../hooks';
+import { TripStackNavigationProps } from '../../../routers';
 
 const NewTripSchema = Yup.object().shape({
   distance: Yup.number().required('Required').positive().integer(),
@@ -150,7 +150,7 @@ const NewCommonTrip = ({ route, navigation, url }: PropsNewCommonTrip) => {
             </Box>
           </Box>
 
-          <Box marginTop="m">
+          <Box style={{ marginTop: hp(4) }}>
             <Checkbox
               label="Is it a round trip?"
               checked={values.round_trip}
@@ -158,7 +158,7 @@ const NewCommonTrip = ({ route, navigation, url }: PropsNewCommonTrip) => {
             />
           </Box>
 
-          <Box alignItems="center" marginTop="m" style={{ justifyContent: 'center' }}>
+          <Box alignItems="center" style={{ justifyContent: 'center', marginTop: hp(4) }}>
             {isLoading ? (
               <Button
                 variant="primary"
@@ -174,7 +174,7 @@ const NewCommonTrip = ({ route, navigation, url }: PropsNewCommonTrip) => {
                 style={{ width: 180 }}
               />
             )}
-            <Box marginTop="m">
+            <Box style={{ marginTop: hp(3) }}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Box
                   style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}

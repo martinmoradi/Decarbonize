@@ -1,13 +1,13 @@
 import { useFormik } from 'formik';
 import React, { useRef } from 'react';
-import { ActivityIndicator, Dimensions, TextInput as RNTextInput } from 'react-native';
+import { ActivityIndicator, TextInput as RNTextInput } from 'react-native';
 import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../../components';
 import Checkbox from '../../components/Checkbox';
 import TextInput from '../../components/TextInput';
-import { Footer } from './components';
 import { useActions, useTypedSelector } from '../../hooks';
 import { AuthNavigationProps } from '../../routers/NavigationTypes';
+import { Footer } from './components';
 
 const SignUpSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),

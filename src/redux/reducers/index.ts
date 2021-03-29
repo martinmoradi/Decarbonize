@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
-import tripsReducer from './tripsReducer';
 import emissionsReducer from './emissionsReducer';
-import onboardingReducer from './onboarding';
 import mealReducer from './mealsReducer';
+import onboardingReducer from './onboarding';
+import tripsReducer from './tripsReducer';
 
 const reducers = combineReducers({
   authentication: authReducer,
@@ -12,7 +12,6 @@ const reducers = combineReducers({
   onboarding: onboardingReducer,
   meals: mealReducer,
 });
-
 
 export default reducers;
 

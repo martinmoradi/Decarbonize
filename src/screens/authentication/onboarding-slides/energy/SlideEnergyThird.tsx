@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Button from '../../../../components/Button';
-import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
-import { SliderOnboarding } from '../../components';
-import { useTypedSelector } from '../../../../hooks';
-import { useDispatch } from 'react-redux';
-import { OnboardingEnergyActionType } from '../../../../redux/types';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { useDispatch } from 'react-redux';
+import Button from '../../../../components/Button';
+import { Box, Text, useTheme } from '../../../../components/Theme';
+import { useTypedSelector } from '../../../../hooks';
+import { OnboardingEnergyActionType } from '../../../../redux/types';
+import { SliderOnboarding } from '../../components';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
   const dispatch = useDispatch();
@@ -30,13 +33,22 @@ const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="ENERGY" svgTitle="Energy" isReversed={false} />
-
+      <Box style={{ position: 'absolute', top: hp(3), left: wp(2) }}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back-circle-outline" size={24} color="white" />
+          <Text color="white" variant="button">
+            back
+          </Text>
+        </TouchableOpacity>
+      </Box>
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           {isFuelHeating && (
             <>
-              <Text variant="body">What is your Fuel consumption ?</Text>
-              <Text variant="body">{fuel} € / month</Text>
+              <Text variant="bodySemiBold">What is your monthly fuel consumption ?</Text>
               <SliderOnboarding
                 onValueChange={(value: number) => setFuel(value)}
                 value={fuel}
@@ -44,13 +56,15 @@ const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
                 maximumValue={300}
                 minimumValue={0}
               />
+              <Text variant="body">
+                <Text variant="bodyHighlight">{fuel} €</Text> per month
+              </Text>
             </>
           )}
           {isGasHeating && (
             <>
-              <View style={{ padding: hp('1%') }}></View>
-              <Text variant="body">What is your Gas consumption ?</Text>
-              <Text variant="body">{gas} € / month</Text>
+              <Box marginTop="l"></Box>
+              <Text variant="bodySemiBold">What is your monthly gas consumption ?</Text>
               <SliderOnboarding
                 onValueChange={(value: number) => setGas(value)}
                 value={gas}
@@ -58,12 +72,15 @@ const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
                 maximumValue={300}
                 minimumValue={0}
               />
+              <Text variant="body">
+                <Text variant="bodyHighlight">{gas} €</Text> per month
+              </Text>
             </>
           )}
           {isWoodHeating && (
             <>
-              <Text variant="body">What is your Wood consumption ?</Text>
-              <Text variant="body">{wood} € / month</Text>
+              <Box marginTop="l"></Box>
+              <Text variant="bodySemiBold">What is your monthly wood consumption ?</Text>
               <SliderOnboarding
                 onValueChange={(value: number) => setWood(value)}
                 value={wood}
@@ -71,6 +88,9 @@ const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
                 maximumValue={300}
                 minimumValue={0}
               />
+              <Text variant="body">
+                <Text variant="bodyHighlight">{wood} €</Text> per month
+              </Text>
             </>
           )}
         </View>
@@ -85,9 +105,6 @@ const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
           }}
         >
           <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
-          <TouchableOpacity onPress={goBack}>
-            <Ionicons name="md-return-down-back" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>

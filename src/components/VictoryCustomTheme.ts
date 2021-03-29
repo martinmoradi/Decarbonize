@@ -13,7 +13,6 @@ const colors = [deepOrange600, yellow200, lime300, lightGreen500, teal700, cyan9
 const blueGrey50 = '#ECEFF1';
 const blueGrey300 = '#90A4AE';
 const blueGrey700 = '#455A64';
-const grey900 = '#212121';
 const custom1 = '#38ACD6';
 const custom2 = '#D63877';
 // *

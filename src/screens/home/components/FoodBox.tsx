@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Text, Button } from '../../../components';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import { Image, View, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { useTypedSelector, useActions } from '../../../hooks';
 import { AntDesign } from '@expo/vector-icons';
-import { MealType, MealCategoryType } from '../../../redux/types';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Button, Text } from '../../../components';
+import { useActions, useTypedSelector } from '../../../hooks';
+import { MealCategoryType, MealType } from '../../../redux/types';
 
 interface PropTypes {
   type: MealCategoryType;

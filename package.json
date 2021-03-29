@@ -46,6 +46,7 @@
     "react-native-gesture-handler": "~1.8.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-pager-view": "^5.1.2",
+    "react-native-paper": "^4.7.2",
     "react-native-radio-buttons-group": "^2.2.1",
     "react-native-reanimated": "1.13.0",
     "react-native-responsive-screen": "^1.4.2",
@@ -81,6 +82,7 @@
     "eslint-plugin-react": "^7.22.0",
     "metro-react-native-babel-preset": "^0.65.2",
     "prettier": "^2.2.1",
+    "prettier-plugin-organize-imports": "^1.1.1",
     "react-native-debugger-open": "^0.3.25",
     "typescript": "^4.0.7"
   },

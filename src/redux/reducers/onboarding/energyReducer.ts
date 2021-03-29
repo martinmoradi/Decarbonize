@@ -1,6 +1,5 @@
-import { OnboardingEnergyStateType } from '../../types';
 import { OnboardingAction } from '../../actions';
-import { OnboardingEnergyActionType } from '../../types';
+import { OnboardingEnergyActionType, OnboardingEnergyStateType } from '../../types';
 
 const initialState: OnboardingEnergyStateType = {
   roommates: 1,

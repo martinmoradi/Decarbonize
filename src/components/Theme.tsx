@@ -5,8 +5,7 @@ import {
   useTheme as useReTheme,
 } from '@shopify/restyle';
 import React, { ReactNode } from 'react';
-import { Platform } from 'react-native';
-import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import { Dimensions, ImageStyle, Platform, TextStyle, ViewStyle } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -134,6 +133,12 @@ const theme = {
       fontSize: 16,
       lineHeight: 24,
       fontFamily: 'Avenir-Regular',
+      color: 'text',
+    },
+    bodySemiBold: {
+      fontSize: 16,
+      lineHeight: 24,
+      fontFamily: 'Avenir-Semibold',
       color: 'text',
     },
     bodyHighlight: {

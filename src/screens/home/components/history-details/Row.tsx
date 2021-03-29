@@ -1,8 +1,8 @@
 import React from 'react';
-import Cell from './Cell';
-import { Box } from '../../../../components';
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Box } from '../../../../components';
+import Cell from './Cell';
 interface RowProps {
   column: string[];
 }

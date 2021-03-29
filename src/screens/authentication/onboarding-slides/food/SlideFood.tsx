@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
-import Button from '../../../../components/Button';
-import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
-import { SliderOnboarding } from '../../components';
-import { useTypedSelector } from '../../../../hooks';
-import { useDispatch } from 'react-redux';
-import { OnboardingFoodActionType } from '../../../../redux/types';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { useDispatch } from 'react-redux';
+import Button from '../../../../components/Button';
+import { Box, Text, useTheme } from '../../../../components/Theme';
+import { useTypedSelector } from '../../../../hooks';
+import { OnboardingFoodActionType } from '../../../../redux/types';
+import { SliderOnboarding } from '../../components';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideFood = ({ onPress, goBack }: PropsSlide) => {
   const theme = useTheme();
@@ -27,15 +30,97 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
     onPress();
   };
 
+  const generateText = (variant: string) => {
+    switch (variant) {
+      case 'redMeat':
+        if (redMeat === 0) {
+          return (
+            <Text variant="body">
+              I <Text variant="bodyHighlight">don't </Text>eat red meat.
+            </Text>
+          );
+        }
+        if (redMeat === 1) {
+          return (
+            <Text variant="body">
+              I eat red meat <Text variant="bodyHighlight">once </Text> a week.
+            </Text>
+          );
+        } else {
+          return (
+            <Text variant="body">
+              I eat red meat <Text variant="bodyHighlight">{redMeat} times </Text> a week.
+            </Text>
+          );
+        }
+      case 'breakfast':
+        if (breakfast === 0) {
+          return (
+            <Text variant="body">
+              I <Text variant="bodyHighlight">don't </Text>eat breakfast.
+            </Text>
+          );
+        }
+        if (breakfast === 1) {
+          return (
+            <Text variant="body">
+              I breakfast <Text variant="bodyHighlight">once </Text>a week.
+            </Text>
+          );
+        } else {
+          return (
+            <Text variant="body">
+              I have breakfasts <Text variant="bodyHighlight">{breakfast} times </Text>a week.
+            </Text>
+          );
+        }
+      case 'whiteMeat':
+        if (whiteMeat === 0) {
+          return (
+            <Text variant="body">
+              I <Text variant="bodyHighlight">don't </Text>eat white meat.
+            </Text>
+          );
+        }
+        if (whiteMeat === 1) {
+          return (
+            <Text variant="body">
+              I eat white meat or fish <Text variant="bodyHighlight">once </Text>a week.
+            </Text>
+          );
+        } else {
+          return (
+            <Text variant="body">
+              I eat white meat or fish <Text variant="bodyHighlight">{whiteMeat} times </Text>a
+              week.
+            </Text>
+          );
+        }
+    }
+  };
+
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="FOOD" svgTitle="Food" isReversed={false} />
+      <Box style={{ position: 'absolute', top: hp(6), left: wp(2) }}>
+
+      </Box>
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you have a breakfast ?
+          <Text variant="bodySemiBold" style={{ marginBottom: hp(2), marginTop: hp(-2) }}>
+            How many times a week do you ...
           </Text>
-          <Text variant="body">{breakfast} times per week</Text>
+
+          <Text
+            variant="bodySemiBold"
+            style={{
+              lineHeight: 32,
+              textAlign: 'center',
+              marginTop: hp(-1),
+            }}
+          >
+            ...have a breakfast?
+          </Text>
           <SliderOnboarding
             onValueChange={(value: number) => setBreakfast(value)}
             value={breakfast}
@@ -43,12 +128,12 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={7}
             minimumValue={0}
           />
+          {generateText('breakfast')}
 
           <View style={{ padding: hp('1%') }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you eat red meat ?
+          <Text variant="bodySemiBold" style={{ lineHeight: 32 }}>
+            ...eat red meat? (beef, lamb)
           </Text>
-          <Text variant="body">{redMeat} / week</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setRedMeat(value)}
             value={redMeat}
@@ -56,12 +141,12 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={14}
             minimumValue={0}
           />
+          {generateText('redMeat')}
 
           <View style={{ padding: hp('1%') }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How often do you eat white meat ?
+          <Text variant="bodySemiBold" style={{ lineHeight: 32 }}>
+            ...eat white meat or fish ?
           </Text>
-          <Text variant="body">{whiteMeat} / week</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setWhiteMeat(value)}
             value={whiteMeat}
@@ -69,6 +154,7 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={14}
             minimumValue={0}
           />
+          <Text variant="body">{generateText('whiteMeat')}</Text>
         </View>
         <View
           style={{
@@ -81,9 +167,6 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
           }}
         >
           <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
-          <TouchableOpacity onPress={goBack}>
-            <Ionicons name="md-return-down-back" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -92,8 +175,15 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
 
 export default SlideFood;
 
-const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  button: {marginBottom: 10}, 
-  content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
+  button: { marginBottom: 10 },
+  content: {
+    maxWidth: wp(100),
+    alignItems: 'center',
+    marginTop: hp('5%'),
+    marginHorizontal: wp(2),
+  },
+  textContainer: {
+    maxWidth: wp(86),
+  },
 });

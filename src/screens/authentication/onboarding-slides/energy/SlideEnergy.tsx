@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Button from '../../../../components/Button';
-import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
-import { SliderOnboarding } from '../../components';
-import { useTypedSelector } from '../../../../hooks';
-import { useDispatch } from 'react-redux';
-import { OnboardingEnergyActionType } from '../../../../redux/types';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { useDispatch } from 'react-redux';
+import Button from '../../../../components/Button';
+import { Box, Text, useTheme } from '../../../../components/Theme';
+import { useTypedSelector } from '../../../../hooks';
+import { OnboardingEnergyActionType } from '../../../../redux/types';
+import { SliderOnboarding } from '../../components';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideEnergy = ({ onPress, goBack }: PropsSlide) => {
   const theme = useTheme();
@@ -24,14 +27,36 @@ const SlideEnergy = ({ onPress, goBack }: PropsSlide) => {
     onPress();
   };
 
+  const generateText = () => {
+    switch (roommates) {
+      case 1:
+        return (
+          <Text variant="body">
+            I live<Text variant="bodyHighlight">alone</Text>
+          </Text>
+        );
+    }
+  };
+
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="ENERGY" svgTitle="Energy" isReversed={false} />
-
+      <Box style={{ position: 'absolute', top: hp(3), left: wp(2) }}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back-circle-outline" size={24} color="white" />
+          <Text color="white" variant="button">
+            back
+          </Text>
+        </TouchableOpacity>
+      </Box>
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
-          <Text variant="body">How many people live in your household?</Text>
-          <Text variant="body">{roommates} </Text>
+          <Text variant="bodySemiBold" style={{ marginTop: hp(2) }}>
+            How many people live in your household?
+          </Text>
           <SliderOnboarding
             onValueChange={(value: number) => setRoommates(value)}
             value={roommates}
@@ -39,9 +64,17 @@ const SlideEnergy = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={10}
             minimumValue={1}
           />
-          <View style={{ padding: hp('1%') }}></View>
-          <Text variant="body">What is the area of your housing?</Text>
-          <Text variant="body">{houseSurface} m²</Text>
+          {roommates === 1 ? (
+            <Text variant="body">
+              I live<Text variant="bodyHighlight"> alone</Text>.
+            </Text>
+          ) : (
+            <Text variant="body">
+              There is <Text variant="bodyHighlight">{roommates} </Text>of us living in my home.
+            </Text>
+          )}
+          <Box marginTop="xl"></Box>
+          <Text variant="bodySemiBold">What is the area of your housing?</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setHouseSurface(value)}
             value={houseSurface}
@@ -49,6 +82,9 @@ const SlideEnergy = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={300}
             minimumValue={0}
           />
+          <Text variant="body">
+            <Text variant="bodyHighlight">{houseSurface}</Text> m²
+          </Text>
         </View>
 
         <View
@@ -62,9 +98,6 @@ const SlideEnergy = ({ onPress, goBack }: PropsSlide) => {
           }}
         >
           <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
-          <TouchableOpacity onPress={goBack}>
-            <Ionicons name="md-return-down-back" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -1,7 +1,7 @@
-import React from 'react';
-import { TabBar, Tab } from '@ui-kitten/components';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Box, useTheme, Text } from '../components';
+import { Tab, TabBar } from '@ui-kitten/components';
+import React from 'react';
+import { Box, Text, useTheme } from '../components';
 import History from '../screens/home/History';
 import TotalsHistory from '../screens/home/TotalsHistory';
 import { HomeTabNavigationProps } from './NavigationTypes';

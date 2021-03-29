@@ -1,5 +1,5 @@
-import { AuthActionType, UserType } from '../types';
 import { AuthAction } from '../actions';
+import { AuthActionType, UserType } from '../types';
 
 interface AuthStateType {
   user: UserType | null;
@@ -16,6 +16,11 @@ const initialState: AuthStateType = {
 const authReducer = (state = initialState, action: AuthAction): AuthStateType => {
   switch (action.type) {
     case AuthActionType.LOAD_USER_ATTEMPT:
+      return {
+        user: null,
+        errorMessage: null,
+        isLoading: false,
+      };
     case AuthActionType.LOGIN_ATTEMPT:
     case AuthActionType.SIGNUP_ATTEMPT:
       return {

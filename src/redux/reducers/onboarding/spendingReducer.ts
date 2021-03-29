@@ -1,6 +1,5 @@
-import { OnboardingSpendingStateType } from '../../types';
 import { OnboardingAction } from '../../actions';
-import { OnboardingSpendingActionType } from '../../types';
+import { OnboardingSpendingActionType, OnboardingSpendingStateType } from '../../types';
 
 const initialState: OnboardingSpendingStateType = {
   clothes: 0,

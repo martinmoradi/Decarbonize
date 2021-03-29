@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { headers } from '../../tools/api';
 import { Dispatch } from 'redux';
+import { headers } from '../../tools/api';
 import { EmissionsAction, TripAction } from '../actions';
-import { TripActionType, EmissionsActionType } from '../types';
+import { EmissionsActionType, TripActionType } from '../types';
 
 export const postCommonTrip = (tripData: {
   vehicle_type: string;

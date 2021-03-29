@@ -1,16 +1,16 @@
+import { AntDesign, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import AnimatedTabBar, { BubbleTabBarItemConfig, TabsConfig } from '@gorhom/animated-tabbar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { HomeRoutesList } from './NavigationTypes';
-import Dashboard from '../screens/home/Dashboard';
-import Commitments from '../screens/home/Commitments';
-import HistoryNavigator from './HistoryNavigator';
-import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
-import { useActions, useTypedSelector } from '../hooks';
-import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
-import SettingsNavigator from './SettingsNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useActions, useTypedSelector } from '../hooks';
+import Commitments from '../screens/home/Commitments';
+import Dashboard from '../screens/home/Dashboard';
+import HistoryNavigator from './HistoryNavigator';
+import { HomeRoutesList } from './NavigationTypes';
 import NewNavigator from './NewNavigator';
+import SettingsNavigator from './SettingsNavigator';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 

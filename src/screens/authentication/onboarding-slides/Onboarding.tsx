@@ -1,5 +1,6 @@
-import React, { useRef, useMemo, useCallback } from 'react';
-import { Dimensions, FlatList, View, StyleSheet } from 'react-native';
+import React, { useCallback, useMemo, useRef } from 'react';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
+import { useTypedSelector } from '../../../hooks';
 import { AuthNavigationProps } from '../../../routers/NavigationTypes';
 import SlideEnergy from './energy/SlideEnergy';
 import SlideEnergySecond from './energy/SlideEnergySecond';
@@ -7,7 +8,6 @@ import SlideEnergyThird from './energy/SlideEnergyThird';
 import SlideFood from './food/SlideFood';
 import SlideFoodSecond from './food/SlideFoodSecond';
 import SlideHousing from './spending/SlideSpending';
-import { useTypedSelector } from '../../../hooks';
 
 const Onboarding = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   const { energy } = useTypedSelector(state => state.onboarding);
@@ -31,12 +31,12 @@ const Onboarding = ({ navigation }: AuthNavigationProps<'Onboarding'>) => {
   );
   const slides = useMemo(
     () => [
-      <SlideFood onPress={() => slidePress(1)} goBack={()=> navigation.goBack()} />,
-      <SlideFoodSecond onPress={() => slidePress(2)} goBack={()=> slidePress(0)}/>,
-      <SlideEnergy onPress={() => slidePress(3)} goBack={()=> slidePress(1)}/>,
-      <SlideEnergySecond onPress={() => slidePress(4)} goBack={()=> slidePress(2)}/>,
-      <SlideEnergyThird onPress={() => slidePress(5)} goBack={()=> slidePress(3)}/>,
-      <SlideHousing onPress={() => navigation.navigate('SignUp')} goBack={()=> slidePress(3)}/>,
+      <SlideFood onPress={() => slidePress(1)} goBack={() => navigation.goBack()} />,
+      <SlideFoodSecond onPress={() => slidePress(2)} goBack={() => slidePress(0)} />,
+      <SlideEnergy onPress={() => slidePress(3)} goBack={() => slidePress(1)} />,
+      <SlideEnergySecond onPress={() => slidePress(4)} goBack={() => slidePress(2)} />,
+      <SlideEnergyThird onPress={() => slidePress(5)} goBack={() => slidePress(3)} />,
+      <SlideHousing onPress={() => navigation.navigate('SignUp')} goBack={() => slidePress(3)} />,
     ],
     [navigation, slidePress]
   );

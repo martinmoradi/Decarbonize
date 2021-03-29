@@ -1,5 +1,5 @@
-export { signup, login, deleteAccount, logout, loadUser, deleteUser } from './authentication';
-export { postForm, fetchEmissions, putFixedEmissions, fetchFixedEmissions } from './emissions';
-export { postCommonTrip, postAirTrips, fetchTrips } from './trips';
-export { postUserCommitments, delUserCommitments } from './userCommitments'
-export {postMeal, fetchMeals, deleteMeal} from './meals';
+export { deleteAccount, deleteUser, loadUser, login, logout, signup } from './authentication';
+export { fetchEmissions, fetchFixedEmissions, postForm, putFixedEmissions } from './emissions';
+export { deleteMeal, fetchMeals, postMeal } from './meals';
+export { fetchTrips, postAirTrips, postCommonTrip } from './trips';
+export { delUserCommitments, postUserCommitments } from './userCommitments';

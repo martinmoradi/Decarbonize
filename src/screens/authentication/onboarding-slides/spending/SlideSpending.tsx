@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Button from '../../../../components/Button';
-import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
-import { SliderOnboarding } from '../../components';
-import { useTypedSelector } from '../../../../hooks';
-import { useDispatch } from 'react-redux';
-import { OnboardingSpendingActionType } from '../../../../redux/types';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { useDispatch } from 'react-redux';
+import Button from '../../../../components/Button';
+import { Box, Text, useTheme } from '../../../../components/Theme';
+import { useTypedSelector } from '../../../../hooks';
+import { OnboardingSpendingActionType } from '../../../../redux/types';
+import { SliderOnboarding } from '../../components';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideSpending = ({ onPress, goBack }: PropsSlide) => {
   const dispatch = useDispatch();
@@ -31,10 +34,20 @@ const SlideSpending = ({ onPress, goBack }: PropsSlide) => {
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="SPENDING" svgTitle="Habits" isReversed={isFossil ? true : false} />
+      <Box style={{ position: 'absolute', top: hp(3), left: wp(2) }}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back-circle-outline" size={24} color="white" />
+          <Text color="white" variant="button">
+            back
+          </Text>
+        </TouchableOpacity>
+      </Box>
       <View style={isFossil ? theme.slideStyle.footerReverse : theme.slideStyle.footer}>
         <View style={styles.content}>
-          <Text variant="body">How much do you spend for clothes ?</Text>
-          <Text variant="body">{clothes} € / month</Text>
+          <Text variant="bodySemiBold">How much do you spend per month on clothes ?</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setClothes(value)}
             value={clothes}
@@ -42,10 +55,12 @@ const SlideSpending = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={1000}
             minimumValue={0}
           />
+          <Text variant="body">
+            <Text variant="bodyHighlight">{clothes} €</Text> per month
+          </Text>
 
           <View style={{ padding: hp('2%') }}></View>
-          <Text variant="body">How much do you spend for furniture ?</Text>
-          <Text variant="body">{furniture} € / month</Text>
+          <Text variant="bodySemiBold">How much do you spend per month on furnitures ?</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setFurniture(value)}
             value={furniture}
@@ -53,10 +68,12 @@ const SlideSpending = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={1000}
             minimumValue={0}
           />
+          <Text variant="body">
+            <Text variant="bodyHighlight">{furniture} €</Text> per month
+          </Text>
 
           <View style={{ padding: hp('2%') }}></View>
-          <Text variant="body">How much do you spend for hobbies ?</Text>
-          <Text variant="body">{hobbies} € / month</Text>
+          <Text variant="body">How much do you spend per month on hobbies ?</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setHobbies(value)}
             value={hobbies}
@@ -64,6 +81,9 @@ const SlideSpending = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={1000}
             minimumValue={0}
           />
+          <Text variant="body">
+            <Text variant="bodyHighlight">{hobbies} €</Text> per month
+          </Text>
         </View>
 
         <View
@@ -77,9 +97,6 @@ const SlideSpending = ({ onPress, goBack }: PropsSlide) => {
           }}
         >
           <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
-          <TouchableOpacity onPress={goBack}>
-            <Ionicons name="md-return-down-back" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>

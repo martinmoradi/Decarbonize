@@ -1,8 +1,8 @@
-import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Dispatch } from 'redux';
 import { headers } from '../../tools/api';
-import { MealsAction, EmissionsAction } from '../actions';
-import { MealActionType, EmissionsActionType } from '../types';
+import { EmissionsAction, MealsAction } from '../actions';
+import { EmissionsActionType, MealActionType } from '../types';
 
 export const postMeal = (mealType: string) => {
   return async (dispatch: Dispatch<MealsAction | EmissionsAction>) => {
@@ -69,9 +69,7 @@ export const fetchMeals = () => {
 };
 
 export const deleteMeal = (id: number) => {
-
-  return async (dispatch: Dispatch<MealsAction  | EmissionsAction>) => {
-
+  return async (dispatch: Dispatch<MealsAction | EmissionsAction>) => {
     dispatch({
       type: MealActionType.DELETE_MEAL_ATTEMPT,
     });
@@ -96,7 +94,6 @@ export const deleteMeal = (id: number) => {
       dispatch({
         type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
         payload: data.emissions,
-
       });
     } catch (err) {
       dispatch({

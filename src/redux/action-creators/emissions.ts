@@ -1,9 +1,15 @@
-import { Dispatch } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Dispatch } from 'redux';
 import { headers } from '../../tools/api';
 import { EmissionsAction, OnboardingAction } from '../actions';
-import { EmissionsActionType, OnboardingEnergyActionType, OnboardingFoodActionType, OnboardingSpendingActionType } from '../types';
-import { OnboardingType, SettingType } from '../types';
+import {
+  EmissionsActionType,
+  OnboardingEnergyActionType,
+  OnboardingFoodActionType,
+  OnboardingSpendingActionType,
+  OnboardingType,
+  SettingType,
+} from '../types';
 
 export const postForm = (onboardingState: OnboardingType) => {
   return async (dispatch: Dispatch<EmissionsAction>) => {
@@ -95,7 +101,7 @@ export const fetchFixedEmissions = () => {
         }
       );
       const { data, error } = await response.json();
-     
+
       if (!response.ok) {
         throw new Error(error);
       }
@@ -109,7 +115,7 @@ export const fetchFixedEmissions = () => {
         payload: data.house_surface,
       });
       dispatch({
-        type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION  ,
+        type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION,
         payload: data.electricity_consumption,
       });
       dispatch({
@@ -181,7 +187,7 @@ export const putFixedEmissions = (settingData: SettingType) => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) throw new Error('No token found');
-      const fixed_emissions = {... settingData};
+      const fixed_emissions = { ...settingData };
       const response = await fetch(
         `https://perruches-decarbonize.herokuapp.com/api/v1/fixed_emissions/1`,
         {
@@ -198,16 +204,20 @@ export const putFixedEmissions = (settingData: SettingType) => {
       dispatch({
         type: OnboardingEnergyActionType.SET_ROOMMATES,
         payload: data.fixed_emission.roommates,
-      });dispatch({
+      });
+      dispatch({
         type: OnboardingEnergyActionType.SET_HOUSE_SURFACE,
         payload: data.fixed_emission.house_surface,
-      });dispatch({
-        type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION  ,
+      });
+      dispatch({
+        type: OnboardingEnergyActionType.SET_ELECTRICITY_CONSUMPTION,
         payload: data.fixed_emission.electricity_consumption,
-      });dispatch({
+      });
+      dispatch({
         type: OnboardingEnergyActionType.SET_GAS_CONSUMPTION,
         payload: data.fixed_emission.gas_consumption,
-      });dispatch({
+      });
+      dispatch({
         type: OnboardingEnergyActionType.SET_WOOD_TYPE,
         payload: data.fixed_emission.wood_type,
       });
@@ -221,42 +231,41 @@ export const putFixedEmissions = (settingData: SettingType) => {
       });
 
       // Food
-    dispatch({
-      type: OnboardingFoodActionType.SET_BREAKFAST,
-      payload: data.fixed_emission.breakfasts_per_week,
-    });
-    dispatch({
-      type: OnboardingFoodActionType.SET_RED_MEAT,
-      payload: data.fixed_emission.red_meats_per_week,
-    });
-    dispatch({
-      type: OnboardingFoodActionType.SET_WHITE_MEAT,
-      payload: data.fixed_emission.white_meats_per_week,
-    });
-    dispatch({
-      type: OnboardingFoodActionType.SET_VEGAN,
-      payload: data.fixed_emission.vegan_per_week,
-    });
-    dispatch({
-      type: OnboardingFoodActionType.SET_VEGETARIAN,
-      payload: data.fixed_emission.vegetarian_per_week,
-    });
+      dispatch({
+        type: OnboardingFoodActionType.SET_BREAKFAST,
+        payload: data.fixed_emission.breakfasts_per_week,
+      });
+      dispatch({
+        type: OnboardingFoodActionType.SET_RED_MEAT,
+        payload: data.fixed_emission.red_meats_per_week,
+      });
+      dispatch({
+        type: OnboardingFoodActionType.SET_WHITE_MEAT,
+        payload: data.fixed_emission.white_meats_per_week,
+      });
+      dispatch({
+        type: OnboardingFoodActionType.SET_VEGAN,
+        payload: data.fixed_emission.vegan_per_week,
+      });
+      dispatch({
+        type: OnboardingFoodActionType.SET_VEGETARIAN,
+        payload: data.fixed_emission.vegetarian_per_week,
+      });
 
-    // Spendings
-    dispatch({
-      type: OnboardingSpendingActionType.SET_CLOTHES,
-      payload: data.fixed_emission.clothes,
-    });
-    dispatch({
-      type: OnboardingSpendingActionType.SET_FURNITURE,
-      payload: data.fixed_emission.furnitures,
-    });
-    dispatch({
-      type: OnboardingSpendingActionType.SET_OTHERS,
-      payload: data.fixed_emission.others,
-    });
+      // Spendings
+      dispatch({
+        type: OnboardingSpendingActionType.SET_CLOTHES,
+        payload: data.fixed_emission.clothes,
+      });
+      dispatch({
+        type: OnboardingSpendingActionType.SET_FURNITURE,
+        payload: data.fixed_emission.furnitures,
+      });
+      dispatch({
+        type: OnboardingSpendingActionType.SET_OTHERS,
+        payload: data.fixed_emission.others,
+      });
 
-    
       dispatch({
         type: EmissionsActionType.FETCH_EMISSIONS_SUCCESS,
         payload: data.user_emissions,

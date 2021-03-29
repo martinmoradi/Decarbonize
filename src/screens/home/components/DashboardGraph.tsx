@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import {
+  VictoryAxis,
   VictoryBar,
   VictoryChart,
-  VictoryTheme,
-  VictoryStack,
-  VictoryAxis,
   VictoryLegend,
+  VictoryStack,
+  VictoryTheme,
 } from 'victory-native';
-import { StyleSheet } from 'react-native';
-import { useTypedSelector } from '../../../hooks';
-import { Box } from '../../../components/Theme';
 import TextButton from '../../../components/TextButton';
+import { Box } from '../../../components/Theme';
+import { useTypedSelector } from '../../../hooks';
 
 const DashboardGraph = () => {
   const { data } = useTypedSelector(state => state.emissions);

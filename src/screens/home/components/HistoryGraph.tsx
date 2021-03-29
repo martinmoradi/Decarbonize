@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  VictoryLine,
-  VictoryChart,
-  VictoryScatter,
   VictoryAxis,
+  VictoryChart,
   VictoryLegend,
+  VictoryLine,
+  VictoryScatter,
 } from 'victory-native';
 import { VictoryCustomTheme } from '../../../components';
 

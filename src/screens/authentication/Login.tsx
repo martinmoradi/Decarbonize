@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import { Box, Button, Container, Text } from '../../components';
 import Checkbox from '../../components/Checkbox';
 import TextInput from '../../components/TextInput';
+import { useActions, useTypedSelector } from '../../hooks';
 import { AuthNavigationProps } from '../../routers/NavigationTypes';
 import { Footer } from './components';
-import { useTypedSelector, useActions } from '../../hooks';
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),

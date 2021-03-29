@@ -1,4 +1,4 @@
-import { UserCommitmentsActionType } from "../types"
+import { UserCommitmentsActionType } from '../types';
 
 interface PostUserCommitmentsAttempt {
   type: UserCommitmentsActionType.POST_USER_COMMITMENTS_ATTEMPT;
@@ -17,8 +17,8 @@ interface DelUserCommitmentsError {
   payload: string;
 }
 
-export type UserCommitmentsAction = 
-  |PostUserCommitmentsAttempt
-  |PostUserCommitmentsError
-  |DelUserCommitmentsAttempt
-  |DelUserCommitmentsError
+export type UserCommitmentsAction =
+  | PostUserCommitmentsAttempt
+  | PostUserCommitmentsError
+  | DelUserCommitmentsAttempt
+  | DelUserCommitmentsError;

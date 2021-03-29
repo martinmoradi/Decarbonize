@@ -1,10 +1,10 @@
 export { default as Button } from './Button';
+export { default as Checkbox } from './Checkbox';
 export { default as Container } from './Container';
 export { default as LoadAssets } from './LoadAssets';
 export { default as RoundedIcon } from './RoundedIcon';
 export { default as RoundedIconButton } from './RoundedIconButton';
-export { Box, makeStyles, Text, useTheme, palette } from './Theme';
-export { default as VictoryCustomTheme } from './VictoryCustomTheme';
 export { default as TextButton } from './TextButton';
-export { default as Checkbox } from './Checkbox';
 export { default as TextInput } from './TextInput';
+export { Box, makeStyles, palette, Text, useTheme } from './Theme';
+export { default as VictoryCustomTheme } from './VictoryCustomTheme';

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Text, Box } from '../../../components/Theme';
-import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
+import React, { useEffect, useState } from 'react';
+import { Box, Text } from '../../../components/Theme';
 
 const MeteoBar = () => {
   const today = new Date();

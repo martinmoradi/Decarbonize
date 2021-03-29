@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Text } from '../../../components';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Box, Text } from '../../../components';
 import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
 
 interface TransportationCardProps {

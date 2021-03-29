@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, ImageSourcePropType } from 'react-native';
+import { Image, ImageSourcePropType, View } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { Text } from '../../components';
 
@@ -9,9 +9,6 @@ export type PropsTravel = {
 };
 
 const TravelMode = ({ travelMode, imgUrl }: PropsTravel) => {
-  const images = {
-    car: require('../../../assets/images/car.jpg'),
-  };
   return (
     <View
       style={{

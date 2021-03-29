@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box } from '../../../../components';
-import Row from './Row';
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Box } from '../../../../components';
+import Row from './Row';
 
 const Grid = (carData: string[][]) => {
   return (
