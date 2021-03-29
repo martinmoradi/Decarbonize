@@ -11,7 +11,6 @@ const HistoryNavigator = () => {
   const theme = useTheme();
 
   const TopTabBar = ({ navigation, state }: HomeTabNavigationProps<'History'>) => {
-    console.log('state:', state);
     const colorFirstTab = state.index === 0 ? '#39D697' : '#F3F4F6';
     const colorSecondTab = state.index === 1 ? theme.colors.primary : '#F3F4F6';
     return (
