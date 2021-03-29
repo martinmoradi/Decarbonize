@@ -133,7 +133,6 @@ export const deleteUser = () => {
         headers: headers(token),
       });
       const { message, error } = await response.json();
-      console.log('message:', message)
       if (!response.ok) {
         throw new Error(error);
       }

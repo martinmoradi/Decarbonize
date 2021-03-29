@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { Box, Text } from '../../../components';
+import { Box, Text, Button } from '../../../components';
 import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
 
 const SettingsEmissions = ({ navigation }: SettingsStackNavigationProps<'SettingsEmission'>) => {
@@ -15,10 +15,10 @@ const SettingsEmissions = ({ navigation }: SettingsStackNavigationProps<'Setting
           justifyContent="flex-end"
           paddingBottom="m"
           style={styles.boxContainer}
-          backgroundColor="primary"
+          backgroundColor="secondary"
           marginBottom="s"
         >
-          <Text variant="title2" color="white">
+          <Text variant="title2" color="white" style={{ textAlign: 'center' }}>
             EMISSIONS SETTINGS
           </Text>
         </Box>
@@ -30,18 +30,12 @@ const SettingsEmissions = ({ navigation }: SettingsStackNavigationProps<'Setting
           justifyContent="center"
           backgroundColor="white"
         >
-          <Box
-            flexDirection="row"
-            alignItems="center"
-            style={{ width: wp('90%'), height: 70, borderBottomWidth: 2, borderRadius: 20 }}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton onPress={() => navigation.navigate('SettingsFood')}>
-              <Text variant="body">Change food</Text>
-            </BorderlessButton>
-          </Box>
+          <Button
+            label="Change Food"
+            variant="default"
+            onPress={() => navigation.navigate('SettingsFood')}
+          />
+
           <Box
             flexDirection="row"
             alignItems="center"
