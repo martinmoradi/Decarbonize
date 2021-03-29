@@ -120,4 +120,33 @@ export const logout = () => {
   };
 };
 
+export const deleteUser = () => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    dispatch({
+      type: AuthActionType.DELETE_USER_ATTEMPT,
+    });
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token) return;
+      const response = await fetch(`https://perruches-decarbonize.herokuapp.com/signup`, {
+        method: 'DELETE',
+        headers: headers(token),
+      });
+      const { message, error } = await response.json();
+      if (!response.ok) {
+        throw new Error(error);
+      }
+      dispatch({
+        type: AuthActionType.DELETE_USER_SUCCESS,
+        payload: message,
+      });
+    } catch (err) {
+      dispatch({
+        type: AuthActionType.DELETE_USER_ERROR,
+        payload: err.message,
+      });
+    }
+  };
+};
+
 export const deleteAccount = () => {};

@@ -52,3 +52,18 @@ export const ButtonSecondary = ({ label, onPress, variant, style }: TextButtonPr
 };
 
 Button.defaultProps = { variant: 'default' };
+
+export const ButtonDanger = ({ label, onPress, variant, style }: TextButtonProps) => {
+  const theme = useTheme();
+  const backgroundColor = variant === 'primary' ? theme.colors.danger : theme.colors.background2;
+  const color = variant === 'primary' ? theme.colors.background2 : theme.colors.danger;
+  return (
+    <RectButton style={[styles.container, style, { backgroundColor }]} {...{ onPress }}>
+      <Text variant="button" style={{ color }}>
+        {label}
+      </Text>
+    </RectButton>
+  );
+};
+
+ButtonDanger.defaultProps = { variant: 'default' };

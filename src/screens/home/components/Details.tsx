@@ -102,7 +102,7 @@ export default Details;
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('108%'),
+    height: hp('120%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
