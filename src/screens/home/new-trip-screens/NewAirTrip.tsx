@@ -90,6 +90,18 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
   }, [departureSearch]);
 
   useEffect(() => {
+    if (!departureSuggestions) {
+      setDepartureSuggestions(true);
+    }
+  }, [departureSearch]);
+
+  useEffect(() => {
+    if (!arrivalSuggestions) {
+      setArrivalSuggestions(true);
+    }
+  }, [arrivalSearch]);
+
+  useEffect(() => {
     if (selectedDeparture) {
       setDepartureSearch(selectedDeparture.name);
       setDepartureSuggestions(false);
@@ -125,6 +137,16 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
         arrival_longitude: selectedArrival.coordinates.longitude,
       });
     }
+  };
+
+  const handleDeparture = item => {
+    setSelectedDeparture(item);
+    setDepartureSuggestions(false);
+  };
+
+  const handleArrival = item => {
+    setSelectedArrival(item);
+    setArrivalSuggestions(false);
   };
 
   return (
@@ -167,11 +189,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                 placeholder={departurePlaceHolder}
                 onChangeText={setDepartureSearch}
                 value={departureSearch}
-                platform="default"
-                lightTheme
-                round
                 style={{ backgroundColor: 'white' }}
-                inputContainerStyle={{ backgroundColor: 'white' }}
               />
               <FlatList
                 style={{
@@ -187,8 +205,14 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                 renderItem={({ item }) => {
                   if (departureSuggestions) {
                     return (
-                      <Box>
-                        <TouchableOpacity onPress={() => setSelectedDeparture(item)}>
+                      <Box
+                        style={{
+                          borderBottomWidth: 1,
+                          borderBottomColor: theme.colors.info,
+                          marginBottom: 5,
+                        }}
+                      >
+                        <TouchableOpacity onPress={() => handleDeparture(item)}>
                           <Text>{`${item.name}`}</Text>
                         </TouchableOpacity>
                       </Box>
@@ -207,11 +231,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                 placeholder={arrivalPlaceHolder}
                 onChangeText={setArrivalSearch}
                 value={arrivalSearch}
-                platform="default"
-                lightTheme
-                round
                 style={{ backgroundColor: 'white' }}
-                inputContainerStyle={{ backgroundColor: 'white' }}
               />
               <FlatList
                 style={{
@@ -227,8 +247,14 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                 renderItem={({ item }) => {
                   if (arrivalSuggestions) {
                     return (
-                      <Box>
-                        <TouchableOpacity onPress={() => setSelectedArrival(item)}>
+                      <Box
+                        style={{
+                          borderBottomWidth: 1,
+                          borderBottomColor: theme.colors.info,
+                          marginBottom: 5,
+                        }}
+                      >
+                        <TouchableOpacity onPress={() => handleArrival(item)}>
                           <Text>{`${item.name}`}</Text>
                         </TouchableOpacity>
                       </Box>
