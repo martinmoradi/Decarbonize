@@ -170,7 +170,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
           marginTop="m"
         >
           <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
-            New <Text color="primary">Air</Text> trip
+            New <Text color="primary">Airtrip</Text>
           </Text>
           <Box style={[styles.imgContainer, { backgroundColor: '#58508d' }]}>
             <Image
