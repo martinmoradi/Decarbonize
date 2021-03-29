@@ -32,9 +32,9 @@ interface AirportQuery {
   servedCityGoverningDistrict: {};
 }
 
-const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'>) => {
+const NewAirTrip = ({ navigation }: TripStackNavigationProps<'NewAirTrip'>) => {
   const theme = useTheme();
-  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
+  const { isLoading } = useTypedSelector(state => state.trips);
   const { postAirTrips } = useActions();
   // query results
   const [departureData, setDepartureData] = useState([]);
