@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  vehicle_type: MyString
+  departure_latitude: 1.5
+  departure_longitude: 1.5
+  arrival_latitude: 1.5
+  arrival_longitude: 1.5
+  round_trip: false
+  monday:
+  tuesday:
+  wednesday:
+  thursday:
+  friday:
+  saturday:
+  sunday:
+
+two:
+  user: two
+  vehicle_type: MyString
+  departure_latitude: 1.5
+  departure_longitude: 1.5
+  arrival_latitude: 1.5
+  arrival_longitude: 1.5
+  round_trip: false
+  monday:
+  tuesday:
+  wednesday:
+  thursday:
+  friday:
+  saturday:
+  sunday:

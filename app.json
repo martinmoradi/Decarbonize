@@ -1,32 +1,18 @@
 {
   "expo": {
-    "name": "decarbonize",
+    "name": "Decarbonize",
+    "icon": "./assets/decarbonize-app-icon.png",
+    "version": "0.1",
     "slug": "decarbonize",
-    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "githubUrl": "https://github.com/martinmoradi/Decarbonize",
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.thp.decarbonize",
+      "buildNumber": "1.0.0"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.thp.decarbonize",
+      "versionCode": 1
     }
   }
 }

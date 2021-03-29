@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  round_trip: false
+  distance:
+
+two:
+  round_trip: false
+  distance:

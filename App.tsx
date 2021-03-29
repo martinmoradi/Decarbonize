@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LoadAssets } from './src/components';
+import { StatusBar } from 'react-native';
+import { ThemeProvider } from './src/components/Theme';
+import AuthRouter from './src/routers/AuthRouter';
+import { store } from './src/redux';
+import { Provider } from 'react-redux';
+import { enableScreens } from 'react-native-screens';
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
-export default function App() {
+enableScreens();
+
+const fonts = {
+  'Avenir-Bold': require('./assets/fonts/AvenirNextLTPro-Bold.otf'),
+  'Avenir-Semibold': require('./assets/fonts/AvenirNextLTPro-Demi.otf'),
+  'Avenir-Regular': require('./assets/fonts/AvenirNextLTPro-Medium.otf'),
+};
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <LoadAssets {...{ fonts }}>
+          <ThemeProvider>
+            <SafeAreaProvider>
+              <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+              <AuthRouter />
+            </SafeAreaProvider>
+          </ThemeProvider>
+        </LoadAssets>
+      </ApplicationProvider>
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
+export default App;
