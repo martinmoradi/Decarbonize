@@ -6,7 +6,12 @@
 # 5) I reduce food waste
 # 6) I buy groceries in a bulk food store
 
+# Schema.rb
+# t.bigint 'user_id'
+# t.bigint 'commitment_id'
+
 class UserCommitment < ApplicationRecord
+  validates :user_id, :commitment_id, presence: true
   belongs_to :user
   belongs_to :commitment
 end

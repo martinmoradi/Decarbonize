@@ -16,7 +16,7 @@ Rails
         resources :air_trips do
           resource :emissions, module: :air_trips
         end
-        resources :meals
+        resources :meals, only: %i[create index destroy]
         resource :users
         resource :user_commitments, only: %i[create destroy]
       end

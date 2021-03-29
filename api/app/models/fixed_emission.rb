@@ -1,22 +1,23 @@
 # Schema.rb
 # t.bigint "user_id", null: false
 #   t.float "house_surface"
-#   t.float "electricity_consumption"
-#   t.float "gas_consumption"
-#   t.float "wood_consumption"
-#   t.string "wood_type"
-#   t.float "fuel_consumption"
-#   t.integer "roommates"
-#   t.float "clothes"
-#   t.float "furnitures"
-#   t.float "others"
-#   t.integer "breakfasts_per_week"
-#   t.integer "red_meats_per_week"
-#   t.integer "vegan_per_week"
-#   t.integer "vegetarian_per_week"
-#   t.integer "white_meats_per_week"
+#   t.float "electricity_consumption", default: 0.0
+#   t.float "gas_consumption", default: 0.0
+#   t.float "wood_consumption", default: 0.0
+#   t.string "wood_type", default: 'wood_logs'
+#   t.float "fuel_consumption", default: 0.0
+#   t.integer "roommates", default: 1
+#   t.float "clothes", default: 0.0
+#   t.float "furnitures", default: 0.0
+#   t.float "others", default: 0.0
+#   t.integer "breakfasts_per_week", default: 0
+#   t.integer "red_meats_per_week", default: 0
+#   t.integer "vegan_per_week", default: 0
+#   t.integer "vegetarian_per_week", default: 0
+#   t.integer "white_meats_per_week", default: 0
 
 class FixedEmission < ApplicationRecord
+  validates :user_id, :house_surface, presence: true
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
 
