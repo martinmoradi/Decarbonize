@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { Box, Button, Text } from '../../components';
 import { useActions, useTypedSelector } from '../../hooks';
-import { AuthNavigationProps } from '../../routers/NavigationTypes';
-
 const { width } = Dimensions.get('window');
 const picture = {
   src: require('../../components/assets/images/decarbonize-hero.png'),
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
   image: {
     width: width,
     height: ((width - 75) * picture.height) / picture.width,
+    marginTop: hp(-5),
   },
   bottomMargin: { marginBottom: 30 },
 });

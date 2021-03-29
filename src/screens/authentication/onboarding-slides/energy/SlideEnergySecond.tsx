@@ -2,10 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { useDispatch } from 'react-redux';
 import Button from '../../../../components/Button';
-import { Text, useTheme } from '../../../../components/Theme';
+import { Box, Text, useTheme } from '../../../../components/Theme';
 import { useTypedSelector } from '../../../../hooks';
 import { OnboardingEnergyActionType, WoodsType } from '../../../../redux/types/onboardingTypes';
 import { SliderOnboarding } from '../../components';
@@ -80,11 +83,22 @@ const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="ENERGY" svgTitle="Energy" isReversed={true} />
-
+      <Box style={{ position: 'absolute', top: hp(3), left: wp(2) }}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back-circle-outline" size={24} color="white" />
+          <Text color="white" variant="button">
+            back
+          </Text>
+        </TouchableOpacity>
+      </Box>
       <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
-          <Text variant="body">What is your electricity consumption ?</Text>
-          <Text variant="body">{electricityConsumption} € / month</Text>
+          <Text variant="bodySemiBold" style={{ marginTop: hp(2) }}>
+            What is your monthly electricity consumption?
+          </Text>
           <SliderOnboarding
             onValueChange={(value: number) => setElectricityConsumption(value)}
             value={electricityConsumption}
@@ -92,9 +106,14 @@ const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={300}
             minimumValue={20}
           />
+          <Text variant="body">
+            <Text variant="bodyHighlight">{electricityConsumption} €</Text> per month
+          </Text>
 
           <View style={styles.paddingBoxes}></View>
-          <Text variant="body">How do you heat your housing?</Text>
+          <Text variant="bodySemiBold" style={{ marginTop: hp(2) }}>
+            Do you use any of the following options for heating?
+          </Text>
           <ButtonGroup
             buttons={buttonsHeat}
             selectMultiple={true}
@@ -108,7 +127,7 @@ const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
           <View style={styles.paddingBoxes}></View>
           {selectedHeatingIndexes?.includes(2) ? (
             <>
-              <Text variant="body">Which type of wood ?</Text>
+              <Text variant="bodySemiBold">Which type of wood ?</Text>
               <ButtonGroup
                 buttons={buttonsWood}
                 onPress={(index: number) => handleWoodType(index)}
@@ -123,9 +142,6 @@ const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
         </View>
         <View style={styles.container}>
           <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
-          <TouchableOpacity onPress={goBack}>
-            <Ionicons name="md-return-down-back" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>

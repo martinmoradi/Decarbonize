@@ -135,6 +135,12 @@ const theme = {
       fontFamily: 'Avenir-Regular',
       color: 'text',
     },
+    bodySemiBold: {
+      fontSize: 16,
+      lineHeight: 24,
+      fontFamily: 'Avenir-Semibold',
+      color: 'text',
+    },
     bodyHighlight: {
       fontSize: 16,
       lineHeight: 24,

@@ -1,10 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import { useDispatch } from 'react-redux';
 import Button from '../../../../components/Button';
-import { Text, useTheme } from '../../../../components/Theme';
+import { Box, Text, useTheme } from '../../../../components/Theme';
 import { useTypedSelector } from '../../../../hooks';
 import { OnboardingFoodActionType } from '../../../../redux/types';
 import { SliderOnboarding } from '../../components';
@@ -24,17 +27,83 @@ const SlideFoodSecond = ({ onPress, goBack }: PropsSlide) => {
     onPress();
   };
 
+  const generateText = (variant: string) => {
+    switch (variant) {
+      case 'vegetarian':
+        if (vegetarian === 0) {
+          return (
+            <Text variant="body">
+              I <Text variant="bodyHighlight">don't </Text>eat vegetarian.
+            </Text>
+          );
+        }
+        if (vegetarian === 1) {
+          return (
+            <Text variant="body">
+              I eat vegetarian <Text variant="bodyHighlight">once </Text> a week.
+            </Text>
+          );
+        } else {
+          return (
+            <Text variant="body">
+              I eat vegetarian <Text variant="bodyHighlight">{vegetarian} times </Text> a week.
+            </Text>
+          );
+        }
+      case 'vegan':
+        if (vegan === 0) {
+          return (
+            <Text variant="body">
+              I <Text variant="bodyHighlight">don't </Text>eat vegan.
+            </Text>
+          );
+        }
+        if (vegan === 1) {
+          return (
+            <Text variant="body">
+              I eat vegan <Text variant="bodyHighlight">once </Text>a week.
+            </Text>
+          );
+        } else {
+          return (
+            <Text variant="body">
+              I eat vegan <Text variant="bodyHighlight">{vegan} times </Text>a week.
+            </Text>
+          );
+        }
+    }
+  };
+
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="FOOD" svgTitle="Food" isReversed={true} />
-
+      <Box style={{ position: 'absolute', top: hp(3), left: wp(2) }}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back-circle-outline" size={24} color="white" />
+          <Text color="white" variant="button">
+            back
+          </Text>
+        </TouchableOpacity>
+      </Box>
       <View style={theme.slideStyle.footerReverse}>
         <View style={styles.content}>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat vegetarian meal ?
+          <Text variant="bodySemiBold" style={{ marginBottom: hp(2), marginTop: hp(-2) }}>
+            How many times a week do you ...
+          </Text>
+          <Text
+            variant="bodySemiBold"
+            style={{
+              lineHeight: 32,
+              textAlign: 'center',
+              marginTop: hp(1),
+            }}
+          >
+            ...eat vegetarian?
           </Text>
           <View style={{ padding: hp('1%') }}></View>
-          <Text variant="body">{vegetarian} / week</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setVegetarian(value)}
             value={vegetarian}
@@ -42,12 +111,19 @@ const SlideFoodSecond = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={14}
             minimumValue={0}
           />
+          {generateText('vegetarian')}
 
           <View style={{ padding: hp('1%') }}></View>
-          <Text variant="body" style={{ lineHeight: 32 }}>
-            How much do you eat vegan meal ? ?
+          <Text
+            variant="bodySemiBold"
+            style={{
+              lineHeight: 32,
+              textAlign: 'center',
+              marginTop: hp(1),
+            }}
+          >
+            ...eat vegan?
           </Text>
-          <Text variant="body">{vegan} / week</Text>
           <SliderOnboarding
             onValueChange={(value: number) => setVegan(value)}
             value={vegan}
@@ -55,6 +131,7 @@ const SlideFoodSecond = ({ onPress, goBack }: PropsSlide) => {
             maximumValue={14}
             minimumValue={0}
           />
+          {generateText('vegan')}
         </View>
 
         <View
@@ -68,9 +145,6 @@ const SlideFoodSecond = ({ onPress, goBack }: PropsSlide) => {
           }}
         >
           <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
-          <TouchableOpacity onPress={goBack}>
-            <Ionicons name="md-return-down-back" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>
