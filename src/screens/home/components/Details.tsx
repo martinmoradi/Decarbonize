@@ -30,7 +30,11 @@ const Details = () => {
       marginTop="m"
     >
       <Box marginBottom="m">
-        <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
+        <Text
+          variant="titleCard"
+          marginBottom="s"
+          style={{ color: theme.colors.text, textAlign: 'center' }}
+        >
           Understanding the <Text color="primary">numbers</Text>
         </Text>
       </Box>

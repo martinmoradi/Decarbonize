@@ -20,17 +20,23 @@ const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
         }}
       ></Box>
 
-      <Box marginTop="xl" />
       <Box
+        marginBottom="xl"
         style={{
           backgroundColor: '#F6F6F6',
           borderRadius: 75,
-          marginBottom: 50,
+          marginTop: hp(7),
           minHeight: hp('100%'),
         }}
       >
         <Box style={{ alignItems: 'center', flex: 1 }}>
-          <Text variant="titleCard" marginTop="xl" marginBottom="m" style={{ textAlign: 'center' }}>
+          <Text
+            variant="titleCard"
+            marginTop="l"
+            marginBottom="m"
+            paddingTop="l"
+            style={{ textAlign: 'center', color: theme.colors.text }}
+          >
             Select a <Text color="primary">transportation</Text>
           </Text>
           <ScrollView>

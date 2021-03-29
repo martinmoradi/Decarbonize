@@ -144,7 +144,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
             </Box>
           </Box>
 
-          <Box marginTop="m">
+          <Box style={{ marginTop: hp(4) }}>
             <Checkbox
               label="Is it a round trip?"
               checked={values.round_trip}
@@ -152,7 +152,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
             />
           </Box>
 
-          <Box alignItems="center" marginTop="m" style={{ justifyContent: 'center' }}>
+          <Box alignItems="center" style={{ justifyContent: 'center', marginTop: hp(4) }}>
             {isLoading ? (
               <Button
                 variant="primary"
@@ -168,7 +168,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
                 style={{ width: 180 }}
               />
             )}
-            <Box marginTop="m">
+            <Box style={{ marginTop: hp(3) }}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Box
                   style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
