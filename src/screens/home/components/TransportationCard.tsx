@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Text, useTheme } from '../../../components';
+import { Box, Text } from '../../../components';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,

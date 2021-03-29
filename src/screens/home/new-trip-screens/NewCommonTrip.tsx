@@ -17,7 +17,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'NewCommonTrip'>) => {
+type PropsNewCommonTrip = {
+  route: TripStackNavigationProps<'NewCommonTrip'>;
+  navigation: TripStackNavigationProps<'NewCommonTrip'>;
+  url: string;
+};
+
+const NewCommonTrip = ({ route, navigation, url }: PropsNewCommonTrip) => {
   const { postCommonTrip } = useActions();
   const { width } = Dimensions.get('window');
   const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
@@ -52,7 +58,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
     },
   ];
 
-  const getImg = (url: undefined) => {
+  const getImg = (url: string) => {
     if (tripData.vehicle_type === 'train') {
       return (url = require('../../../../assets/images/train.jpg'));
     }

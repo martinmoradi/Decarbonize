@@ -67,7 +67,6 @@ export const postAirTrips = (tripData: {
         body: JSON.stringify({ air_trip: { ...tripData } }),
       });
       const { data, error } = await response.json();
-      console.log('data:', data)
       if (!response.ok) {
         throw new Error(error);
       }
