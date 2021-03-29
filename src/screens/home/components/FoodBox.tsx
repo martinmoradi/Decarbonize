@@ -41,8 +41,8 @@ const FoodBox = (props: PropTypes) => {
         description = 'Meal containing beef, veal or lamb.';
         return require(`../../../../assets/images/red_meat.png`);
       case 'white_meat':
-        name = 'White meat';
-        description = 'Meal containing poultry or pork.';
+        name = 'White meat / fish';
+        description = 'Meal containing poultry, pork or fish.';
         return require(`../../../../assets/images/white_meat.png`);
       case 'vegetarian':
         name = 'Vegetarian';
@@ -73,7 +73,7 @@ const FoodBox = (props: PropTypes) => {
   return (
     <View style={styles.boxContainer}>
       <TouchableOpacity onPress={() => setShowDescription(!showDescription)}>
-        <View style={{ position: 'absolute', zIndex: 1, left: 2, top: 2 }}>
+        <View style={{ position: 'absolute', zIndex: 1, left: 4, top: 8 }}>
           {showDescription ? (
             <AntDesign name="closecircleo" size={14} color="white" />
           ) : (
@@ -118,11 +118,11 @@ export default FoodBox;
 
 const styles = StyleSheet.create({
   boxContainer: {
-    width: wp('40%'),
+    width: wp('45%'),
     height: hp('25%'),
-    borderRadius: 20,
+    borderRadius: 40,
     backgroundColor: '#F6F6F6',
-    marginHorizontal: wp('5%'),
+    marginHorizontal: wp('2%'),
     justifyContent: 'space-between',
     padding: 10,
     shadowColor: '#000',
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     borderRadius: 10,
+    marginTop: 5,
   },
   buttons: {
     width: 40,

@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
-import { Box, Text, Button } from '../../../components';
-import { TripStackNavigationProps } from '../../../routers/NavigationTypes';
-import Checkbox from '../../../components/Checkbox';
+import React, { useEffect, useRef } from 'react';
+import { Box, Text, Button, Checkbox, useTheme, TextInput } from '../../../components';
+import { TripStackNavigationProps } from '../../../routers';
 import { useActions, useTypedSelector } from '../../../hooks';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
-  Dimensions,
-  TextInput,
-  ActivityIndicator,
   StyleSheet,
-  ScrollView,
-  View,
   Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  TextInput as RNTextInput,
 } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
+const NewTripSchema = Yup.object().shape({
+  distance: Yup.number().required('Required').positive().integer(),
+});
 
 type PropsNewCommonTrip = {
   route: TripStackNavigationProps<'NewCommonTrip'>;
@@ -24,150 +28,194 @@ type PropsNewCommonTrip = {
 };
 
 const NewCommonTrip = ({ route, navigation, url }: PropsNewCommonTrip) => {
+  const theme = useTheme();
+  const distance = useRef<RNTextInput>(null);
   const { postCommonTrip } = useActions();
-  const { width } = Dimensions.get('window');
-  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
-  const [tripData, setTripData] = useState({
-    vehicle_type: route.params.type,
-    round_trip: false,
-    distance: 0,
+
+  const {
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    errors,
+    touched,
+    values,
+    setFieldValue,
+  } = useFormik({
+    validationSchema: NewTripSchema,
+    initialValues: {
+      distance: 0,
+      vehicle_type: '',
+      round_trip: false,
+    },
+    onSubmit: () => {
+      postCommonTrip(values);
+    },
   });
 
-  const [distance, setDistance] = useState<string>('0');
+  const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
 
-  const changeDistance = (e: string) => {
-    setTripData({
-      vehicle_type: route.params.type,
-      round_trip: tripData.round_trip,
-      distance: parseFloat(e || '0'),
-    });
+  const getImage = (url: string | undefined) => {
+    switch (route.params.type) {
+      case 'train':
+        return (url = require('../../../../assets/images/train.png'));
+      case 'tramway':
+        return (url = require('../../../../assets/images/tramway.png'));
+      case 'metro':
+        return (url = require('../../../../assets/images/metro.png'));
+      case 'bus':
+        return (url = require('../../../../assets/images/autobus.png'));
+      default:
+        return;
+    }
   };
 
-  const Images = [
-    {
-      train: require('../../../../assets/images/train.jpg'),
-    },
-    {
-      bus: require('../../../../assets/images/train.jpg'),
-    },
-    {
-      subway: require('../../../../assets/images/subway.jpg'),
-    },
-    {
-      tramway: require('../../../../assets/images/tramway.jpg'),
-    },
-  ];
-
-  const getImg = (url: string) => {
-    if (tripData.vehicle_type === 'train') {
-      return (url = require('../../../../assets/images/train.jpg'));
-    }
-    if (tripData.vehicle_type === 'tramway') {
-      return (url = require('../../../../assets/images/tramway.jpg'));
-    }
-    if (tripData.vehicle_type === 'metro') {
-      return (url = require('../../../../assets/images/subway.jpg'));
-    }
-    if (tripData.vehicle_type === 'bus') {
-      return (url = require('../../../../assets/images/bus.jpg'));
+  const getColor = (url: string | undefined) => {
+    switch (route.params.type) {
+      case 'train':
+        return '#bc5090';
+      case 'tramway':
+        return '#0000ff';
+      case 'metro':
+        return '#9d02d7';
+      case 'bus':
+        return '#ff6361';
+      default:
+        return;
     }
   };
+
+  useEffect(() => {
+    setFieldValue('vehicle_type', route.params.type);
+  }, [route.params.type]);
 
   return (
-    <ScrollView style={{ backgroundColor: '#0C0D34' }}>
-      <View style={styles.mainView}>
+    <Box>
+      <Box
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: theme.colors.secondary,
+        }}
+      ></Box>
+      <KeyboardAwareScrollView
+        style={{
+          backgroundColor: theme.colors.secondary,
+          marginTop: 40,
+        }}
+      >
         <Box
-          paddingLeft="m"
-          paddingTop="s"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={styles.boxContainer}
-          backgroundColor="secondary"
-          marginBottom="s"
-        ></Box>
-        <Box
-          flexDirection="row"
-          justifyContent="space-around"
           alignItems="center"
-          style={styles.boxStyle}
+          style={styles.boxInfo}
           backgroundColor="lightgray"
+          paddingBottom="xl"
+          paddingTop="m"
+          marginTop="m"
         >
-          <Image source={getImg(url)} style={styles.imgStyle} />
-        </Box>
-        {errorMessage ? (
-          <Text
-            variant="body"
-            style={{ fontFamily: 'Avenir-Semibold', color: '#FF0058' }}
-            textAlign="center"
-            marginBottom="l"
-          >
-            {errorMessage}
+          <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
+            New <Text color="primary">{route.params.type}</Text> trip
           </Text>
-        ) : null}
-        <Box
-          marginBottom="s"
-          justifyContent="space-between"
-          alignItems="center"
-          paddingBottom="m"
-          style={styles.boxDistance}
-          backgroundColor="lightgray"
-        >
-          <View style={{ padding: 3 }} />
-          <Text variant="title2">Distance in Km</Text>
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={changeDistance}
-            placeholder={'0'}
-            keyboardType="numeric"
-          />
-          <Checkbox
-            label="Round Trip ?"
-            checked={tripData.round_trip}
-            onChange={() =>
-              setTripData({
-                vehicle_type: route.params.type,
-                round_trip: !tripData.round_trip,
-                distance: tripData.distance,
-              })
-            }
-          />
-          {isLoading ? (
-            <Button
-              variant="primary"
-              label={<ActivityIndicator />}
-              onPress={() => postCommonTrip(tripData)}
-            />
-          ) : (
-            <View style={{ flexDirection: 'row', maxWidth: width }}>
-              <Button
-                variant="default"
-                label="Go Back"
-                onPress={() => navigation.goBack()}
-                style={{ width: 140 }}
+          <Box style={[styles.imgContainer, { backgroundColor: getColor(url) }]}>
+            <Image source={getImage(url)} style={styles.imgStyle} />
+          </Box>
+
+          <Box marginTop="xl" style={{ alignItems: 'center' }}>
+            <Box style={{ alignItems: 'center' }}>
+              <Text variant="body">What will be the distance of the trip ?</Text>
+            </Box>
+            <Box marginTop="s" marginBottom="m" style={{ width: wp(70) }}>
+              <TextInput
+                icon="chevrons-right"
+                ref={distance}
+                keyboardType="numeric"
+                error={errors.distance}
+                onChangeText={handleChange('distance')}
+                onBlur={handleBlur('distance')}
+                touched={touched.distance}
+                style={{
+                  borderRadius: 40,
+                  paddingHorizontal: 30,
+                }}
               />
+              <Box
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 50,
+                  bottom: 0,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Text variant="button">km</Text>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box marginTop="m">
+            <Checkbox
+              label="Is it a round trip?"
+              checked={values.round_trip}
+              onChange={() => setFieldValue('round_trip', !values.round_trip)}
+            />
+          </Box>
+
+          <Box alignItems="center" marginTop="m" style={{ justifyContent: 'center' }}>
+            {isLoading ? (
               <Button
                 variant="primary"
-                label="Add"
-                onPress={() => postCommonTrip(tripData)}
-                style={{ marginLeft: wp('2%'), width: 140 }}
+                style={{ width: 180 }}
+                onPress={() => 'void'}
+                label={<ActivityIndicator color="#ffffff" />}
               />
-            </View>
-          )}
+            ) : (
+              <Button
+                variant="primary"
+                onPress={handleSubmit}
+                label="Save this trip"
+                style={{ width: 180 }}
+              />
+            )}
+            <Box marginTop="m">
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Box
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Text variant="body" style={{ color: '#ff6361' }}>
+                    Cancel
+                  </Text>
+                </Box>
+              </TouchableOpacity>
+            </Box>
+          </Box>
         </Box>
-      </View>
-    </ScrollView>
+      </KeyboardAwareScrollView>
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    justifyContent: 'space-around',
+  boxInfo: {
+    width: wp('100%'),
+    height: hp('82%'),
+    borderRadius: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+  },
+  boxStyle: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
     alignItems: 'center',
-    backgroundColor: '#0C0D34',
+    elevation: 5,
   },
   boxContainer: {
-    width: wp('100%'),
+    width: wp(100),
     height: 50,
     borderBottomEndRadius: 20,
     borderBottomStartRadius: 20,
@@ -178,8 +226,8 @@ const styles = StyleSheet.create({
     },
   },
   boxDistance: {
-    width: wp('100%') - 40,
-    height: 260,
+    width: wp(100) - 40,
+    height: 300,
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {
@@ -198,24 +246,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
-  boxStyle: {
-    marginBottom: hp('2.5%'),
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp('90%'),
-    height: 130,
-    borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
-  },
   Button: { width: 100, margin: 5 },
   imgStyle: {
-    height: 130,
-    width: wp('90%'),
+    height: 86,
+    width: 86,
     borderRadius: 15,
+
+    tintColor: 'white',
+  },
+  imgContainer: {
+    width: wp(95),
+    borderRadius: 10,
+    backgroundColor: '#003f5c',
+    alignItems: 'center',
+    paddingVertical: 10,
+    justifyContent: 'center',
+    marginBottom: hp(10),
   },
 });
 
