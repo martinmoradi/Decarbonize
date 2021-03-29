@@ -1,11 +1,11 @@
+import { AntDesign } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Switch, TouchableOpacity } from 'react-native';
-import { Box, Text } from '../../../components/Theme';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { AntDesign } from '@expo/vector-icons';
+import { Box, Text } from '../../../components/Theme';
 import { useActions } from '../../../hooks';
 
 type PropsDeeds = {

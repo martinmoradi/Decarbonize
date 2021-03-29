@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
-import { Text, Box, useTheme } from '../../components';
-import { SingleLandTrip, SingleMealType, SingleAirTrip } from '../../redux/types';
-import { Dimensions } from 'react-native';
-import { TripHistory, MealHistory } from './components';
-const { width, height } = Dimensions.get('window');
-import { useTypedSelector } from '../../hooks';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { Box, Text, useTheme } from '../../components';
+import { useTypedSelector } from '../../hooks';
+import { SingleAirTrip, SingleLandTrip, SingleMealType } from '../../redux/types';
+import { MealHistory, TripHistory } from './components';
+const { width, height } = Dimensions.get('window');
 
 const History = () => {
   const [selected, setSelected] = useState<number>(0);

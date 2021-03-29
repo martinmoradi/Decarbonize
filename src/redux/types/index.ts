@@ -1,15 +1,20 @@
 export { AuthActionType, UserParamsType, UserType } from './authTypes';
 export { EmissionsActionType, EmissionsType, FixedEmissionsType } from './emissionsTypes';
-export { TripActionType, TripType, SingleLandTrip, SingleAirTrip } from './tripTypes';
-export { MealActionType, MealType, MealCategoryType, SingleMealType } from './mealsTypes';
+export { MealActionType, MealCategoryType, MealType, SingleMealType } from './mealsTypes';
 export {
-  OnboardingFoodActionType,
-  OnboardingSpendingActionType,
   OnboardingEnergyActionType,
-  OnboardingType,
-  OnboardingFoodStateType,
   OnboardingEnergyStateType,
+  OnboardingFoodActionType,
+  OnboardingFoodStateType,
+  OnboardingSpendingActionType,
   OnboardingSpendingStateType,
+  OnboardingType,
 } from './onboardingTypes';
+export {
+  SettingEnergyType,
+  SettingFoodType,
+  SettingSpendingType,
+  SettingType,
+} from './SettingTypes';
+export { SingleAirTrip, SingleLandTrip, TripActionType, TripType } from './tripTypes';
 export { UserCommitmentsActionType, UserCommitmentsType } from './userCommitmentsTypes';
-export { SettingSpendingType, SettingType, SettingFoodType, SettingEnergyType } from './SettingTypes';

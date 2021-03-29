@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Text } from '../../../components/Theme';
-import { StyleSheet, Dimensions, View, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { Box, Text } from '../../../components/Theme';
 const { width } = Dimensions.get('window');
 
 interface MealHistoryProps {

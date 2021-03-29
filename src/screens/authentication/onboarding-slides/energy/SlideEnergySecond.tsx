@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Ionicons } from '@expo/vector-icons';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
-import { useTypedSelector } from '../../../../hooks';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { useDispatch } from 'react-redux';
-import { OnboardingEnergyActionType, WoodsType } from '../../../../redux/types/onboardingTypes';
 import Button from '../../../../components/Button';
 import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
+import { useTypedSelector } from '../../../../hooks';
+import { OnboardingEnergyActionType, WoodsType } from '../../../../redux/types/onboardingTypes';
 import { SliderOnboarding } from '../../components';
-import { Ionicons } from '@expo/vector-icons';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
   const theme = useTheme();
@@ -122,7 +122,7 @@ const SlideEnergySecond = ({ onPress, goBack }: PropsSlide) => {
           ) : null}
         </View>
         <View style={styles.container}>
-        <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
+          <Button variant="default" style={styles.button} onPress={handlePress} label="Next" />
           <TouchableOpacity onPress={goBack}>
             <Ionicons name="md-return-down-back" size={24} color="black" />
           </TouchableOpacity>
@@ -148,6 +148,5 @@ const styles = StyleSheet.create({
   paddingBoxes: {
     padding: hp('1%'),
   },
-  button: {marginBottom: 10}, 
-
+  button: { marginBottom: 10 },
 });

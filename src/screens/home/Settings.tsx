@@ -1,11 +1,13 @@
 import React from 'react';
-import { useActions } from '../../hooks';
-import { Button, Text, Box, useTheme, Container } from '../../components';
-import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
-import { ButtonDanger, ButtonSecondary } from '../../components/Button';
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Box, Button, Text, useTheme } from '../../components';
+import { ButtonDanger, ButtonSecondary } from '../../components/Button';
+import { useActions } from '../../hooks';
+import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
 
 const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>) => {
   const { logout, deleteUser } = useActions();

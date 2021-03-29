@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Box, Text, Button, Checkbox, useTheme, TextInput } from '../../../components';
-import { TripStackNavigationProps } from '../../../routers';
-import { useActions, useTypedSelector } from '../../../hooks';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useFormik } from 'formik';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  StyleSheet,
-  Image,
-  TouchableOpacity,
   ActivityIndicator,
+  Image,
+  StyleSheet,
   TextInput as RNTextInput,
+  TouchableOpacity,
 } from 'react-native';
+import { Slider } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import RadioGroup, { RadioButtonProps } from 'react-native-radio-buttons-group';
-import { Slider } from 'react-native-elements';
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { Box, Button, Checkbox, Text, TextInput, useTheme } from '../../../components';
+import { useActions, useTypedSelector } from '../../../hooks';
+import { TripStackNavigationProps } from '../../../routers';
 
 const NewTripSchema = Yup.object().shape({
   distance: Yup.number().required('Required').positive().integer(),

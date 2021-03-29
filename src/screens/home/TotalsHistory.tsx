@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { Text, Box, useTheme } from '../../components';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Dimensions } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import { Box, Text, useTheme } from '../../components';
 import {
   BusDetails,
-  PlaneDetails,
-  TramDetails,
-  MetroDetails,
-  TrainDetails,
   CarDetails,
+  MetroDetails,
+  PlaneDetails,
+  TrainDetails,
+  TramDetails,
 } from './components/history-details/';
 
 const { width, height } = Dimensions.get('window');

@@ -82,6 +82,7 @@
     "eslint-plugin-react": "^7.22.0",
     "metro-react-native-babel-preset": "^0.65.2",
     "prettier": "^2.2.1",
+    "prettier-plugin-organize-imports": "^1.1.1",
     "react-native-debugger-open": "^0.3.25",
     "typescript": "^4.0.7"
   },

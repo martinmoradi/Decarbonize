@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { Box, Button, Text, useTheme } from '../../components';
-import { AuthNavigationProps } from '../../routers/NavigationTypes';
-import { useActions, useTypedSelector } from '../../hooks';
-
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-const { width, height } = Dimensions.get('window');
+import { Box, Button, Text } from '../../components';
+import { useActions, useTypedSelector } from '../../hooks';
+import { AuthNavigationProps } from '../../routers/NavigationTypes';
+
+const { width } = Dimensions.get('window');
 const picture = {
   src: require('../../components/assets/images/decarbonize-hero.png'),
   width: 920,
@@ -16,7 +15,6 @@ const picture = {
 export const assets = [picture.src];
 
 const Welcome = ({ navigation }: AuthNavigationProps<'Welcome'>) => {
-  const theme = useTheme();
   const { loadUser } = useActions();
   const { user } = useTypedSelector(state => state.authentication);
 

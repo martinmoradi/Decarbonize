@@ -1,1 +1,1 @@
-export { PropsSlide, PropsSlideTop, PropsSliderOnboarding } from './onboardingTypes';
+export { PropsSlide, PropsSliderOnboarding, PropsSlideTop } from './onboardingTypes';

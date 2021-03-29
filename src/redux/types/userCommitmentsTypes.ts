@@ -8,11 +8,11 @@ export enum UserCommitmentsActionType {
 }
 
 export interface UserCommitmentsType {
-    appliances: boolean;
-    reduced_heating: boolean;
-    eco_driving: boolean;
-    tap_water: boolean;
-    food_wastes: boolean;
-    bulk_food: boolean;
-    zero_wastes: boolean;
-} 
+  appliances: boolean;
+  reduced_heating: boolean;
+  eco_driving: boolean;
+  tap_water: boolean;
+  food_wastes: boolean;
+  bulk_food: boolean;
+  zero_wastes: boolean;
+}

@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
-import { Box } from '../../../../components/Theme';
+import { Image, StyleSheet, View } from 'react-native';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Image, View, StyleSheet } from 'react-native';
+import { Box } from '../../../../components/Theme';
 import { useTypedSelector } from '../../../../hooks';
 import Grid from './Grid';
 

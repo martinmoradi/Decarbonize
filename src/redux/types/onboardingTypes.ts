@@ -6,7 +6,6 @@ export enum OnboardingFoodActionType {
   SET_VEGETARIAN = 'set_vegetarian',
 }
 
-
 export enum OnboardingSpendingActionType {
   SET_CLOTHES = 'set_clothes',
   SET_FURNITURE = 'set_furniture',

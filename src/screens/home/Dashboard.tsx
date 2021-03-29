@@ -1,8 +1,7 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native';
+import { Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Box, useTheme } from '../../components';
-import { EmissionsPieIOS, EmissionsPieAndroid } from './components';
-
+import { EmissionsPieAndroid, EmissionsPieIOS } from './components';
 import Details from './components/Details';
 
 const Dashboard = () => {

@@ -1,17 +1,15 @@
-import React, { useRef, useState, useMemo } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, Box, useTheme } from '../../components';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { useMemo, useRef, useState } from 'react';
+import { Dimensions, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import { Box, Text, useTheme } from '../../components';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import Deeds from './components/Deeds';
 import { ecologyFacts } from './data/ecologyFacts';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 

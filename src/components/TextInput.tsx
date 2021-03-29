@@ -6,8 +6,8 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from 'react-native';
-import { Box, useTheme, Text } from './Theme';
 import RoundedIcon from './RoundedIcon';
+import { Box, Text, useTheme } from './Theme';
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;

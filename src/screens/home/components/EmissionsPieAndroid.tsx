@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
-import { VictoryPie } from 'victory-native';
-import { useTheme, Text, Box } from '../../../components';
-import { useTypedSelector } from '../../../hooks';
-import { Svg } from 'react-native-svg';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Svg } from 'react-native-svg';
+import { VictoryPie } from 'victory-native';
+import { Box, Text, useTheme } from '../../../components';
+import { useTypedSelector } from '../../../hooks';
 
 const EmissionsPieAndroid = () => {
   const theme = useTheme();

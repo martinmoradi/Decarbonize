@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import FoodBox from './FoodBox';
-import { Box, Text, useTheme } from '../../../components/';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { Box, Text, useTheme } from '../../../components/';
+import FoodBox from './FoodBox';
 const Meals = () => {
   const theme = useTheme();
 

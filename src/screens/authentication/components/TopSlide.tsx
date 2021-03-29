@@ -1,12 +1,10 @@
 import React from 'react';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions } from 'react-native';
-import { Platform } from 'react-native';
-import { StyleSheet } from 'react-native';
-import { Text, useTheme, Box } from '../../../components/';
+import { Box, Text, useTheme } from '../../../components/';
 import { IconSvg } from '../../home/components';
 import { PropsSlideTop } from '../types';
 

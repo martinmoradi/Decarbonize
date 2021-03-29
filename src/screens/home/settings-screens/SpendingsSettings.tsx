@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { SliderOnboarding } from '../../authentication/components';
 import { Box, Button, Text, useTheme } from '../../../components';
-import { useTypedSelector } from '../../../hooks';
+import { useActions, useTypedSelector } from '../../../hooks';
 import { SettingsStackNavigationProps } from '../../../routers/NavigationTypes';
-import { useActions } from '../../../hooks';
-import { SettingFoodType } from '../../../redux/types';
+import { SliderOnboarding } from '../../authentication/components';
 
 const SpendingsSettings = ({ navigation }: SettingsStackNavigationProps<'SettingsSpending'>) => {
   const { putFixedEmissions } = useActions();

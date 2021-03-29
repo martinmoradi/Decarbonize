@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { Box, useTheme } from '../../components';
+import { ScrollView, StyleSheet } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Box, useTheme } from '../../components';
 import Meals from './components/Meals';
 
 const MealsScreen = () => {

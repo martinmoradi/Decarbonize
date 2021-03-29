@@ -1,9 +1,9 @@
-import React from 'react';
-import { TabBar, Tab } from '@ui-kitten/components';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Box, useTheme, Text } from '../components';
-import NewTripNavigator from './NewTripNavigator';
+import { Tab, TabBar } from '@ui-kitten/components';
+import React from 'react';
+import { Box, Text, useTheme } from '../components';
 import MealsScreen from '../screens/home/MealsScreen';
+import NewTripNavigator from './NewTripNavigator';
 
 const NewNavigator = () => {
   const { Navigator, Screen } = createMaterialTopTabNavigator();

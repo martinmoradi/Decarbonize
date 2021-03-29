@@ -19,9 +19,9 @@ export interface HomeTabNavigationProps<RouteName extends keyof HomeRoutesList> 
 }
 
 export interface TripStackNavigationProps<RouteName extends keyof TripRoutesList> {
-  navigate(arg0: string, arg1?: {type: string}): void;
+  navigate(arg0: string, arg1?: { type: string }): void;
   goBack(): void;
-  params: {type: string};
+  params: { type: string };
   navigation: StackNavigationProp<TripRoutesList, RouteName>;
   route: RouteProp<TripRoutesList, RouteName>;
 }

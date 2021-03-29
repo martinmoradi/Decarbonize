@@ -1,5 +1,5 @@
-import { EmissionsActionType, EmissionsType } from '../types';
 import { EmissionsAction } from '../actions';
+import { EmissionsActionType, EmissionsType } from '../types';
 
 interface EmissionsStateType {
   data: EmissionsType;

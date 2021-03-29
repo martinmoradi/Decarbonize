@@ -1,5 +1,5 @@
-import { TripActionType, TripType } from '../types';
 import { TripAction } from '../actions';
+import { TripActionType, TripType } from '../types';
 
 interface TripStateType {
   data: TripType;

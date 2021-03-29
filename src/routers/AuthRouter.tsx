@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import AuthNavigator from './AuthNavigator';
 import { useTypedSelector } from '../hooks';
-import { AppRoutesList } from './NavigationTypes';
+import AuthNavigator from './AuthNavigator';
 import HomeNavigator from './HomeNavigator';
+import { AppRoutesList } from './NavigationTypes';
 
 const AppStack = createStackNavigator<AppRoutesList>();
 

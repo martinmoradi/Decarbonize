@@ -1,8 +1,8 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import { VictoryPie } from 'victory-native';
-import { useTheme, Text, Box } from '../../../components';
+import { Box, Text, useTheme } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
 const EmissionsPie = () => {
   const theme = useTheme();

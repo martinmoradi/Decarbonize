@@ -1,21 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Box, Text, Button, Checkbox, useTheme, TextInput } from '../../../components';
-import { TripStackNavigationProps } from '../../../routers';
-import { useActions, useTypedSelector } from '../../../hooks';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import {
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
-  TextInput as RNTextInput,
-} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { SearchBar } from 'react-native-elements';
+import { Box, Button, Checkbox, Text, useTheme } from '../../../components';
+import { useActions, useTypedSelector } from '../../../hooks';
+import { TripStackNavigationProps } from '../../../routers';
 
 interface AirportQuery {
   name: string;

@@ -1,9 +1,9 @@
-import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import NewTrip2 from '../screens/home/NewTrip';
-import NewCarTrip from '../screens/home/new-trip-screens/NewCarTrip';
+import React from 'react';
 import NewAirTrip from '../screens/home/new-trip-screens/NewAirTrip';
+import NewCarTrip from '../screens/home/new-trip-screens/NewCarTrip';
 import NewCommonTrip from '../screens/home/new-trip-screens/NewCommonTrip';
+import NewTrip2 from '../screens/home/NewTrip';
 import { TripRoutesList } from './NavigationTypes';
 
 const NewTripStack = createStackNavigator<TripRoutesList>();

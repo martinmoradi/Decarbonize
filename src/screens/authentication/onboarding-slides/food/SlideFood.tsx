@@ -1,15 +1,15 @@
+import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Button from '../../../../components/Button';
 import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
-import { SliderOnboarding } from '../../components';
 import { useTypedSelector } from '../../../../hooks';
-import { useDispatch } from 'react-redux';
 import { OnboardingFoodActionType } from '../../../../redux/types';
-import { Ionicons } from '@expo/vector-icons';
+import { SliderOnboarding } from '../../components';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideFood = ({ onPress, goBack }: PropsSlide) => {
   const theme = useTheme();
@@ -94,6 +94,6 @@ export default SlideFood;
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  button: {marginBottom: 10}, 
+  button: { marginBottom: 10 },
   content: { maxWidth: width - 0, alignItems: 'center', marginTop: hp('5%') },
 });

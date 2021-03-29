@@ -1,6 +1,5 @@
-import { OnboardingFoodStateType } from '../../types';
 import { OnboardingAction } from '../../actions';
-import { OnboardingFoodActionType } from '../../types';
+import { OnboardingFoodActionType, OnboardingFoodStateType } from '../../types';
 
 const initialState: OnboardingFoodStateType = {
   breakfasts_per_week: 0,

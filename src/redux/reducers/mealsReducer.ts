@@ -1,6 +1,5 @@
-import { MealActionType, MealType } from '../types';
 import { MealsAction } from '../actions';
-
+import { MealActionType, MealType } from '../types';
 
 interface MealStateType {
   data: MealType;
@@ -56,7 +55,6 @@ const initialState: MealStateType = {
 };
 
 const mealReducer = (state = initialState, action: MealsAction): MealStateType => {
-
   switch (action.type) {
     case MealActionType.DELETE_MEAL_ATTEMPT:
     case MealActionType.FETCH_MEALS_ATTEMPT:
@@ -69,7 +67,6 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
     case MealActionType.DELETE_MEAL_SUCCESS:
     case MealActionType.FETCH_MEALS_SUCCESS:
     case MealActionType.POST_MEAL_SUCCESS:
-
       return {
         data: action.payload,
         errorMessage: null,
@@ -83,10 +80,10 @@ const mealReducer = (state = initialState, action: MealsAction): MealStateType =
         errorMessage: action.payload,
         isLoading: false,
       };
-      case MealActionType.MEALS_RESET:
-        return {
-          ...initialState,
-        };
+    case MealActionType.MEALS_RESET:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

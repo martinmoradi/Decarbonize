@@ -1,15 +1,15 @@
+import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { useDispatch } from 'react-redux';
 import Button from '../../../../components/Button';
 import { Text, useTheme } from '../../../../components/Theme';
-import { PropsSlide } from '../../types';
-import SlideTitle from '../../components/TopSlide';
-import { SliderOnboarding } from '../../components';
 import { useTypedSelector } from '../../../../hooks';
-import { useDispatch } from 'react-redux';
 import { OnboardingEnergyActionType } from '../../../../redux/types';
-import { Ionicons } from '@expo/vector-icons';
+import { SliderOnboarding } from '../../components';
+import SlideTitle from '../../components/TopSlide';
+import { PropsSlide } from '../../types';
 
 const SlideEnergyThird = ({ onPress, goBack }: PropsSlide) => {
   const dispatch = useDispatch();

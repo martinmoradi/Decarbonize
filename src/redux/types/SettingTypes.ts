@@ -34,7 +34,6 @@ export interface SettingSpendingType {
   others: number;
 }
 
-
 export interface SettingType {
   breakfasts_per_week?: number;
   red_meats_per_week?: number;

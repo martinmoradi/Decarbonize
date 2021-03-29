@@ -1,7 +1,7 @@
 import {
+  OnboardingEnergyActionType,
   OnboardingFoodActionType,
   OnboardingSpendingActionType,
-  OnboardingEnergyActionType,
 } from '../types';
 
 interface SetRoommates {
