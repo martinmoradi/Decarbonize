@@ -16,32 +16,6 @@ const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>
     logout();
   };
 
-  // return (
-  //   <View
-  //     style={{
-  //       flex: 1,
-  //       backgroundColor: '#A9EFD2',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //     }}
-  //   >
-  //     <Text variant="title2">Settings</Text>
-  //     <Button label="Logout" variant="primary" onPress={() => logout()} style={{ margin: 5 }} />
-  //     <Button
-  //       label="Change fixed emissions"
-  //       variant="primary"
-  //       style={{ margin: 5 }}
-  //       onPress={() => navigation.navigate('SettingsEmission')}
-  //     />
-  //     <ButtonDanger
-  //       variant="default"
-  //       label="Delete Account"
-  //       onPress={() => handleDeleteUser()}
-  //       style={{ width: 140, margin: 5 }}
-  //     />
-  //   </View>
-  // );
-
   return (
     <Box style={{ flex: 1 }}>
       <Box
@@ -78,7 +52,7 @@ const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>
             <Button
               label="My housing"
               variant="primary"
-              onPress={() => navigation.navigate('SettingsFood')}
+              onPress={() => navigation.navigate('SettingsEnergy')}
               style={{ margin: 5 }}
             />
           </Box>
@@ -86,7 +60,7 @@ const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>
             <Button
               label="My spendings"
               variant="primary"
-              onPress={() => navigation.navigate('SettingsFood')}
+              onPress={() => navigation.navigate('SettingsSpending')}
               style={{ margin: 5 }}
             />
           </Box>
@@ -100,7 +74,7 @@ const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>
             <ButtonDanger
               label="Delete my account"
               variant="default"
-              onPress={() => logout()}
+              onPress={handleDeleteUser}
               style={{ margin: 5 }}
             />
           </Box>

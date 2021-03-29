@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Settings from '../screens/home/Settings';
-import SettingsEmission from '../screens/home/settings-screens/SettingsEmissions';
 import { SettingsRoutesList } from './NavigationTypes';
 import FoodSettingScreen from '../screens/home/settings-screens/FoodSettings';
 import EnergySettingScreen from '../screens/home/settings-screens/EnergySettings';
@@ -20,7 +19,6 @@ export const SettingsNavigator = () => {
   return (
     <SettingsStack.Navigator headerMode="none">
       <SettingsStack.Screen name="Settings" component={Settings} />
-      <SettingsStack.Screen name="SettingsEmission" component={SettingsEmission} />
       <SettingsStack.Screen name="SettingsFood" component={FoodSettingScreen} />
       <SettingsStack.Screen name="SettingsEnergy" component={EnergySettingScreen} />
       <SettingsStack.Screen name="SettingsSpending" component={SpendingSettingScreen} />
