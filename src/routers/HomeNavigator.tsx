@@ -5,14 +5,12 @@ import { HomeRoutesList } from './NavigationTypes';
 import Dashboard from '../screens/home/Dashboard';
 import Commitments from '../screens/home/Commitments';
 import HistoryNavigator from './HistoryNavigator';
-import NewTripNavigator from './NewTripNavigator';
 import { MaterialCommunityIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { useActions, useTypedSelector } from '../hooks';
 import AnimatedTabBar, { TabsConfig, BubbleTabBarItemConfig } from '@gorhom/animated-tabbar';
 import SettingsNavigator from './SettingsNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NewNavigator from './NewNavigator';
-import MealsScreen from '../screens/home/MealsScreen';
 
 const HomeTab = createBottomTabNavigator<HomeRoutesList>();
 

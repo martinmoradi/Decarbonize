@@ -30,7 +30,11 @@ const Details = () => {
       marginTop="m"
     >
       <Box marginBottom="m">
-        <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
+        <Text
+          variant="titleCard"
+          marginBottom="s"
+          style={{ color: theme.colors.text, textAlign: 'center' }}
+        >
           Understanding the <Text color="primary">numbers</Text>
         </Text>
       </Box>
@@ -98,7 +102,7 @@ export default Details;
 const styles = StyleSheet.create({
   boxInfo: {
     width: wp('100%'),
-    height: hp('108%'),
+    height: hp('120%'),
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {

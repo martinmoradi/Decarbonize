@@ -21,7 +21,13 @@ const NewTripSchema = Yup.object().shape({
   distance: Yup.number().required('Required').positive().integer(),
 });
 
-const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'NewCommonTrip'>) => {
+type PropsNewCommonTrip = {
+  route: TripStackNavigationProps<'NewCommonTrip'>;
+  navigation: TripStackNavigationProps<'NewCommonTrip'>;
+  url: string;
+};
+
+const NewCommonTrip = ({ route, navigation, url }: PropsNewCommonTrip) => {
   const theme = useTheme();
   const distance = useRef<RNTextInput>(null);
   const { postCommonTrip } = useActions();
@@ -48,7 +54,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
 
   const { errorMessage, isLoading } = useTypedSelector(state => state.trips);
 
-  const getImage = (url: undefined) => {
+  const getImage = (url: string | undefined) => {
     switch (route.params.type) {
       case 'train':
         return (url = require('../../../../assets/images/train.png'));
@@ -63,7 +69,7 @@ const NewCommonTrip = ({ route, navigation, url }: TripStackNavigationProps<'New
     }
   };
 
-  const getColor = (url: undefined) => {
+  const getColor = (url: string | undefined) => {
     switch (route.params.type) {
       case 'train':
         return '#bc5090';

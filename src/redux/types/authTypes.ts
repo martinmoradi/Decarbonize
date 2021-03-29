@@ -9,6 +9,9 @@ export enum AuthActionType {
   LOAD_USER_ATTEMPT = 'load_user_attempt',
   LOAD_USER_SUCCESS = 'load_user_success',
   LOAD_USER_ERROR = 'load_user_error',
+  DELETE_USER_ATTEMPT = 'delete_user_attempt',
+  DELETE_USER_SUCCESS = 'delete_user_success',
+  DELETE_USER_ERROR = 'delete_user_error',
 }
 
 export interface UserParamsType {

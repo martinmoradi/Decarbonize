@@ -4,12 +4,14 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { Box, useTheme, Text } from '../components';
 import History from '../screens/home/History';
 import TotalsHistory from '../screens/home/TotalsHistory';
+import { HomeTabNavigationProps } from './NavigationTypes';
 
 const HistoryNavigator = () => {
   const { Navigator, Screen } = createMaterialTopTabNavigator();
   const theme = useTheme();
 
-  const TopTabBar = ({ navigation, state }) => {
+  const TopTabBar = ({ navigation, state }: HomeTabNavigationProps<'History'>) => {
+    console.log('state:', state);
     const colorFirstTab = state.index === 0 ? '#39D697' : '#F3F4F6';
     const colorSecondTab = state.index === 1 ? theme.colors.primary : '#F3F4F6';
     return (

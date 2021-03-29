@@ -5,10 +5,7 @@ import { VictoryPie } from 'victory-native';
 import { useTheme, Text, Box } from '../../../components';
 import { useTypedSelector } from '../../../hooks';
 import { Svg } from 'react-native-svg';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const EmissionsPieAndroid = () => {
   const theme = useTheme();
