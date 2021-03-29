@@ -22,8 +22,8 @@ const Meals = () => {
         My monthly <Text color="primary">alimentation</Text>
       </Text>
       <Box style={styles.boxStyle}>
-        <Text variant="body" style={{ marginBottom: hp('2%') }}>
-          Track here what your alimentation emissions are.
+        <Text variant="body" style={{ marginBottom: hp('2%'), textAlign: 'center' }}>
+          Get more precise data by adding your meals here
         </Text>
         <Box style={styles.lineContainer}>
           <FoodBox type={'red_meat'} />

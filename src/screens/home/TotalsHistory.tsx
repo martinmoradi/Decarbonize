@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
+import React from 'react';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Text, Box, useTheme } from '../../components';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Text } from '../../../components/Theme';
 import { StyleSheet, Dimensions, View, Image } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 const { width } = Dimensions.get('window');
 
 interface MealHistoryProps {
@@ -11,7 +13,7 @@ interface MealHistoryProps {
   date: string;
 }
 
-const MealHistory = (props: MealHistoryProps) => {
+const MealHistory = ({ type, amount, date }: MealHistoryProps) => {
   const [version, setVersion] = useState({
     image: require(`../../../../assets/images/red_meat.png`),
     name: 'Red Meat',
@@ -47,33 +49,28 @@ const MealHistory = (props: MealHistoryProps) => {
   };
 
   useEffect(() => {
-    imageSource(props.type);
+    imageSource(type);
   }, []);
 
   return (
-    <Box
-      style={styles.boxContainer}
-      justifyContent="center"
-      backgroundColor="lightgray"
-      borderBottomColor="white"
-    >
-      <View style={styles.viewContainer}>
-        <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="body">{new Date(Date.parse(props.date)).toLocaleDateString()}</Text>
-        </View>
-        <View style={[styles.viewImg, { backgroundColor: version.color }]}>
+    <Box style={styles.boxContainer} justifyContent="center" marginBottom="s">
+      <Box style={styles.viewContainer}>
+        <Box style={{ marginLeft: wp('5%') }}>
+          <Text variant="body">{new Date(Date.parse(date)).toLocaleDateString()}</Text>
+        </Box>
+        <Box style={[styles.viewImg, { backgroundColor: version.color }]}>
           <Image
             source={version.image}
             style={[styles.imgStyle, { backgroundColor: version.color }]}
           />
-        </View>
-        <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">{version.name}</Text>
-        </View>
-        <View style={{ marginLeft: wp('5%') }}>
-          <Text variant="header">+ {props.amount}kg Co2</Text>
-        </View>
-      </View>
+        </Box>
+        <Text variant="body" style={{ marginLeft: wp('3%') }}>
+          {version.name}
+        </Text>
+        <Text variant="body" style={{ marginLeft: 'auto', marginRight: wp('5%') }}>
+          + {amount} kg
+        </Text>
+      </Box>
     </Box>
   );
 };
@@ -87,12 +84,21 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   boxContainer: {
-    width: wp('100%'),
-    height: 60,
-    borderBottomWidth: 2,
+    marginHorizontal: wp('2%'),
+    height: hp('8%'),
     borderRadius: 20,
+    backgroundColor: '#F3F4F6',
+    shadowColor: '#616164',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
   },
-  viewContainer: { marginLeft: wp('1%'), flexDirection: 'row', alignItems: 'center' },
+  textContainer: { marginLeft: wp('5%') },
+  viewContainer: { flexDirection: 'row', alignItems: 'center' },
   viewImg: {
     marginLeft: wp('5%'),
     padding: 5,

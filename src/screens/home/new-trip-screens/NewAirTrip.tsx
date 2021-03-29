@@ -52,11 +52,6 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
   // selected item
   const [selectedDeparture, setSelectedDeparture] = useState<AirportQuery>();
   const [selectedArrival, setSelectedArrival] = useState<AirportQuery>();
-  // placeholders inside searchbar
-  const [departurePlaceHolder, setDeparturePlaceholder] = useState<string>('Departure airport');
-  const [arrivalPlaceHolder, setArrivalPlaceholder] = useState<string>(
-    'Search for your arrival airport'
-  );
   // state for open suggestions
   const [departureSuggestions, setDepartureSuggestions] = useState(true);
   const [arrivalSuggestions, setArrivalSuggestions] = useState(true);
@@ -97,7 +92,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
     }
   }, [selectedDeparture]);
 
-  const handleDeparture = item => {
+  const handleDeparture = (item: AirportQuery) => {
     setSelectedDeparture(item);
     setDepartureSuggestions(false);
   };
@@ -123,7 +118,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
     }
   }, [selectedArrival]);
 
-  const handleArrival = item => {
+  const handleArrival = (item: AirportQuery) => {
     setSelectedArrival(item);
     setArrivalSuggestions(false);
   };
@@ -167,9 +162,14 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
           backgroundColor="lightgray"
           paddingBottom="xl"
           paddingTop="m"
-          marginTop="m"
+          marginTop="xl"
         >
-          <Text variant="titleCard" marginBottom="s" style={{ color: theme.colors.text }}>
+          <Text
+            variant="titleCard"
+            marginBottom="s"
+            marginTop="s"
+            style={{ color: theme.colors.text }}
+          >
             New <Text color="primary">Airtrip</Text>
           </Text>
           <Box style={[styles.imgContainer, { backgroundColor: '#58508d' }]}>
@@ -180,9 +180,11 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
           </Box>
           <Box marginTop="l" style={{ alignItems: 'center' }}>
             <Box style={{ alignItems: 'center' }}>
-              <Text variant="body">Departure airport</Text>
+              <Text variant="titleFoodCard">
+                <Text color="primary">Departure </Text>airport
+              </Text>
             </Box>
-            <Box marginTop="s" style={{ width: wp(95), backgroundColor: 'white' }}>
+            <Box marginTop="s" style={{ width: wp(90), backgroundColor: 'white' }}>
               <SearchBar
                 placeholder="Search your departure airport"
                 showCancel
@@ -192,7 +194,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                 onChangeText={setDepartureSearch}
                 onClear={() => handleCloseDeparture()}
                 value={departureSearch}
-                style={{ backgroundColor: 'white' }}
+                style={{ backgroundColor: theme.colors.lightgray }}
               />
               {departureSuggestions && (
                 <FlatList
@@ -202,7 +204,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                     backgroundColor: theme.colors.lightgray,
                   }}
                   data={departureData}
-                  keyExtractor={i => i.icao}
+                  keyExtractor={(i: AirportQuery) => `${i.icao}${i.coordinates.longitude}${i.faa}`}
                   extraData={departureSearch}
                   renderItem={({ item }) => {
                     if (departureSuggestions) {
@@ -211,7 +213,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                           style={{
                             borderBottomWidth: 1,
                             borderBottomColor: theme.colors.secondary,
-                            paddingVertical: 10,
+                            paddingVertical: 8,
                             justifyContent: 'center',
                             alignItems: 'flex-start',
                           }}
@@ -221,6 +223,8 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                           </TouchableOpacity>
                         </Box>
                       );
+                    } else {
+                      return null;
                     }
                   }}
                 />
@@ -229,9 +233,11 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
           </Box>
           <Box marginTop="m" style={{ alignItems: 'center' }}>
             <Box style={{ alignItems: 'center' }}>
-              <Text variant="body">Arrival airport</Text>
+              <Text variant="titleFoodCard">
+                <Text color="primary">Arrival </Text>airport
+              </Text>
             </Box>
-            <Box marginTop="s" style={{ width: wp(95), backgroundColor: 'white' }}>
+            <Box marginTop="s" style={{ width: wp(90) }}>
               <SearchBar
                 placeholder="Search your arrival airport"
                 showCancel
@@ -241,22 +247,24 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                 inputContainerStyle={{
                   backgroundColor: theme.colors.lightgray,
                 }}
-                inputStyle={{ backgroundColor: theme.colors.lightgray }}
-                onChangeText={setDepartureSearch}
+                inputStyle={{
+                  backgroundColor: theme.colors.lightgray,
+                  paddingLeft: 10,
+                }}
+                onChangeText={setArrivalSearch}
                 onClear={() => handleCloseArrival()}
-                value={departureSearch}
-                style={{ backgroundColor: 'white' }}
+                value={arrivalSearch}
+                style={{ backgroundColor: theme.colors.lightgray }}
               />
               {arrivalSuggestions && (
                 <FlatList
                   style={{
                     paddingLeft: 15,
-
                     paddingBottom: 15,
                     backgroundColor: theme.colors.lightgray,
                   }}
                   data={arrivalData}
-                  keyExtractor={i => i.icao}
+                  keyExtractor={(i: AirportQuery) => `${i.icao}${i.coordinates.longitude}${i.faa}`}
                   extraData={arrivalSearch}
                   renderItem={({ item }) => {
                     if (arrivalSuggestions) {
@@ -265,7 +273,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
                           style={{
                             borderBottomWidth: 1,
                             borderBottomColor: theme.colors.lightgray,
-                            paddingVertical: 10,
+                            paddingVertical: 8,
                             justifyContent: 'center',
                             alignItems: 'flex-start',
                           }}
@@ -334,50 +342,6 @@ const styles = StyleSheet.create({
       height: 9,
     },
   },
-  boxStyle: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    alignItems: 'center',
-    elevation: 5,
-  },
-  boxContainer: {
-    width: wp(100),
-    height: 50,
-    borderBottomEndRadius: 20,
-    borderBottomStartRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
-  },
-  boxDistance: {
-    width: wp(100) - 40,
-    height: 300,
-    borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 12.35,
-    elevation: 10,
-  },
-  inputStyle: {
-    height: 40,
-    width: 100,
-    margin: 12,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
-  Button: { width: 100, margin: 5 },
   imgStyle: {
     height: 86,
     width: 86,

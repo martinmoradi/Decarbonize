@@ -23,6 +23,7 @@ interface TextButtonProps {
 const Button = ({ label, onPress, variant, style }: TextButtonProps) => {
   const theme = useTheme();
   const backgroundColor = variant === 'primary' ? theme.colors.primary : theme.colors.background2;
+
   const color = variant === 'primary' ? theme.colors.background : theme.colors.secondary;
   return (
     <RectButton style={[styles.container, style, { backgroundColor }]} {...{ onPress }}>

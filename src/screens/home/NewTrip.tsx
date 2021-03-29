@@ -3,193 +3,55 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { Dimensions, ScrollView, View, Image, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet } from 'react-native';
 import { Box, Text, useTheme } from '../../components';
-import { BorderlessButton } from 'react-native-gesture-handler';
 import { TripStackNavigationProps } from '../../routers/NavigationTypes';
+import TransportationCard from './components/TransportationCard';
 
 const NewTrip = ({ navigation }: TripStackNavigationProps<'NewTrip'>) => {
   const theme = useTheme();
 
   return (
-    <ScrollView>
-      <View
+    <Box>
+      <Box
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: theme.colors.secondary,
         }}
-      ></View>
-      <View style={{ alignItems: 'center', flex: 1 }}>
-        <Box
-          paddingLeft="m"
-          paddingTop="s"
-          justifyContent="flex-end"
-          paddingBottom="m"
-          style={styles.boxContainer}
-          backgroundColor="secondary"
-          marginBottom="s"
-        >
-          <Text variant="title2" color="white">
-            ADD A NEW{' '}
-            <Text variant="title2" style={{ color: '#39D697' }}>
-              TRIP
-            </Text>
-          </Text>
-        </Box>
-        <View style={styles.viewContainer}>
-          <Image
-            source={require('../../../assets/images/transportation.jpg')}
-            style={styles.imgStyle}
-          />
-        </View>
-        <Box
-          paddingTop="m"
-          style={styles.boxTravel}
-          justifyContent="center"
-          alignItems="center"
-          backgroundColor="white"
-        >
-          <Text variant="title3" margin="s">
-            Pick your way of transportation:
-          </Text>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCarTrip')}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/car.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Car (Electric, Diesel, Petrol)</Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip', { type: 'metro' })}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/subway.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Subway</Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip', { type: 'bus' })}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/bus.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Bus </Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
+      ></Box>
 
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
+      <Box
+        marginBottom="xl"
+        style={{
+          backgroundColor: '#F6F6F6',
+          borderRadius: 75,
+          marginTop: hp(7),
+          minHeight: hp('100%'),
+        }}
+      >
+        <Box style={{ alignItems: 'center', flex: 1 }}>
+          <Text
+            variant="titleCard"
+            marginTop="l"
+            marginBottom="m"
+            paddingTop="l"
+            style={{ textAlign: 'center', color: theme.colors.text }}
           >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip', { type: 'train' })}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/train.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Train </Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewAirTrip')}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/airplane.png')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button" textAlign="center">
-                    Airplane{' '}
-                  </Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
-          <Box
-            alignItems="center"
-            style={styles.boxTravelMode}
-            justifyContent="center"
-            backgroundColor="lightgray"
-            borderBottomColor="white"
-          >
-            <BorderlessButton
-              style={{ width: width }}
-              onPress={() => navigation.navigate('NewCommonTrip', { type: 'tramway' })}
-            >
-              <View style={styles.cardContainer}>
-                <Image
-                  source={require('../../../assets/images/tramway.jpg')}
-                  style={styles.iconStyle}
-                />
-                <View style={{ marginLeft: wp('5%') }}>
-                  <Text variant="button">Tramway </Text>
-                </View>
-              </View>
-            </BorderlessButton>
-          </Box>
+            Select a <Text color="primary">transportation</Text>
+          </Text>
+          <ScrollView>
+            <TransportationCard variant={'car'} navigation={navigation} />
+            <TransportationCard variant={'bus'} navigation={navigation} />
+            <TransportationCard variant={'train'} navigation={navigation} />
+            <TransportationCard variant={'plane'} navigation={navigation} />
+            <TransportationCard variant={'tramway'} navigation={navigation} />
+            <Box style={{ marginBottom: 160 }}>
+              <TransportationCard variant={'metro'} navigation={navigation} />
+            </Box>
+          </ScrollView>
         </Box>
-      </View>
-    </ScrollView>
+      </Box>
+    </Box>
   );
 };
 
