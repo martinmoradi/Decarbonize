@@ -10,8 +10,8 @@ import { useActions } from '../../hooks';
 import { SettingsStackNavigationProps } from '../../routers/NavigationTypes';
 
 const SettingsScreen = ({ navigation }: SettingsStackNavigationProps<'Settings'>) => {
-  const { logout, deleteUser } = useActions();
   const theme = useTheme();
+  const { logout, deleteUser } = useActions();
 
   const handleDeleteUser = () => {
     deleteUser();
