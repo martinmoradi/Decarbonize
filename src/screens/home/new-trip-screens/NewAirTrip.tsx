@@ -53,9 +53,7 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
   const [selectedDeparture, setSelectedDeparture] = useState<AirportQuery>();
   const [selectedArrival, setSelectedArrival] = useState<AirportQuery>();
   // placeholders inside searchbar
-  const [departurePlaceHolder, setDeparturePlaceholder] = useState<string>(
-    'Search for your departure airport'
-  );
+  const [departurePlaceHolder, setDeparturePlaceholder] = useState<string>('Departure airport');
   const [arrivalPlaceHolder, setArrivalPlaceholder] = useState<string>(
     'Search for your arrival airport'
   );
@@ -83,35 +81,37 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
     }
   };
 
+  // departures
+
   useEffect(() => {
     if (departureSearch.length > 3) {
+      setDepartureSuggestions(true);
       fetchAirportResults(departureSearch, 'departure');
     }
   }, [departureSearch]);
 
   useEffect(() => {
-    if (!departureSuggestions) {
-      setDepartureSuggestions(true);
-    }
-  }, [departureSearch]);
-
-  useEffect(() => {
-    if (!arrivalSuggestions) {
-      setArrivalSuggestions(true);
-    }
-  }, [arrivalSearch]);
-
-  useEffect(() => {
     if (selectedDeparture) {
       setDepartureSearch(selectedDeparture.name);
       setDepartureSuggestions(false);
-    } else {
-      setDepartureSuggestions(true);
     }
   }, [selectedDeparture]);
 
+  const handleDeparture = item => {
+    setSelectedDeparture(item);
+    setDepartureSuggestions(false);
+  };
+
+  const handleCloseDeparture = () => {
+    setDepartureSearch('');
+    setDepartureSuggestions(false);
+  };
+
+  // arrivals
+
   useEffect(() => {
     if (arrivalSearch.length > 3) {
+      setArrivalSuggestions(true);
       fetchAirportResults(arrivalSearch, 'arrival');
     }
   }, [arrivalSearch]);
@@ -120,10 +120,18 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
     if (selectedArrival) {
       setArrivalSearch(selectedArrival.name);
       setArrivalSuggestions(false);
-    } else {
-      setArrivalSuggestions(true);
     }
   }, [selectedArrival]);
+
+  const handleArrival = item => {
+    setSelectedArrival(item);
+    setArrivalSuggestions(false);
+  };
+
+  const handleCloseArrival = () => {
+    setArrivalSearch('');
+    setArrivalSuggestions(false);
+  };
 
   const handleSubmit = () => {
     if (selectedDeparture && selectedArrival) {
@@ -137,16 +145,6 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
         arrival_longitude: selectedArrival.coordinates.longitude,
       });
     }
-  };
-
-  const handleDeparture = item => {
-    setSelectedDeparture(item);
-    setDepartureSuggestions(false);
-  };
-
-  const handleArrival = item => {
-    setSelectedArrival(item);
-    setArrivalSuggestions(false);
   };
 
   return (
@@ -180,88 +178,107 @@ const NewAirTrip = ({ route, navigation }: TripStackNavigationProps<'NewAirTrip'
               style={styles.imgStyle}
             />
           </Box>
-          <Box style={{ alignItems: 'center' }}>
+          <Box marginTop="l" style={{ alignItems: 'center' }}>
             <Box style={{ alignItems: 'center' }}>
               <Text variant="body">Departure airport</Text>
             </Box>
-            <Box marginTop="s" style={{ width: wp(85), backgroundColor: 'white' }}>
+            <Box marginTop="s" style={{ width: wp(95), backgroundColor: 'white' }}>
               <SearchBar
-                placeholder={departurePlaceHolder}
+                placeholder="Search your departure airport"
+                showCancel
+                containerStyle={{ backgroundColor: theme.colors.lightgray }}
+                inputContainerStyle={{ backgroundColor: theme.colors.lightgray }}
+                inputStyle={{ backgroundColor: theme.colors.lightgray }}
                 onChangeText={setDepartureSearch}
+                onClear={() => handleCloseDeparture()}
                 value={departureSearch}
                 style={{ backgroundColor: 'white' }}
               />
-              <FlatList
-                style={{
-                  paddingLeft: 15,
-                  marginTop: 15,
-                  paddingBottom: 15,
-                  borderBottomColor: '#26a69a',
-                  borderBottomWidth: 1,
-                }}
-                data={departureData}
-                keyExtractor={i => i.icao}
-                extraData={departureSearch}
-                renderItem={({ item }) => {
-                  if (departureSuggestions) {
-                    return (
-                      <Box
-                        style={{
-                          borderBottomWidth: 1,
-                          borderBottomColor: theme.colors.info,
-                          marginBottom: 5,
-                        }}
-                      >
-                        <TouchableOpacity onPress={() => handleDeparture(item)}>
-                          <Text>{`${item.name}`}</Text>
-                        </TouchableOpacity>
-                      </Box>
-                    );
-                  }
-                }}
-              />
+              {departureSuggestions && (
+                <FlatList
+                  style={{
+                    paddingLeft: 15,
+                    paddingBottom: 15,
+                    backgroundColor: theme.colors.lightgray,
+                  }}
+                  data={departureData}
+                  keyExtractor={i => i.icao}
+                  extraData={departureSearch}
+                  renderItem={({ item }) => {
+                    if (departureSuggestions) {
+                      return (
+                        <Box
+                          style={{
+                            borderBottomWidth: 1,
+                            borderBottomColor: theme.colors.secondary,
+                            paddingVertical: 10,
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                          }}
+                        >
+                          <TouchableOpacity onPress={() => handleDeparture(item)}>
+                            <Text>{`${item.name}`}</Text>
+                          </TouchableOpacity>
+                        </Box>
+                      );
+                    }
+                  }}
+                />
+              )}
             </Box>
           </Box>
-          <Box style={{ alignItems: 'center' }}>
+          <Box marginTop="m" style={{ alignItems: 'center' }}>
             <Box style={{ alignItems: 'center' }}>
               <Text variant="body">Arrival airport</Text>
             </Box>
-            <Box marginTop="s" style={{ width: wp(85), backgroundColor: 'white' }}>
+            <Box marginTop="s" style={{ width: wp(95), backgroundColor: 'white' }}>
               <SearchBar
-                placeholder={arrivalPlaceHolder}
-                onChangeText={setArrivalSearch}
-                value={arrivalSearch}
+                placeholder="Search your arrival airport"
+                showCancel
+                containerStyle={{
+                  backgroundColor: theme.colors.lightgray,
+                }}
+                inputContainerStyle={{
+                  backgroundColor: theme.colors.lightgray,
+                }}
+                inputStyle={{ backgroundColor: theme.colors.lightgray }}
+                onChangeText={setDepartureSearch}
+                onClear={() => handleCloseArrival()}
+                value={departureSearch}
                 style={{ backgroundColor: 'white' }}
               />
-              <FlatList
-                style={{
-                  paddingLeft: 15,
-                  marginTop: 15,
-                  paddingBottom: 15,
-                  borderBottomColor: '#26a69a',
-                  borderBottomWidth: 1,
-                }}
-                data={arrivalData}
-                keyExtractor={i => i.icao}
-                extraData={arrivalSearch}
-                renderItem={({ item }) => {
-                  if (arrivalSuggestions) {
-                    return (
-                      <Box
-                        style={{
-                          borderBottomWidth: 1,
-                          borderBottomColor: theme.colors.info,
-                          marginBottom: 5,
-                        }}
-                      >
-                        <TouchableOpacity onPress={() => handleArrival(item)}>
-                          <Text>{`${item.name}`}</Text>
-                        </TouchableOpacity>
-                      </Box>
-                    );
-                  }
-                }}
-              />
+              {arrivalSuggestions && (
+                <FlatList
+                  style={{
+                    paddingLeft: 15,
+
+                    paddingBottom: 15,
+                    backgroundColor: theme.colors.lightgray,
+                  }}
+                  data={arrivalData}
+                  keyExtractor={i => i.icao}
+                  extraData={arrivalSearch}
+                  renderItem={({ item }) => {
+                    if (arrivalSuggestions) {
+                      return (
+                        <Box
+                          style={{
+                            borderBottomWidth: 1,
+                            borderBottomColor: theme.colors.lightgray,
+                            paddingVertical: 10,
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                          }}
+                        >
+                          <TouchableOpacity onPress={() => handleArrival(item)}>
+                            <Text>{`${item.name}`}</Text>
+                          </TouchableOpacity>
+                        </Box>
+                      );
+                    }
+                  }}
+                />
+              )}
             </Box>
           </Box>
           <Box style={{ marginTop: hp(4) }}>
