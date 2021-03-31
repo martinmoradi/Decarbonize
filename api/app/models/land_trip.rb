@@ -4,7 +4,16 @@
 #  t.boolean "round_trip", default: false
 
 class LandTrip < ApplicationRecord
-  validates :user_id, :distance, presence: true
+  validates :user_id, presence: true, numericality: { only_integer: true }
+
+  validates :distance, presence: true, numericality: { greater_than: 0 }
+
+  validates :user_id,
+            presence: true,
+            inclusion: {
+              in: %w[diesel_car petrol_car electric_car bus tramway metro train],
+            }
+
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
   has_many :regular_trips

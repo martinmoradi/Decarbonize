@@ -3,7 +3,10 @@
 # t.bigint 'user_id',
 
 class Meal < ApplicationRecord
-  validates :user_id, :meal_type, presence: true
+  validates :user_id, presence: true, numericality: { only_integer: true }
+
+  validates :meal_type, presence: true, inclusion: { in: %w[vegetarian red_meat white_meat vegan] }
+
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
   after_create :create_emission

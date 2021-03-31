@@ -10,7 +10,8 @@
 #     t.boolean "sunday", default: false
 
 class RegularTrip < ApplicationRecord
-  validates :user_id, :land_trip_id, presence: true
+  validates :user_id, :land_trip_id, presence: true, numericality: { only_integer: true }
+
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
   belongs_to :land_trip

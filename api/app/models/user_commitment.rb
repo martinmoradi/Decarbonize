@@ -11,7 +11,8 @@
 # t.bigint 'commitment_id'
 
 class UserCommitment < ApplicationRecord
-  validates :user_id, :commitment_id, presence: true
+  validates :user_id, :commitment_id, presence: true, numericality: { only_integer: true }
+
   belongs_to :user
   belongs_to :commitment
 end
