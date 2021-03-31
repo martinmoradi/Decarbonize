@@ -1,4 +1,5 @@
 import { PropsIcons } from '../../home/components/icons/IconSvg';
+import icons from '../../home/components/icons/icons';
 
 export type PropsSlide = {
   onPress: () => void;
@@ -7,7 +8,7 @@ export type PropsSlide = {
 
 export type PropsSlideTop = {
   title: string;
-  svgTitle: PropsIcons;
+  svgTitle: keyof typeof icons;
   isReversed: boolean;
 };
 

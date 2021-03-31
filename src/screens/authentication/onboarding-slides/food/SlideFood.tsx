@@ -1,6 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -14,7 +13,7 @@ import { SliderOnboarding } from '../../components';
 import SlideTitle from '../../components/TopSlide';
 import { PropsSlide } from '../../types';
 
-const SlideFood = ({ onPress, goBack }: PropsSlide) => {
+const SlideFood = ({ onPress }: PropsSlide) => {
   const theme = useTheme();
   const { food } = useTypedSelector(state => state.onboarding);
   const [breakfast, setBreakfast] = useState(food.breakfasts_per_week);
@@ -30,7 +29,7 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
     onPress();
   };
 
-  const generateText = (variant: string) => {
+  const generateText = (variant: 'redMeat' | 'breakfast' | 'whiteMeat') => {
     switch (variant) {
       case 'redMeat':
         if (redMeat === 0) {
@@ -102,9 +101,7 @@ const SlideFood = ({ onPress, goBack }: PropsSlide) => {
   return (
     <View style={theme.slideStyle.container}>
       <SlideTitle title="FOOD" svgTitle="Food" isReversed={false} />
-      <Box style={{ position: 'absolute', top: hp(6), left: wp(2) }}>
-
-      </Box>
+      <Box style={{ position: 'absolute', top: hp(6), left: wp(2) }}></Box>
       <View style={theme.slideStyle.footer}>
         <View style={styles.content}>
           <Text variant="bodySemiBold" style={{ marginBottom: hp(2), marginTop: hp(-2) }}>

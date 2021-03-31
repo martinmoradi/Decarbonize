@@ -27,7 +27,7 @@ const SlideFoodSecond = ({ onPress, goBack }: PropsSlide) => {
     onPress();
   };
 
-  const generateText = (variant: string) => {
+  const generateText = (variant: 'vegan' | 'vegetarian') => {
     switch (variant) {
       case 'vegetarian':
         if (vegetarian === 0) {

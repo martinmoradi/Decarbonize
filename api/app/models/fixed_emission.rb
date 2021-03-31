@@ -1,22 +1,81 @@
 # Schema.rb
 # t.bigint "user_id", null: false
 #   t.float "house_surface"
-#   t.float "electricity_consumption"
-#   t.float "gas_consumption"
-#   t.float "wood_consumption"
-#   t.string "wood_type"
-#   t.float "fuel_consumption"
-#   t.integer "roommates"
-#   t.float "clothes"
-#   t.float "furnitures"
-#   t.float "others"
-#   t.integer "breakfasts_per_week"
-#   t.integer "red_meats_per_week"
-#   t.integer "vegan_per_week"
-#   t.integer "vegetarian_per_week"
-#   t.integer "white_meats_per_week"
+#   t.float "electricity_consumption", default: 0.0
+#   t.float "gas_consumption", default: 0.0
+#   t.float "wood_consumption", default: 0.0
+#   t.string "wood_type", default: 'wood_logs'
+#   t.float "fuel_consumption", default: 0.0
+#   t.integer "roommates", default: 1
+#   t.float "clothes", default: 0.0
+#   t.float "furnitures", default: 0.0
+#   t.float "others", default: 0.0
+#   t.integer "breakfasts_per_week", default: 0
+#   t.integer "red_meats_per_week", default: 0
+#   t.integer "vegan_per_week", default: 0
+#   t.integer "vegetarian_per_week", default: 0
+#   t.integer "white_meats_per_week", default: 0
 
 class FixedEmission < ApplicationRecord
+  validates :user_id, presence: true, numericality: { only_integer: true }
+
+  validates :roommates,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 1,
+              less_than_or_equal_to: 10,
+            }
+
+  validates :house_surface,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 300,
+            }
+
+  validates :electricity_consumption,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 20,
+              less_than_or_equal_to: 300,
+            }
+
+  validates :gas_consumption,
+            :fuel_consumption,
+            :wood_consumption,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 300,
+            }
+
+  validates :wood_type, presence: true, inclusion: { in: %w[wood_logs wood_pellets] }
+
+  validates :clothes,
+            :furnitures,
+            :others,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 1000,
+            }
+
+  validates :breakfasts_per_week,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 7,
+            }
+
+  validates :red_meats_per_week,
+            :vegan_per_week,
+            :vegetarian_per_week,
+            :white_meats_per_week,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 14,
+            }
   has_one :emission, as: :emissionable, dependent: :destroy
   belongs_to :user
 

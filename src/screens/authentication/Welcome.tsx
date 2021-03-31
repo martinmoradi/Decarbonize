@@ -7,6 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Box, Button, Text } from '../../components';
 import { useActions, useTypedSelector } from '../../hooks';
+import { AuthNavigationProps } from '../../routers';
 const { width } = Dimensions.get('window');
 const picture = {
   src: require('../../components/assets/images/decarbonize-hero.png'),
